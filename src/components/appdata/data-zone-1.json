@@ -1,0 +1,71 @@
+{
+    "zonedata": {
+        "rooms":[
+          {
+            "index":"0",
+            "roomdata":{
+              "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu mi nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean suscipit est quis semper pellentesque. Maecenas sed fringilla nisl. Maecenas elit justo, ultricies id malesuada sit amet, vulputate accumsan diam. Nam iaculis libero in nisi pharetra, in euismod enim fringilla. Fusce gravida dolor at turpis malesuada condimentum. Vestibulum consectetur mollis volutpat.",
+              "options":{
+                "1":{
+                    "text":"kill the king",
+                    "attribute":"strength",
+                    "requirement":"10",
+                    "resultsuccess":"you killed the king",
+                    "resultfailure":{
+                      "text":"you have died",
+                      "penalty":"death"
+                    }
+                },
+                "2":{
+                    "text":"hide behind chest",
+                    "attribute":"stealth",
+                    "requirement":"10",
+                    "resultsuccess":"you are hidden",
+                    "resultfailure":{
+                      "text":"you have been spotted",
+                      "penalty":"battle"
+                    }
+                }
+              },
+              "secrets":{
+                "0":"none",
+                "1":"none"
+              }
+            }
+          },
+          {
+            "index":"1",
+            "roomdata":{
+              "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu mi nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean suscipit est quis semper pellentesque. Maecenas sed fringilla nisl. Maecenas elit justo, ultricies id malesuada sit amet, vulputate accumsan diam. Nam iaculis libero in nisi pharetra, in euismod enim fringilla. Fusce gravida dolor at turpis malesuada condimentum. Vestibulum consectetur mollis volutpat.",
+              "options":{
+                "1":{
+                    "text":"kill the king",
+                    "attribute":"strength",
+                    "requirement":"10",
+                    "resultsuccess":"you killed the king",
+                    "resultfailure":{
+                      "text":"you have died",
+                      "penalty":"death"
+                    }
+                },
+                "2":{
+                    "text":"hide behind chest",
+                    "attribute":"stealth",
+                    "requirement":"10",
+                    "resultsuccess":"you are hidden",
+                    "resultfailure":{
+                      "text":"you have been spotted",
+                      "penalty":"battle"
+                    }
+                }
+              },
+              "secrets":{
+                "0":"none",
+                "1":"none"
+              }
+            }
+          }
+        ]
+    }
+
+}
