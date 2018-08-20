@@ -1,5 +1,4 @@
-
-        <template>
+<template>
     <div class="wrap dialog">
         <div class="container">
             <div class="row">
@@ -21,7 +20,7 @@
 
 <script>
     export default {
-        name: '404',
+        name: 'PageNotFound',
         data () {
             return {
 

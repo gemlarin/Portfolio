@@ -5,21 +5,30 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-    
+        updateShowloader:true
     },
     mutations:{
         updateTopOffset: (state, height) =>{  
             state.totop = height;
         },
+        showLoader:(state)=>{
+            state.updateShowloader = true;
+        },
+        hideLoader:(state)=>{
+            state.updateShowloader = false;
+        }
     },
     getters:{
-        getZipCode: state => {
-            return state.leadData.zipcode
+        getShowLoader: state => {
+            return state.updateShowloader
         }
     },
     actions: {
-        showLoader: (context, show) => {
-            context.commit('updateShowloader', show)
+        showLoader: (context) => {
+            context.commit('showLoader')
+        },
+        hideLoader: (context) => {
+            context.commit('hideLoader')
         }
     }
 })

@@ -385,7 +385,7 @@ $link-hover-decoration: underline !default;
     }
     #Capa_1{
         position:relative;
-        top:4px;
+        top:0px;
     }
     #open-icon-text{
         display:none;
@@ -418,7 +418,7 @@ $link-hover-decoration: underline !default;
             position:relative;
             z-index:200;
             left:100px;
-            top:-3px;
+            top:0px;
             background-color: transparent;
             transition: left .3s;
                 &.expand{
@@ -429,7 +429,7 @@ $link-hover-decoration: underline !default;
                     width:20px;
                     margin-left:7px;
                     position:relative;
-                    top:-3px;
+                    top:-1px;
                     display:inline-block;
                     &:hover{
                         opacity:.8;

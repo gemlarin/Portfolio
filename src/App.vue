@@ -1,12 +1,17 @@
   <template>
   <div id="app">
+      <div v-bind:class="{ 'hide': !isShowLoader }" class="load--wrapper">
+        <div v-bind:class="{ 'hide': !isShowLoader }" class="white--overlay">
+          <img v-bind:class="{ 'hide': !isShowLoader }" src="./assets/loader.svg">
+        </div>
+      </div>
       <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-
+import './assets/loader.svg'
 export default {
   name: "app",
 
@@ -18,20 +23,32 @@ export default {
   components: {
 
   },
-  mounted(){
-      var self = this;
-      //fix to ensure page loads at top on iOS
+  computed:{
+    isShowLoader: function(){
+      //console.log("showloader: ", this.$store.getters.getShowLoader)
+      return this.$store.getters.getShowLoader
+    }
+  },
+  methods: {
+    hideload: function(){
+      var selfi = this;
+      setTimeout(function(){ 
+        selfi.$store.dispatch('hideLoader');
+      }, 1000);
+   
       setTimeout(function(){ 
         if(window.location.hash){
-          self.$scrollTo(window.location.hash);
+          selfi.$scrollTo(window.location.hash);
         }else{
           window.scrollTo(0,0);
         }
 
     }, 1000);
+
+    }
   },
-  methods: {
-  
+  mounted(){
+      this.hideload();     
   },
   metaInfo: {
     title: "Danny Gibas", // set a main global title
@@ -189,7 +206,64 @@ img.responsive {
     outline: none !important;
 }
 
-
+.load--wrapper{
+  height:100vh;
+  width:100vw;
+  background:transparent;
+  position:absolute;
+  top:0;
+  left:0;
+  transition: height .5s ease-out .4s;
+  z-index:1001;
+  &.hide{
+        height:0;
+      }
+    .white--overlay{
+      height:100vh;
+      width:100vw;
+      background:white;
+      position:absolute;
+      bottom:0;
+      left:0;
+      z-index:1002;
+      transition: height .5s ease-out .4s;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      img{
+        display:block;
+         -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+        &.hide{
+          display:none;
+        }
+      }
+      &.hide{
+        height:0;
+      }
+    }
+}
 
 
 </style>
