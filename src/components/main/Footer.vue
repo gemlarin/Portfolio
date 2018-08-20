@@ -40,7 +40,7 @@
 <style scoped lang="scss">
   footer {
     margin-top:400px;
-    background-color: #111;
+    background-color: #32312F;
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
@@ -91,7 +91,7 @@
     }
     p {
         font-size: 14px;
-        color: #757575;
+        color: #818181;
         margin-bottom: 5px;
     }
 }
