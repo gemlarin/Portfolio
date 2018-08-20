@@ -10,7 +10,8 @@ import Meta from 'vue-meta'
 import VueResource from 'vue-resource'
 import VueAgile from 'vue-agile'
 import 'expose-loader?$!expose-loader?jQuery!jquery'
-//include jquery globally for ajax function.
+import VueScrollReveal from 'vue-scroll-reveal'
+
 var VueScrollTo = require('vue-scrollto');
 
 
@@ -19,7 +20,7 @@ Vue.use(VueScrollTo, {
      container: "body",
      duration: 500,
      easing: "ease",
-     offset: -100,
+     offset: -40,
      cancelable: true,
      onStart: false,
      onDone: false,
@@ -49,6 +50,14 @@ Vue.use(Meta);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VueAgile);
+Vue.use(VueScrollReveal, {
+    class: 'v-scroll-reveal', // A CSS class applied to elements with the v-scroll-reveal directive; useful for animation overrides.
+    duration: 1000,
+    origin:'left',
+    scale: 0,
+    distance: '50px',
+    mobile: false
+  });
 
 const vm = new Vue({
   el: '#app',

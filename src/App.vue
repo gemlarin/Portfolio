@@ -18,6 +18,18 @@ export default {
   components: {
 
   },
+  mounted(){
+      var self = this;
+      //fix to ensure page loads at top on iOS
+      setTimeout(function(){ 
+        if(window.location.hash){
+          self.$scrollTo(window.location.hash);
+        }else{
+          window.scrollTo(0,0);
+        }
+
+    }, 1000);
+  },
   methods: {
   
   },

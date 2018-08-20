@@ -27,6 +27,7 @@
     "vue-meta": "^1.5.0",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
+    "vue-scroll-reveal": "^1.0.8",
     "vue-scrollto": "^2.11.0",
     "vuex": "^3.0.1"
   },
@@ -45,10 +46,12 @@
     "expose-loader": "^0.7.5",
     "file-loader": "^1.1.4",
     "jquery": "^3.3.1",
+    "jquery-parallax.js": "^1.5.0",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "vue-agile": "^0.3.7",
     "vue-loader": "^13.0.5",
+    "vue-parallaxy": "^1.1.1",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
