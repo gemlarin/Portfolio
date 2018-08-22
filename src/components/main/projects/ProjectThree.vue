@@ -1,13 +1,12 @@
-
 <template>
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-8">
-            <img v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}" :src="activeImage" @mouseover="activeImage = otherImage" @mouseout="activeImage = myImage" class="preview--img img-fluid">
+            <img v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}" :src="activeImage" @mouseover="activeImage = otherImage" @mouseout="activeImage = myImage" class="preview--img img-fluid popup-link-3">
         </div>
         <div class="col-12 col-sm-12 col-md-4 text-container">
             <h2>CEC Project Locator</h2>
-            <h5>landing page</h5>
+            <h5>Role: Devloper</h5>
             <p>Aenean eu congue dolor, in dapibus urna. Cras vitae erat vel lectus maximus consectetur. Nam tincidunt vel urna sit amet aliquam. Aenean sapien elit, facilisis sed nibh id, tempor accumsan diam. Integer a porta sapien. Mauris hendrerit nisl ac dui volutpat, id lobortis eros elementum.</p>
             <a href="#" target="_blank">visit site</a>
         </div>
@@ -28,17 +27,14 @@
                 otherImage: './dist/project-three-hover.jpg'
             }
         },
-        components: {
-        
-        },
-        methods:{
-           
-        },
-        created(){
-           
-        },
-        mounted(){
-                 
+        mounted: function(){
+            $('.popup-link-3').magnificPopup({
+                items: {
+                src: './dist/project-three-hover.jpg'
+                },
+                type: 'image',
+                closeOnContentClick: true
+            });
         }
     }
 </script>
@@ -74,6 +70,9 @@
         }
         .text-container{
             padding-left:70px;
+        }
+        img{
+            cursor:pointer;
         }
     }
 

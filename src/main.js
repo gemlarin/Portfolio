@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Meta from 'vue-meta'
 import VueResource from 'vue-resource'
 import VueAgile from 'vue-agile'
+import './vendors/magnific-popup/magnific-popup.css'
+import 'expose-loader?MagnificPopup!./vendors/magnific-popup/magnific-popup'
 import 'expose-loader?$!expose-loader?jQuery!jquery'
 import VueScrollReveal from 'vue-scroll-reveal'
 

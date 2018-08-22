@@ -1,9 +1,8 @@
-
 <template>
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-8">
-            <img v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}" :src="activeImage" @mouseover="activeImage = otherImage" @mouseout="activeImage = myImage" class="preview--img img-fluid">
+            <img v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}" :src="activeImage" @mouseover="activeImage = otherImage" @mouseout="activeImage = myImage" class="preview--img img-fluid popup-link">
         </div>
         <div class="col-12 col-sm-12 col-md-4 text-container">
             <h2>RooflessSolar<sup>&trade;</sup></h2>
@@ -27,6 +26,15 @@
                 myImage: './dist/project-one.jpg',
                 otherImage: './dist/project-one-hover.jpg'
             }
+        },
+        mounted: function(){
+            $('.popup-link').magnificPopup({
+                items: {
+                src: './dist/project-one-hover.jpg'
+                },
+                type: 'image',
+                closeOnContentClick: true
+            });
         }
     }
 </script>
@@ -62,6 +70,9 @@
         }
         .text-container{
             padding-left:70px;
+        }
+        img{
+            cursor:pointer;
         }
     }
 
