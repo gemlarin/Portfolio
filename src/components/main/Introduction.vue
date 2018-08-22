@@ -3,14 +3,14 @@
 
     <div class="wrap dialog" id="introduction">
 
-            <h2 v-scroll-reveal.reset="{ delay: 500, origin:'left', easing:'ease-out'}">
+            <h2 v-scroll-reveal.reset="{ delay: 500, origin:'left', duration: 500, easing:'ease-out'}">
                 Hello! I'm Danny Gibas and I build experiences for the web<span>.</span>  
             </h2>
             <div id="navigation--intro">
                 <ul>
-                    <li><router-link class="nav-link" to="/contact">contact</router-link></li>
                     <li><router-link class="nav-link" to="/resume">resume</router-link></li>
                     <li><router-link class="nav-link" to="/stack">stack</router-link></li>
+                    <li><router-link class="nav-link" to="/contact">contact</router-link></li>
                 </ul> 
             </div>
             <div class="dividerline--animated"></div>
@@ -107,9 +107,11 @@
         align-items: center;
 
     a.nav-link{
-        text-decoration: none;
         color:#fb2662;
         font-size:18px;
+    }
+    a:hover{
+        text-decoration: underline;
     }
     ul{
         list-style: none;

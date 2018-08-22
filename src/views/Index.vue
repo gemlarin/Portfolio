@@ -4,6 +4,12 @@
         <Hero></Hero>
         <introduction></introduction>
         <portfolio></portfolio>
+        <project-one></project-one>
+        <project-two></project-two>
+        <project-three></project-three>
+        <project-four></project-four>
+        <project-five></project-five>
+        <project-six></project-six>
         <foot></foot>
       </div>
 </template>
@@ -12,8 +18,15 @@
 import Hero from "./../components/main/Hero"
 import Introduction from "./../components/main/Introduction"
 import Portfolio from "./../components/main/Portfolio"
+import ProjectOne from "./../components/main/projects/ProjectOne"
+import ProjectTwo from "./../components/main/projects/ProjectTwo"
+import ProjectThree from "./../components/main/projects/ProjectThree"
+import ProjectFour from "./../components/main/projects/ProjectFour"
+import ProjectFive from "./../components/main/projects/ProjectFive"
+import ProjectSix from "./../components/main/projects/ProjectSix"
 import Foot from "./../components/main/Footer"
 export default {
+  name:"Index",
   data: function() {
     return {
       TIMEOUT: 1
@@ -24,7 +37,14 @@ export default {
     Hero,
     Introduction,
     Portfolio,
+    ProjectOne,
+    ProjectTwo,
+    ProjectThree,
+    ProjectFour,
+    ProjectFive,
+    ProjectSix,
     Foot
+    
   },
   computed: {},
   mounted: function(){
