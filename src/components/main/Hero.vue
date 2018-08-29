@@ -572,7 +572,7 @@ $link-hover-decoration: underline !default;
                         opacity:1;
                     }
                     &:hover{
-                        filter: brightness(0.5) sepia(1) hue-rotate(230deg) saturate(6);
+                        filter: brightness(0.6) sepia(1) hue-rotate(300deg) saturate(9);
                     }
                 }
                 .scroll-text{

@@ -56,7 +56,7 @@
             this.lastScrollTop = st;
 
 
-            if(window.scrollY > 50 && this.direction == "down"){
+            if(window.scrollY > ($(window).height() / 2) && this.direction == "down"){
                 if(!this.animatelock){
                     this.windowheight = $(window).height();
                     this.animatelock = true;
@@ -166,9 +166,8 @@
         left:50%;
         top:0;
         background-color: #252324;
-        transition: height 2s;
-        transition-delay: .4s;
-        transition-timing-function: ease;
+        transition: height 1.5s;
+        transition-timing-function: ease-in;
         &.animate{
            height:100vh; 
         }

@@ -73,6 +73,7 @@
         }
         img{
             cursor:pointer;
+            
         }
     }
 

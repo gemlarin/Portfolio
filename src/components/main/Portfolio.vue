@@ -1,13 +1,9 @@
 
 <template>
 
+    
     <div class="wrap dialog">
-
-                    <h2>Selected Works</h2>
-                    
- 
-<!--<p v-scroll-reveal.reset="{ delay: 250, origin:'bottom', }">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>-->            
-       
+        <h2 class="animated-alt">Selected Works</h2>                  
     </div>
 
 </template>
@@ -19,19 +15,57 @@ import './../../assets/sect-bg1.jpg'
         name: 'Portfolio',
         data () {
             return {
-
+                animatelock:false,
+                windowheight:0
             }
         },
-        created(){
-           
+        mounted(){
+            
+            window.addEventListener("scroll", this.handleScroll);
+        },
+        methods:{
+                     
+            handleScroll: () => { 
+            //do some fabulous optimization to prevent scroll overloading
+            
+            var st = window.scrollY
+            if (st > this.lastScrollTop){
+                this.direction = "down";
+            } else {
+                this.direction = "up"
+            }
+            this.lastScrollTop = st;
+
+
+                if(window.scrollY > ($(window).height() * 1.3) && this.direction == "down"){
+                    if(!this.animatelock){
+                        this.windowheight = $(window).height();
+                        this.animatelock = true;
+                        //console.log("locked: " + this.animatelock)
+                        $('h2.animated-alt').addClass('animate');
+                    }
+                }
+            
+                 if(window.scrollY < (this.windowheight * 1.3) && this.direction == "up") {
+                    if(this.animatelock){
+                        this.animatelock = false;
+                    // console.log("locked: " + this.animatelock)
+                        $('h2.animated-alt').removeClass('animate');
+
+                    }
+                }       
+            }
         }
     }
 </script>
 <style scoped lang="scss">
 
+   
+
   .wrap.dialog{
         height:500px;
         width:100vw;
+        position:relative;
         background: url('./../../assets/sect-bg1.jpg') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -54,7 +88,7 @@ import './../../assets/sect-bg1.jpg'
         -webkit-align-items: center;
         -ms-flex-align: center;
         align-items: center;
-        h2{
+        h2.animated-alt{
             font-family: 'proxima_novablack';
             color:#fff;
             -webkit-order: 0;
@@ -69,6 +103,17 @@ import './../../assets/sect-bg1.jpg'
             z-index:302;
             height:50px;
             font-size:50px;
+            background-image: url(http://codelocomotive.com/xxy/backmask.png);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 500px 900px;
+            background-repeat: no-repeat;
+            background-position:0 -700px;
+            transition:background-position 4s;
+            &.animate{
+                background-position:0 0;
+            }
         }
   }
 .col-12{
