@@ -1,10 +1,10 @@
 <template>
 <ul>
     <li>
-        <router-link class="nav-link" :to="nextpage">Nextpage</router-link>
+        <router-link class="nav-link" :to="nextpage">{{ nextpagename }}</router-link>
     </li>
     <li>
-        <router-link class="nav-link"  :to="lastpage">Lastpage</router-link>
+        <router-link class="nav-link" :to="lastpage">{{ lastpagename }}</router-link>
     </li>
 </ul>
 </template>
@@ -18,18 +18,8 @@ export default {
 
     };
   },
-  props:['nextpage','lastpage'],
+     props:['nextpage','lastpage', 'nextpagename', 'lastpagename'],
   components: {
-    
-  },
-  computed: {},
-  mounted: function(){
-   
-  },
-  created: function() {
-  },
-  methods: {
-  
   }
 };
 </script>
@@ -38,12 +28,16 @@ export default {
 ul{
     list-style:none;
     display:inline;
+    margin-top:150px;
 }
 li{
     display:inline-block;
     a{
-        color:#333;
+        color:#fb2662;
     }
+}
+.nav-link{
+     font-family: "AvenirLTStdBlack";
 }
     
 </style>

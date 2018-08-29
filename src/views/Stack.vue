@@ -1,15 +1,22 @@
 <template>
     <div class="wrap--stack">
+        <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
         <div class="wrap--centering">
             <div class="row">
-                <div class="col-12">
-                    <navi :nextpage="nextpath" :lastpage="lastpath"></navi>
-                    <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
-                    Vue 2
-                    Webpack
-                    SASS
-                    NPM
-                    Bootstrap 4
+                <div class="col-6">
+                    <h2>VUE 2</h2>
+                    <h2>WEBPACK</h2>
+                    <h2>SASS</h2>
+                    <h2>NPM</h2>
+                    <h2>BS 3/4</h2>
+                </div>
+                <div class="col-6 subcopy text-left">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p> <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <navi :nextpage="nextpath" :nextpagename="nextpagename" :lastpage="lastpath" :lastpagename="lastpagename"></navi>
                 </div>
             </div>
         </div>
@@ -28,7 +35,9 @@
         data () {
             return {
                 nextpath:'/Resume',
-                lastpath:'/Contact'
+                nextpagename:'Resume',
+                lastpath:'/Contact',
+                lastpagename:'Contact' 
             }
         },
         created(){
@@ -40,13 +49,28 @@
     }
 </script>
 <style lang="scss" scoped>
-  .wrap--stack{
+h2{
+    font-family: 'proxima_novablack';
+    color:#333;
+    font-size:55px;       
+    margin-bottom:5px; 
+    line-height:63px;                                            
+}
+p{
+    font-family: "AvenirLTStdBook";
+    padding-top:10px;
+    padding-left:10px;
+}
+.subcopy{
+    max-width:250px;
+}
+.wrap--stack{
     height:100vh;
     width:100vw;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: row;
+    -webkit-flex-direction: row;            
     -ms-flex-direction: row;
     flex-direction: row;
     -webkit-flex-wrap: nowrap;
@@ -61,7 +85,7 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-  }
+}
 .wrap--centering{
     width:40vw;
     height:300px;
@@ -75,7 +99,7 @@
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
-    text-align:center;
+    text-align:right;
     img{
         display:inline-block;
         height:20px;
