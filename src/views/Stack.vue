@@ -1,43 +1,36 @@
 <template>
+<div>
     <div class="wrap--stack">
         <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
         <div class="wrap--centering">
             <div class="row">
                 <div class="col-6">
                     <h2>VUE 2</h2>
-                    <h2>WEBPACK</h2>
                     <h2>SASS</h2>
+                    <h2>WEBPACK</h2>
                     <h2>NPM</h2>
                     <h2>BS 3/4</h2>
                 </div>
                 <div class="col-6 subcopy text-left">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p> <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <navi :nextpage="nextpath" :nextpagename="nextpagename" :lastpage="lastpath" :lastpagename="lastpagename"></navi>
+                    <p>This list defines my current primary development stack. For projects that do not require an advanced JS framework, I use the CodeKit task runner in in lieu of Webpack and Knockout.js for data binding.</p>
+                    <p>My design and UX tooling includes Axure RP, Adobe CC, and Balsamiq.</p>
                 </div>
             </div>
         </div>
     </div>
+    <div class="positioner">
+        <navi :activepage="page"></navi>
+    </div>
+</div>
 </template>
 
 <script>
-    import './../assets/logos/vue.svg'
-    import './../assets/logos/webpack.svg'
-    import './../assets/logos/sass.svg'
-    import './../assets/logos/npm.svg'
-    import './../assets/logos/bootstrap.svg'
     import Nav from './../components/main/navs/IntroNav.vue'
     export default {
         name: 'Stack',
         data () {
             return {
-                nextpath:'/Resume',
-                nextpagename:'Resume',
-                lastpath:'/Contact',
-                lastpagename:'Contact' 
+                page:'stack', 
             }
         },
         created(){
@@ -49,20 +42,36 @@
     }
 </script>
 <style lang="scss" scoped>
+
+
 h2{
     font-family: 'proxima_novablack';
     color:#333;
-    font-size:55px;       
+    font-size:50px;       
     margin-bottom:5px; 
-    line-height:63px;                                            
+    line-height:55px; 
+    padding-right:5px;                                           
+}
+.wrapper--postion-nav{
+    margin-top:60px;
+}
+.positioner{
+  width:100vw;
+  position:absolute;
+  z-index: 301;
+  bottom:40px;
+  text-align:center;
 }
 p{
     font-family: "AvenirLTStdBook";
+    font-size:15px;
+    line-height:1.74em;
     padding-top:10px;
-    padding-left:10px;
+    padding-left:5px;
+    color:#5a5a5a;
 }
 .subcopy{
-    max-width:250px;
+    max-width:265px;
 }
 .wrap--stack{
     height:100vh;

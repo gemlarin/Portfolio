@@ -1,11 +1,15 @@
 <template>
 <ul>
     <li>
-        <router-link class="nav-link" :to="nextpage">{{ nextpagename }}</router-link>
+        <router-link class="nav-link" :class="{ active: activepage == 'resume' }" to="/resume">Resume</router-link>
     </li>
     <li>
-        <router-link class="nav-link" :to="lastpage">{{ lastpagename }}</router-link>
+        <router-link class="nav-link" :class="{ active: activepage == 'stack' }" to="/stack">Stack</router-link>
     </li>
+    <li>
+        <router-link class="nav-link" :class="{ active: activepage == 'contact' }" to="/contact">Contact</router-link>
+    </li>
+    
 </ul>
 </template>
 
@@ -18,7 +22,7 @@ export default {
 
     };
   },
-     props:['nextpage','lastpage', 'nextpagename', 'lastpagename'],
+     props:['activepage'],
   components: {
   }
 };
@@ -28,7 +32,8 @@ export default {
 ul{
     list-style:none;
     display:inline;
-    margin-top:150px;
+    padding-left:0;
+    margin:0 auto;
 }
 li{
     display:inline-block;
@@ -37,7 +42,11 @@ li{
     }
 }
 .nav-link{
-     font-family: "AvenirLTStdBlack";
+     font-family: "AvenirLTStdLight";
+     font-size:14px;
+     &.active{
+         text-decoration: underline;
+     }
 }
     
 </style>
