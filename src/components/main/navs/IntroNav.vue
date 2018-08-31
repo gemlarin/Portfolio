@@ -33,7 +33,9 @@ ul{
     list-style:none;
     display:inline;
     padding-left:0;
-    margin:0 auto;
+    margin: auto 0;
+    position:relative;
+    top:15px;
 }
 li{
     display:inline-block;
@@ -43,11 +45,12 @@ li{
 }
 .nav-link{
      font-family: "AvenirLTStdLight";
-     font-size:14px;
+     font-size:16px;
      &.active{
          text-decoration: underline;
      }
 }
+
     
 </style>
 

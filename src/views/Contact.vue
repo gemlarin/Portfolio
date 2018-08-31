@@ -1,24 +1,23 @@
 <template>
-  <div> 
-    <div class="wrap--stack">
-      <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
-      <div class="wrap--centering">
-          <div class="row">
-              <h2>CONTACT</h2>
-          </div>
-      </div>
+    <div>
+        <div class="wrap--stack">
+            <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
+            <div class="wrap--centering">
+                <h2>CONTACT</h2>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <navi :activepage="page"></navi>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="positioner">
-      <navi :activepage="page"></navi>
-    </div>
-</div>
 </template>
 
 <script>
-
     import Nav from './../components/main/navs/IntroNav.vue'
     export default {
-        name: 'Contact',
+        name: 'contact',
         data () {
             return {
                 page:'contact', 
@@ -62,9 +61,6 @@ p{
     color:#5a5a5a;
 }
 
-.subcopy{
-    max-width:265px;
-}
 .wrap--stack{
     height:100vh;
     width:100vw;
@@ -87,8 +83,20 @@ p{
     -ms-flex-align: center;
     align-items: center;
 }
+.nav-link{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.mfp-close{
+    font-size:50px;
+    right:10px;
+    top:10px;
+   
+}
 .wrap--centering{
-    width:40vw;
+    width:70vw;
+    height:360px;
     background-color:white;
     -webkit-order: 0;
     -ms-flex-order: 0;
@@ -99,7 +107,6 @@ p{
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
-    text-align:right;
     img{
         display:inline-block;
         height:20px;
@@ -132,5 +139,47 @@ p{
         }
     }
 }
+   @media (max-width: 768px) {
+       .mfp-close{
+            font-size:45px;
+        }
+       .wrap--centering{
+           width:100%;
+           height:410px;
+       }
+       .subcopy{
+            max-width:400px;
+            padding-top:20px;
+            text-align: center;
+            margin:0 auto;
+            padding-left:0;
+            padding-right:0;
+            max-width:80%;
+        }
+        .listing{
+            text-align: center;
+            max-width:80%;
+            margin:0 auto;
+        }
+        h2{
+            line-height: 50px;
+            font-size:45px;
+            display:inline;
+            padding-left:15px;
+            padding-right:15px;
+        }
+        p{
+            padding-left:15px;
+            padding-right:15px;
+        }
+   }
+
+@media (max-width: 768px) and (min-width: 695px){
+    .wrap--centering{
+        width:100%;
+        height:330px;
+    }
+}
+
 
 </style>
