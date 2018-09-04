@@ -7,10 +7,16 @@
             <div class="col-sm-12">
               <ul>
                 <li>
-                    <a href="javascript:void(0)" v-scroll-to="'#introduction'">ABOUT</a>
+                    <a href="javascript:void(0)" v-scroll-to="'#portfolio'">PORTFOLIO</a>
                 </li>
                 <li>
-                  <a href="#details">OTHER PROJECTS</a>
+                    <router-link to="/stack">STACK</router-link>
+                </li>
+                <li>
+                    <router-link to="/resume">RESUME</router-link>
+                </li>
+                <li>
+                    <router-link to="/contact">CONTACT</router-link>
                 </li>
               </ul>
             </div>

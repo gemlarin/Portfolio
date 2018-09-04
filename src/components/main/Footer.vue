@@ -39,7 +39,7 @@
 </script>
 <style scoped lang="scss">
   footer {
-    margin-top:400px;
+    margin-top:150px;
     background-color: #32312F;
     position: relative;
     padding-top: 60px;

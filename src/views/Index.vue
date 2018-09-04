@@ -4,12 +4,13 @@
         <Hero></Hero>
         <introduction></introduction>
         <portfolio></portfolio>
+        <div id="portfolio"></div>
         <project-one></project-one>
         <project-two></project-two>
         <project-three></project-three>
         <project-four></project-four>
         <project-five></project-five>
-        <project-six></project-six>
+  
         <foot></foot>
       </div>
 </template>

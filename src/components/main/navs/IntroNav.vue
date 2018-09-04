@@ -1,10 +1,13 @@
 <template>
-<ul>
+<ul class="navlist">
     <li>
-        <router-link class="nav-link" :class="{ active: activepage == 'resume' }" to="/resume">Resume</router-link>
+        <router-link class="nav-link" to="/#portfolio">Portfolio</router-link>
     </li>
     <li>
         <router-link class="nav-link" :class="{ active: activepage == 'stack' }" to="/stack">Stack</router-link>
+    </li>
+    <li>
+        <router-link class="nav-link" :class="{ active: activepage == 'resume' }" to="/resume">Resume</router-link>
     </li>
     <li>
         <router-link class="nav-link" :class="{ active: activepage == 'contact' }" to="/contact">Contact</router-link>
@@ -35,19 +38,22 @@ ul{
     padding-left:0;
     margin: auto 0;
     position:relative;
-    top:15px;
 }
 li{
     display:inline-block;
     a{
         color:#fb2662;
+        &:hover{
+            text-decoration: underline;
+        }
     }
 }
 .nav-link{
      font-family: "AvenirLTStdLight";
      font-size:16px;
      &.active{
-         text-decoration: underline;
+         color:#fb2662;
+         font-family: "AvenirLTStdBlack";
      }
 }
 

@@ -3,13 +3,14 @@
 
     <div class="wrap dialog" id="introduction">
 
-            <h2 v-scroll-reveal.reset="{ delay: 500, origin:'left', duration: 500, easing:'ease-out'}">
+            <h2 v-scroll-reveal.reset="{ delay: 200, origin:'bottom', duration: 500, easing:'ease-out'}">
                 Hello! I'm Danny Gibas and I build experiences for the web<span>.</span>  
             </h2>
             <div id="navigation--intro">
-                <ul>
-                    <li><router-link class="nav-link" to="/resume">resume</router-link></li>
+                <ul v-scroll-reveal.reset="{ delay: 200, origin:'bottom', duration: 500, easing:'ease-out'}">
+                    <li><a class="nav-link" href="javascript:void(0)" v-scroll-to="'#portfolio'">portfolio</a></li>
                     <li><router-link class="nav-link" to="/stack">stack</router-link></li>
+                    <li><router-link class="nav-link" to="/resume">resume</router-link></li>
                     <li><router-link class="nav-link" to="/contact">contact</router-link></li>
                 </ul> 
             </div>
@@ -87,25 +88,25 @@
         height:100vh;
         width:100vw;
         background:#fff;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-flex-wrap: nowrap;
-        -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
+       -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
         -webkit-align-content: stretch;
         -ms-flex-line-pack: stretch;
         align-content: stretch;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+ 
     a.nav-link{
         color:#fb2662;
         font-size:18px;
@@ -122,13 +123,15 @@
     }
     h2{
         font-family: 'proxima_novablack';
-        margin-left:30px;
-        width:490px;
-        height:220px;
-        text-align:left;
+        letter-spacing:-.8px;
+        margin:0 auto;
+        width:650px;
+        height:210px;
+        padding:15px;
+        text-align:center;
         font-size:55px;
         line-height:1em;
-         -webkit-order: 0;
+        -webkit-order: 0;
         -ms-flex-order: 0;
         order: 0;
         -webkit-flex: 0 1 auto;
@@ -153,11 +156,9 @@
         -webkit-align-self: auto;
         -ms-flex-item-align: auto;
         align-self: auto;
-        width:50vw;
+        width:100vw;
         text-align:center;
     }
-
-
     .dividerline--animated{
         width:1px;
         height:0;
@@ -173,99 +174,48 @@
         }
     }
     .dividerline--mask{
-        display:none;
+        display:block;
         position:absolute;
         z-index:301;
         left:calc(50% - 10px);
-        top:calc(50vh - 150px);
+        top:calc(50vh - 155px);
         width:20px;
-        height:270px;
+        height:310px;
         background-color: white;
     }
   }
-
-@media (max-width: 460px) {
+@media (max-width: 491px){
     .wrap.dialog{
         h2{
             margin:0 15px;
             width:calc(100vw - 30px);
             text-align:center;
-            height:270px !important;
+            height:320px !important;
         }
+        .dividerline--mask{
+            top:calc(50vh - 205px) !important;
+            height:410px !important;
+        }
+        
+    }
+}
+
+@media (min-width: 491px) and  (max-width: 939px){
+      .wrap.dialog{
+        h2{
+            margin:0 auto;
+            width:500px;
+            text-align:center;
+            height:260px !important;
+        }
+
+ 
         .dividerline--mask{
             top:calc(50vh - 185px) !important;
-            height:350px !important;
+            height:360px !important;
         }
-    }
-}  
-
-@media (max-width: 600px) {
-    .wrap.dialog{
-        h2{
-            margin:0 15px;
-            width:calc(100vw - 30px);
-            text-align:center;
-            height:220px;
-        }
-        .dividerline--mask{
-            top:calc(50vh - 160px);
-            height:315px;
-        }
-    }
-}
-@media (max-width: 768px) and (min-width: 601px){
-    .wrap.dialog{
-        h2{
-            text-align:center;
-            max-width:600px;
-            margin:0 auto;
-            padding:15px;
-            height:250px;
-        }
-        .dividerline--mask{
-            top:calc(50vh - 160px);
-            height:315px;
-        }
-    }
-}
-@media screen and (max-width: 940px ) and (min-width: 769px) {
-    .wrap.dialog{
-       h2{
-            text-align:center;
-            margin:0 auto;
-            width:600px;
-            height:160px;
-        }
-
-        .dividerline--mask{
-            top:calc(50vh - 140px);
-            height:260px;
-        }
+    
     }
 }
 
-@media (max-width: 940px) {
-    .wrap.dialog{
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-align-content: stretch;
-        -ms-flex-line-pack: stretch;
-        align-content: stretch;
-        -webkit-align-items: flex-start;
-        -ms-flex-align: start;
-        align-items: flex-start;
-         #navigation--intro{
-            width:100vw;
-            margin-top:20px;
-        }
-        .dividerline--mask{
-            display:block;
-        }
-
-    }
-}
 </style>

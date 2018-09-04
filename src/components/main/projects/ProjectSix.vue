@@ -17,8 +17,8 @@
 </template>
 
 <script>
-    import './../../../assets/project-six.jpg'
-    import './../../../assets/project-six.jpg'
+
+
     export default {
         name: 'ProjectSix',
         data () {

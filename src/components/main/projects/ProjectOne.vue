@@ -7,8 +7,8 @@
         <div class="col-12 col-sm-12 col-md-4 text-container">
             <h2>RooflessSolar<sup>&trade;</sup></h2>
             <h5>Role: Devloper</h5>
-            <p>Aenean eu congue dolor, in dapibus urna. Cras vitae erat vel lectus maximus consectetur. Nam tincidunt vel urna sit amet aliquam. Aenean sapien elit, facilisis sed nibh id, tempor accumsan diam. Integer a porta sapien. Mauris hendrerit nisl ac dui volutpat, id lobortis eros elementum.</p>
-            <a href="#" target="_blank">visit site</a>
+            <p>Clean Energy Collective was moving into the New York energy market and required a landing page that would capture the visitors zip code to check their load zone. The zip code would be cross checked against a coverage list defined in their corporate API. The results would determine which lead form the user would be presented. This site was built on the Vue.js framework as part of a swappable component landing page architecture.</p>
+            <a href="https://cleanenergyco.com/rooflesssolar/ny/" target="_blank">visit site</a>
         </div>
     </div>
 </div>

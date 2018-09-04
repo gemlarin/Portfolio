@@ -1,5 +1,8 @@
 <template>
 <div>
+    <div class="nav-wrap">
+        <navi :activepage="page"></navi>
+    </div>
     <div class="wrap--stack">
         <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
         <div class="wrap--centering">
@@ -9,16 +12,11 @@
                     <h2>SASS</h2>
                     <h2>WEBPACK</h2>
                     <h2>NPM</h2>
-                    <h2>BS 3/4</h2>
+                    <h2>BS-VUE</h2>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 col-xl-6 subcopy">
                     <p>This list defines my current primary development stack. For projects that do not require an advanced JS framework, I use the CodeKit task runner in in lieu of Webpack and Knockout.js for data binding.</p>
                     <p>My design and UX tooling includes Axure RP, Adobe CC, and Balsamiq.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <navi :activepage="page"></navi>
                 </div>
             </div>
         </div>
@@ -71,7 +69,7 @@ p{
     line-height:1.74em;
     padding-top:10px;
     padding-left:5px;
-    color:#5a5a5a;
+    color:#222;
 }
 .subcopy{
     max-width:265px;

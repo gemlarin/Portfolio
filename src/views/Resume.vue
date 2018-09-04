@@ -1,14 +1,20 @@
 <template>
     <div>
+        <div class="nav-wrap">
+            <navi :activepage="page"></navi>
+        </div>
         <div class="wrap--stack">
             <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
             <div class="wrap--centering">
-                <h2>RESUME</h2>
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <navi :activepage="page"></navi>
-                    </div>
-                </div>
+                <h2>EDUCATION & EXPERIENCE</h2>
+                <p>BFA New Media Design & Development, RIT</p>
+                <p>AAS Visual Communication Technologies, MCC</p>
+                <p>8 years front end design and engineering</p>
+                <h2>AWARDS</h2>
+                <p>Xerox Future Vision, "BIOME", 1st place</p>
+                <p>eHealthcare Leadership Awards, Best Overall Site</p>
+                <p>Web Marketing Associations Award, Best Overall</p>
+                <p style="margin-top:40px;"><a href="./files/danny-gibas-resume.pdf" target="_blank"><span>&rarr;</span>DOWNLOAD RESUME<span>&larr;</span></a></p>
             </div>
         </div>
     </div>
@@ -33,14 +39,43 @@
 </script>
 <style lang="scss" scoped>
 
-
-h2{
+a{
+    color:#222;
     font-family: 'proxima_novablack';
+    font-size:20px;
+    position:relative;
+    color:#222;
+    span{
+        color:#fb2662;
+        position:relative;
+        top:1px;
+        font-size:22px;
+        &:first-child{
+            padding-right:5px;
+        }
+        &:not(:first-child){
+            padding-left:5px;
+        }  
+    }
+    &:hover{
+        text-decoration: none;
+        color:#fb2662;
+    }
+}
+h2{
+    font-family: "AvenirLTStdMedium";
     color:#333;
-    font-size:50px;       
+    font-size:17px !important;       
     margin-bottom:5px; 
-    line-height:55px; 
-    padding-right:5px;                                           
+    line-height:30px; 
+    padding-right:5px;   
+    letter-spacing:.5px; 
+    &:not(:first-child){
+        margin-top:20px;
+    }      
+    span{
+        color:#fb2662;
+    }                                 
 }
 .wrapper--postion-nav{
     margin-top:60px;
@@ -53,12 +88,13 @@ h2{
   text-align:center;
 }
 p{
-    font-family: "AvenirLTStdBook";
+    font-family: "AvenirLTStdLight";
     font-size:15px;
-    line-height:1.74em;
-    padding-top:10px;
+    line-height:1.5em;
     padding-left:5px;
-    color:#5a5a5a;
+    color:#222;
+    margin:0;
+    letter-spacing:.1px;
 }
 
 .wrap--stack{
@@ -96,7 +132,8 @@ p{
 }
 .wrap--centering{
     width:70vw;
-    height:360px;
+    height:320px;
+    text-align:center;
     background-color:white;
     -webkit-order: 0;
     -ms-flex-order: 0;

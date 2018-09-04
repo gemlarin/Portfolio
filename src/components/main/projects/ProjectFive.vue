@@ -5,10 +5,10 @@
             <img v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}" :src="activeImage" @mouseover="activeImage = otherImage" @mouseout="activeImage = myImage" class="preview--img img-fluid popup-link-5">
         </div>
         <div class="col-12 col-sm-12 col-md-4 text-container">
-            <h2>CEC Corporate Website</h2>
-            <h5>Role: Devloper</h5>
-            <p>Aenean eu congue dolor, in dapibus urna. Cras vitae erat vel lectus maximus consectetur. Nam tincidunt vel urna sit amet aliquam. Aenean sapien elit, facilisis sed nibh id, tempor accumsan diam. Integer a porta sapien. Mauris hendrerit nisl ac dui volutpat, id lobortis eros elementum.</p>
-            <a href="#" target="_blank">visit site</a>
+            <h2>CEC e-Brochure</h2>
+            <h5>Role: Developer</h5>
+            <p>Deploying sales reps into the field to sell a complicated product is a challenge without good tools. CEC needed a way to put an electronic brochure into the hands of the sales reps that could be used to interactively describe the product. The brochure would be deployed on the iPad, but would have no network connectivity, so it was treated as a faux PWA - caching it locally and running it in App mode.</p>
+            <a href="https://cleanenergyco.com/salestool/ny" target="_blank">view app</a>
         </div>
     </div>
 </div>
@@ -17,20 +17,20 @@
 
 <script>
     import './../../../assets/project-five.jpg'
-    import './../../../assets/project-five.jpg'
+    import './../../../assets/project-five-hover.jpg'
     export default {
         name: 'ProjectFive',
         data () {
             return {
                 activeImage: './dist/project-five.jpg',
                 myImage: './dist/project-five.jpg',
-                otherImage: './dist/project-five.jpg'
+                otherImage: './dist/project-five-hover.jpg'
             }
         },
         mounted: function(){
             $('.popup-link-5').magnificPopup({
                 items: {
-                src: './dist/project-five.jpg'
+                src: './dist/project-five-hover.jpg'
                 },
                 type: 'image',
                 closeOnContentClick: true

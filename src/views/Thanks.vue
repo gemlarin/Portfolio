@@ -5,37 +5,9 @@
         </div>
         <div class="wrap--stack">
             <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
-            <div class="wrap--centering">
-                <div class="container">
-                    <form  action="https://mailthis.to/gibdev" id="contact-form" method="post">
-                        <div id="form">
-                            <input type="hidden" name="_subject" value="Contact form submitted">
-                            <input type="hidden" name="_after" value="https://www.codelocomotive.com/thanks">
-                            <div class="field-wrapper">
-                                <label>Name</label>
-                                <input autocomplete="off" tabindex="1" id="firstName" required type="text" name="name" class="form-control">
-                            </div>
-                            <div class="field-wrapper">
-                                <label>Email address</label>
-                                <input autocomplete="off" tabindex="4" id="email" required type="email" name="_replyto" class="form-control">
-                            </div>
-                            <div class="field-wrapper" style="margin-top:40px;">
-                            <label>Message</label>
-                            <textarea autocomplete="off" name="message" class="form-control more"></textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="field-wrapper">
-                                        <input tabindex="7" value="Send" type="submit" class="btn btn-secondary">
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <p>To contact me for freelance or other employment opportinities, please use the form above, or call: <a href="1-585-455-2716">585.455.2716</a>.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="wrap--centering text-center">
+                <h2>THANK YOU</h2>
+                <p>I will try to respond within the next 48 hours. If you need to read me sooner, please call me at: 585-455-2716.</p>
             </div>
         </div>
     </div>
@@ -44,24 +16,11 @@
 <script>
     import Nav from './../components/main/navs/IntroNav.vue'
     export default {
-        name: 'contact',
+        name: 'thanks',
         data () {
             return {
-                page:'contact', 
+                page:'thanks', 
             }
-        },
-        mounted(){
-            $('.form-control').focus( function(e) {
-                if($(this).hasClass('more')){
-                    $(this).parent().find('label').addClass('openupmore');
-                }else{
-                    $(this).parent().find('label').addClass('openup');
-                }
-                    //set all form field borders back to grey - prevents having to track the previously active field cause i'm lazy
-                $('.form-control').css('borderBottom', '1px solid grey');  
-                    //now set the active fields border to active state   
-                $(this).css('borderBottom', '1px solid rgb(251, 38, 98)');
-            });
         },
         created(){
            
@@ -72,6 +31,7 @@
     }
 </script>
 <style lang="scss" scoped>
+
 
 h2{
     font-family: 'proxima_novablack';
@@ -91,16 +51,13 @@ h2{
   bottom:40px;
   text-align:center;
 }
-
 p{
     font-family: "AvenirLTStdBook";
     font-size:15px;
     line-height:1.74em;
-    color:#222;
-    margin-top:0;
-}
-a{
-    color:#222;
+    padding-top:10px;
+    padding-left:5px;
+    color:#5a5a5a;
 }
 
 .wrap--stack{
@@ -137,9 +94,8 @@ a{
    
 }
 .wrap--centering{
-    width:40vw;
-    height:320px;
-    max-width:500px;
+    width:70vw;
+    height:360px;
     background-color:white;
     -webkit-order: 0;
     -ms-flex-order: 0;

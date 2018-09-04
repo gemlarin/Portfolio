@@ -7,8 +7,8 @@
         <div class="col-12 col-sm-12 col-md-4 text-container">
             <h2>CEC Project Locator</h2>
             <h5>Role: Devloper</h5>
-            <p>Aenean eu congue dolor, in dapibus urna. Cras vitae erat vel lectus maximus consectetur. Nam tincidunt vel urna sit amet aliquam. Aenean sapien elit, facilisis sed nibh id, tempor accumsan diam. Integer a porta sapien. Mauris hendrerit nisl ac dui volutpat, id lobortis eros elementum.</p>
-            <a href="#" target="_blank">visit site</a>
+            <p>CEC has a vast portfolio of energy projects through the US and needed a way for potential customers and investors to locate projects in their market. The previous locator was built on a legacy system and extrememly slow to load. Utilizing their corporate API along with Leaflet.js and Mapbox I developed an updated locator that added several features that the pervious version lacked, including a map interface and location/utility filtering.</p>
+            <a href="https://cleanenergyco.com/projects/" target="_blank">visit site</a>
         </div>
     </div>
 </div>
