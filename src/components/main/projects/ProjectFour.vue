@@ -78,7 +78,7 @@
     }
     @media (max-width: 767px){
         .container{
-            margin-top:60px;
+            margin-top:70px;
             .text-container{
                 padding-left:15px;
             }

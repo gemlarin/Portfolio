@@ -102,22 +102,13 @@
                         </a>
                     </div>
                     <div class="icon">
-                        <a href="https://twitter.com/RestingDev" target="_blank">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                <g>
-                                    <path class="svgicon" d="M255.326,1C114.5398,1,0,115.5398,0,256.326c0,140.7759,114.5398,255.326,255.326,255.326
-                                        c140.7759,0,255.326-114.5501,255.326-255.326C510.652,115.5398,396.1224,1,255.326,1z M369.2282,197.8888
-                                        c0.1132,2.53,0.1748,5.0806,0.1748,7.6312c0,77.6592-59.0955,167.1765-167.2177,167.1765c-33.1885,0-64.0835-9.6984-90.083-26.38
-                                        c4.5972,0.5451,9.2767,0.8228,14.0179,0.8228c27.5422,0,52.8732-9.4001,72.99-25.1562
-                                        c-25.7115-0.4731-47.4224-17.4633-54.8993-40.8197c3.579,0.6788,7.2712,1.0593,11.0457,1.0593
-                                        c5.3583,0,10.5623-0.6994,15.4886-2.0466c-26.884-5.3892-47.1344-29.1363-47.1344-57.6247c0-0.2468,0-0.504,0.0103-0.7405
-                                        c7.9192,4.3915,16.9799,7.045,26.6063,7.3432c-15.756-10.5212-26.1332-28.5193-26.1332-48.9034
-                                        c0-10.7783,2.89-20.8778,7.95-29.558c28.9718,35.5642,72.2906,58.9514,121.122,61.4198
-                                        c-1.0079-4.3093-1.5118-8.7831-1.5118-13.4009c0-32.448,26.3081-58.7663,58.756-58.7663c16.9079,0,32.16,7.1375,42.8972,18.5535
-                                        c13.4009-2.6329,25.9481-7.5078,37.3332-14.2648c-4.4224,13.73-13.7094,25.2385-25.8761,32.52
-                                        c11.8993-1.4193,23.2535-4.5664,33.7542-9.2459C390.6819,179.2736,380.7161,189.6302,369.2282,197.8888z"/>
-                                </g>
+                        <a href="https://medium.com/@gemarin" target="_blank">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
+                            style="padding-bottom:2px;"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" xml:space="preserve">
+                            <g>
+                                <path class="svgicon" d="M32,96c0.3-3.1-0.9-6.2-3.2-8.3L5.1,59.3V55h73.4l56.7,124.4L185.2,55h70v4.3l-20.2,19.4 c-1.7,1.3-2.6,3.5-2.2,5.7v142.4c-0.4,2.2,0.5,4.3,2.2,5.7l19.7,19.4v4.3h-99.3v-4.3l20.4-19.9c2-2,2-2.6,2-5.7V111.1L121,255.5 h-7.7L47.1,111.1v96.8c-0.6,4.1,0.8,8.2,3.7,11.1l26.6,32.3v4.3H1.9v-4.3L28.5,219c2.8-2.9,4.1-7.1,3.4-11.1V96z"/>
+                            </g>
                             </svg>
                         </a>
                     </div>
@@ -165,9 +156,13 @@
                 <div class="tagline">Experience. Development. Design</div>
             </div>
         </div>
-        <div class="sd-container">
+        <div class="sd-container scroll-down svg" id="home-scroll-down">
             <!--<div class="scrolldown"></div>-->
-            <img v-scroll-to="'#introduction'" class="dot" src="./../../assets/scrolldown.svg">
+    
+                <svg class="dot" v-scroll-to="'#introduction'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_2" x="0px" y="0px" viewBox="0 0 25.166666 37.8704414" enable-background="new 0 0 25.166666 37.8704414" xml:space="preserve">
+        <path class="stroke" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" d="M12.5833445 36.6204414h-0.0000229C6.3499947 36.6204414 1.25 31.5204487 1.25 25.2871208V12.5833216C1.25 6.3499947 6.3499951 1.25 12.5833216 1.25h0.0000229c6.2333269 0 11.3333216 5.0999947 11.3333216 11.3333216v12.7037992C23.916666 31.5204487 18.8166714 36.6204414 12.5833445 36.6204414z"></path>
+        <path class="scroller" fill="#ffffff" d="M13.0833359 19.2157116h-0.9192753c-1.0999985 0-1.9999971-0.8999996-1.9999971-1.9999981v-5.428606c0-1.0999994 0.8999987-1.9999981 1.9999971-1.9999981h0.9192753c1.0999985 0 1.9999981 0.8999987 1.9999981 1.9999981v5.428606C15.083334 18.315712 14.1833344 19.2157116 13.0833359 19.2157116z"></path>
+    </svg><div class="darr">&darr;</div>
         </div>
 
       </div>
@@ -313,6 +308,107 @@ $link-color:            $brand-primary !default;
 $link-hover-color:      darken($link-color, 15%) !default;
 //** Link hover decoration.
 $link-hover-decoration: underline !default;
+
+svg.dot {
+  vertical-align: middle;
+  height:30px;
+}
+
+.darr{
+    width:25px;
+    text-align:center;
+}
+.scroll-down {
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  width: 40px;
+  height: 40px;
+  bottom: 35px;
+  padding-left: 7px;
+  cursor: pointer;
+  z-index: 2;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.scroll-down.svg svg {
+  width: 25px;
+  opacity: 1;
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -ms-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity .5s;
+}
+.scroll-down.svg .stroke {
+  stroke: #fff;
+}
+.scroll-down.svg .scroller {
+  fill: #fff;
+  -webkit-animation: updown 1s infinite;
+  -moz-animation: updown 1s infinite;
+  -o-animation: updown 1s infinite;
+  animation: updown 1s infinite;
+}
+
+@-webkit-keyframes updown {
+    0% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+    50% {
+        -webkit-transform: translate(0, 5px);
+        transform: translate(0, 5px)
+    }
+    100% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+}
+@-moz-keyframes updown {
+    0% {
+        -moz-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+    50% {
+        -moz-transform: translate(0, 5px);
+        transform: translate(0, 5px)
+    }
+    100% {
+        -moz-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+}
+@-o-keyframes updown {
+    0% {
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+    50% {
+        -o-transform: translate(0, 5px);
+        transform: translate(0, 5px)
+    }
+    100% {
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+}
+@keyframes updown {
+    0% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+    50% {
+        -webkit-transform: translate(0, 5px);
+        transform: translate(0, 5px)
+    }
+    100% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0)
+    }
+}
 
 
 .logo__background-color {
@@ -477,7 +573,10 @@ $link-hover-decoration: underline !default;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
+        background-size: cover;
     }
+
+
     .main__image--top--overlay {
         position: absolute;
         top: 0;
@@ -546,7 +645,7 @@ $link-hover-decoration: underline !default;
             overflow:hidden;
             .sd-container{
                 position:absolute;
-                bottom:-100px;
+                bottom:30px;
                 z-index:200;
                 left:50vw;
                 opacity:.9;
@@ -566,12 +665,8 @@ $link-hover-decoration: underline !default;
                 .dot{
                     opacity:0;
                     z-index:200;
-                    width:99px;
-                    height:300px;
                     cursor:pointer;
                     position:relative;
-                    left:-52px;
-                    top:130px;
                     transition: opacity .5s;
                     transition-delay: .5s;
                     &.show{
@@ -689,6 +784,15 @@ $link-hover-decoration: underline !default;
     }
 }
 
+    @media (max-width: 768px) {
+        #main{
+            .main__image--top {
+            background-attachment:initial;
+        }
+        }
+        
+    }
+
 h1.hero-title {
     font-size: 220px;
     font-family: 'proxima_novablack';
@@ -703,20 +807,19 @@ h1.hero-title {
     height:100vh;
 
     .tagline{
-        position:relative;
-        z-index:200;
-        font-family: "AvenirLTStdLight";
-        color:white;
-        opacity:.9;
-        font-size:15px;
-        margin-left:60px;
-        top:-30px;
-        letter-spacing:.5px;
-        display:inline;
-        opacity:0;
-        transition: opacity 1s;
-        transition-timing-function: ease-out;
-        transition-delay: .5s;
+        position: relative;
+    z-index: 200;
+    font-family: "AvenirLTStdLight";
+    color: white;
+    font-size: 15px;
+    left: 215px;
+    top: 5px;
+    letter-spacing: .1px;
+    display: block;
+    opacity: 0;
+    transition: opacity 1s;
+    transition-timing-function: ease-out;
+    transition-delay: .5s;
         &.reveal{
             opacity:1;
         }
@@ -728,11 +831,11 @@ h1.hero-title {
         display:block;
         width: 850px;
         height: 150px;
-        right:-100px;
+        text-align:center;
         h1{
             color: rgb(247, 247, 247);
-            font-size: 150px;
-            letter-spacing: -25px;
+            font-size: 180px;
+            letter-spacing: -31px;
             text-shadow: -10px 1px 14px rgba(0, 0, 0, 0.26);
             line-height:.7em;
             font-family: 'proxima_novablack';
@@ -754,7 +857,7 @@ h1.hero-title {
 
             span:nth-child(1){
                 margin-right:-1px;
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: .8s;
                 opacity:1;
@@ -765,7 +868,7 @@ h1.hero-title {
             }
             span:nth-child(2){
                 margin-right:-1px;
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: .9s;
                 opacity:1;
@@ -775,7 +878,7 @@ h1.hero-title {
                 }
             }
             span:nth-child(3){
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: 1s;
                 opacity:1;
@@ -793,7 +896,7 @@ h1.hero-title {
 
             span:nth-child(1){
                 margin-right:-1px;
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: .6s;
                 opacity:1;
@@ -804,7 +907,7 @@ h1.hero-title {
             }
             span:nth-child(2){
                 margin-right:-1px;
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: .7s;
                 opacity:1;
@@ -815,7 +918,7 @@ h1.hero-title {
             }
             span:nth-child(3){
                 margin-right:-1px;
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: .8s;
                 opacity:1;
@@ -826,7 +929,7 @@ h1.hero-title {
             }
             span:nth-child(4){
                 margin-right:-1px;
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: .9s;
                 opacity:1;
@@ -837,7 +940,7 @@ h1.hero-title {
             }
             span:nth-child(5){
                 margin-right:0;
-                transition: all 1s;
+                transition: opacity 1s;
                 transition-timing-function: ease-out;
                 transition-delay: 1s;
                 opacity:1;
@@ -865,14 +968,15 @@ h1.hero-title {
 
 }
 
- @media (max-width: 880px) and (min-width: 631px){
+ @media (max-width: 900px) and (min-width: 631px){
      .wrap--hero-copy{
 
          .welcome-block{
             width:560px;
             right:0;
             h1{
-
+              font-size: 150px;
+              letter-spacing: -25px;
             }
             h1#firstname{
 
@@ -884,8 +988,8 @@ h1.hero-title {
         .tagline{
             display:inline-block;
             margin-left:0;
-            top:-5px;
-            right:-330px;
+            left: 175px;
+            top: -2px;
             font-size:14px;
         }
     }
@@ -899,7 +1003,8 @@ h1.hero-title {
             height:240px;
             right:-25px;
             h1{
-
+              font-size: 150px;
+              letter-spacing: -25px;
             }
             h1#firstname{
                 
@@ -917,7 +1022,7 @@ h1.hero-title {
             display:inline-block;
             margin-left:0;
             top:-14px;
-            right:-90px;
+            left: -60px;
             font-size:14px;
         }
     }

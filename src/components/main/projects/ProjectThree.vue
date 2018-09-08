@@ -78,11 +78,12 @@
 
     @media (max-width: 767px){
         .container{
+            margin-top:70px;
             .text-container{
                 padding-left:15px;
             }
             h2{
-                margin-top:20px;
+                margin-top:30px;
             }
         }
     }

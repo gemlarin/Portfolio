@@ -6,6 +6,18 @@
         </div>
       </div>
       <router-view></router-view>
+      <div id="imagecache">
+        <img src="./assets/project-one.jpg">
+        <img src="./assets/project-one-hover.jpg">
+        <img src="./assets/project-two.jpg">
+        <img src="./assets/project-two-hover.jpg">
+        <img src="./assets/project-three.jpg">
+        <img src="./assets/project-three-hover.jpg">
+        <img src="./assets/project-four.jpg">
+        <img src="./assets/project-four-hover.jpg">
+        <img src="./assets/project-five.jpg">
+        <img src="./assets/project-five-hover.jpg">
+      </div>
   </div>
 </template>
 
@@ -17,7 +29,8 @@ export default {
 
   data() {
     return {
-   
+      counter:0,
+      len:0
     };
   },
   components: {
@@ -30,25 +43,25 @@ export default {
     }
   },
   methods: {
+
     hideload: function(){
       var selfi = this;
-      setTimeout(function(){ 
-        selfi.$store.dispatch('hideLoader');
-      }, 1000);
-   
       setTimeout(function(){ 
         if(window.location.hash){
           selfi.$scrollTo(window.location.hash);
         }else{
           window.scrollTo(0,0);
         }
-
+        selfi.$store.dispatch('hideLoader');
     }, 1000);
 
     }
   },
   mounted(){
-      this.hideload();     
+    //make sure all images are loaded before hiding the loader
+    $(window).bind("load", () => {
+      this.hideload();
+    });
   },
   metaInfo: {
     title: "Danny Gibas", // set a main global title
@@ -180,6 +193,12 @@ html{
  /* Microsoft Edge */
 .form-control::-ms-input-placeholder { color: black } 
 
+#imagecache{
+  display:none !important;
+  img{
+    display:none !important;
+  }
+}
 
 *:focus{
   outline: none;
@@ -371,7 +390,7 @@ img.responsive {
   height:100vh;
   width:100vw;
   background:transparent;
-  position:absolute;
+  position:fixed;
   top:0;
   left:0;
   transition: height .5s ease-out .4s;
@@ -383,7 +402,7 @@ img.responsive {
       height:100vh;
       width:100vw;
       background:white;
-      position:absolute;
+      position:fixed;
       bottom:0;
       left:0;
       z-index:1002;
@@ -426,5 +445,10 @@ img.responsive {
     }
 }
 
+      @media (max-width: 767px){
+        img.mfp-img{
+          max-width:100%;
+        }
+    }
 
 </style>

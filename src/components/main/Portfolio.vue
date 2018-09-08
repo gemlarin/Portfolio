@@ -10,6 +10,7 @@
 
 <script>
 import './../../assets/sect-bg1.jpg'
+import './../../assets/backmask.png'
 
     export default {
         name: 'Portfolio',
@@ -88,9 +89,10 @@ import './../../assets/sect-bg1.jpg'
         -webkit-align-items: center;
         -ms-flex-align: center;
         align-items: center;
+         
         h2.animated-alt{
             font-family: 'proxima_novablack';
-            color:#fff;
+       
             -webkit-order: 0;
             -ms-flex-order: 0;
             order: 0;
@@ -103,7 +105,7 @@ import './../../assets/sect-bg1.jpg'
             z-index:302;
             height:50px;
             font-size:50px;
-            background-image: url(http://codelocomotive.com/xxy/backmask.png);
+            background-image: url(./../../assets/backmask.png);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -115,7 +117,18 @@ import './../../assets/sect-bg1.jpg'
                 background-position:0 0;
             }
         }
-  }
+    }
+
+
+@media (max-width: 768px) {
+        .wrap.dialog{ 
+            background-attachment:initial;
+            height:300px;
+        }
+        h2.animated-alt{
+            color: white !important;
+        }
+}
 .col-12{
     height:1200px;
 }
