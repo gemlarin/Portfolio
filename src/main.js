@@ -3,68 +3,69 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
 import { store } from './store/store'
-import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Meta from 'vue-meta'
-import VueResource from 'vue-resource'
-import VueAgile from 'vue-agile'
 import './vendors/magnific-popup/magnific-popup.css'
-import 'expose-loader?MagnificPopup!./vendors/magnific-popup/magnific-popup'
-import 'expose-loader?$!expose-loader?jQuery!jquery'
+import './vendors/magnific-popup/magnific-popup'
 import VueScrollReveal from 'vue-scroll-reveal'
+import VueScrollTo from 'vue-scrollto'
 
-var VueScrollTo = require('vue-scrollto');
-
-
-// You can also pass in the default options
 Vue.use(VueScrollTo, {
-     container: "body",
-     duration: 500,
-     easing: "ease",
-     offset: -40,
-     cancelable: true,
-     onStart: false,
-     onDone: false,
-     onCancel: false,
-     x: false,
-     y: true
- })
-
-const router = new VueRouter({
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (to.hash) {
-        VueScrollTo.scrollTo(to.hash, 1000);
-        return { selector: to.hash }
-    } else if (savedPosition) {
-        return savedPosition;
-    } else {
-        return { x: 0, y: 0 }
-    } 
-},
-  base:'/',
-  mode: 'history'
-});
-
-Vue.use(BootstrapVue);
-Vue.use(Meta);
-Vue.use(VueRouter);
-Vue.use(VueResource);
-Vue.use(VueAgile);
-Vue.use(VueScrollReveal, {
-    class: 'v-scroll-reveal', // A CSS class applied to elements with the v-scroll-reveal directive; useful for animation overrides.
-    duration: 1000,
-    origin:'left',
-    scale: 0,
-    distance: '50px',
-    mobile: false
-  });
-
-const vm = new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
+    container: 'body',
+    duration: 500,
+    easing: 'ease',
+    offset: -40,
+    cancelable: true,
+    onStart: false,
+    onDone: false,
+    onCancel: false,
+    x: false,
+    y: true,
 })
 
+const router = new VueRouter({
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (to.hash) {
+            const samePage = from.path === to.path
+            if (samePage) {
+                // Detail "more" links and other in-page anchors — smooth scroll
+                VueScrollTo.scrollTo(to.hash, 600, { offset: -40 })
+                return false
+            }
+            // Returning to a portfolio item from another route — land instantly
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        selector: to.hash,
+                        offset: { x: 0, y: 40 },
+                    })
+                }, 50)
+            })
+        }
+        if (savedPosition) {
+            return savedPosition
+        }
+        return { x: 0, y: 0 }
+    },
+    base: '/',
+    mode: 'history',
+})
+
+Vue.use(Meta)
+Vue.use(VueRouter)
+Vue.use(VueScrollReveal, {
+    class: 'v-scroll-reveal',
+    duration: 1000,
+    origin: 'left',
+    scale: 0,
+    distance: '50px',
+    mobile: false,
+})
+
+new Vue({
+    el: '#app',
+    router,
+    store,
+    render: (h) => h(App),
+})

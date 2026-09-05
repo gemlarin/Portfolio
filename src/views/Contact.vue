@@ -7,30 +7,65 @@
             <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
             <div class="wrap--centering">
                 <div class="container">
-                    <form  action="https://mailthis.to/gibdev" id="contact-form" method="post">
+                    <form id="contact-form" @submit.prevent="onSubmit">
                         <div id="form">
-                            <input type="hidden" name="_subject" value="Contact form submitted">
-                            <input type="hidden" name="_after" value="https://www.codelocomotive.com/thanks">
+                            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                             <div class="field-wrapper">
-                                <label>Name</label>
-                                <input autocomplete="off" tabindex="1" id="firstName" required type="text" name="name" class="form-control">
+                                <label for="firstName">Name</label>
+                                <input
+                                    v-model="name"
+                                    autocomplete="name"
+                                    tabindex="1"
+                                    id="firstName"
+                                    required
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    :disabled="sending"
+                                >
                             </div>
                             <div class="field-wrapper">
-                                <label>Email address</label>
-                                <input autocomplete="off" tabindex="4" id="email" required type="email" name="_replyto" class="form-control">
+                                <label for="email">Email address</label>
+                                <input
+                                    v-model="email"
+                                    autocomplete="email"
+                                    tabindex="2"
+                                    id="email"
+                                    required
+                                    type="email"
+                                    name="email"
+                                    class="form-control"
+                                    :disabled="sending"
+                                >
                             </div>
-                            <div class="field-wrapper" style="margin-top:40px;">
-                            <label>Message</label>
-                            <textarea autocomplete="off" name="message" class="form-control more"></textarea>
+                            <div class="field-wrapper">
+                                <label for="message">Message</label>
+                                <textarea
+                                    v-model="message"
+                                    autocomplete="off"
+                                    tabindex="3"
+                                    id="message"
+                                    name="message"
+                                    required
+                                    class="form-control"
+                                    :disabled="sending"
+                                ></textarea>
                             </div>
-                            <div class="row">
+                            <p v-if="error" class="form-error">{{ error }}</p>
+                            <div class="row footer-row">
                                 <div class="col-5">
-                                    <div class="field-wrapper">
-                                        <input tabindex="7" value="Send" type="submit" class="btn btn-secondary">
+                                    <div class="field-wrapper submit-wrap">
+                                        <input
+                                            tabindex="4"
+                                            :value="sending ? 'Sending…' : 'Send'"
+                                            type="submit"
+                                            class="btn btn-secondary"
+                                            :disabled="sending"
+                                        >
                                     </div>
                                 </div>
                                 <div class="col-7">
-                                    <p>To contact me for freelance or other employment opportinities, please use the form above, or call: <a href="1-585-455-2716">585.455.2716</a>.</p>
+                                    <p>To contact me for employment opportunities, please use the form above, email me directly at <a href="mailto:dfgibas@gmail.com">dfgibas@gmail.com</a>, or call: <a href="tel:15854552716">585.455.2716</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -42,187 +77,142 @@
 </template>
 
 <script>
-    import Nav from './../components/main/navs/IntroNav.vue'
-    export default {
-        name: 'contact',
-        data () {
-            return {
-                page:'contact', 
+import Nav from './../components/main/navs/IntroNav.vue'
+
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/396bca75b794c96de073b9dbaa8bcde6'
+
+export default {
+    name: 'contact',
+    data() {
+        return {
+            page: 'contact',
+            name: '',
+            email: '',
+            message: '',
+            sending: false,
+            error: '',
+        }
+    },
+    mounted() {
+        const fields = this.$el.querySelectorAll('#contact-form .form-control')
+        fields.forEach((field) => {
+            const syncLabel = () => {
+                const label = field.parentNode.querySelector('label')
+                if (!label) return
+                if (document.activeElement === field || field.value.trim()) {
+                    label.classList.add('openup')
+                } else {
+                    label.classList.remove('openup')
+                }
+            }
+            field.addEventListener('focus', syncLabel)
+            field.addEventListener('blur', syncLabel)
+            field.addEventListener('input', syncLabel)
+            syncLabel()
+        })
+    },
+    methods: {
+        async onSubmit() {
+            this.error = ''
+            this.sending = true
+            try {
+                const response = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: this.name,
+                        email: this.email,
+                        message: this.message,
+                        _subject: 'Portfolio contact form',
+                    }),
+                })
+                const data = await response.json().catch(() => ({}))
+                if (!response.ok) {
+                    throw new Error(data.message || 'Something went wrong. Please try again or call me.')
+                }
+                this.$router.push('/thanks')
+            } catch (err) {
+                this.error = err.message || 'Something went wrong. Please try again or call me.'
+            } finally {
+                this.sending = false
             }
         },
-        mounted(){
-            $('.form-control').focus( function(e) {
-                if($(this).hasClass('more')){
-                    $(this).parent().find('label').addClass('openupmore');
-                }else{
-                    $(this).parent().find('label').addClass('openup');
-                }
-                    //set all form field borders back to grey - prevents having to track the previously active field cause i'm lazy
-                $('.form-control').css('borderBottom', '1px solid grey');  
-                    //now set the active fields border to active state   
-                $(this).css('borderBottom', '1px solid rgb(251, 38, 98)');
-            });
-        },
-        created(){
-           
-        },
-        components: {
-            Navi : Nav
-        }
-    }
+    },
+    components: {
+        Navi: Nav,
+    },
+}
 </script>
 <style lang="scss" scoped>
-
-h2{
-    font-family: 'proxima_novablack';
-    color:#333;
-    font-size:50px;       
-    margin-bottom:5px; 
-    line-height:55px; 
-    padding-right:5px;                                           
-}
-.wrapper--postion-nav{
-    margin-top:60px;
-}
-.positioner{
-  width:100vw;
-  position:absolute;
-  z-index: 301;
-  bottom:40px;
-  text-align:center;
-}
-
-p{
-    font-family: "AvenirLTStdBook";
-    font-size:15px;
-    line-height:1.74em;
-    color:#222;
-    margin-top:0;
-}
-a{
-    color:#222;
-}
-
-.wrap--stack{
-    height:100vh;
-    width:100vw;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+.wrap--stack {
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    -webkit-flex-direction: row;            
-    -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
     align-content: stretch;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
     align-items: center;
 }
-.nav-link{
+.nav-link {
     position: absolute;
     right: 0;
     top: 0;
 }
-.mfp-close{
-    font-size:50px;
-    right:10px;
-    top:10px;
-   
+.mfp-close {
+    font-size: 50px;
+    right: 10px;
+    top: 10px;
 }
-.wrap--centering{
-    width:40vw;
-    height:320px;
-    max-width:500px;
-    background-color:white;
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
+.wrap--centering {
+    width: 40vw;
+    max-width: 500px;
+    min-height: 360px;
+    padding: 28px 20px 20px;
+    background-color: white;
     flex: 0 1 auto;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
     align-self: center;
-    img{
-        display:inline-block;
-        height:20px;
-        width:auto;
-        margin-left:10px;
-        margin-right:10px;
+    box-sizing: border-box;
+}
+.footer-row {
+    margin-top: 8px;
+    align-items: flex-start;
+}
+.submit-wrap {
+    margin-bottom: 0;
+}
+.form-error {
+    color: #fb2662;
+    font-size: 13px;
+    margin: 0 0 12px;
+}
+p {
+    font-family: 'AvenirLTStdBook';
+    font-size: 15px;
+    line-height: 1.74em;
+    color: #222;
+    margin-top: 0;
+}
+a {
+    color: #222;
+}
+@media (max-width: 768px) {
+    .mfp-close {
+        font-size: 45px;
     }
-    img:nth-child(2){
-      height:35px;
+    .wrap--centering {
+        width: 100%;
+        max-width: none;
+        min-height: 410px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
-    ul{
-        padding:0;
-        text-decoration: none;
-        li{
-            display:block;
-            font-size:32px;
-            font-family: 'proxima_novablack';
-            p{
-                margin-bottom:0;
-                line-height:1em;
-            }
-            .subtext{
-                font-size:12px;
-                margin-top:5px;
-                padding-top:0;
-                color:#fb2662;
-                margin-bottom:20px;
-                font-family: "AvenirLTStdBook";
-            }
-        }
+    p {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
-   @media (max-width: 768px) {
-       .mfp-close{
-            font-size:45px;
-        }
-       .wrap--centering{
-           width:100%;
-           height:410px;
-       }
-       .subcopy{
-            max-width:400px;
-            padding-top:20px;
-            text-align: center;
-            margin:0 auto;
-            padding-left:0;
-            padding-right:0;
-            max-width:80%;
-        }
-        .listing{
-            text-align: center;
-            max-width:80%;
-            margin:0 auto;
-        }
-        h2{
-            line-height: 50px;
-            font-size:45px;
-            display:inline;
-            padding-left:15px;
-            padding-right:15px;
-        }
-        p{
-            padding-left:15px;
-            padding-right:15px;
-        }
-   }
-
-@media (max-width: 768px) and (min-width: 695px){
-    .wrap--centering{
-        width:100%;
-        height:330px;
-    }
-}
-
-
 </style>

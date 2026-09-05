@@ -8,15 +8,16 @@
         <div class="wrap--centering">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6 col-xl-6 listing">
-                    <h2>VUE 2</h2>
-                    <h2>SASS</h2>
-                    <h2>WEBPACK</h2>
-                    <h2>NPM</h2>
-                    <h2>BS-VUE</h2>
+                    <h2>VUE 2/3</h2>
+                    <h2>VUEX</h2>
+                    <h2>PINIA</h2> 
+                    <h2>VITEST</h2>
+                    <h2>TAILWIND</h2>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 col-xl-6 subcopy">
-                    <p>This list defines my current primary development stack. For projects that do not require an advanced JS framework, I use the CodeKit task runner in in lieu of Webpack and Knockout.js for data binding.</p>
-                    <p>My design and UX tooling includes Axure RP, Adobe CC, and Balsamiq.</p>
+                    <p>This is my primary front-end stack today — Vue for product UI, Pinia or Vuex for state, Vitest for tests, and Tailwind for styling. I’m also building fluency in React where the role calls for it.
+                    </p>
+                    <p>My design and UX tooling includes FIGMA and Adobe CC.</p>
                 </div>
             </div>
         </div>

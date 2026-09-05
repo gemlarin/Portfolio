@@ -1,18 +1,26 @@
-# learning-vue-game
+# Portfolio (Vue 2)
 
-> project for learning Vue
+## Setup
 
-## Build Setup
-
-``` bash
-# install dependencies
+```bash
 npm install
-
-# serve with hot reload at localhost:8080
 npm run dev
+```
 
-# build for production with minification
+Dev server: http://localhost:8080
+
+```bash
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Deploy (GitHub Pages)
+
+Publishes `dist/` to [`gemlarin.github.io`](https://github.com/gemlarin/gemlarin.github.io) → **https://gemlarin.github.io/**
+
+```bash
+npm run deploy
+```
+
+Source stays in this repo. Only the built site is pushed to Pages.
+
+Build tooling was updated for modern Node (Webpack 5). App code remains Vue 2.

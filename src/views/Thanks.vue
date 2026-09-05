@@ -1,184 +1,97 @@
 <template>
-    <div>
-        <div class="nav-wrap">
-            <navi :activepage="page"></navi>
-        </div>
-        <div class="wrap--stack">
-            <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
-            <div class="wrap--centering text-center">
-                <h2>THANK YOU</h2>
-                <p>I will try to respond within the next 48 hours. If you need to read me sooner, please call me at: 585-455-2716.</p>
-            </div>
-        </div>
+    <div class="thanks">
+        <router-link to="/" class="logo-link" aria-label="Home">
+            <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 49.612 50"
+                xml:space="preserve"
+            >
+                <path
+                    d="M49.461,16.105c0-8.985-7.038-16.023-15.874-16.023H16.288c-0.95,0-1.72,0.77-1.72,1.72v12.881H1.8
+             c-0.95,0-1.72,0.77-1.72,1.72v17.448c0,8.985,7.038,16.023,15.874,16.023h17.299c0.95,0,1.72-0.77,1.72-1.72V35.273h12.769
+             c0.95,0,1.72-0.77,1.72-1.72V16.105z M44.369,30.238l-14.233,0.011H29.88v0L19.66,30.257v-5.498h-5.092v8.681
+             c0,1.013,0.821,1.834,1.834,1.834H29.88v9.659c0,0-3.594,0-13.852,0c-7.937,0-10.857-7.095-10.857-10.614c0-3.519,0-14.601,0-14.601
+             l9.397-0.007v0.003h5.092v-0.007l10.221-0.008v5.504h5.092v-8.97c0-0.856-0.694-1.551-1.551-1.551H19.66V5.023c0,0,3.594,0,13.852,0
+             c7.937,0,10.857,7.095,10.857,10.614C44.369,19.156,44.369,30.238,44.369,30.238z"
+                />
+            </svg>
+        </router-link>
+        <h1>Thank you</h1>
+        <p class="message">
+            Your message is on its way. I usually reply within 48 hours. If you need me sooner, call
+            <a href="tel:15854552716">585.455.2716</a>.
+        </p>
+        <router-link to="/" class="home-link">Back to portfolio<span>&rarr;</span></router-link>
     </div>
 </template>
 
 <script>
-    import Nav from './../components/main/navs/IntroNav.vue'
-    export default {
-        name: 'thanks',
-        data () {
-            return {
-                page:'thanks', 
-            }
-        },
-        created(){
-           
-        },
-        components: {
-            Navi : Nav
-        }
-    }
+export default {
+    name: 'thanks',
+    metaInfo: {
+        title: 'Thank you',
+    },
+}
 </script>
-<style lang="scss" scoped>
 
-
-h2{
-    font-family: 'proxima_novablack';
-    color:#333;
-    font-size:50px;       
-    margin-bottom:5px; 
-    line-height:55px; 
-    padding-right:5px;                                           
-}
-.wrapper--postion-nav{
-    margin-top:60px;
-}
-.positioner{
-  width:100vw;
-  position:absolute;
-  z-index: 301;
-  bottom:40px;
-  text-align:center;
-}
-p{
-    font-family: "AvenirLTStdBook";
-    font-size:15px;
-    line-height:1.74em;
-    padding-top:10px;
-    padding-left:5px;
-    color:#5a5a5a;
-}
-
-.wrap--stack{
-    height:100vh;
-    width:100vw;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+<style scoped lang="scss">
+.thanks {
+    min-height: 100vh;
     display: flex;
-    -webkit-flex-direction: row;            
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    background: #f7f7f7;
+    font-family: 'AvenirLTStdBook', sans-serif;
 }
-.nav-link{
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-.mfp-close{
-    font-size:50px;
-    right:10px;
-    top:10px;
-   
-}
-.wrap--centering{
-    width:70vw;
-    height:360px;
-    background-color:white;
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    align-self: center;
-    img{
-        display:inline-block;
-        height:20px;
-        width:auto;
-        margin-left:10px;
-        margin-right:10px;
-    }
-    img:nth-child(2){
-      height:35px;
-    }
-    ul{
-        padding:0;
-        text-decoration: none;
-        li{
-            display:block;
-            font-size:32px;
-            font-family: 'proxima_novablack';
-            p{
-                margin-bottom:0;
-                line-height:1em;
-            }
-            .subtext{
-                font-size:12px;
-                margin-top:5px;
-                padding-top:0;
-                color:#fb2662;
-                margin-bottom:20px;
-                font-family: "AvenirLTStdBook";
-            }
-        }
-    }
-}
-   @media (max-width: 768px) {
-       .mfp-close{
-            font-size:45px;
-        }
-       .wrap--centering{
-           width:100%;
-           height:410px;
-       }
-       .subcopy{
-            max-width:400px;
-            padding-top:20px;
-            text-align: center;
-            margin:0 auto;
-            padding-left:0;
-            padding-right:0;
-            max-width:80%;
-        }
-        .listing{
-            text-align: center;
-            max-width:80%;
-            margin:0 auto;
-        }
-        h2{
-            line-height: 50px;
-            font-size:45px;
-            display:inline;
-            padding-left:15px;
-            padding-right:15px;
-        }
-        p{
-            padding-left:15px;
-            padding-right:15px;
-        }
-   }
 
-@media (max-width: 768px) and (min-width: 695px){
-    .wrap--centering{
-        width:100%;
-        height:330px;
+.logo-link {
+    display: inline-block;
+    margin-bottom: 32px;
+
+    svg {
+        width: 56px;
+        height: 56px;
+        fill: #212529;
     }
 }
 
+h1 {
+    margin: 0 0 12px;
+    font-family: 'proxima_novablack', sans-serif;
+    font-size: 36px;
+    color: #212529;
+}
 
+.message {
+    margin: 0 0 28px;
+    max-width: 420px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #616161;
+
+    a {
+        color: #212529;
+    }
+}
+
+.home-link {
+    color: #fb2662;
+    font-size: 14px;
+    border-top: 3px solid #fb2662;
+    border-left: 3px solid #fb2662;
+    padding: 5px 12px;
+    text-decoration: none;
+
+    span {
+        margin-left: 6px;
+    }
+
+    &:hover {
+        padding-left: 20px;
+    }
+}
 </style>

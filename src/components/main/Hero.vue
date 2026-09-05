@@ -61,29 +61,7 @@
             </div>
             <div id="drawer">
                 <div id="slide" :class="{ expand: drawerOpen }">
-                    <div class="icon _lg">
-                        <a href="http://jsfiddle.net/user/gemlarin/fiddles/" target="_blank">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                <g>
-                                    <path class="svgicon" d="M443.0233,322.3473c0.2923-3.7185,0.5683-7.3883,0.5683-11.1555c0-80.037-64.8869-144.9077-144.9077-144.9077
-                                        c-58.4405,0-108.697,34.7005-131.5925,84.5349c-12.0648-8.5412-26.7926-13.6399-42.7383-13.6399
-                                        c-40.8872,0-74.0127,33.1417-74.0127,74.0289c0,6.1217,0.8281,12.0486,2.2246,17.7481C22.4436,345.4052,2,377.329,2,414.0756
-                                        C2,467.6122,45.3879,511,98.9082,511s273.6585,0,312.9869,0c53.5204,0,96.9082-43.3878,96.9082-96.9244
-                                        C508.8358,371.4347,481.28,335.3214,443.0233,322.3473z M437.3725,404.9661c-3.3126,35.0415-27.6857,72.5513-86.11,72.5513
-                                        c-44.1835,0-86.2074-46.9277-104.54-72.9572c-0.0487-0.0812-34.2459-52.8871-72.0966-51.5231
-                                        c-37.0226,1.3315-46.7816,20.8008-48.4541,38.2566c-1.6563,17.4396,8.3138,35.3988,24.2433,43.6314
-                                        c20.0052,10.2624,44.9305,3.9621,70.1805-17.9267l24.7629,28.66c-24.3894,21.1093-50.4027,31.9563-75.0681,31.9725
-                                        c-12.9254,0-25.4774-2.9878-37.2337-9.0445c-29.7804-15.3611-47.7071-47.8371-44.5732-80.8326
-                                        c3.3125-35.074,27.702-72.5837,86.1262-72.5837c52.1401,0,88.773,47.4474,100.7079,64.0101
-                                        c19.7616,27.4909,54.2348,60.4865,75.9288,60.4865c37.055,0,46.7816-20.8333,48.4541-38.2729
-                                        c1.6563-17.4233-8.3138-35.3988-24.2433-43.6152c-19.989-10.2624-44.9142-3.9458-70.1643,17.9267L280.53,347.0615
-                                        c37.2012-32.1674,78.1208-40.53,112.3018-22.9118C422.6122,339.4946,440.5226,371.9705,437.3725,404.9661z"/>
-                                </g>
-                            </svg>
-
-                        </a>
-                    </div>
+     
                     <div class="icon">
                         <a href="https://www.linkedin.com/in/dannygibas/" target="_blank">
                     
@@ -153,7 +131,7 @@
                     <span>a</span>
                     <span>s</span>
                 </h1>
-                <div class="tagline">Experience. Development. Design</div>
+                <div class="tagline">Front End Developer. UX/UI Designer.</div>
             </div>
         </div>
         <div class="sd-container scroll-down svg" id="home-scroll-down">
@@ -177,7 +155,7 @@
 
 <script>
 
-import './../../assets/hero__img--home.jpg'
+import './../../assets/hero__img--home.webp'
 import './../../assets/scrolldown.svg'
 import './../../assets/share.svg'
 import Parallax from 'vue-parallaxy'
@@ -192,16 +170,14 @@ export default {
         Parallax
     },
     computed: {
-        isOpen: () =>{
+        isOpen() {
             return this.drawerOpen;
         },
-        windowHeight: () => {
-            //console.log(window.innerHeight)
+        windowHeight() {
             return window.innerHeight;
         },
-        offset: () =>  {
+        offset() {
             var off = (window.scrollY / (window.innerHeight) * 5);
-            //clamp the offset - ADJUST HERE IF NEEDED
             if (off > 1){
                 off = 1;
             }else if(off < 0){
@@ -271,6 +247,9 @@ export default {
                 $('.social-icon').removeClass('alt');
             }    
         }
+    },
+    beforeDestroy: function() {
+        window.removeEventListener("scroll", this.handleScroll);
     }
 }
 </script>
@@ -477,8 +456,8 @@ svg.dot {
     display:inline;
     cursor:default;
     position:absolute;
-    right:0;
-    top:18px;
+    right:15px;
+    top:19px;
     .social-icon{
         fill: $color-white;
         transition: fill .6s;
@@ -506,7 +485,7 @@ svg.dot {
         height:20px;
         cursor:pointer;
         position:absolute;
-        top:5px;
+        top:0;
         opacity:.8;
         z-index:200;
         &:hover{
@@ -517,7 +496,7 @@ svg.dot {
         display:inline-block;
         overflow:hidden;
         position:relative;
-        right:110px;
+        right:70px;
         #slide{
             position:relative;
             z-index:200;
@@ -569,7 +548,7 @@ svg.dot {
         z-index: 100;
         width: 100vw;
         height: 100vh;
-        background: url('./../../assets/hero__img--home.jpg') no-repeat center center fixed;
+        background: url('./../../assets/hero__img--home.webp') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
