@@ -4,7 +4,14 @@
             <navi :activepage="page"></navi>
         </div>
         <div class="wrap--stack">
-            <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
+            <button
+                type="button"
+                class="close-control"
+                aria-label="Close contact"
+                @click="$router.push({ path: '/', hash: '#introduction' })"
+            >
+                <span class="mfp-close" aria-hidden="true">×</span>
+            </button>
             <div class="wrap--centering">
                 <div class="container">
                     <form id="contact-form" @submit.prevent="onSubmit">
@@ -12,10 +19,9 @@
                             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                             <div class="field-wrapper">
                                 <label for="firstName">Name</label>
-                                <input
+                                    <input
                                     v-model="name"
                                     autocomplete="name"
-                                    tabindex="1"
                                     id="firstName"
                                     required
                                     type="text"
@@ -26,10 +32,9 @@
                             </div>
                             <div class="field-wrapper">
                                 <label for="email">Email address</label>
-                                <input
+                                    <input
                                     v-model="email"
                                     autocomplete="email"
-                                    tabindex="2"
                                     id="email"
                                     required
                                     type="email"
@@ -40,10 +45,9 @@
                             </div>
                             <div class="field-wrapper">
                                 <label for="message">Message</label>
-                                <textarea
+                                    <textarea
                                     v-model="message"
                                     autocomplete="off"
-                                    tabindex="3"
                                     id="message"
                                     name="message"
                                     required
@@ -56,7 +60,6 @@
                                 <div class="col-5">
                                     <div class="field-wrapper submit-wrap">
                                         <input
-                                            tabindex="4"
                                             :value="sending ? 'Sending…' : 'Send'"
                                             type="submit"
                                             class="btn btn-secondary"

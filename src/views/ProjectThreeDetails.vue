@@ -1,14 +1,19 @@
 <template>
     <div class="container" id="project-three-details">
-        <router-link class="nav-link" :to="{ path: '/', hash: '#project-three' }">
-            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
-        </router-link>
+        <button
+            type="button"
+            class="close-control"
+            aria-label="Close project details"
+            @click="$router.push({ path: '/', hash: '#project-three' })"
+        >
+            <span class="mfp-close" aria-hidden="true">×</span>
+        </button>
         <div class="row first">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="activeImage"
                     eager
-                    img-class="preview--img popup-link"
+                    img-class="preview--img popup-link brief-shot"
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
@@ -34,8 +39,12 @@
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h4>Wireframes</h4>
-                <p>As with any project, after requirements gathering and general research is completed, a series of interactive wireframes are created to flesh out the application structure and flow. These interactive wireframes are presented to stateholders to obtain feedback and address any inconsistencies before generating high definition mocks.</p>
-                <p>This image represents a first round wireframe of the application landing page. From this page, the user can see three overviews including a summary of orders by type, a list of most recently created workororders, and a list of orders they have created. The "traffic light" status system was removed from later iterations.</p>
+                <p>As with any project, after requirements gathering and general research is completed, 
+                    a series of wireframes are created to flesh out the application structure 
+                    and flow. These wireframes are presented to stateholders to obtain feedback 
+                    and address any inconsistencies before generating high definition mocks.</p>
+                <p>This image represents a first round wireframe of the New Order landing page. From this 
+                    page, the user enters the first step of the workorder creation flow.</p>
                 <a href="#part3" class="internal">more &darr;</a>
             </div>
         </div>
@@ -156,19 +165,6 @@ export default {
             padding-left: 20px;
         }
     }
-    .nav-link {
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 1100;
-    }
-    .mfp-close {
-        font-size: 50px;
-        right: 10px;
-        top: 10px;
-        position: relative;
-        z-index: 1101;
-    }
     .row {
         margin-bottom: 100px;
     }
@@ -182,6 +178,14 @@ export default {
         li {
             font-size: 14px;
         }
+    }
+    ::v-deep .detail-image {
+        background: transparent;
+    }
+    ::v-deep .detail-image:has(.brief-shot) {
+        width: 70%;
+        margin-left: auto;
+        min-height: 0;
     }
 }
 @media (max-width: 991px) {
@@ -202,10 +206,6 @@ export default {
         }
         h2 {
             margin-top: 20px;
-        }
-        .mfp-close {
-            right: -10px;
-            top: 0;
         }
     }
 }

@@ -1,9 +1,9 @@
- <template>
+<template>
     <footer>
         <div class="container">
             <div class="row text-center">
                 <div class="footer--logo-container text-center">
-                    <a href="#main">
+                    <a href="#main" aria-label="Back to top">
                         <svg
                             version="1.1"
                             xmlns="http://www.w3.org/2000/svg"
@@ -13,6 +13,8 @@
                             viewBox="0 0 49.612 50"
                             style="enable-background:new 0 0 49.612 50;"
                             xml:space="preserve"
+                            aria-hidden="true"
+                            focusable="false"
                         >
                             <path
                                 class="zst"
@@ -51,6 +53,7 @@ footer {
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
+    border-top: 5px solid #fb2662;
     .zst {
         fill: #5c5c5c;
     }

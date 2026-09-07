@@ -3,7 +3,25 @@
         <div v-show="!loaded" class="detail-image__placeholder" aria-hidden="true">
             <img :src="loaderSrc" class="detail-image__loader" alt="" />
         </div>
+        <button
+            v-if="enlargeLabel"
+            type="button"
+            :class="['detail-image__enlarge', imgClass]"
+            :aria-label="enlargeLabel"
+        >
+            <img
+                ref="img"
+                :src="src"
+                :alt="alt"
+                :loading="eager ? 'eager' : 'lazy'"
+                decoding="async"
+                :class="['detail-image__img', 'img-fluid', { 'is-loaded': loaded }]"
+                @load="onLoaded"
+                @error="onLoaded"
+            />
+        </button>
         <img
+            v-else
             ref="img"
             :src="src"
             :alt="alt"
@@ -28,7 +46,7 @@ export default {
         },
         alt: {
             type: String,
-            default: '',
+            required: true,
         },
         imgClass: {
             type: String,
@@ -37,6 +55,11 @@ export default {
         eager: {
             type: Boolean,
             default: false,
+        },
+        /** When set, wraps the image in a button for lightbox / keyboard access */
+        enlargeLabel: {
+            type: String,
+            default: '',
         },
     },
     data() {
@@ -86,6 +109,17 @@ export default {
     height: 64px;
 }
 
+.detail-image__enlarge {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    text-align: left;
+}
+
 .detail-image__img {
     display: block;
     width: 100%;
@@ -95,12 +129,6 @@ export default {
 
     &.is-loaded {
         opacity: 1;
-    }
-}
-
-@media (max-width: 767px) {
-    .detail-image {
-        margin-bottom: 20px;
     }
 }
 </style>

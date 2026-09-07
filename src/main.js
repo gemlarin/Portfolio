@@ -8,6 +8,12 @@ import Meta from 'vue-meta'
 import './vendors/magnific-popup/magnific-popup.css'
 import './vendors/magnific-popup/magnific-popup'
 import VueScrollReveal from 'vue-scroll-reveal'
+
+// Magnific defaults to absolute + document-height overlay on mobile (probablyMobile),
+// which makes the zoom backdrop scroll for the full page. Keep it viewport-locked.
+$.magnificPopup.defaults.fixedContentPos = true
+$.magnificPopup.defaults.fixedBgPos = true
+$.magnificPopup.defaults.overflowY = 'hidden'
 import VueScrollTo from 'vue-scrollto'
 
 Vue.use(VueScrollTo, {
@@ -23,14 +29,33 @@ Vue.use(VueScrollTo, {
     y: true,
 })
 
+const isCoarsePointer =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(pointer: coarse)').matches
+
 const router = new VueRouter({
     routes,
     scrollBehavior(to, from, savedPosition) {
         if (to.hash) {
             const samePage = from.path === to.path
             if (samePage) {
-                // Detail "more" links and other in-page anchors — smooth scroll
-                VueScrollTo.scrollTo(to.hash, 600, { offset: -40 })
+                // Detail "more" links and other in-page anchors
+                const el = document.querySelector(to.hash)
+                if (!el) return false
+
+                if (document.activeElement instanceof HTMLElement) {
+                    document.activeElement.blur()
+                }
+
+                if (isCoarsePointer) {
+                    // Phones/tablets: instant window scroll (body + smooth often fails)
+                    const top =
+                        el.getBoundingClientRect().top + window.pageYOffset - 40
+                    window.scrollTo({ top, left: 0, behavior: 'auto' })
+                } else {
+                    VueScrollTo.scrollTo(to.hash, 600, { offset: -40 })
+                }
                 return false
             }
             // Returning to a portfolio item from another route — land instantly

@@ -1,15 +1,20 @@
 <template>
     <div class="container" id="project-one-details">
-        <router-link class="nav-link" :to="{ path: '/', hash: '#project-one' }">
-            <button title="Close (Esc)" type="button" class="mfp-close">
-                ×
-            </button>
-        </router-link>
+        <button
+            type="button"
+            class="close-control"
+            aria-label="Close project details"
+            @click="$router.push({ path: '/', hash: '#project-one' })"
+        >
+            <span class="mfp-close" aria-hidden="true">×</span>
+        </button>
         <div class="row first">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageOne"
                     eager
+                    alt="Cairn park details view with photo and visit panel"
+                    enlarge-label="Enlarge Cairn park details screenshot"
                     img-class="preview--img popup-link"
                 />
             </div>
@@ -37,13 +42,14 @@
                     official NPS link remain reachable without fighting the
                     photo for space.
                 </p>
-                <a href="#part2" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part2' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part2">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageTwo"
+                    alt="Cairn sign-in modal over a park details screen"
                     img-class="preview--img mobile-shot"
                 />
             </div>
@@ -67,12 +73,16 @@
                     targets; the underlying details chrome remains visible at
                     the edges so interest in the park is not lost mid-flow.
                 </p>
-                <a href="#part3" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part3' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part3">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <detail-image :src="imageThree" img-class="preview--img" />
+                <detail-image
+                    :src="imageThree"
+                    alt="Cairn search results grid of national park cards"
+                    img-class="preview--img"
+                />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h4>Search results grid</h4>
@@ -93,13 +103,14 @@
                     the viewport narrows. Pagination sits under the grid so
                     browsing large NPS result sets stays predictable.
                 </p>
-                <a href="#part4" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part4' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part4">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageFour"
+                    alt="Cairn Field Log visit list on a mobile screen"
                     img-class="preview--img mobile-shot"
                 />
             </div>
@@ -124,13 +135,14 @@
                     each row into a card farm that fights the cream
                     field-journal palette.
                 </p>
-                <a href="#part5" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part5' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part5">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageFive"
+                    alt="Cairn category filter modal on a mobile screen"
                     img-class="preview--img mobile-shot"
                 />
             </div>
@@ -233,7 +245,19 @@ export default {
     p {
         font-size: 14px;
     }
-    a.internal {
+    button.internal {
+        background: none;
+        border: 0;
+        font: inherit;
+        cursor: pointer;
+        text-align: left;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    a.internal,
+    button.internal {
         color: #fb2662;
         font-size: 14px;
         border-top: 3px solid #fb2662;
@@ -246,19 +270,6 @@ export default {
         &:hover {
             padding-left: 20px;
         }
-    }
-    .nav-link {
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 1100;
-    }
-    .mfp-close {
-        font-size: 50px;
-        right: 10px;
-        top: 10px;
-        position: relative;
-        z-index: 1101;
     }
     .row {
         margin-bottom: 100px;
@@ -299,15 +310,6 @@ export default {
         }
         h2 {
             margin-top: 20px;
-        }
-        .mfp-close {
-            right: -10px;
-            top: 0;
-        }
-        ::v-deep .detail-image:has(.mobile-shot) {
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
         }
     }
 }

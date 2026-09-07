@@ -1,4 +1,3 @@
-
 <template>
     <div class="wrap dialog">
         <h2 class="animated-alt">Selected Works</h2>

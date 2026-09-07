@@ -1,22 +1,28 @@
 <template>
   <div id="main">
-    <div class="main__navbar">
-      <div class="navbar__hidden--top">
+    <div class="main__navbar" :class="{ 'nav-is-open': navOpen }">
+      <div
+        id="primary-nav"
+        ref="primaryNav"
+        class="navbar__hidden--top"
+        :hidden="!navOpen"
+        @keydown.esc.prevent="closeNav"
+      >
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
               <ul>
                 <li>
-                    <a href="javascript:void(0)" v-scroll-to="'#portfolio'">PORTFOLIO</a>
+                    <button type="button" v-scroll-to="'#portfolio'" @click="closeNav">PORTFOLIO</button>
                 </li>
                 <li>
-                    <router-link to="/stack">STACK</router-link>
+                    <button type="button" @click="go('/stack')">STACK</button>
                 </li>
                 <li>
-                    <router-link to="/resume">RÉSUMÉ</router-link>
+                    <button type="button" @click="go('/resume')">RÉSUMÉ</button>
                 </li>
                 <li>
-                    <router-link to="/contact">CONTACT</router-link>
+                    <button type="button" @click="go('/contact')">CONTACT</button>
                 </li>
               </ul>
             </div>
@@ -27,9 +33,9 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="main__navbar--logo--container">
-              <a href="#">
+              <a href="#" aria-label="Danny Gibas — home">
                   <svg version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                  viewBox="0 0 49.612 50" style="enable-background:new 0 0 49.612 50;" xml:space="preserve">
+                  viewBox="0 0 49.612 50" style="enable-background:new 0 0 49.612 50;" xml:space="preserve" aria-hidden="true" focusable="false">
                   <path class="logo__background-color" d="M49.461,16.105c0-8.985-7.038-16.023-15.874-16.023H16.288c-0.95,0-1.72,0.77-1.72,1.72v12.881H1.8
                  c-0.95,0-1.72,0.77-1.72,1.72v17.448c0,8.985,7.038,16.023,15.874,16.023h17.299c0.95,0,1.72-0.77,1.72-1.72V35.273h12.769
                  c0.95,0,1.72-0.77,1.72-1.72V16.105z M44.369,30.238l-14.233,0.011H29.88v0L19.66,30.257v-5.498h-5.092v8.681
@@ -44,8 +50,16 @@
             <div class="social-media">
             <div id="open-icon-text">social</div>
             <div id="open-icon">
-                <svg @click="toggleOpen" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                <button
+                    type="button"
+                    class="social-toggle"
+                    :aria-expanded="drawerOpen ? 'true' : 'false'"
+                    aria-controls="slide"
+                    aria-label="Toggle social links"
+                    @click="toggleOpen"
+                >
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" aria-hidden="true" focusable="false">
                     <g>
                         <path class="social-icon" d="M412.854,314c-34.299,0-64.576,17.535-82.348,44.109l-122.541-56.533
                             c6.419-13.874,10.008-29.313,10.008-45.577c0-16.775-3.815-32.674-10.618-46.881l122.35-56.444
@@ -58,12 +72,22 @@
                             M412.854,482c-38.047,0-69-30.953-69-69s30.953-69,69-69s69,30.953,69,69S450.901,482,412.854,482z"/>
                     </g>
                 </svg>
+                </button>
             </div>
             <div id="drawer">
-                <div id="slide" :class="{ expand: drawerOpen }">
-     
+                <div
+                    id="slide"
+                    :class="{ expand: drawerOpen }"
+                    :aria-hidden="drawerOpen ? 'false' : 'true'"
+                >
                     <div class="icon">
-                        <a href="https://www.linkedin.com/in/dannygibas/" target="_blank">
+                        <a
+                            href="https://www.linkedin.com/in/dannygibas/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn (opens in new tab)"
+                            :tabindex="drawerOpen ? 0 : -1"
+                        >
                     
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -80,7 +104,13 @@
                         </a>
                     </div>
                     <div class="icon">
-                        <a href="https://medium.com/@gemarin" target="_blank">
+                        <a
+                            href="https://medium.com/@gemarin"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Medium (opens in new tab)"
+                            :tabindex="drawerOpen ? 0 : -1"
+                        >
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
                             style="padding-bottom:2px;"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" xml:space="preserve">
@@ -96,14 +126,23 @@
             </li>
               <li>
                 <div class="main__navbar--item--wrapper">
-                  <div id="main__navbar--burger--wrapper">
-                    <div class="burger__bar burger__bar--top"></div>
+                  <button
+                    ref="navBurger"
+                    type="button"
+                    id="main__navbar--burger--wrapper"
+                    class="nav-burger"
+                    :aria-expanded="navOpen ? 'true' : 'false'"
+                    aria-controls="primary-nav"
+                    aria-label="Menu"
+                    @click="toggleNav"
+                  >
+                    <div class="burger__bar burger__bar--top" :class="{ open: navOpen }"></div>
                     <div class="flip--wrapper">
-                      <div class="burger__bar burger__bar--top--flip"></div>
-                      <div class="burger__bar burger__bar--bottom--flip"></div>
+                      <div class="burger__bar burger__bar--top--flip" :class="{ open: navOpen }"></div>
+                      <div class="burger__bar burger__bar--bottom--flip" :class="{ open: navOpen }"></div>
                     </div>
-                    <div class="burger__bar burger__bar--bottom"></div>
-                  </div>
+                    <div class="burger__bar burger__bar--bottom" :class="{ open: navOpen }"></div>
+                  </button>
                 </div>
               </li>
             </ul>
@@ -135,12 +174,42 @@
             </div>
         </div>
         <div class="sd-container scroll-down svg" id="home-scroll-down">
-            <!--<div class="scrolldown"></div>-->
-    
-                <svg class="dot" v-scroll-to="'#introduction'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_2" x="0px" y="0px" viewBox="0 0 25.166666 37.8704414" enable-background="new 0 0 25.166666 37.8704414" xml:space="preserve">
-        <path class="stroke" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" d="M12.5833445 36.6204414h-0.0000229C6.3499947 36.6204414 1.25 31.5204487 1.25 25.2871208V12.5833216C1.25 6.3499947 6.3499951 1.25 12.5833216 1.25h0.0000229c6.2333269 0 11.3333216 5.0999947 11.3333216 11.3333216v12.7037992C23.916666 31.5204487 18.8166714 36.6204414 12.5833445 36.6204414z"></path>
-        <path class="scroller" fill="#ffffff" d="M13.0833359 19.2157116h-0.9192753c-1.0999985 0-1.9999971-0.8999996-1.9999971-1.9999981v-5.428606c0-1.0999994 0.8999987-1.9999981 1.9999971-1.9999981h0.9192753c1.0999985 0 1.9999981 0.8999987 1.9999981 1.9999981v5.428606C15.083334 18.315712 14.1833344 19.2157116 13.0833359 19.2157116z"></path>
-    </svg><div class="darr">&darr;</div>
+            <button
+                type="button"
+                class="scroll-down-btn"
+                aria-label="Scroll to introduction"
+                v-scroll-to="'#introduction'"
+            >
+                <svg
+                    class="dot"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1"
+                    id="Layer_2"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 25.166666 37.8704414"
+                    enable-background="new 0 0 25.166666 37.8704414"
+                    xml:space="preserve"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <path
+                        class="stroke"
+                        fill="none"
+                        stroke="#ffffff"
+                        stroke-width="1.5"
+                        stroke-miterlimit="10"
+                        d="M12.5833445 36.6204414h-0.0000229C6.3499947 36.6204414 1.25 31.5204487 1.25 25.2871208V12.5833216C1.25 6.3499947 6.3499951 1.25 12.5833216 1.25h0.0000229c6.2333269 0 11.3333216 5.0999947 11.3333216 11.3333216v12.7037992C23.916666 31.5204487 18.8166714 36.6204414 12.5833445 36.6204414z"
+                    ></path>
+                    <path
+                        class="scroller"
+                        fill="#ffffff"
+                        d="M13.0833359 19.2157116h-0.9192753c-1.0999985 0-1.9999971-0.8999996-1.9999971-1.9999981v-5.428606c0-1.0999994 0.8999987-1.9999981 1.9999971-1.9999981h0.9192753c1.0999985 0 1.9999981 0.8999987 1.9999981 1.9999981v5.428606C15.083334 18.315712 14.1833344 19.2157116 13.0833359 19.2157116z"
+                    ></path>
+                </svg>
+                <div class="darr" aria-hidden="true">&darr;</div>
+            </button>
         </div>
 
       </div>
@@ -163,7 +232,8 @@ export default {
     data: function(){
         return{
             open : true,
-            drawerOpen: false
+            drawerOpen: false,
+            navOpen: false,
         }
     },
     components:{
@@ -201,30 +271,37 @@ export default {
                 $(".tagline").addClass("reveal");
             }, 300);    
             
-            //init the masthead particle engine *stars*
-            $('.navbar__hidden--top').hide();
-            //var position = $('#side__navbar').position();
-            $(".main__navbar--item--wrapper").click(function () {
-                
-                $('.navbar__hidden--top').slideToggle(300);
-                $('.burger__bar--top--flip').toggleClass('open');
-                $('.burger__bar--bottom--flip').toggleClass('open');
-                $('.burger__bar--top').toggleClass('open');
-                $('.burger__bar--bottom').toggleClass('open');
-            });
-            $('.main__navbar a')
-                .not('.main__navbar--logo--container a')
-                .click(function () {
-                $('.navbar__hidden--top').slideToggle(300);
-                $('.burger__bar--top--flip').toggleClass('open');
-                $('.burger__bar--bottom--flip').toggleClass('open');
-                $('.burger__bar--top').toggleClass('open');
-                $('.burger__bar--bottom').toggleClass('open');
-            });
+            // navbar starts closed; opened via keyboard-accessible burger
             //init navbar opacity
             $('#side__navbar__list--group').css('background-color', 'rgba(0,0,0,' + this.offset);
     },
     methods: {
+        toggleNav() {
+            if (this.navOpen) {
+                this.closeNav()
+            } else {
+                this.openNav()
+            }
+        },
+        openNav() {
+            this.navOpen = true
+            this.$nextTick(() => {
+                const first =
+                    this.$refs.primaryNav &&
+                    this.$refs.primaryNav.querySelector('button, a')
+                if (first) first.focus()
+            })
+        },
+        closeNav() {
+            this.navOpen = false
+            this.$nextTick(() => {
+                if (this.$refs.navBurger) this.$refs.navBurger.focus()
+            })
+        },
+        go(path) {
+            this.navOpen = false
+            this.$router.push(path)
+        },
         toggleOpen: function(){
             this.drawerOpen = !this.drawerOpen
         },
@@ -290,22 +367,42 @@ $link-hover-color:      darken($link-color, 15%) !default;
 $link-hover-decoration: underline !default;
 
 svg.dot {
-  vertical-align: middle;
-  height:30px;
+  display: block;
+  margin: 0 auto;
+  height: 30px;
+  width: 25px;
 }
 
-.darr{
-    width:25px;
-    text-align:center;
+.darr {
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height: 1;
 }
+
+.scroll-down-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+}
+
 .scroll-down {
   position: absolute;
   left: 50%;
   margin-left: -20px;
   width: 40px;
-  height: 40px;
+  height: auto;
   bottom: 35px;
-  padding-left: 7px;
+  padding-left: 0;
   cursor: pointer;
   z-index: 2;
   color: #fff;
@@ -412,14 +509,21 @@ svg.dot {
     box-shadow: inset 0px -5px 22px 0px rgba(209, 209, 209, 0.23);
     a,
     a:active,
-    a:visited {
+    a:visited,
+    button {
         cursor: pointer;
         color: $gray-darker;
         font-size: .8em;
             font-family: "AvenirLTStdBlack";
     }
-    a:hover {
+    a:hover,
+    button:hover {
         color: $link-hover-color;
+    }
+    button {
+        background: none;
+        border: 0;
+        padding: 0;
     }
     @media (max-width: 768px) {
         a {
@@ -427,15 +531,20 @@ svg.dot {
         }
     }
     ul {
-        margin: 0 auto 0 auto !important;
+        margin: 0 auto !important;
         padding-top: 25px !important;
         padding-bottom: 20px !important;
-      
-        
+        padding-left: 0 !important;
+        float: none !important;
+        display: block !important;
+        width: 100%;
+        text-align: center;
+
         li {
             display: inline;
             cursor: pointer;
             margin-right: 20px;
+            float: none;
         }
         @media (max-width: 768px) {
             li {
@@ -445,20 +554,25 @@ svg.dot {
     }
     @media (max-width: 768px) {
         ul {
-            display: block;
+            display: block !important;
             width: 100%;
             text-align: center;
             padding-left: 0;
             margin-left: 0;
+            float: none !important;
         }
     }
 }
 .social-media{
-    display:inline;
-    cursor:default;
-    position:absolute;
-    right:15px;
-    top:19px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    cursor: default;
+    position: relative;
+    min-height: 27px;
+    height: auto;
+    overflow: visible;
+    margin-right: 14px;
     .social-icon{
         fill: $color-white;
         transition: fill .6s;
@@ -469,6 +583,9 @@ svg.dot {
     #Capa_1{
         position:relative;
         top:0px;
+        display: block;
+        width: 20px;
+        height: 20px;
     }
     #open-icon-text{
         display:none;
@@ -485,53 +602,84 @@ svg.dot {
         width:20px;
         height:20px;
         cursor:pointer;
-        position:absolute;
-        top:0;
+        position:relative;
+        flex-shrink: 0;
+        order: 2;
         opacity:.8;
         z-index:200;
+        .social-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
         &:hover{
             opacity:.9;
         }
     }//end open-icon-text
     #drawer{
-        display:inline-block;
-        overflow:hidden;
-        position:relative;
-        right:70px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        order: 1;
+        height: 24px;
+        margin-right: 10px;
         #slide{
-            position:relative;
-            z-index:200;
-            left:100px;
-            top:0px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 200;
+            left: 100px;
+            top: 0;
+            height: 24px;
             background-color: transparent;
             transition: left .3s;
-                a{
-                    height:20px;
-                    width:20px;
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 20px;
+                width: 20px;
+                line-height: 0;
+            }
+            &.expand {
+                left: 0;
+            }
+            .icon {
+                height: 20px;
+                width: 20px;
+                margin-left: 7px;
+                position: relative;
+                top: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                &:hover {
+                    opacity: .8;
                 }
-                &.expand{
-                    left:0;
+                svg {
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    overflow: visible;
                 }
-                .icon{
-                    height:20px;
-                    width:20px;
-                    margin-left:7px;
-                    position:relative;
-                    top:-1px;
-                    display:inline-block;
-                    &:hover{
-                        opacity:.8;
-                    }
+            }
+            ._lg {
+                width: 27px;
+            }
+            .svgicon {
+                fill: #fff;
+                &.alt {
+                    fill: $brand-tertiary;
                 }
-                ._lg{
-                    width:27px;
-                }
-                .svgicon{
-                    fill:#fff;
-                    &.alt{
-                        fill:$brand-tertiary;
-                    }
-                }
+            }
         }
     }
     
@@ -575,13 +723,17 @@ svg.dot {
         background-color: transparent;
         transition: background-color .6s;
         /* Or border-top-color */
-        ul{
+        /* Icon row only — do not target the dropdown link list */
+        .nav-wrapper ul {
             padding: 0;
             margin-top: 25px;
             margin-bottom: 15px;
             float: right;
+            display: flex;
+            align-items: center;
             li {
-                display: inline;
+                display: flex;
+                align-items: center;
                 cursor: pointer;
             }
         }
@@ -603,15 +755,28 @@ svg.dot {
         .main__navbar--item--wrapper {
             position: relative;
             height: 27px;
-            width: 23px;
+            width: 30px;
             cursor: pointer;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: $color-white;
+            z-index: 1002;
             .main__navbar-item {
                 font-size: 30px;
             }
             i {
                 font-size: 30px;
+            }
+        }
+        /* Keep the close (X) toggle visible on the white open menu */
+        &.nav-is-open {
+            .main__navbar--item--wrapper,
+            #main__navbar--burger--wrapper {
+                z-index: 1003;
+            }
+            .burger__bar {
+                background-color: $brand-tertiary !important;
             }
         }
     }
@@ -690,12 +855,24 @@ svg.dot {
     }
     #main__navbar--burger--wrapper {
         opacity:.9;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        min-width: 30px;
+        min-height: 22px;
+        position: relative;
+        z-index: 1003;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         &:hover{
             opacity:1;
         }
         .flip--wrapper {
             position: relative;
-            min-height: 2px;
+            height: 2px;
+            width: 30px;
         }
         .burger__bar {
             height: 2px;

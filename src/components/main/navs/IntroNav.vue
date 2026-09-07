@@ -1,63 +1,86 @@
 <template>
 <ul class="navlist">
     <li>
-        <router-link class="nav-link" to="/#portfolio">Portfolio</router-link>
+        <button
+            type="button"
+            class="nav-link"
+            @click="$router.push({ path: '/', hash: '#portfolio' })"
+        >
+            Portfolio
+        </button>
     </li>
     <li>
-        <router-link class="nav-link" :class="{ active: activepage == 'stack' }" to="/stack">Stack</router-link>
+        <button
+            type="button"
+            class="nav-link"
+            :class="{ active: activepage == 'stack' }"
+            @click="$router.push('/stack')"
+        >
+            Stack
+        </button>
     </li>
     <li>
-        <router-link class="nav-link" :class="{ active: activepage == 'resume' }" to="/resume">Résumé</router-link>
+        <button
+            type="button"
+            class="nav-link"
+            :class="{ active: activepage == 'resume' }"
+            @click="$router.push('/resume')"
+        >
+            Résumé
+        </button>
     </li>
     <li>
-        <router-link class="nav-link" :class="{ active: activepage == 'contact' }" to="/contact">Contact</router-link>
+        <button
+            type="button"
+            class="nav-link"
+            :class="{ active: activepage == 'contact' }"
+            @click="$router.push('/contact')"
+        >
+            Contact
+        </button>
     </li>
-    
 </ul>
 </template>
 
 <script>
-
 export default {
-  name:"IntroNav",
-  data: function() {
-    return {
-
-    };
-  },
-     props:['activepage'],
-  components: {
-  }
-};
+    name: 'IntroNav',
+    data() {
+        return {}
+    },
+    props: ['activepage'],
+    components: {},
+}
 </script>
 
 <style scoped lang="scss">
-ul{
-    list-style:none;
-    display:inline;
-    padding-left:0;
+ul {
+    list-style: none;
+    display: inline;
+    padding-left: 0;
     margin: auto 0;
-    position:relative;
+    position: relative;
 }
-li{
-    display:inline-block;
-    a{
-        color:#fb2662;
-        &:hover{
+li {
+    display: inline-block;
+    button.nav-link {
+        color: #fb2662;
+        background: none;
+        border: 0;
+        padding: 0;
+        margin: 0 12px;
+        cursor: pointer;
+        &:hover {
             text-decoration: underline;
         }
     }
 }
-.nav-link{
-     font-family: "AvenirLTStdLight";
-     font-size:16px;
-     &.active{
-         color:#fb2662;
-         font-family: "AvenirLTStdBlack";
-     }
+.nav-link {
+    font-family: 'AvenirLTStdLight';
+    font-size: 16px;
+    &.active {
+        color: #fb2662;
+        font-family: 'AvenirLTStdBlack';
+    }
 }
-
-    
 </style>
-
-

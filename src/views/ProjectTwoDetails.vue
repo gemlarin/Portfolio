@@ -1,10 +1,13 @@
 <template>
     <div class="container" id="project-two-details">
-        <router-link class="nav-link" :to="{ path: '/', hash: '#project-two' }">
-            <button title="Close (Esc)" type="button" class="mfp-close">
-                ×
-            </button>
-        </router-link>
+        <button
+            type="button"
+            class="close-control"
+            aria-label="Close project details"
+            @click="$router.push({ path: '/', hash: '#project-two' })"
+        >
+            <span class="mfp-close" aria-hidden="true">×</span>
+        </button>
         <div class="row first">
             <div class="col-12 col-lg-8 text-container text-container--intro">
                 <h2>SpecForge</h2>
@@ -26,13 +29,14 @@
                     React / Next.js app with structured LLM generation after the
                     design is complete.
                 </p>
-                <a href="#part2" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part2' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part2">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageOne"
+                    alt="SpecForge wireframes for the landing experience"
                     img-class="preview--img wireframe-shot"
                 />
             </div>
@@ -51,13 +55,14 @@
                     where fences vs. generated artifacts would live once the
                     user is inside a project.
                 </p>
-                <a href="#part3" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part3' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part3">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageTwo"
+                    alt="SpecForge mobile landing for first-time visitors"
                     img-class="preview--img mobile-shot"
                 />
             </div>
@@ -75,13 +80,14 @@
                     competing. This state assumes the guest has never opened a
                     project.
                 </p>
-                <a href="#part4" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part4' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part4">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageThree"
+                    alt="SpecForge mobile landing for return visitors"
                     img-class="preview--img mobile-shot"
                 />
             </div>
@@ -99,12 +105,16 @@
                     system matters so the product feels like one app across
                     sessions, not a marketing page bolted onto an editor.
                 </p>
-                <a href="#part5" class="internal">more &darr;</a>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part5' })">more &darr;</button>
             </div>
         </div>
         <div class="row" id="part5">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <detail-image :src="imageFour" img-class="preview--img" />
+                <detail-image
+                    :src="imageFour"
+                    alt="SpecForge desktop landing for return visitors"
+                    img-class="preview--img"
+                />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h4>Desktop — return visitor</h4>
@@ -184,7 +194,19 @@ export default {
     p {
         font-size: 14px;
     }
-    a.internal {
+    button.internal {
+        background: none;
+        border: 0;
+        font: inherit;
+        cursor: pointer;
+        text-align: left;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    a.internal,
+    button.internal {
         color: #fb2662;
         font-size: 14px;
         border-top: 3px solid #fb2662;
@@ -197,19 +219,6 @@ export default {
         &:hover {
             padding-left: 20px;
         }
-    }
-    .nav-link {
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 1100;
-    }
-    .mfp-close {
-        font-size: 50px;
-        right: 10px;
-        top: 10px;
-        position: relative;
-        z-index: 1101;
     }
     .row {
         margin-bottom: 100px;
@@ -244,9 +253,6 @@ export default {
         .text-container {
             padding-left: 15px;
         }
-        ::v-deep .detail-image:has(.mobile-shot) {
-            width: 70%;
-        }
     }
 }
 
@@ -260,15 +266,6 @@ export default {
         }
         h2 {
             margin-top: 20px;
-        }
-        .mfp-close {
-            right: -10px;
-            top: 0;
-        }
-        ::v-deep .detail-image:has(.mobile-shot) {
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
         }
     }
 }

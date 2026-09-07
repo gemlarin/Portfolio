@@ -98,6 +98,12 @@ export default {
 #page-wrap .preview--zoom {
     display: block;
     max-width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    cursor: zoom-in;
+    text-align: left;
 }
 
 #page-wrap .preview--zoom .preview--img {
@@ -110,5 +116,31 @@ export default {
 
 #page-wrap .preview--zoom:hover .preview--img {
     transform: scale(1.03);
+}
+
+.preview--zoom:focus-visible .preview--img {
+    outline: 2px solid #fb2662;
+    outline-offset: 3px;
+}
+
+/* Text CTAs that must stay in Tab order (Safari skips <a> by default) */
+#page-wrap button.cta-link {
+    background: none;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    color: #fb2662;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-right: 12px;
+    display: inline-block;
+    border-top: 3px solid #fb2662;
+    border-left: 3px solid #fb2662;
+    padding: 5px 12px;
+    text-align: left;
+}
+
+#page-wrap button.cta-link:hover {
+    padding-left: 20px;
 }
 </style>

@@ -14,14 +14,19 @@
                     progress.
                 </p>
 
-                <router-link to="/project-two-details">Details<span>&rarr;</span></router-link>
+                <button
+                    type="button"
+                    class="cta-link"
+                    @click="$router.push('/project-two-details')"
+                >
+                    view project<span aria-hidden="true">&rarr;</span>
+                </button>
                 <hr />
             </div>
             <div
                 class="col-12 col-sm-12 col-md-12 col-lg-8 order-1 order-sm-1 order-md-1 order-lg-2"
             >
                 <div
-                    class="preview--zoom"
                     v-scroll-reveal="{
                         delay: 250,
                         origin: 'right',
@@ -29,13 +34,19 @@
                         easing: 'ease-out',
                     }"
                 >
-                    <img
-                        :src="activeImage"
-                        loading="lazy"
-                        decoding="async"
-                        class="preview--img img-fluid popup-link-2"
-                        alt="SpecForge preview"
-                    />
+                    <button
+                        type="button"
+                        class="preview--zoom popup-link-2"
+                        aria-label="Enlarge SpecForge preview"
+                    >
+                        <img
+                            :src="activeImage"
+                            loading="lazy"
+                            decoding="async"
+                            class="preview--img img-fluid"
+                            alt="SpecForge landing page preview"
+                        />
+                    </button>
                 </div>
             </div>
         </div>

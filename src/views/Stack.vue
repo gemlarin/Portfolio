@@ -4,7 +4,14 @@
         <navi :activepage="page"></navi>
     </div>
     <div class="wrap--stack">
-        <router-link class="nav-link" to="/#introduction"><button title="Close (Esc)" type="button" class="mfp-close">×</button></router-link>
+        <button
+            type="button"
+            class="close-control"
+            aria-label="Close stack"
+            @click="$router.push({ path: '/', hash: '#introduction' })"
+        >
+            <span class="mfp-close" aria-hidden="true">×</span>
+        </button>
         <div class="wrap--centering">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6 col-xl-6 listing">

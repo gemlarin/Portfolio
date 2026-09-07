@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <div
-                    class="preview--zoom"
                     v-scroll-reveal="{
                         delay: 250,
                         origin: 'left',
@@ -11,12 +10,19 @@
                         easing: 'ease-out',
                     }"
                 >
-                    <img
-                        :src="activeImage"
-                        loading="lazy"
-                        decoding="async"
-                        class="preview--img img-fluid popup-link"
-                    />
+                    <button
+                        type="button"
+                        class="preview--zoom popup-link"
+                        aria-label="Enlarge Cairn preview"
+                    >
+                        <img
+                            :src="activeImage"
+                            loading="lazy"
+                            decoding="async"
+                            class="preview--img img-fluid"
+                            alt="Cairn National Parks travel log app preview"
+                        />
+                    </button>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
@@ -30,14 +36,18 @@
                     database so your log follows you across sessions.
                 </p>
 
-                <router-link to="/project-one-details"
-                    >Details<span>&rarr;</span></router-link
+                <button
+                    type="button"
+                    class="cta-link"
+                    @click="$router.push('/project-one-details')"
                 >
+                    view project<span aria-hidden="true">&rarr;</span>
+                </button>
                 <a
                     href="https://cairn-gray.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >Live App<span>&rarr;</span></a
+                    >live app<span aria-hidden="true">&rarr;</span></a
                 >
                 <hr />
                 <div class="technology">
@@ -45,16 +55,19 @@
                         src="./../../../assets/logos/vuejs.svg"
                         v-b-tooltip.hover
                         title="VueJS"
+                        alt="Vue.js"
                     />
                     <img
                         src="./../../../assets/logos/npm.svg"
                         v-b-tooltip.hover
                         title="npm"
+                        alt="npm"
                     />
                     <img
                         src="./../../../assets/logos/es6.svg"
                         v-b-tooltip.hover
                         title="ES6 / TypeScript"
+                        alt="ES6 / TypeScript"
                     />
                 </div>
             </div>

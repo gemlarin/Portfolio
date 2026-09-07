@@ -1,6 +1,14 @@
   <template>
     <div id="app">
-        <router-view></router-view>
+        <a
+            class="skip-link"
+            href="#introduction"
+            @click.prevent="skipToContent"
+            >Skip to content</a
+        >
+        <div id="site-content">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -21,6 +29,26 @@ export default {
         },
     },
     methods: {
+        skipToContent() {
+            const target =
+                document.getElementById('introduction') ||
+                document.querySelector('.wrap--stack') ||
+                document.querySelector('[id$="-details"]') ||
+                document.getElementById('site-content')
+
+            if (!target) return
+
+            if (!target.hasAttribute('tabindex')) {
+                target.setAttribute('tabindex', '-1')
+            }
+
+            const top =
+                target.getBoundingClientRect().top + window.pageYOffset - 16
+            window.scrollTo({ top, left: 0, behavior: 'auto' })
+            this.$nextTick(() => {
+                target.focus({ preventScroll: true })
+            })
+        },
         dismissBootSplash() {
             const boot = document.getElementById('boot-splash')
             if (!boot || boot.classList.contains('is-hiding')) return
@@ -201,6 +229,11 @@ html {
     outline-style: none;
 }
 
+*:focus:not(:focus-visible) {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 select.form-control.wide:not([multiple]),
 select.form-control:not([multiple]) {
     -webkit-appearance: none;
@@ -350,6 +383,86 @@ select.form-control:not([size]):not([multiple]) {
     color: #fb2662;
 }
 
+/* Lightbox stays viewport-tall — no page-length scroll behind the image */
+.mfp-bg {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+}
+
+.mfp-wrap {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+}
+
+.mfp-container {
+    height: 100% !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+}
+
+/* Keep lightbox images inside the viewport so the close control stays reachable */
+.mfp-image-holder .mfp-content {
+    max-width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+}
+
+.mfp-figure {
+    line-height: 0;
+    max-width: 100%;
+    max-height: inherit;
+}
+
+img.mfp-img {
+    width: auto !important;
+    height: auto !important;
+    max-width: min(1200px, calc(100vw - 16px)) !important;
+    max-height: calc(100vh - 16px) !important;
+    max-height: calc(100dvh - 16px) !important;
+    object-fit: contain;
+    box-sizing: border-box;
+    padding: 40px 0;
+}
+
+/* Beat Magnific's width:100% / text-align:right close button */
+.mfp-wrap .mfp-image-holder .mfp-close,
+.mfp-wrap .mfp-iframe-holder .mfp-close {
+    position: fixed !important;
+    top: 12px !important;
+    right: -4px !important;
+    left: auto !important;
+    width: 56px !important;
+    height: 56px !important;
+    line-height: 56px !important;
+    font-size: 42px !important;
+    padding: 0 !important;
+    text-align: center !important;
+    z-index: 1051 !important;
+}
+
+.mfp-wrap .mfp-image-holder .mfp-close:hover,
+.mfp-wrap .mfp-image-holder .mfp-close:focus,
+.mfp-wrap .mfp-iframe-holder .mfp-close:hover,
+.mfp-wrap .mfp-iframe-holder .mfp-close:focus {
+    color: #fb2662 !important;
+    opacity: 1 !important;
+}
+
+.mfp-wrap .mfp-image-holder .mfp-close:active,
+.mfp-wrap .mfp-iframe-holder .mfp-close:active {
+    top: 12px !important;
+}
+
 .nav-wrap {
     position: absolute;
     bottom: 20px;
@@ -384,7 +497,59 @@ img.responsive {
 }
 
 *:focus {
+    outline: none;
+}
+
+*:focus:not(:focus-visible) {
     outline: none !important;
+    box-shadow: none !important;
+}
+
+:focus-visible {
+    outline: 2px solid #fb2662 !important;
+    outline-offset: 3px !important;
+}
+
+/* Kill native button focus ring on mouse click; keep keyboard ring via :focus-visible */
+button:focus,
+button.internal:focus,
+button.cta-link:focus {
+    outline: none !important;
+}
+
+button:focus-visible,
+button.internal:focus-visible,
+button.cta-link:focus-visible {
+    outline: 2px solid #fb2662 !important;
+    outline-offset: 3px !important;
+}
+
+.skip-link {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    z-index: 10000;
+    padding: 10px 14px;
+    background: #fff;
+    color: #212529;
+    font-family: 'AvenirLTStdMedium', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    border: 2px solid #fb2662;
+    transform: translateY(-200%);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
+
+/* Skip targets are programmatically focused; don't paint a huge page ring */
+#introduction:focus,
+.wrap--stack:focus,
+[id$='-details']:focus,
+#site-content:focus {
+    outline: none;
 }
 
 @media (min-width: 1200px) {
@@ -454,7 +619,137 @@ img.responsive {
 
 @media (max-width: 767px) {
     img.mfp-img {
-        max-width: 100%;
+        max-width: calc(100vw - 16px) !important;
+        padding: 24px 0;
     }
+}
+
+/* Image above text when project columns stack — same 20px gap on preview + details */
+@media (max-width: 991px) {
+    [id$='-details'] .row > [class*='col-lg-8'],
+    #page-wrap .row > [class*='col-lg-8'] {
+        margin-bottom: 20px;
+    }
+
+    [id$='-details'] .row > [class*='col-lg-8'] {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    [id$='-details'] .detail-image,
+    [id$='-details'] .detail-image:has(.mobile-shot),
+    [id$='-details'] .detail-image:has(.brief-shot),
+    [id$='-details'] .detail-image:has(.wireframe-shot) {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    [id$='-details'] .text-container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    #page-wrap .text-container {
+        margin-top: 0;
+    }
+
+    /* Avoid heading margins adding to the 20px stack gap */
+    #page-wrap .text-container > h2:first-child,
+    [id$='-details'] .text-container > h2:first-child,
+    [id$='-details'] .text-container > h4:first-child,
+    [id$='-details'] .text-container > h5:first-child {
+        margin-top: 0 !important;
+    }
+}
+
+/* Shared edge gutter for details pages — close X is centered in this strip */
+[id$='-details'] {
+    --details-gutter: 30px;
+    --close-size: 48px;
+}
+
+@media (max-width: 767px) {
+    /* Bootstrap .row −15px margins eat container padding otherwise */
+    [id$='-details'] {
+        padding-left: var(--details-gutter) !important;
+        padding-right: var(--details-gutter) !important;
+    }
+
+    [id$='-details'] .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    [id$='-details'] .row > [class*='col-'] {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* Details / overlay close controls — button is the hit + focus target */
+.close-control {
+    position: fixed;
+    top: 10px;
+    right: -7px;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: var(--close-size, 48px);
+    height: var(--close-size, 48px);
+    min-width: var(--close-size, 48px);
+    min-height: var(--close-size, 48px);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Center the close in the details right gutter on every project */
+[id$='-details'] .close-control {
+    right: calc((var(--details-gutter) - var(--close-size)) / 2);
+}
+
+@media (min-width: 768px) {
+    .close-control {
+        right: -2px;
+    }
+
+    [id$='-details'] .close-control {
+        /* Same gutter-centering math as mobile so all projects match */
+        right: calc((var(--details-gutter) - var(--close-size)) / 2);
+    }
+}
+
+.close-control .mfp-close {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 44px !important;
+    line-height: 1 !important;
+    display: block;
+    color: #222;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.close-control:hover .mfp-close,
+.close-control:focus .mfp-close,
+.close-control:focus-visible .mfp-close {
+    color: #fb2662 !important;
+}
+
+.close-control:focus-visible {
+    outline: 2px solid #fb2662 !important;
+    outline-offset: 2px !important;
 }
 </style>

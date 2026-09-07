@@ -3,15 +3,21 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <div
-                    class="preview--zoom"
                     v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
                 >
-                    <img
-                        :src="activeImage"
-                        loading="lazy"
-                        decoding="async"
-                        class="preview--img img-fluid popup-link-3"
-                    />
+                    <button
+                        type="button"
+                        class="preview--zoom popup-link-3"
+                        aria-label="Enlarge Project Canary preview"
+                    >
+                        <img
+                            :src="activeImage"
+                            loading="lazy"
+                            decoding="async"
+                            class="preview--img img-fluid"
+                            alt="Project Canary workorder app preview"
+                        />
+                    </button>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
@@ -27,25 +33,39 @@
                     requirements and execution flows.
                 </p>
 
-                <router-link to="/project-three-details">Details<span>&rarr;</span></router-link>
+                <button
+                    type="button"
+                    class="cta-link"
+                    @click="$router.push('/project-three-details')"
+                >
+                    view project<span aria-hidden="true">&rarr;</span>
+                </button>
                 <hr />
                 <div class="technology">
-                    <img src="./../../../assets/logos/vuejs.svg" v-b-tooltip.hover title="VueJS" />
+                    <img
+                        src="./../../../assets/logos/vuejs.svg"
+                        v-b-tooltip.hover
+                        title="VueJS"
+                        alt="Vue.js"
+                    />
                     <img
                         src="./../../../assets/logos/bootstrap.svg"
                         v-b-tooltip.hover
                         title="Bootstrap"
+                        alt="Bootstrap"
                     />
                     <img
                         style="width:35px;"
                         src="./../../../assets/logos/sass.svg"
                         v-b-tooltip.hover
                         title="SASS"
+                        alt="Sass"
                     />
                     <img
                         src="./../../../assets/logos/webpack.svg"
                         v-b-tooltip.hover
                         title="Webpack"
+                        alt="Webpack"
                     />
                 </div>
             </div>

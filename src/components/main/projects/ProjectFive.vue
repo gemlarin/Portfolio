@@ -3,23 +3,34 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 image-container">
                 <div
-                    class="preview--zoom"
                     v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
                 >
-                    <img
-                        :src="activeImage"
-                        loading="lazy"
-                        decoding="async"
-                        class="preview--img img-fluid popup-link-5"
-                    />
+                    <button
+                        type="button"
+                        class="preview--zoom popup-link-5"
+                        aria-label="Enlarge Refuah Health Center preview"
+                    >
+                        <img
+                            :src="activeImage"
+                            loading="lazy"
+                            decoding="async"
+                            class="preview--img img-fluid"
+                            alt="Refuah Health Center website preview"
+                        />
+                    </button>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h2>Refuah Health Center</h2>
                 <h5>Role: Designer</h5>
                 <p>Refuah Health Center was a freelance design project that was sub-contracted through a design agency. Deliverables were to include mocks and all necessary assets and had a time line of 3 weeks.</p>
-                <router-link to="/project-five-details">Details<span>&rarr;</span>
-                </router-link>
+                <button
+                    type="button"
+                    class="cta-link"
+                    @click="$router.push('/project-five-details')"
+                >
+                    view project<span aria-hidden="true">&rarr;</span>
+                </button>
             </div>
         </div>
     </div>

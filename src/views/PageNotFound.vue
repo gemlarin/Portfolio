@@ -6,6 +6,8 @@
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 49.612 50"
                 xml:space="preserve"
+                aria-hidden="true"
+                focusable="false"
             >
                 <path
                     d="M49.461,16.105c0-8.985-7.038-16.023-15.874-16.023H16.288c-0.95,0-1.72,0.77-1.72,1.72v12.881H1.8

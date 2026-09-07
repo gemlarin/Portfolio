@@ -7,24 +7,42 @@
             {{ greeting }}<span>.</span>
         </h2>
         <div id="navigation--intro">
-            <ul
-                v-scroll-reveal.reset="{ delay: 200, origin:'bottom', duration: 500, easing:'ease-out'}"
-            >
+            <ul>
                 <li>
-                    <a
+                    <button
+                        type="button"
                         class="nav-link"
-                        href="javascript:void(0)"
                         v-scroll-to="'#portfolio'"
-                    >portfolio</a>
+                    >
+                        portfolio
+                    </button>
                 </li>
                 <li>
-                    <router-link class="nav-link" to="/stack">stack</router-link>
+                    <button
+                        type="button"
+                        class="nav-link"
+                        @click="$router.push('/stack')"
+                    >
+                        stack
+                    </button>
                 </li>
                 <li>
-                    <router-link class="nav-link" to="/resume">résumé</router-link>
+                    <button
+                        type="button"
+                        class="nav-link"
+                        @click="$router.push('/resume')"
+                    >
+                        résumé
+                    </button>
                 </li>
                 <li>
-                    <router-link class="nav-link" to="/contact">contact</router-link>
+                    <button
+                        type="button"
+                        class="nav-link"
+                        @click="$router.push('/contact')"
+                    >
+                        contact
+                    </button>
                 </li>
             </ul>
         </div>
@@ -123,11 +141,19 @@ export default {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
 
-    a.nav-link {
+    a.nav-link,
+    button.nav-link {
         color: #fb2662;
         font-size: 18px;
+        background: none;
+        border: 0;
+        padding: 0;
+        margin: 0 10px;
+        font-family: inherit;
+        cursor: pointer;
     }
-    a:hover {
+    a:hover,
+    button.nav-link:hover {
         text-decoration: underline;
     }
     ul {

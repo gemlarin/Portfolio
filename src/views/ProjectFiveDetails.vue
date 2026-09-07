@@ -1,18 +1,20 @@
 <template>
     <div class="container" id="project-five-details">
-        <router-link
-            class="nav-link"
-            :to="{ path: '/', hash: '#project-five' }"
+        <button
+            type="button"
+            class="close-control"
+            aria-label="Close project details"
+            @click="$router.push({ path: '/', hash: '#project-five' })"
         >
-            <button title="Close (Esc)" type="button" class="mfp-close">
-                ×
-            </button>
-        </router-link>
+            <span class="mfp-close" aria-hidden="true">×</span>
+        </button>
         <div class="row first">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
                     :src="imageOne"
                     eager
+                    alt="Refuah Health Center homepage design"
+                    enlarge-label="Enlarge Refuah Health Center homepage"
                     img-class="preview--img popup-link"
                 />
             </div>
@@ -114,19 +116,6 @@ export default {
             padding-left: 20px;
         }
     }
-    .nav-link {
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 1100;
-    }
-    .mfp-close {
-        font-size: 50px;
-        right: 10px;
-        top: 10px;
-        position: relative;
-        z-index: 1101;
-    }
     .row {
         margin-bottom: 100px;
     }
@@ -169,10 +158,6 @@ export default {
         }
         h2 {
             margin-top: 20px;
-        }
-        .mfp-close {
-            right: -10px;
-            top: 0;
         }
     }
 }

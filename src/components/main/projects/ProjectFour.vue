@@ -7,21 +7,32 @@
                 <h2>Princeton Nassau Pediatrics</h2>
                 <h5>Role: Designer</h5>
                 <p>Princeton Nassau Pediatrics requested an update to their site design. The primary needs were a way to quickly funnel visitors to the appropriate sections of the site and a design that "was more fun and attactive than the pediatrics office down the road." This design received an "Outstanding Website" award in the 2015 Web Marketing Associations Web Award competition.</p>
-                <a href="https://princetonnassaupediatrics.com/" target="_blank">visit site <span>&rarr;</span></a>
+                <a
+                    href="https://princetonnassaupediatrics.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >visit site <span aria-hidden="true">&rarr;</span></a
+                >
             </div>
             <div
                 class="col-12 col-sm-12 col-md-12 col-lg-8 order-1 order-sm-1 order-md-1 order-lg-2"
             >
                 <div
-                    class="preview--zoom"
                     v-scroll-reveal="{ delay: 250, origin:'right', duration: 500, easing:'ease-out'}"
                 >
-                    <img
-                        :src="activeImage"
-                        loading="lazy"
-                        decoding="async"
-                        class="preview--img img-fluid popup-link-4"
-                    />
+                    <button
+                        type="button"
+                        class="preview--zoom popup-link-4"
+                        aria-label="Enlarge Princeton Nassau Pediatrics preview"
+                    >
+                        <img
+                            :src="activeImage"
+                            loading="lazy"
+                            decoding="async"
+                            class="preview--img img-fluid"
+                            alt="Princeton Nassau Pediatrics website preview"
+                        />
+                    </button>
                 </div>
             </div>
         </div>
