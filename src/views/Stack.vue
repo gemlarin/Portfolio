@@ -1,98 +1,97 @@
 <template>
-<div>
-    <div class="nav-wrap">
-        <navi :activepage="page"></navi>
-    </div>
-    <div class="wrap--stack">
-        <button
-            type="button"
-            class="close-control"
-            aria-label="Close stack"
-            @click="$router.push({ path: '/', hash: '#introduction' })"
-        >
-            <span class="mfp-close" aria-hidden="true">×</span>
-        </button>
-        <div class="wrap--centering">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-6 col-xl-6 listing">
-                    <h2>VUE 2/3</h2>
-                    <h2>VUEX</h2>
-                    <h2>PINIA</h2> 
-                    <h2>VITEST</h2>
-                    <h2>TAILWIND</h2>
-                </div>
-                <div class="col-12 col-md-6 col-lg-6 col-xl-6 subcopy">
-                    <p>This is my primary front-end stack today — Vue for product UI, Pinia or Vuex for state, Vitest for tests, and Tailwind for styling. I’m also building fluency in React where the role calls for it.
-                    </p>
-                    <p>My design and UX tooling includes FIGMA and Adobe CC.</p>
+    <div>
+        <div class="nav-wrap">
+            <navi :activepage="page"></navi>
+        </div>
+        <div class="wrap--stack">
+            <button
+                type="button"
+                class="close-control"
+                aria-label="Close stack"
+                @click="$router.push({ path: '/', hash: '#introduction' })"
+            >
+                <span class="mfp-close" aria-hidden="true">×</span>
+            </button>
+            <div class="wrap--centering">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 listing">
+                        <h2>VUE 2/3</h2>
+                        <h2>VUEX</h2>
+                        <h2>PINIA</h2>
+                        <h2>VITEST</h2>
+                        <h2>TAILWIND</h2>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 subcopy">
+                        <p>
+                            This is my primary front-end stack today — Vue for
+                            product UI, Pinia or Vuex for state, Vitest for
+                            tests, and Tailwind for styling. I’m also building
+                            fluency in React where the role calls for it. My
+                            design and UX tooling includes FIGMA and Adobe CC.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
 </template>
 
 <script>
-    import Nav from './../components/main/navs/IntroNav.vue'
-    export default {
-        name: 'Stack',
-        data () {
-            return {
-                page:'stack', 
-            }
-        },
-        created(){
-           
-        },
-        components: {
-            Navi : Nav
+import Nav from './../components/main/navs/IntroNav.vue'
+export default {
+    name: 'Stack',
+    data() {
+        return {
+            page: 'stack',
         }
-    }
+    },
+    created() {},
+    components: {
+        Navi: Nav,
+    },
+}
 </script>
 <style lang="scss" scoped>
-
-
-h2{
+h2 {
     font-family: 'proxima_novablack';
-    color:#333;
-    font-size:50px;       
-    margin-bottom:5px; 
-    line-height:55px; 
-    padding-right:5px;                                           
+    color: #333;
+    font-size: 50px;
+    margin-bottom: 5px;
+    line-height: 55px;
+    padding-right: 5px;
 }
-.wrapper--postion-nav{
-    margin-top:60px;
+.wrapper--postion-nav {
+    margin-top: 60px;
 }
-.positioner{
-  width:100vw;
-  position:absolute;
-  z-index: 301;
-  bottom:40px;
-  text-align:center;
+.positioner {
+    width: 100vw;
+    position: absolute;
+    z-index: 301;
+    bottom: 40px;
+    text-align: center;
 }
-p{
-    font-family: "AvenirLTStdBook";
-    font-size:15px;
-    line-height:1.74em;
-    padding-top:10px;
-    padding-left:5px;
-    color:#222;
+p {
+    font-family: 'AvenirLTStdBook';
+    font-size: 15px;
+    line-height: 1.74em;
+    padding-top: 10px;
+    padding-left: 5px;
+    color: #222;
 }
-.subcopy{
-    max-width:265px;
+.subcopy {
+    max-width: 265px;
     text-align: left;
 }
-.listing{
+.listing {
     text-align: right;
 }
-.wrap--stack{
-    height:100vh;
-    width:100vw;
+.wrap--stack {
+    height: 100vh;
+    width: 100vw;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: row;            
+    -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     -webkit-flex-wrap: nowrap;
@@ -108,21 +107,20 @@ p{
     -ms-flex-align: center;
     align-items: center;
 }
-.nav-link{
+.nav-link {
     position: absolute;
     right: 0;
     top: 0;
 }
-.mfp-close{
-    font-size:50px;
-    right:10px;
-    top:10px;
-   
+.mfp-close {
+    font-size: 50px;
+    right: 10px;
+    top: 10px;
 }
-.wrap--centering{
-    width:70vw;
-    height:360px;
-    background-color:white;
+.wrap--centering {
+    width: 70vw;
+    height: 360px;
+    background-color: white;
     -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
@@ -132,87 +130,85 @@ p{
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
-    img{
-        display:inline-block;
-        height:20px;
-        width:auto;
-        margin-left:10px;
-        margin-right:10px;
+    img {
+        display: inline-block;
+        height: 20px;
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
     }
-    img:nth-child(2){
-      height:35px;
+    img:nth-child(2) {
+        height: 35px;
     }
-    ul{
-        padding:0;
+    ul {
+        padding: 0;
         text-decoration: none;
-        li{
-            display:block;
-            font-size:32px;
+        li {
+            display: block;
+            font-size: 32px;
             font-family: 'proxima_novablack';
-            p{
-                margin-bottom:0;
-                line-height:1em;
+            p {
+                margin-bottom: 0;
+                line-height: 1em;
             }
-            .subtext{
-                font-size:12px;
-                margin-top:5px;
-                padding-top:0;
-                color:#fb2662;
-                margin-bottom:20px;
-                font-family: "AvenirLTStdBook";
+            .subtext {
+                font-size: 12px;
+                margin-top: 5px;
+                padding-top: 0;
+                color: #fb2662;
+                margin-bottom: 20px;
+                font-family: 'AvenirLTStdBook';
             }
         }
     }
 }
-   @media (max-width: 768px) {
-       .mfp-close{
-            font-size:45px;
-        }
-       .wrap--stack {
-            height: 100dvh;
-            box-sizing: border-box;
-            padding: 56px 0 72px;
-            align-items: center;
-            overflow-y: auto;
-       }
-       .wrap--centering{
-           width:100%;
-           height: auto;
-           min-height: 0;
-       }
-       .subcopy{
-            max-width:400px;
-            padding-top:20px;
-            text-align: center;
-            margin:0 auto;
-            padding-left:0;
-            padding-right:0;
-            max-width:80%;
-        }
-        .listing{
-            text-align: center;
-            max-width:80%;
-            margin:0 auto;
-        }
-        h2{
-            line-height: 50px;
-            font-size:45px;
-            display:inline;
-            padding-left:15px;
-            padding-right:15px;
-        }
-        p{
-            padding-left:15px;
-            padding-right:15px;
-        }
-   }
-
-@media (max-width: 768px) and (min-width: 695px){
-    .wrap--centering{
-        width:100%;
-        height:auto;
+@media (max-width: 768px) {
+    .mfp-close {
+        font-size: 45px;
+    }
+    .wrap--stack {
+        height: 100dvh;
+        box-sizing: border-box;
+        padding: 56px 0 72px;
+        align-items: center;
+        overflow-y: auto;
+    }
+    .wrap--centering {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+    .subcopy {
+        max-width: 400px;
+        padding-top: 20px;
+        text-align: center;
+        margin: 0 auto;
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 80%;
+    }
+    .listing {
+        text-align: center;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    h2 {
+        line-height: 50px;
+        font-size: 45px;
+        display: inline;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    p {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
-
+@media (max-width: 768px) and (min-width: 695px) {
+    .wrap--centering {
+        width: 100%;
+        height: auto;
+    }
+}
 </style>
