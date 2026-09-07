@@ -2,17 +2,21 @@
     <div class="container" id="project-three">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <img
+                <div
+                    class="preview--zoom"
                     v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
-                    :src="activeImage"
-                    loading="lazy"
-                    decoding="async"
-                    class="preview--img img-fluid popup-link-3"
-                />
+                >
+                    <img
+                        :src="activeImage"
+                        loading="lazy"
+                        decoding="async"
+                        class="preview--img img-fluid popup-link-3"
+                    />
+                </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h2>Project Canary</h2>
-                <h5>Role: UX and Development</h5>
+                <h5>Role: UI and Development</h5>
                 <p>
                     Canary is an experimental and internal facing workorder and build system
                     for initial deployment of 5G Neutral Host Gateways in the field. The

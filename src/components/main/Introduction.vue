@@ -4,8 +4,7 @@
         <h2
             v-scroll-reveal.reset="{ delay: 200, origin:'bottom', duration: 500, easing:'ease-out'}"
         >
-            Hello! I'm Danny Gibas and I build experiences for the
-            web<span>.</span>
+            {{ greeting }}<span>.</span>
         </h2>
         <div id="navigation--intro">
             <ul
@@ -22,7 +21,7 @@
                     <router-link class="nav-link" to="/stack">stack</router-link>
                 </li>
                 <li>
-                    <router-link class="nav-link" to="/resume">resume</router-link>
+                    <router-link class="nav-link" to="/resume">résumé</router-link>
                 </li>
                 <li>
                     <router-link class="nav-link" to="/contact">contact</router-link>
@@ -35,6 +34,8 @@
 </template>
 
 <script>
+import greetings from '../../data/greetings.json'
+
 export default {
     name: 'Introduction',
     data() {
@@ -45,11 +46,20 @@ export default {
             direction: '',
         }
     },
+    computed: {
+        greeting() {
+            const key = String(this.$route.query.for || '')
+                .trim()
+                .toLowerCase()
+            return greetings[key] || greetings.default
+        },
+    },
     components: {},
     created() {},
     mounted() {
         window.addEventListener('scroll', this.handleScroll)
     },
+
     methods: {
         handleScroll() {
             var st = window.scrollY
@@ -132,7 +142,8 @@ export default {
         letter-spacing: -0.8px;
         margin: 0 auto;
         width: 650px;
-        height: 210px;
+        min-height: 210px;
+        height: auto;
         padding: 15px;
         text-align: center;
         font-size: 55px;
@@ -197,7 +208,8 @@ export default {
             margin: 0 15px;
             width: calc(100vw - 30px);
             text-align: center;
-            height: 160px !important;
+            min-height: 160px !important;
+            height: auto !important;
             font-size: 40px;
         }
         .dividerline--mask {
@@ -213,7 +225,8 @@ export default {
             margin: 0 auto;
             width: 500px;
             text-align: center;
-            height: 260px !important;
+            min-height: 260px !important;
+            height: auto !important;
         }
 
         .dividerline--mask {

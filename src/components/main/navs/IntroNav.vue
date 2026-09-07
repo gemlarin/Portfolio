@@ -7,7 +7,7 @@
         <router-link class="nav-link" :class="{ active: activepage == 'stack' }" to="/stack">Stack</router-link>
     </li>
     <li>
-        <router-link class="nav-link" :class="{ active: activepage == 'resume' }" to="/resume">Resume</router-link>
+        <router-link class="nav-link" :class="{ active: activepage == 'resume' }" to="/resume">Résumé</router-link>
     </li>
     <li>
         <router-link class="nav-link" :class="{ active: activepage == 'contact' }" to="/contact">Contact</router-link>

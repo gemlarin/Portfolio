@@ -13,7 +13,7 @@
                     <router-link to="/stack">STACK</router-link>
                 </li>
                 <li>
-                    <router-link to="/resume">RESUME</router-link>
+                    <router-link to="/resume">RÉSUMÉ</router-link>
                 </li>
                 <li>
                     <router-link to="/contact">CONTACT</router-link>
@@ -212,8 +212,9 @@ export default {
                 $('.burger__bar--top').toggleClass('open');
                 $('.burger__bar--bottom').toggleClass('open');
             });
-            $('.main__navbar a').click(function(){
-                
+            $('.main__navbar a')
+                .not('.main__navbar--logo--container a')
+                .click(function () {
                 $('.navbar__hidden--top').slideToggle(300);
                 $('.burger__bar--top--flip').toggleClass('open');
                 $('.burger__bar--bottom--flip').toggleClass('open');

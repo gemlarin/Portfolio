@@ -1,14 +1,18 @@
 <template>
     <div class="container" id="project-five">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <img
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 image-container">
+                <div
+                    class="preview--zoom"
                     v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
-                    :src="activeImage"
-                    loading="lazy"
-                    decoding="async"
-                    class="preview--img img-fluid popup-link-5"
-                />
+                >
+                    <img
+                        :src="activeImage"
+                        loading="lazy"
+                        decoding="async"
+                        class="preview--img img-fluid popup-link-5"
+                    />
+                </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h2>Refuah Health Center</h2>
@@ -80,11 +84,16 @@ export default {
         position: relative;
         top: -4px;
     }
+    .image-container {
+        text-align: right;
+    }
     .text-container {
         padding-left: 70px;
     }
     img {
         cursor: pointer;
+        display: inline-block;
+        margin-left: auto;
     }
     .technology img {
         width: 25px;
@@ -94,6 +103,9 @@ export default {
 }
 @media (max-width: 991px) {
     .container {
+        .image-container {
+            text-align: center;
+        }
         .text-container {
             padding-left: 15px;
         }

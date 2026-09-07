@@ -52,6 +52,28 @@ const router = new VueRouter({
     mode: 'history',
 })
 
+// Keep cover-letter targeting (?for=nex) on every in-app URL for this page load.
+let stickyFor = null
+
+router.beforeEach((to, from, next) => {
+    const incoming = to.query.for || from.query.for
+    if (incoming) {
+        stickyFor = String(incoming).trim().toLowerCase()
+    }
+
+    if (stickyFor && String(to.query.for || '').toLowerCase() !== stickyFor) {
+        next({
+            path: to.path,
+            hash: to.hash,
+            params: to.params,
+            query: { ...to.query, for: stickyFor },
+            replace: true,
+        })
+        return
+    }
+    next()
+})
+
 Vue.use(Meta)
 Vue.use(VueRouter)
 Vue.use(VueScrollReveal, {

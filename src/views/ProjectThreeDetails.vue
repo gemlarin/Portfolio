@@ -13,7 +13,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h2>Project Canary</h2>
-                <h5>Role: UX and Development</h5>
+                <h5>Role: UI and Development</h5>
                 <p>Canary is an experimental and internal facing workorder and build system for initial deployment of 5G Neutral Host Gateways in the field. The wireless research team required a cloud application that mocked out a workorder creation and execution tool for the purposes of demonstration and systems integration testing. This project required deep coordination with both hardware and software engineering staff to establish the requirements and execution flows.</p>
                 <p>Features include:</p>
                 <ul>
@@ -44,9 +44,11 @@
                 <detail-image :src="imageTwo" img-class="preview--img" />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Mocks</h4>
-                <p>After the wireframes are approved, the next step in my process is the design of high resolution mocks represeting each view and all significant possible states. These mocks are generally created using Adobe CC tooling and are then moved into InVision for presentation of the UX flow.</p>
-                <p>This image demonstrates a series of mocks for Project Canary within the InVision dashboard, ready for review by stakeholders.</p>
+                <h4>User Journey</h4>
+                <p>With the wireframes in hand, the next step was mapping the end-to-end user journey — 
+                    how a logged-in operator moves from the workorder overview into creation, through field validation, 
+                    and into stepped execution with clear pass/fail outcomes.</p>
+                <p>This image captures the Canary user journey used with stakeholders to align on flow, decision points, and where hardware constraints surface in the UI.</p>
                 <a href="#part4" class="internal">more &darr;</a>
             </div>
         </div>
@@ -86,7 +88,7 @@
 </template>
 
 <script>
-import projectThreeImg from './../assets/project-three.webp'
+import briefImg from './../assets/p3/brief.webp'
 import imageOne from './../assets/p3/p3-1.webp'
 import imageTwo from './../assets/p3/p3-2.webp'
 import imageThree from './../assets/p3/p3-3.webp'
@@ -97,7 +99,7 @@ export default {
     components: { DetailImage },
     data() {
         return {
-            activeImage: projectThreeImg,
+            activeImage: briefImg,
             imageOne,
             imageTwo,
             imageThree,
@@ -107,7 +109,7 @@ export default {
     mounted: function () {
         $('.popup-link').magnificPopup({
             items: {
-                src: projectThreeImg,
+                src: briefImg,
             },
             type: 'image',
             closeOnContentClick: true,

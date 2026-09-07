@@ -2,18 +2,22 @@
     <div class="container" id="project-one">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <img
+                <div
+                    class="preview--zoom"
                     v-scroll-reveal="{
                         delay: 250,
                         origin: 'left',
                         duration: 500,
                         easing: 'ease-out',
                     }"
-                    :src="activeImage"
-                    loading="lazy"
-                    decoding="async"
-                    class="preview--img img-fluid popup-link"
-                />
+                >
+                    <img
+                        :src="activeImage"
+                        loading="lazy"
+                        decoding="async"
+                        class="preview--img img-fluid popup-link"
+                    />
+                </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h2>Cairn</h2>

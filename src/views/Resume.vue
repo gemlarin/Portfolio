@@ -27,7 +27,7 @@
                         href="/danny_gibas_resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        ><span>&rarr;</span>Full Resume<span>&larr;</span></a
+                        ><span>&rarr;</span>Full Résumé<span>&larr;</span></a
                     >
                 </p>
                 <p style="margin-top: 10px">

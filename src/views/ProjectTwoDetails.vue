@@ -12,11 +12,12 @@
                 <p>
                     SpecForge is an open-spec, spec-driven workspace built
                     around a simple thesis: AI is fast at filling in a shape and
-                    bad at deciding the shape. Engineers write the fences —
-                    interfaces, import boundaries, non-goals, accessibility
-                    constraints, and what must never happen. Then the model
-                    drafts the artifacts (PRD slices, component trees,
-                    acceptance criteria).
+                    bad at deciding the shape. Traditonally engineers work
+                    inside the IDE when writing the SDD artifacts with no way to
+                    manage individual project status or engineering flow.
+                    SpecForre aims to resolve that deficiency by providing a
+                    workspace that allows engineers to manage their projects and
+                    track their progress.
                 </p>
                 <p>
                     This case study is a <strong>work in progress</strong>. The
@@ -30,7 +31,10 @@
         </div>
         <div class="row" id="part2">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <detail-image :src="imageOne" img-class="preview--img wireframe-shot" />
+                <detail-image
+                    :src="imageOne"
+                    img-class="preview--img wireframe-shot"
+                />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
                 <h4>Wireframes</h4>

@@ -12,13 +12,17 @@
             <div
                 class="col-12 col-sm-12 col-md-12 col-lg-8 order-1 order-sm-1 order-md-1 order-lg-2"
             >
-                <img
+                <div
+                    class="preview--zoom"
                     v-scroll-reveal="{ delay: 250, origin:'right', duration: 500, easing:'ease-out'}"
-                    :src="activeImage"
-                    loading="lazy"
-                    decoding="async"
-                    class="preview--img img-fluid popup-link-4"
-                />
+                >
+                    <img
+                        :src="activeImage"
+                        loading="lazy"
+                        decoding="async"
+                        class="preview--img img-fluid popup-link-4"
+                    />
+                </div>
             </div>
         </div>
     </div>
