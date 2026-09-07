@@ -16,10 +16,16 @@
                 <div class="container">
                     <form id="contact-form" @submit.prevent="onSubmit">
                         <div id="form">
-                            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                            <input
+                                type="text"
+                                name="_honey"
+                                style="display: none"
+                                tabindex="-1"
+                                autocomplete="off"
+                            />
                             <div class="field-wrapper">
                                 <label for="firstName">Name</label>
-                                    <input
+                                <input
                                     v-model="name"
                                     autocomplete="name"
                                     id="firstName"
@@ -28,11 +34,11 @@
                                     name="name"
                                     class="form-control"
                                     :disabled="sending"
-                                >
+                                />
                             </div>
                             <div class="field-wrapper">
                                 <label for="email">Email address</label>
-                                    <input
+                                <input
                                     v-model="email"
                                     autocomplete="email"
                                     id="email"
@@ -41,11 +47,11 @@
                                     name="email"
                                     class="form-control"
                                     :disabled="sending"
-                                >
+                                />
                             </div>
                             <div class="field-wrapper">
                                 <label for="message">Message</label>
-                                    <textarea
+                                <textarea
                                     v-model="message"
                                     autocomplete="off"
                                     id="message"
@@ -60,15 +66,27 @@
                                 <div class="col-5">
                                     <div class="field-wrapper submit-wrap">
                                         <input
-                                            :value="sending ? 'Sending…' : 'Send'"
+                                            :value="
+                                                sending ? 'Sending…' : 'Send'
+                                            "
                                             type="submit"
                                             class="btn btn-secondary"
                                             :disabled="sending"
-                                        >
+                                        />
                                     </div>
                                 </div>
                                 <div class="col-7">
-                                    <p>To contact me for employment opportunities, please use the form above, email me directly at <a href="mailto:dfgibas@gmail.com">dfgibas@gmail.com</a>, or call: <a href="tel:15854552716">585.455.2716</a>.</p>
+                                    <p>
+                                        To contact me for employment
+                                        opportunities, please use the form
+                                        above, email me directly at
+                                        <a href="mailto:dfgibas@gmail.com"
+                                            >dfgibas@gmail.com</a
+                                        >, or call:
+                                        <a href="tel:15854552716"
+                                            >585.455.2716</a
+                                        >.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +100,8 @@
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
 
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/396bca75b794c96de073b9dbaa8bcde6'
+const FORM_ENDPOINT =
+    'https://formsubmit.co/ajax/396bca75b794c96de073b9dbaa8bcde6'
 
 export default {
     name: 'contact',
@@ -134,11 +153,16 @@ export default {
                 })
                 const data = await response.json().catch(() => ({}))
                 if (!response.ok) {
-                    throw new Error(data.message || 'Something went wrong. Please try again or call me.')
+                    throw new Error(
+                        data.message ||
+                            'Something went wrong. Please try again or call me.'
+                    )
                 }
                 this.$router.push('/thanks')
             } catch (err) {
-                this.error = err.message || 'Something went wrong. Please try again or call me.'
+                this.error =
+                    err.message ||
+                    'Something went wrong. Please try again or call me.'
             } finally {
                 this.sending = false
             }

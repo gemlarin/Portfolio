@@ -21,10 +21,6 @@
                 <h2>EDUCATION</h2>
                 <p>BFA New Media Design & Development, RIT</p>
                 <p>AAS Visual Communication Technologies, MCC</p>
-                <h2>AWARDS</h2>
-                <p>Xerox Future Vision, "BIOME", 1st place</p>
-                <p>eHealthcare Leadership Awards, Best Overall Site</p>
-                <p>Web Marketing Associations Award, Best Overall</p>
                 <p style="margin-top: 40px">
                     <a
                         href="/danny_gibas_resume.pdf"
