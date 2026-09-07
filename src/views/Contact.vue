@@ -206,10 +206,18 @@ a {
     .mfp-close {
         font-size: 45px;
     }
+    .wrap--stack {
+        height: 100dvh;
+        box-sizing: border-box;
+        padding: 56px 0 72px;
+        align-items: center;
+        overflow-y: auto;
+    }
     .wrap--centering {
         width: 100%;
         max-width: none;
-        min-height: 410px;
+        min-height: 0;
+        height: auto;
         padding-left: 24px;
         padding-right: 24px;
     }

@@ -122,6 +122,10 @@ export default {
     }
     h2.animated-alt {
         color: white !important;
+        font-size: clamp(28px, 8.5vw, 42px);
+        height: auto;
+        line-height: 1.1;
+        white-space: nowrap;
     }
 }
 .col-12 {

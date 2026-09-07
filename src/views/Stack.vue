@@ -168,9 +168,17 @@ p{
        .mfp-close{
             font-size:45px;
         }
+       .wrap--stack {
+            height: 100dvh;
+            box-sizing: border-box;
+            padding: 56px 0 72px;
+            align-items: center;
+            overflow-y: auto;
+       }
        .wrap--centering{
            width:100%;
-           height:410px;
+           height: auto;
+           min-height: 0;
        }
        .subcopy{
             max-width:400px;
@@ -202,7 +210,7 @@ p{
 @media (max-width: 768px) and (min-width: 695px){
     .wrap--centering{
         width:100%;
-        height:330px;
+        height:auto;
     }
 }
 

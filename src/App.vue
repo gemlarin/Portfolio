@@ -490,6 +490,18 @@ img.mfp-img {
     align-items: flex-start;
 }
 
+@media (max-width: 768px) {
+    .nav-wrap {
+        position: fixed;
+        bottom: 10px;
+        height: auto;
+        min-height: 44px;
+        z-index: 1050;
+        padding: 0 8px;
+        box-sizing: border-box;
+    }
+}
+
 img.responsive {
     width: 100%;
     height: auto;

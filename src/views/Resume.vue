@@ -201,9 +201,16 @@ p {
     .mfp-close {
         font-size: 45px;
     }
+    .wrap--stack {
+        height: 100dvh;
+        box-sizing: border-box;
+        padding: 56px 0 72px;
+        align-items: center;
+        overflow-y: auto;
+    }
     .wrap--centering {
         width: 100%;
-        height: 410px;
+        height: auto;
     }
     .subcopy {
         max-width: 400px;
@@ -220,9 +227,9 @@ p {
         margin: 0 auto;
     }
     h2 {
-        line-height: 50px;
-        font-size: 45px;
-        display: inline;
+        line-height: 30px;
+        font-size: 17px !important;
+        display: block;
         padding-left: 15px;
         padding-right: 15px;
     }
@@ -235,7 +242,7 @@ p {
 @media (max-width: 768px) and (min-width: 695px) {
     .wrap--centering {
         width: 100%;
-        height: 330px;
+        height: auto;
     }
 }
 </style>

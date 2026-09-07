@@ -201,6 +201,19 @@ export default {
         align-self: auto;
         width: 100vw;
         text-align: center;
+        ul {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            margin: 0;
+            padding: 0 8px;
+        }
+        li {
+            display: block;
+            flex: 0 0 auto;
+        }
     }
     .dividerline--animated {
         width: 1px;
@@ -237,6 +250,11 @@ export default {
             min-height: 160px !important;
             height: auto !important;
             font-size: 40px;
+        }
+        a.nav-link,
+        button.nav-link {
+            font-size: 13px;
+            margin: 0 5px;
         }
         .dividerline--mask {
             top: calc(50vh - 140px) !important;

@@ -56,13 +56,18 @@ export default {
 <style scoped lang="scss">
 ul {
     list-style: none;
-    display: inline;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
     padding-left: 0;
     margin: auto 0;
     position: relative;
 }
 li {
-    display: inline-block;
+    display: block;
+    flex: 0 0 auto;
     button.nav-link {
         color: #fb2662;
         background: none;
@@ -70,6 +75,7 @@ li {
         padding: 0;
         margin: 0 12px;
         cursor: pointer;
+        white-space: nowrap;
         &:hover {
             text-decoration: underline;
         }
@@ -81,6 +87,20 @@ li {
     &.active {
         color: #fb2662;
         font-family: 'AvenirLTStdBlack';
+    }
+}
+
+@media (max-width: 768px) {
+    li button.nav-link {
+        margin: 0 6px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    li button.nav-link {
+        margin: 0 4px;
+        font-size: 12px;
     }
 }
 </style>
