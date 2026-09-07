@@ -63,7 +63,8 @@ export default {
     height: 280px;
     width: 100vw;
     position: relative;
-    background: url('./../../assets/sect-bg1.webp') no-repeat center center fixed;
+    background: url('./../../assets/sect-bg1.webp') no-repeat center center
+        fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -119,13 +120,22 @@ export default {
     .wrap.dialog {
         background-attachment: initial;
         height: 300px;
+
+        h2.animated-alt {
+            color: transparent;
+            font-size: clamp(34px, 10.3vw, 51px);
+            height: auto;
+            line-height: 1.1;
+            white-space: nowrap;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
     }
-    h2.animated-alt {
-        color: white !important;
-        font-size: clamp(28px, 8.5vw, 42px);
-        height: auto;
-        line-height: 1.1;
-        white-space: nowrap;
+}
+
+@media (max-width: 499px) {
+    .wrap.dialog h2.animated-alt {
+        font-size: clamp(29px, 9.1vw, 39px);
     }
 }
 .col-12 {
