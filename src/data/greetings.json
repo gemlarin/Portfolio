@@ -1,4 +1,11 @@
 {
-  "default": "Hello! I'm Danny Gibas and I build experiences for the web",
-  "nex": "Hello NEX! I'm Danny Gibas and I build experiences for the web. Thank you for checking out my portfolio"
+    "default": "Hello! I'm Danny Gibas and I build experiences for the web",
+    "nex": "Hello NEX! I'm Danny Gibas and I build experiences for the web. Thank you for checking out my portfolio",
+    "counterpart_health": "Hello Counterpart Health! I'm Danny Gibas and I create web experiences. Thank you for checking out my portfolio",
+    "loft_orbital": "Hello Loft Orbital! Thank you for checking out my portfolio",
+    "affirm": "Hello Affirm! Thank you for checking out my portfolio",
+    "machinify": "Hello Machinify! Thank you for checking out my portfolio",
+    "atpco": "Hello ATPCO! Thank you for checking out my portfolio",
+    "curotec": "Hello Curotec! Thank you for checking out my portfolio",
+    "accenture": "Hello Accenture! Thank you for checking out my portfolio"
 }

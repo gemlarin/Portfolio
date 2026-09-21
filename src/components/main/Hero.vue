@@ -1,6 +1,9 @@
 <template>
     <div id="main">
-        <div class="main__navbar" :class="{ 'nav-is-open': navOpen }">
+        <div
+            class="main__navbar"
+            :class="{ 'nav-is-open': navOpen, alt: navScrolled }"
+        >
             <div
                 id="primary-nav"
                 ref="primaryNav"
@@ -327,6 +330,7 @@ export default {
     data: function () {
         return {
             open: true,
+            navScrolled: false,
             drawerOpen: false,
             navOpen: false,
         }
@@ -354,6 +358,7 @@ export default {
     created: function () {},
     mounted: function () {
         window.addEventListener('scroll', this.handleScroll)
+        this.handleScroll()
 
         setTimeout(function () {
             //$('h1#firstname span').removeClass("alter");
@@ -402,24 +407,9 @@ export default {
             this.drawerOpen = !this.drawerOpen
         },
         handleScroll: function () {
-            //do some fabulous optimization to prevent scroll overloading ... later...
-            if (window.scrollY > 60 && this.open) {
-                this.open = false
-
-                $('.logo__background-color').addClass('alt')
-                $('.main__navbar').addClass('alt')
-                $('.burger__bar').addClass('alt')
-                $('.svgicon').addClass('alt')
-                $('.social-icon').addClass('alt')
-            } else if (window.scrollY < 60 && !this.open) {
-                this.open = true
-
-                $('.logo__background-color').removeClass('alt')
-                $('.main__navbar').removeClass('alt')
-                $('.burger__bar').removeClass('alt')
-                $('.svgicon').removeClass('alt')
-                $('.social-icon').removeClass('alt')
-            }
+            const scrolled = window.scrollY > 60
+            this.navScrolled = scrolled
+            this.open = !scrolled
         },
     },
     beforeDestroy: function () {
@@ -871,10 +861,26 @@ svg.dot {
                 background-color: $brand-tertiary !important;
             }
         }
-    }
-    .main__navbar.alt {
-        background-color: $color-white;
-        box-shadow: 0px 0px 5px 0px rgba(85, 85, 85, 0.25);
+        /* Scrolled (white bar): keep logo / burger / social visible after open/close */
+        &.alt {
+            background-color: $color-white;
+            box-shadow: 0px 0px 5px 0px rgba(85, 85, 85, 0.25);
+
+            .logo__background-color {
+                fill: $brand-tertiary;
+            }
+            /* !important: burger defaults live under #main__navbar--burger--wrapper */
+            .burger__bar {
+                background-color: $brand-tertiary !important;
+            }
+            .svgicon,
+            .social-icon {
+                fill: $brand-tertiary !important;
+            }
+            #open-icon-text {
+                color: $brand-tertiary;
+            }
+        }
     }
     .main__masthead {
         .main__masthead--content {
@@ -1027,9 +1033,6 @@ svg.dot {
                     transform: rotate(-45deg);
                 }
             }
-        }
-        .burger__bar.alt {
-            background-color: $brand-tertiary;
         }
     }
 }
