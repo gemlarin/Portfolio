@@ -1,39 +1,17 @@
 <template>
     <div class="container" id="project-one">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <div
-                    v-scroll-reveal="{
-                        delay: 250,
-                        origin: 'left',
-                        duration: 500,
-                        easing: 'ease-out',
-                    }"
-                >
-                    <button
-                        type="button"
-                        class="preview--zoom popup-link"
-                        aria-label="Enlarge Cairn preview"
-                    >
-                        <img
-                            :src="activeImage"
-                            loading="lazy"
-                            decoding="async"
-                            class="preview--img img-fluid"
-                            alt="Cairn National Parks travel log app preview"
-                        />
-                    </button>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h2>Cairn</h2>
-                <h5>Role: Designer &amp; Developer</h5>
+            <div
+                class="col-12 col-sm-12 col-md-12 col-lg-4 order-2 order-sm-2 order-md-2 order-lg-1 text-container"
+            >
+                <h2>The Long Way Out</h2>
+                <h5>Role: Designer</h5>
                 <p>
-                    Cairn is a personal National Parks travel log. Search the
-                    NPS catalog, mark places you have visited, and save notes
-                    for each site. Built with Vue 3 against the National Park
-                    Service API, with Supabase email auth and a per-user visits
-                    database so your log follows you across sessions.
+                    Marketing site design for The Long Way Out Adventure
+                    Company — a booking-forward brand for hiking, coastal
+                    trails, and overnight trips. Bold typography, orange CTAs,
+                    and destination photography push discovery from hero search
+                    through featured packages and social proof.
                 </p>
 
                 <button
@@ -43,31 +21,34 @@
                 >
                     view project<span aria-hidden="true">&rarr;</span>
                 </button>
-                <a
-                    href="https://cairn-gray.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >live app<span aria-hidden="true">&rarr;</span></a
-                >
                 <hr />
                 <div class="technology">
-                    <img
-                        src="./../../../assets/logos/vuejs.svg"
-                        v-b-tooltip.hover
-                        title="VueJS"
-                        alt="Vue.js"
-                    />
-                    <img
-                        src="./../../../assets/logos/npm.svg"
-                        v-b-tooltip.hover
-                        title="npm"
-                        alt="npm"
-                    />
-                    <img
-                        src="./../../../assets/logos/es6.svg"
-                        v-b-tooltip.hover
-                        title="ES6 / TypeScript"
-                        alt="ES6 / TypeScript"
+                    <span class="tech-tip" data-tip="Figma">
+                        <img
+                            class="logo-figma"
+                            src="./../../../assets/logos/figma.svg"
+                            alt="Figma"
+                        />
+                    </span>
+                </div>
+            </div>
+            <div
+                class="col-12 col-sm-12 col-md-12 col-lg-8 order-1 order-sm-1 order-md-1 order-lg-2"
+            >
+                <div
+                    v-scroll-reveal="{
+                        delay: 250,
+                        origin: 'right',
+                        duration: 500,
+                        easing: 'ease-out',
+                    }"
+                >
+                    <detail-image
+                        :src="activeImage"
+                        alt="The Long Way Out Adventure Company website design preview"
+                        enlarge-label="Enlarge The Long Way Out preview"
+                        button-class="preview--zoom popup-link"
+                        img-class="preview--img"
                     />
                 </div>
             </div>
@@ -77,8 +58,10 @@
 
 <script>
 import projectOneImg from './../../../assets/project-one.webp'
+import DetailImage from './../DetailImage.vue'
 export default {
     name: 'ProjectOne',
+    components: { DetailImage },
     data() {
         return {
             activeImage: projectOneImg,
@@ -117,7 +100,8 @@ export default {
     p {
         font-size: 14px;
     }
-    a {
+    a,
+    button.cta-link {
         color: #fb2662;
         font-size: 14px;
         margin-top: 10px;
@@ -127,30 +111,36 @@ export default {
         border-left: 3px solid #fb2662;
         padding: 5px 12px;
         text-decoration: none;
+        background: none;
+        font: inherit;
+        cursor: pointer;
+        text-align: left;
         &:hover {
             padding-left: 20px;
         }
     }
-    sup {
-        position: relative;
-        top: -4px;
-    }
     .text-container {
-        padding-left: 70px;
+        padding-right: 70px;
     }
     img {
         cursor: pointer;
     }
     .technology img {
-        width: 25px;
+        width: 22px;
         display: inline-block;
         margin-right: 10px;
+        cursor: default;
+    }
+    .technology img.logo-figma {
+        width: auto;
+        height: 21px;
     }
 }
 @media (max-width: 991px) {
     .container {
         .text-container {
             padding-left: 15px;
+            padding-right: 15px;
         }
     }
 }

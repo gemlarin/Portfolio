@@ -1,90 +1,132 @@
-
 <template>
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-4 order-2 order-sm-2 order-md-1 text-container">
-            <h2>CEC e-Brochure</h2>
-            <h5>Role: Developer</h5>
-            <p>Aenean eu congue dolor, in dapibus urna. Cras vitae erat vel lectus maximus consectetur. Nam tincidunt vel urna sit amet aliquam. Aenean sapien elit, facilisis sed nibh id, tempor accumsan diam. Integer a porta sapien. Mauris hendrerit nisl ac dui volutpat, id lobortis eros elementum.</p>
-            <a href="#" target="_blank">visit site</a>
-        </div>
-        <div class="col-12 col-sm-12 col-md-8 order-1 order-sm-1 order-md-2">
-             <img v-scroll-reveal="{ delay: 250, origin:'right', duration: 500, easing:'ease-out'}" :src="activeImage" @mouseover="activeImage = otherImage" @mouseout="activeImage = myImage" class="preview--img img-fluid popup-link-6">
+    <div class="container" id="project-six">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 image-container">
+                <div
+                    v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
+                >
+                    <detail-image
+                        :src="activeImage"
+                        alt="Refuah Health Center website preview"
+                        enlarge-label="Enlarge Refuah Health Center preview"
+                        button-class="preview--zoom popup-link-6"
+                        img-class="preview--img"
+                    />
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
+                <h2>Refuah Health Center</h2>
+                <h5>Role: Designer</h5>
+                <p>Refuah Health Center was a freelance design project that was sub-contracted through a design agency. Deliverables were to include mocks and all necessary assets and had a time line of 3 weeks.</p>
+                <button
+                    type="button"
+                    class="cta-link"
+                    @click="$router.push('/project-six-details')"
+                >
+                    view project<span aria-hidden="true">&rarr;</span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
-
 </template>
 
 <script>
-
-
-    export default {
-        name: 'ProjectSix',
-        data () {
-            return {
-                activeImage: './dist/project-six.jpg',
-                myImage: './dist/project-six.jpg',
-                otherImage: './dist/project-six.jpg'
-            }
-        },
-        mounted: function(){
-            $('.popup-link-6').magnificPopup({
-                items: {
-                src: './dist/project-six.jpg'
-                },
-                type: 'image',
-                closeOnContentClick: true
-            });
+import projectSixImg from './../../../assets/project-six.webp'
+import DetailImage from './../DetailImage.vue'
+export default {
+    name: 'ProjectSix',
+    components: { DetailImage },
+    data() {
+        return {
+            activeImage: projectSixImg,
+            myImage: projectSixImg,
         }
-    }
+    },
+    mounted: function () {
+        $('.popup-link-6').magnificPopup({
+            items: {
+                src: projectSixImg,
+            },
+            type: 'image',
+            closeOnContentClick: true,
+        })
+    },
+}
 </script>
 <style scoped lang="scss">
-    
-    .container{
-        margin-top:160px;
-        font-family: "AvenirLTStdBook";
-        h2{
-            font-family: 'proxima_novablack';
-            color:#212529;
-            font-size:25px;
-            margin-bottom:0;
-            margin-top:40px;
-            line-height:1em;
-        }
-        h5{
-            font-family: "AvenirLTStdLight";
-            color:#212529;
-            font-size:12px;
-            margin-top:5px;
-        }
-        p{
-            font-size:14px;
-        }
-        a{
-            color:#fb2662;
-            font-size:14px;
-        }
-        sup{
-            position:relative;
-            top:-4px;
-        }
-        .text-container{
-            padding-right:70px;
-        }
-        img{
-            cursor: pointer;
+.container {
+    margin-top: 130px;
+    font-family: 'AvenirLTStdBook';
+    h2 {
+        font-family: 'proxima_novablack';
+        color: #212529;
+        font-size: 25px;
+        margin-bottom: 0;
+        margin-top: 40px;
+        line-height: 1em;
+    }
+    h5 {
+        font-family: 'AvenirLTStdLight';
+        color: #212529;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    p {
+        font-size: 14px;
+    }
+    a {
+        color: #fb2662;
+        font-size: 14px;
+        margin-top: 10px;
+        display: inline-block;
+        border-top: 3px solid #fb2662;
+        border-left: 3px solid #fb2662;
+        padding: 5px 12px;
+        text-decoration: none;
+        &:hover {
+            padding-left: 20px;
         }
     }
-    @media (max-width: 767px){
-        .container{
-            margin-top:60px;
-            .text-container{
-                padding-left:15px;
-            }
-            h2{
-                margin-top:30px;
-            }
+    sup {
+        position: relative;
+        top: -4px;
+    }
+    .image-container {
+        text-align: right;
+    }
+    .text-container {
+        padding-left: 70px;
+    }
+    img {
+        cursor: pointer;
+        display: inline-block;
+        margin-left: auto;
+    }
+    .technology img {
+        width: 25px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+}
+@media (max-width: 991px) {
+    .container {
+        .image-container {
+            text-align: center;
+        }
+        .text-container {
+            padding-left: 15px;
         }
     }
+}
+
+@media (max-width: 767px) {
+    .container {
+        .text-container {
+            padding-left: 15px;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    }
+}
 </style>

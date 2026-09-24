@@ -1,36 +1,17 @@
 <template>
     <div class="container" id="project-three">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                <div
-                    v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
-                >
-                    <button
-                        type="button"
-                        class="preview--zoom popup-link-3"
-                        aria-label="Enlarge Project Canary preview"
-                    >
-                        <img
-                            :src="activeImage"
-                            loading="lazy"
-                            decoding="async"
-                            class="preview--img img-fluid"
-                            alt="Project Canary workorder app preview"
-                        />
-                    </button>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h2>Project Canary</h2>
-                <h5>Role: UI and Development</h5>
+            <div
+                class="col-12 col-sm-12 col-md-12 col-lg-4 order-2 order-sm-2 order-md-2 order-lg-1 text-container"
+            >
+                <h2>SpecForge</h2>
+                <h5>Role: Designer &amp; Developer (In Progress)</h5>
                 <p>
-                    Canary is an experimental and internal facing workorder and build system
-                    for initial deployment of 5G Neutral Host Gateways in the field. The
-                    wireless research team required a cloud application that mocked out a
-                    workorder creation and execution tool for the purposes of demonstration
-                    and systems integration testing. This project required deep coordination
-                    with both hardware and software engineering staff to establish the
-                    requirements and execution flows.
+                    SpecForge is an open-spec, spec-driven workspace: you write
+                    the fences (interfaces, non-goals, import boundaries, a11y
+                    constraints), then AI drafts the interior artifacts. Early
+                    UX mocks for the landing experience — design still in
+                    progress.
                 </p>
 
                 <button
@@ -42,30 +23,32 @@
                 </button>
                 <hr />
                 <div class="technology">
-                    <img
-                        src="./../../../assets/logos/vuejs.svg"
-                        v-b-tooltip.hover
-                        title="VueJS"
-                        alt="Vue.js"
-                    />
-                    <img
-                        src="./../../../assets/logos/bootstrap.svg"
-                        v-b-tooltip.hover
-                        title="Bootstrap"
-                        alt="Bootstrap"
-                    />
-                    <img
-                        style="width:35px;"
-                        src="./../../../assets/logos/sass.svg"
-                        v-b-tooltip.hover
-                        title="SASS"
-                        alt="Sass"
-                    />
-                    <img
-                        src="./../../../assets/logos/webpack.svg"
-                        v-b-tooltip.hover
-                        title="Webpack"
-                        alt="Webpack"
+                    <span class="tech-tip" data-tip="Figma">
+                        <img
+                            class="logo-figma"
+                            src="./../../../assets/logos/figma.svg"
+                            alt="Figma"
+                        />
+                    </span>
+                </div>
+            </div>
+            <div
+                class="col-12 col-sm-12 col-md-12 col-lg-8 order-1 order-sm-1 order-md-1 order-lg-2"
+            >
+                <div
+                    v-scroll-reveal="{
+                        delay: 250,
+                        origin: 'right',
+                        duration: 500,
+                        easing: 'ease-out',
+                    }"
+                >
+                    <detail-image
+                        :src="activeImage"
+                        alt="SpecForge landing page preview"
+                        enlarge-label="Enlarge SpecForge preview"
+                        button-class="preview--zoom popup-link-3"
+                        img-class="preview--img"
                     />
                 </div>
             </div>
@@ -74,19 +57,20 @@
 </template>
 
 <script>
-import projectThreeImg from './../../../assets/project-three.webp'
+import projectTwoImg from './../../../assets/project-three.webp'
+import DetailImage from './../DetailImage.vue'
 export default {
     name: 'ProjectThree',
+    components: { DetailImage },
     data() {
         return {
-            activeImage: projectThreeImg,
-            myImage: projectThreeImg,
+            activeImage: projectTwoImg,
         }
     },
-    mounted: function () {
+    mounted() {
         $('.popup-link-3').magnificPopup({
             items: {
-                src: projectThreeImg,
+                src: projectTwoImg,
             },
             type: 'image',
             closeOnContentClick: true,
@@ -96,7 +80,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .container {
-    margin-top: 130px;
+    margin-top: 160px;
     font-family: 'AvenirLTStdBook';
     h2 {
         font-family: 'proxima_novablack';
@@ -118,26 +102,31 @@ export default {
     a {
         color: #fb2662;
         font-size: 14px;
-        margin-top: 10px;
-        display: inline-block;
         border-top: 3px solid #fb2662;
         border-left: 3px solid #fb2662;
         padding: 5px 12px;
         text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
         &:hover {
             padding-left: 20px;
         }
     }
     .text-container {
-        padding-left: 70px;
+        padding-right: 70px;
     }
     img {
         cursor: pointer;
     }
     .technology img {
-        width: 40px;
+        width: 22px;
         display: inline-block;
-        padding-right: 10px;
+        margin-right: 10px;
+        cursor: default;
+    }
+    .technology img.logo-figma {
+        width: auto;
+        height: 21px;
     }
 }
 @media (max-width: 991px) {
@@ -145,13 +134,12 @@ export default {
         margin-top: 100px;
         .text-container {
             padding-left: 15px;
+            padding-right: 15px;
         }
     }
 }
-
 @media (max-width: 767px) {
     .container {
-        margin-top: 100px;
         .text-container {
             padding-left: 15px;
         }

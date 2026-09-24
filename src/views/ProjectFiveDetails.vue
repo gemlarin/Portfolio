@@ -13,36 +13,142 @@
                 <detail-image
                     :src="imageOne"
                     eager
-                    alt="Refuah Health Center homepage design"
-                    enlarge-label="Enlarge Refuah Health Center homepage"
-                    img-class="preview--img popup-link"
+                    alt="Princeton Nassau Pediatrics homepage with hero and service shortcuts"
+                    img-class="preview--img"
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h2>Refuah Health Center</h2>
+                <h2>Princeton Nassau Pediatrics</h2>
                 <h5>Role: Designer</h5>
                 <p>
-                    Refuah Health Center was a freelance design project that was
-                    sub-contracted through a design agency. Deliverables were to
-                    include mocks and all necessary assets and had a timeline of
-                    3 weeks during which there were to be several review and
-                    feedback sessions.
+                    Princeton Nassau Pediatrics needed a warmer, clearer web
+                    presence that funnels parents to the right task fast —
+                    portal access, bill pay, locations, and clinical resources —
+                    while feeling more approachable than competing practices.
                 </p>
                 <p>
-                    The clients previous site was not adequately serving their
-                    needs and lacked several important features including, a
-                    physician locator, patient portal, and a news feed. These
-                    features needed to be integrated into the new design.
+                    The homepage pairs playful photography with color-blocked
+                    shortcuts for Online Services, Pediatric Advisor, and Find a
+                    Provider, plus a news strip for practice updates. The design
+                    earned an Outstanding Website award in the 2015 Web Marketing
+                    Association WebAwards.
+                </p>
+                <button
+                    type="button"
+                    class="internal"
+                    @click="$router.push({ hash: '#part2' })"
+                >
+                    more &darr;
+                </button>
+            </div>
+        </div>
+        <div class="row" id="part2">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <detail-image
+                    :src="imageTwo"
+                    alt="Princeton Nassau Pediatrics locations mega-menu and welcome hero"
+                    img-class="preview--img"
+                />
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
+                <h4>Locations &amp; wayfinding</h4>
+                <p>
+                    With multiple New Jersey offices, navigation had to surface
+                    locations without burying primary actions. A locations
+                    mega-menu lists each office beside quick links for
+                    directions, telehealth, mailing list, and pre-visit prep.
                 </p>
                 <p>
-                    Keywords provided by the client to guide the design
-                    aesthetic included, "modern", "welcoming", "professional",
-                    and "unique".
+                    Utility buttons for Patient Portal, Pay Your Bill, and Join
+                    Our Mailing List stay fixed in the chrome so transactional
+                    tasks never compete with storytelling in the hero.
+                </p>
+                <button
+                    type="button"
+                    class="internal"
+                    @click="$router.push({ hash: '#part3' })"
+                >
+                    more &darr;
+                </button>
+            </div>
+        </div>
+        <div class="row" id="part3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <detail-image
+                    :src="imageThree"
+                    alt="Princeton Nassau Pediatrics locations page with map"
+                    img-class="preview--img"
+                />
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
+                <h4>Locations page</h4>
+                <p>
+                    The dedicated locations view combines parking and after-hours
+                    guidance with a multi-office map, while sticky side actions
+                    keep Find a Provider and Pediatric Advisor one click away.
                 </p>
                 <p>
-                    This image reflects the final home page comps presented to
-                    and approved by the client.
+                    An “Expecting?” callout registers families for open-house
+                    visits — a small conversion path for new patients without
+                    cluttering the map.
                 </p>
+                <button
+                    type="button"
+                    class="internal"
+                    @click="$router.push({ hash: '#part4' })"
+                >
+                    more &darr;
+                </button>
+            </div>
+        </div>
+        <div class="row" id="part4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <detail-image
+                    :src="imageFour"
+                    alt="Princeton Nassau Pediatrics mobile homepage"
+                    img-class="preview--img mobile-shot"
+                />
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
+                <h4>Mobile homepage</h4>
+                <p>
+                    On small screens the logo leads, then the three utility
+                    actions stack full-width before the welcome copy and Learn
+                    More CTA. Service blocks collapse into a vertical stack so
+                    Online Services, Pediatric Advisor, and Find a Provider stay
+                    thumb-reachable.
+                </p>
+                <button
+                    type="button"
+                    class="internal"
+                    @click="$router.push({ hash: '#part5' })"
+                >
+                    more &darr;
+                </button>
+            </div>
+        </div>
+        <div class="row" id="part5">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <detail-image
+                    :src="imageFive"
+                    alt="Princeton Nassau Pediatrics mobile parent resources page"
+                    img-class="preview--img mobile-shot"
+                />
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
+                <h4>Parent resources</h4>
+                <p>
+                    Parent Resources answers the questions families ask most —
+                    well visits, dosing, vaccines — in a calm, readable layout
+                    with the same portal and billing shortcuts always on hand.
+                </p>
+                <a
+                    href="https://princetonnassaupediatrics.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="internal"
+                    >visit site &rarr;</a
+                >
                 <router-link
                     :to="{ path: '/', hash: '#project-five' }"
                     class="internal"
@@ -54,8 +160,11 @@
 </template>
 
 <script>
-import imageOne from './../assets/p5/p5-1.jpg'
-import projectFiveImg from './../assets/project-five.webp'
+import imageOne from './../assets/p5/p5-1.webp'
+import imageTwo from './../assets/p5/p5-2.webp'
+import imageThree from './../assets/p5/p5-3.webp'
+import imageFour from './../assets/p5/p5-4.webp'
+import imageFive from './../assets/p5/p5-5.webp'
 import DetailImage from './../components/main/DetailImage.vue'
 
 export default {
@@ -64,16 +173,11 @@ export default {
     data() {
         return {
             imageOne,
+            imageTwo,
+            imageThree,
+            imageFour,
+            imageFive,
         }
-    },
-    mounted: function () {
-        $('.popup-link').magnificPopup({
-            items: {
-                src: projectFiveImg,
-            },
-            type: 'image',
-            closeOnContentClick: true,
-        })
     },
 }
 </script>
@@ -103,7 +207,18 @@ export default {
     p {
         font-size: 14px;
     }
-    a.internal {
+    button.internal {
+        background: none;
+        border: 0;
+        font: inherit;
+        cursor: pointer;
+        text-align: left;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        appearance: none;
+    }
+    a.internal,
+    button.internal {
         color: #fb2662;
         font-size: 14px;
         border-top: 3px solid #fb2662;
@@ -111,6 +226,7 @@ export default {
         padding: 5px 12px;
         text-decoration: none;
         margin-top: 15px;
+        margin-right: 12px;
         display: inline-block;
         &:hover {
             padding-left: 20px;
@@ -122,22 +238,14 @@ export default {
     .row:not(.first) {
         padding-top: 30px;
     }
-    sup {
-        position: relative;
-        top: -4px;
-    }
     .text-container {
         padding-left: 70px;
     }
-    .technology img {
-        width: 25px;
-        display: inline-block;
-        margin-right: 10px;
-    }
-    ul {
-        li {
-            font-size: 14px;
-        }
+    ::v-deep .detail-image:has(.mobile-shot) {
+        width: 50%;
+        margin-left: auto;
+        min-height: 0;
+        background: transparent;
     }
 }
 @media (max-width: 991px) {
@@ -145,19 +253,8 @@ export default {
         .text-container {
             padding-left: 15px;
         }
-    }
-}
-
-@media (max-width: 767px) {
-    .container {
-        .row {
-            margin-bottom: 50px;
-        }
-        .text-container {
-            padding-left: 15px;
-        }
-        h2 {
-            margin-top: 20px;
+        ::v-deep .detail-image:has(.mobile-shot) {
+            width: 100%;
         }
     }
 }

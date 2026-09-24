@@ -1,10 +1,10 @@
 <template>
-    <div class="container" id="project-one-details">
+    <div class="container" id="project-six-details">
         <button
             type="button"
             class="close-control"
             aria-label="Close project details"
-            @click="$router.push({ path: '/', hash: '#project-one' })"
+            @click="$router.push({ path: '/', hash: '#project-six' })"
         >
             <span class="mfp-close" aria-hidden="true">×</span>
         </button>
@@ -13,36 +13,37 @@
                 <detail-image
                     :src="imageOne"
                     eager
-                    alt="The Long Way Out Adventure Company desktop and mobile landing design"
+                    alt="Refuah Health Center homepage design"
                     img-class="preview--img"
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h2>The Long Way Out</h2>
+                <h2>Refuah Health Center</h2>
                 <h5>Role: Designer</h5>
                 <p>
-                    The Long Way Out Adventure Company is a conceptual marketing
-                    and booking experience for travelers who want curated
-                    outdoor trips — alpine rides, waterfall hikes, coastal
-                    trails, and overnight camps — without digging through a
-                    cluttered catalog.
+                    Refuah Health Center was a freelance design project that was
+                    sub-contracted through a design agency. Deliverables were to
+                    include mocks and all necessary assets and had a timeline of
+                    3 weeks during which there were to be several review and
+                    feedback sessions.
                 </p>
                 <p>
-                    The design leads with a cinematic hero, trust stats, and a
-                    compact “Find Adventure” search widget, then moves into
-                    package cards, a four-step booking story, testimonials, and
-                    a mailing-list close. Orange primary actions and high-impact
-                    photography keep the brand energetic and easy to scan on
-                    both desktop and mobile.
+                    The clients previous site was not adequately serving their
+                    needs and lacked several important features including, a
+                    physician locator, patient portal, and a news feed. These
+                    features needed to be integrated into the new design.
                 </p>
                 <p>
-                    This comps set focuses on visual direction and conversion
-                    flow ahead of build. Implementation is still ahead; the
-                    portfolio captures the design system and key screens as
-                    shipped in Figma.
+                    Keywords provided by the client to guide the design
+                    aesthetic included, "modern", "welcoming", "professional",
+                    and "unique".
+                </p>
+                <p>
+                    This image reflects the final home page comps presented to
+                    and approved by the client.
                 </p>
                 <router-link
-                    :to="{ path: '/', hash: '#project-one' }"
+                    :to="{ path: '/', hash: '#project-six' }"
                     class="internal"
                     >back to portfolio &rarr;</router-link
                 >
@@ -52,11 +53,11 @@
 </template>
 
 <script>
-import imageOne from './../assets/p1/p1-1.webp'
+import imageOne from './../assets/p6/p6-1.jpg'
 import DetailImage from './../components/main/DetailImage.vue'
 
 export default {
-    name: 'ProjectOneDetails',
+    name: 'ProjectSixDetails',
     components: { DetailImage },
     data() {
         return {
@@ -76,6 +77,11 @@ export default {
         margin-bottom: 0;
         margin-top: 0px;
         line-height: 1em;
+    }
+    h4 {
+        font-family: 'proxima_novablack';
+        font-size: 20px;
+        color: #616161;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
@@ -102,14 +108,45 @@ export default {
     .row {
         margin-bottom: 100px;
     }
+    .row:not(.first) {
+        padding-top: 30px;
+    }
+    sup {
+        position: relative;
+        top: -4px;
+    }
     .text-container {
         padding-left: 70px;
+    }
+    .technology img {
+        width: 25px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    ul {
+        li {
+            font-size: 14px;
+        }
     }
 }
 @media (max-width: 991px) {
     .container {
         .text-container {
             padding-left: 15px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        .row {
+            margin-bottom: 50px;
+        }
+        .text-container {
+            padding-left: 15px;
+        }
+        h2 {
+            margin-top: 20px;
         }
     }
 }

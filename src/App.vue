@@ -439,7 +439,7 @@ img.mfp-img {
 .mfp-wrap .mfp-iframe-holder .mfp-close {
     position: fixed !important;
     top: 12px !important;
-    right: -4px !important;
+    right: 10px !important;
     left: auto !important;
     width: 56px !important;
     height: 56px !important;
@@ -448,6 +448,7 @@ img.mfp-img {
     padding: 0 !important;
     text-align: center !important;
     z-index: 1051 !important;
+    cursor: pointer !important;
 }
 
 .mfp-wrap .mfp-image-holder .mfp-close:hover,
@@ -456,6 +457,7 @@ img.mfp-img {
 .mfp-wrap .mfp-iframe-holder .mfp-close:focus {
     color: #fb2662 !important;
     opacity: 1 !important;
+    cursor: pointer !important;
 }
 
 .mfp-wrap .mfp-image-holder .mfp-close:active,
@@ -704,7 +706,7 @@ button.cta-link:focus-visible {
 .close-control {
     position: fixed;
     top: 10px;
-    right: -7px;
+    right: 10px;
     z-index: 1100;
     display: flex;
     align-items: center;
@@ -721,20 +723,18 @@ button.cta-link:focus-visible {
     line-height: 1;
 }
 
-/* Center the close in the details right gutter on every project */
+/* Same inset on every project details page */
 [id$='-details'] .close-control {
-    right: calc((var(--details-gutter) - var(--close-size)) / 2);
+    right: 10px;
 }
 
-@media (min-width: 768px) {
-    .close-control {
-        right: -2px;
-    }
-
-    [id$='-details'] .close-control {
-        /* Same gutter-centering math as mobile so all projects match */
-        right: calc((var(--details-gutter) - var(--close-size)) / 2);
-    }
+.close-control,
+.close-control:hover,
+.close-control:focus,
+.close-control .mfp-close,
+.close-control:hover .mfp-close,
+.close-control:focus .mfp-close {
+    cursor: pointer !important;
 }
 
 .close-control .mfp-close {
@@ -750,7 +750,7 @@ button.cta-link:focus-visible {
     line-height: 1 !important;
     display: block;
     color: #222;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: color 0.15s ease;
 }
 

@@ -9,7 +9,8 @@
         <project-two></project-two>
         <project-three></project-three>
         <project-four></project-four>
-        <!-- <project-five></project-five> -->
+        <project-five></project-five>
+        <!-- <project-six></project-six> -->
 
         <foot></foot>
     </div>
@@ -23,7 +24,8 @@ import ProjectOne from './../components/main/projects/ProjectOne'
 import ProjectTwo from './../components/main/projects/ProjectTwo'
 import ProjectThree from './../components/main/projects/ProjectThree'
 import ProjectFour from './../components/main/projects/ProjectFour'
-// import ProjectFive from './../components/main/projects/ProjectFive'
+import ProjectFive from './../components/main/projects/ProjectFive'
+// import ProjectSix from './../components/main/projects/ProjectSix'
 import Foot from './../components/main/Footer'
 export default {
     name: 'Index',
@@ -40,7 +42,8 @@ export default {
         ProjectTwo,
         ProjectThree,
         ProjectFour,
-        // ProjectFive,
+        ProjectFive,
+        // ProjectSix,
         Foot,
     },
     computed: {},
@@ -106,7 +109,8 @@ export default {
     text-align: left;
 }
 
-#page-wrap .preview--zoom .preview--img {
+#page-wrap .preview--zoom .preview--img,
+#page-wrap .preview--zoom .detail-image__img {
     display: block;
     width: 100%;
     height: auto;
@@ -114,11 +118,13 @@ export default {
     transform-origin: center center;
 }
 
-#page-wrap .preview--zoom:hover .preview--img {
+#page-wrap .preview--zoom:hover .preview--img,
+#page-wrap .preview--zoom:hover .detail-image__img.is-loaded {
     transform: scale(1.03);
 }
 
-.preview--zoom:focus-visible .preview--img {
+.preview--zoom:focus-visible .preview--img,
+.preview--zoom:focus-visible .detail-image__img {
     outline: 2px solid #fb2662;
     outline-offset: 3px;
 }
@@ -142,5 +148,42 @@ export default {
 
 #page-wrap button.cta-link:hover {
     padding-left: 20px;
+}
+
+/* Tech logos: name on hover, never a pointer cursor */
+#page-wrap .technology img {
+    cursor: default;
+}
+
+#page-wrap .technology .tech-tip {
+    position: relative;
+    display: inline-block;
+    cursor: default;
+    vertical-align: middle;
+}
+
+#page-wrap .technology .tech-tip::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 6px);
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    white-space: nowrap;
+    font-size: 12px;
+    font-family: 'AvenirLTStdBook', sans-serif;
+    line-height: 1.2;
+    color: #fff;
+    background: #212529;
+    border-radius: 3px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    z-index: 5;
+}
+
+#page-wrap .technology .tech-tip:hover::after,
+#page-wrap .technology .tech-tip:focus-within::after {
+    opacity: 1;
 }
 </style>

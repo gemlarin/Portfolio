@@ -1,12 +1,16 @@
 <template>
-    <div class="detail-image">
-        <div v-show="!loaded" class="detail-image__placeholder" aria-hidden="true">
+    <div class="detail-image" :aria-busy="loaded ? 'false' : 'true'">
+        <div
+            v-show="!loaded"
+            class="detail-image__placeholder"
+            aria-hidden="true"
+        >
             <img :src="loaderSrc" class="detail-image__loader" alt="" />
         </div>
         <button
             v-if="enlargeLabel"
             type="button"
-            :class="['detail-image__enlarge', imgClass]"
+            :class="['detail-image__enlarge', buttonClass]"
             :aria-label="enlargeLabel"
         >
             <img
@@ -15,7 +19,12 @@
                 :alt="alt"
                 :loading="eager ? 'eager' : 'lazy'"
                 decoding="async"
-                :class="['detail-image__img', 'img-fluid', { 'is-loaded': loaded }]"
+                :class="[
+                    'detail-image__img',
+                    'img-fluid',
+                    imgClass,
+                    { 'is-loaded': loaded },
+                ]"
                 @load="onLoaded"
                 @error="onLoaded"
             />
@@ -27,7 +36,12 @@
             :alt="alt"
             :loading="eager ? 'eager' : 'lazy'"
             decoding="async"
-            :class="['detail-image__img', 'img-fluid', imgClass, { 'is-loaded': loaded }]"
+            :class="[
+                'detail-image__img',
+                'img-fluid',
+                imgClass,
+                { 'is-loaded': loaded },
+            ]"
             @load="onLoaded"
             @error="onLoaded"
         />
@@ -52,6 +66,11 @@ export default {
             type: String,
             default: 'preview--img',
         },
+        /** Classes for the enlarge button (e.g. preview--zoom popup-link) */
+        buttonClass: {
+            type: String,
+            default: '',
+        },
         eager: {
             type: Boolean,
             default: false,
@@ -68,18 +87,25 @@ export default {
             loaderSrc,
         }
     },
+    watch: {
+        src() {
+            this.loaded = false
+            this.$nextTick(this.checkCached)
+        },
+    },
     methods: {
         onLoaded() {
             this.loaded = true
         },
-    },
-    mounted() {
-        this.$nextTick(() => {
+        checkCached() {
             const img = this.$refs.img
             if (img && img.complete && img.naturalWidth > 0) {
                 this.loaded = true
             }
-        })
+        },
+    },
+    mounted() {
+        this.$nextTick(this.checkCached)
     },
 }
 </script>
@@ -89,19 +115,20 @@ export default {
     position: relative;
     width: 100%;
     min-height: 180px;
-    background: #f0f0f0;
+    background: #fff;
 }
 
 .detail-image__placeholder {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    right: 0;
     z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 48px;
+    pointer-events: none;
 }
 
 .detail-image__loader {

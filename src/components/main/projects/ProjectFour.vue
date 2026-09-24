@@ -1,38 +1,73 @@
 <template>
     <div class="container" id="project-four">
         <div class="row">
-            <div
-                class="col-12 col-sm-12 col-md-12 col-lg-4 order-2 order-sm-2 order-md-2 order-lg-1 text-container"
-            >
-                <h2>Princeton Nassau Pediatrics</h2>
-                <h5>Role: Designer</h5>
-                <p>Princeton Nassau Pediatrics requested an update to their site design. The primary needs were a way to quickly funnel visitors to the appropriate sections of the site and a design that "was more fun and attactive than the pediatrics office down the road." This design received an "Outstanding Website" award in the 2015 Web Marketing Associations Web Award competition.</p>
-                <a
-                    href="https://princetonnassaupediatrics.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >visit site <span aria-hidden="true">&rarr;</span></a
-                >
-            </div>
-            <div
-                class="col-12 col-sm-12 col-md-12 col-lg-8 order-1 order-sm-1 order-md-1 order-lg-2"
-            >
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <div
-                    v-scroll-reveal="{ delay: 250, origin:'right', duration: 500, easing:'ease-out'}"
+                    v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
                 >
-                    <button
-                        type="button"
-                        class="preview--zoom popup-link-4"
-                        aria-label="Enlarge Princeton Nassau Pediatrics preview"
-                    >
+                    <detail-image
+                        :src="activeImage"
+                        alt="Project Canary workorder app preview"
+                        enlarge-label="Enlarge Project Canary preview"
+                        button-class="preview--zoom popup-link-4"
+                        img-class="preview--img"
+                    />
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
+                <h2>Project Canary</h2>
+                <h5>Role: UI and Development</h5>
+                <p>
+                    Canary is an experimental and internal facing workorder and build system
+                    for initial deployment of 5G Neutral Host Gateways in the field. The
+                    wireless research team required a cloud application that mocked out a
+                    workorder creation and execution tool for the purposes of demonstration
+                    and systems integration testing. This project required deep coordination
+                    with both hardware and software engineering staff to establish the
+                    requirements and execution flows.
+                </p>
+
+                <button
+                    type="button"
+                    class="cta-link"
+                    @click="$router.push('/project-four-details')"
+                >
+                    view project<span aria-hidden="true">&rarr;</span>
+                </button>
+                <hr />
+                <div class="technology">
+                    <span class="tech-tip" data-tip="VueJS">
                         <img
-                            :src="activeImage"
-                            loading="lazy"
-                            decoding="async"
-                            class="preview--img img-fluid"
-                            alt="Princeton Nassau Pediatrics website preview"
+                            src="./../../../assets/logos/vuejs.svg"
+                            alt="Vue.js"
                         />
-                    </button>
+                    </span>
+                    <span class="tech-tip" data-tip="Bootstrap">
+                        <img
+                            src="./../../../assets/logos/bootstrap.svg"
+                            alt="Bootstrap"
+                        />
+                    </span>
+                    <span class="tech-tip" data-tip="SASS">
+                        <img
+                            style="width:35px;"
+                            src="./../../../assets/logos/sass.svg"
+                            alt="Sass"
+                        />
+                    </span>
+                    <span class="tech-tip" data-tip="Webpack">
+                        <img
+                            src="./../../../assets/logos/webpack.svg"
+                            alt="Webpack"
+                        />
+                    </span>
+                    <span class="tech-tip" data-tip="Figma">
+                        <img
+                            class="logo-figma"
+                            src="./../../../assets/logos/figma.svg"
+                            alt="Figma"
+                        />
+                    </span>
                 </div>
             </div>
         </div>
@@ -40,19 +75,21 @@
 </template>
 
 <script>
-import projectFourImg from './../../../assets/project-four.webp'
+import projectThreeImg from './../../../assets/project-four.webp'
+import DetailImage from './../DetailImage.vue'
 export default {
     name: 'ProjectFour',
+    components: { DetailImage },
     data() {
         return {
-            activeImage: projectFourImg,
-            myImage: projectFourImg,
+            activeImage: projectThreeImg,
+            myImage: projectThreeImg,
         }
     },
     mounted: function () {
         $('.popup-link-4').magnificPopup({
             items: {
-                src: projectFourImg,
+                src: projectThreeImg,
             },
             type: 'image',
             closeOnContentClick: true,
@@ -62,7 +99,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .container {
-    margin-top: 160px;
+    margin-top: 130px;
     font-family: 'AvenirLTStdBook';
     h2 {
         font-family: 'proxima_novablack';
@@ -83,9 +120,9 @@ export default {
     }
     a {
         color: #fb2662;
+        font-size: 14px;
         margin-top: 10px;
         display: inline-block;
-        font-size: 14px;
         border-top: 3px solid #fb2662;
         border-left: 3px solid #fb2662;
         padding: 5px 12px;
@@ -95,10 +132,21 @@ export default {
         }
     }
     .text-container {
-        padding-right: 70px;
+        padding-left: 70px;
     }
     img {
         cursor: pointer;
+    }
+    .technology img {
+        width: 40px;
+        display: inline-block;
+        padding-right: 10px;
+        cursor: default;
+    }
+    .technology img.logo-figma {
+        width: auto;
+        height: 21px;
+        padding-right: 10px;
     }
 }
 @media (max-width: 991px) {
@@ -106,12 +154,13 @@ export default {
         margin-top: 100px;
         .text-container {
             padding-left: 15px;
-            padding-right: 15px;
         }
     }
 }
+
 @media (max-width: 767px) {
     .container {
+        margin-top: 100px;
         .text-container {
             padding-left: 15px;
         }

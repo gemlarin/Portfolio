@@ -8,7 +8,9 @@ const Thanks = () => import('./views/Thanks.vue')
 const ProjectOneDetails = () => import('./views/ProjectOneDetails.vue')
 const ProjectTwoDetails = () => import('./views/ProjectTwoDetails.vue')
 const ProjectThreeDetails = () => import('./views/ProjectThreeDetails.vue')
+const ProjectFourDetails = () => import('./views/ProjectFourDetails.vue')
 const ProjectFiveDetails = () => import('./views/ProjectFiveDetails.vue')
+const ProjectSixDetails = () => import('./views/ProjectSixDetails.vue')
 
 export const routes = [
     { path: '/', component: Index },
@@ -19,6 +21,8 @@ export const routes = [
     { path: '/project-one-details', component: ProjectOneDetails },
     { path: '/project-two-details', component: ProjectTwoDetails },
     { path: '/project-three-details', component: ProjectThreeDetails },
+    { path: '/project-four-details', component: ProjectFourDetails },
     { path: '/project-five-details', component: ProjectFiveDetails },
+    { path: '/project-six-details', component: ProjectSixDetails },
     { path: '*', component: PageNotFound, meta: { scrollToTop: true } },
 ]
