@@ -23,7 +23,7 @@
                 <p>
                     The Long Way Out Adventure Company is a conceptual marketing
                     and booking experience for travelers who want curated
-                    outdoor trips — alpine rides, waterfall hikes, coastal
+                    outdoor trips: alpine rides, waterfall hikes, coastal
                     trails, and overnight camps — without digging through a
                     cluttered catalog.
                 </p>
@@ -37,7 +37,7 @@
                 </p>
                 <p>
                     This comps set focuses on visual direction and conversion
-                    flow ahead of build. Implementation is still ahead; the
+                    flow ahead of the build. Implementation is still ahead; the
                     portfolio captures the design system and key screens as
                     shipped in Figma.
                 </p>
