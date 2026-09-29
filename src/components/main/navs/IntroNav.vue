@@ -29,17 +29,27 @@
             Résumé
         </button>
     </li>
-    <li>
-        <button
-            type="button"
-            class="nav-link"
-            :class="{ active: activepage == 'contact' }"
-            @click="$router.push('/contact')"
-        >
-            Contact
-        </button>
-    </li>
-</ul>
+                <li>
+                    <button
+                        type="button"
+                        class="nav-link"
+                        :class="{ active: activepage == 'contact' }"
+                        @click="$router.push('/contact')"
+                    >
+                        Contact
+                    </button>
+                </li>
+                <li>
+                    <button
+                        type="button"
+                        class="nav-link"
+                        :class="{ active: activepage == 'blog' }"
+                        @click="$router.push('/blog')"
+                    >
+                        Blog
+                    </button>
+                </li>
+            </ul>
 </template>
 
 <script>

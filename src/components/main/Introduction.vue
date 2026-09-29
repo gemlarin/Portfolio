@@ -44,6 +44,15 @@
                         contact
                     </button>
                 </li>
+                <li>
+                    <button
+                        type="button"
+                        class="nav-link"
+                        @click="$router.push('/blog')"
+                    >
+                        blog
+                    </button>
+                </li>
             </ul>
         </div>
         <div class="dividerline--animated"></div>

@@ -45,6 +45,14 @@
                                         CONTACT
                                     </button>
                                 </li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        @click="go('/blog')"
+                                    >
+                                        BLOG
+                                    </button>
+                                </li>
                             </ul>
                         </div>
                     </div>
