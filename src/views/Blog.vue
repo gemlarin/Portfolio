@@ -472,7 +472,7 @@ h2 {
 }
 .post-item {
     margin-bottom: 28px;
-    border-bottom: 1px dashed #dbdbdb;
+    border-bottom: 1px dashed #d8d8d8;
     padding-bottom: 15px;
 }
 .post-item:last-child {

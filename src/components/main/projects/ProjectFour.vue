@@ -131,7 +131,7 @@ export default {
     }
     hr {
         border: 0;
-        border-bottom: 1px dashed #dbdbdb;
+        border-bottom: 1px dashed #d8d8d8;
         margin: 16px 0;
     }
     a {

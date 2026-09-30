@@ -411,7 +411,7 @@ h1 {
 .related {
     margin: 36px 0 0;
     padding-top: 24px;
-    border-top: 1px solid #ddd;
+    border-top: 1px dashed #d8d8d8;
     h2 {
         font-family: 'proxima_novablack';
         font-size: 18px;
