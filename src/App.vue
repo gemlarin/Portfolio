@@ -6,6 +6,16 @@
             @click.prevent="skipToContent"
             >Skip to content</a
         >
+        <button
+            v-if="showBlogClose"
+            type="button"
+            class="close-control"
+            :aria-label="blogCloseLabel"
+            @click.stop.prevent="closeBlogUi"
+            @touchend.stop.prevent="closeBlogUi"
+        >
+            <span class="mfp-close" aria-hidden="true">×</span>
+        </button>
         <div id="site-content">
             <keep-alive include="Blog">
                 <router-view></router-view>
@@ -22,6 +32,7 @@ export default {
         return {
             counter: 0,
             len: 0,
+            blogCloseLock: false,
         }
     },
     components: {},
@@ -29,8 +40,38 @@ export default {
         isShowLoader: function () {
             return this.$store.getters.getShowLoader
         },
+        showBlogClose() {
+            const path = this.$route.path || ''
+            return path === '/blog' || path.indexOf('/blog/') === 0
+        },
+        blogCloseLabel() {
+            const path = this.$route.path || ''
+            if (path.indexOf('/blog/') === 0) {
+                return 'Back to blog (Escape)'
+            }
+            return 'Close blog (Escape)'
+        },
     },
     methods: {
+        closeBlogUi(event) {
+            if (this.blogCloseLock) return
+            this.blogCloseLock = true
+            if (event && event.currentTarget) {
+                event.currentTarget.blur()
+            }
+            const path = this.$route.path || ''
+            const target =
+                path.indexOf('/blog/') === 0
+                    ? '/blog'
+                    : { path: '/', hash: '#introduction' }
+            const release = () => {
+                this.blogCloseLock = false
+            }
+            this.$router
+                .push(target)
+                .then(release)
+                .catch(release)
+        },
         skipToContent() {
             const target =
                 document.getElementById('introduction') ||
@@ -754,17 +795,17 @@ button.cta-link:focus-visible {
 /* Details / overlay close controls — button is the hit + focus target */
 .close-control {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 2000;
+    top: max(8px, env(safe-area-inset-top, 0px));
+    right: max(8px, env(safe-area-inset-right, 0px));
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: var(--close-size, 48px);
-    height: var(--close-size, 48px);
-    min-width: var(--close-size, 48px);
-    min-height: var(--close-size, 48px);
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
     padding: 0;
     border: 0;
     background: transparent;

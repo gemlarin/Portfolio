@@ -3,14 +3,6 @@
         <div class="nav-wrap nav-wrap--solid">
             <navi :activepage="page"></navi>
         </div>
-        <button
-            type="button"
-            class="close-control"
-            aria-label="Close blog (Escape)"
-            @click.stop="closePage"
-        >
-            <span class="mfp-close" aria-hidden="true">×</span>
-        </button>
         <div class="wrap--stack">
             <div ref="listScroll" class="wrap--centering blog-list">
                 <h2>Frontend Field Notes</h2>

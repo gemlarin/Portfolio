@@ -3,14 +3,6 @@
         <div class="nav-wrap nav-wrap--solid">
             <navi :activepage="page"></navi>
         </div>
-        <button
-            type="button"
-            class="close-control"
-            aria-label="Back to blog (Escape)"
-            @click.stop="closePage"
-        >
-            <span class="mfp-close" aria-hidden="true">×</span>
-        </button>
         <div class="wrap--stack">
             <div class="wrap--centering blog-post">
                 <p v-if="loading" class="status" role="status">Loading post…</p>
