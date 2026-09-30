@@ -1,14 +1,14 @@
 <template>
     <div class="stack-page">
-        <div class="nav-wrap">
+        <div class="nav-wrap nav-wrap--solid">
             <navi :activepage="page"></navi>
         </div>
         <div class="wrap--stack">
             <button
                 type="button"
                 class="close-control"
-                aria-label="Close stack"
-                @click="$router.push({ path: '/', hash: '#introduction' })"
+                aria-label="Close stack (Escape)"
+                @click="closePage"
             >
                 <span class="mfp-close" aria-hidden="true">×</span>
             </button>
@@ -38,8 +38,10 @@
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import escapeClose from './../mixins/escapeClose'
 export default {
     name: 'Stack',
+    mixins: [escapeClose],
     data() {
         return {
             page: 'stack',
@@ -48,6 +50,11 @@ export default {
     created() {},
     components: {
         Navi: Nav,
+    },
+    methods: {
+        closePage() {
+            this.$router.push({ path: '/', hash: '#introduction' })
+        },
     },
 }
 </script>

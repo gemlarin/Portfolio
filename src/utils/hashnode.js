@@ -1,7 +1,11 @@
 const HASHNODE_GQL = 'https://gql-beta.hashnode.com/'
 export const HASHNODE_HOST = 'front-end-fieldnotes.hashnode.dev'
 export const HASHNODE_BLOG_URL = 'https://front-end-fieldnotes.hashnode.dev/'
+export const HASHNODE_RSS_URL =
+    'https://front-end-fieldnotes.hashnode.dev/rss.xml'
 export const BLOG_PAGE_SIZE = 5
+export const RELATED_POST_LIMIT = 3
+export const RELATED_CANDIDATE_SIZE = 20
 
 const POSTS_QUERY = `
   query PublicationPosts($host: String!, $first: Int!, $after: String) {
@@ -24,6 +28,10 @@ const POSTS_QUERY = `
             coverImage {
               url
             }
+            tags {
+              name
+              slug
+            }
           }
         }
       }
@@ -44,6 +52,10 @@ const POST_QUERY = `
         publishedAt
         coverImage {
           url
+        }
+        tags {
+          name
+          slug
         }
         content {
           html
@@ -73,6 +85,20 @@ async function hashnodeRequest(query, variables) {
     }
 
     return json.data
+}
+
+function mapTags(tags) {
+    if (!Array.isArray(tags)) return []
+    return tags
+        .filter(function (tag) {
+            return tag && tag.name
+        })
+        .map(function (tag) {
+            return {
+                name: tag.name,
+                slug: tag.slug || tag.name,
+            }
+        })
 }
 
 /**
@@ -110,6 +136,7 @@ export async function fetchHashnodePublication({
         publishedAt: node.publishedAt,
         coverImage:
             (node.coverImage && node.coverImage.url) || null,
+        tags: mapTags(node.tags),
     }))
 
     return {
@@ -146,7 +173,66 @@ export async function fetchHashnodePost(slug) {
         publishedAt: post.publishedAt,
         coverImage:
             (post.coverImage && post.coverImage.url) || null,
+        tags: mapTags(post.tags),
         html: (post.content && post.content.html) || '',
         publicationUrl: publication.url || HASHNODE_BLOG_URL,
     }
+}
+
+/**
+ * Pick related posts: prefer shared tags, else fall back to newest.
+ * @param {{ id?: string, slug?: string, tags?: Array<{ slug?: string }> }} current
+ * @param {Array<{ id?: string, slug?: string, title: string, tags?: Array<{ slug?: string }> }>} candidates
+ * @param {number} [limit]
+ * @returns {Array}
+ */
+export function pickRelatedPosts(
+    current,
+    candidates,
+    limit = RELATED_POST_LIMIT
+) {
+    if (!current || !Array.isArray(candidates) || !candidates.length) {
+        return []
+    }
+
+    const currentId = current.id
+    const currentSlug = current.slug
+    const tagSet = {}
+    const tags = current.tags || []
+    for (let i = 0; i < tags.length; i++) {
+        const slug = tags[i] && tags[i].slug
+        if (slug) tagSet[slug] = true
+    }
+
+    const others = candidates.filter(function (post) {
+        if (!post) return false
+        if (currentId && post.id === currentId) return false
+        if (currentSlug && post.slug === currentSlug) return false
+        return Boolean(post.slug && post.title)
+    })
+
+    const scored = others.map(function (post) {
+        let score = 0
+        const postTags = post.tags || []
+        for (let i = 0; i < postTags.length; i++) {
+            const slug = postTags[i] && postTags[i].slug
+            if (slug && tagSet[slug]) score += 1
+        }
+        return { post: post, score: score }
+    })
+
+    scored.sort(function (a, b) {
+        if (b.score !== a.score) return b.score - a.score
+        const aTime = a.post.publishedAt
+            ? new Date(a.post.publishedAt).getTime()
+            : 0
+        const bTime = b.post.publishedAt
+            ? new Date(b.post.publishedAt).getTime()
+            : 0
+        return bTime - aTime
+    })
+
+    return scored.slice(0, limit).map(function (item) {
+        return item.post
+    })
 }

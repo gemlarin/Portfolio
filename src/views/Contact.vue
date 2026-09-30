@@ -1,14 +1,14 @@
 <template>
     <div>
-        <div class="nav-wrap">
+        <div class="nav-wrap nav-wrap--solid">
             <navi :activepage="page"></navi>
         </div>
         <div class="wrap--stack">
             <button
                 type="button"
                 class="close-control"
-                aria-label="Close contact"
-                @click="$router.push({ path: '/', hash: '#introduction' })"
+                aria-label="Close contact (Escape)"
+                @click="closePage"
             >
                 <span class="mfp-close" aria-hidden="true">×</span>
             </button>
@@ -99,12 +99,14 @@
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import escapeClose from './../mixins/escapeClose'
 
 const FORM_ENDPOINT =
     'https://formsubmit.co/ajax/396bca75b794c96de073b9dbaa8bcde6'
 
 export default {
     name: 'contact',
+    mixins: [escapeClose],
     data() {
         return {
             page: 'contact',
@@ -134,6 +136,9 @@ export default {
         })
     },
     methods: {
+        closePage() {
+            this.$router.push({ path: '/', hash: '#introduction' })
+        },
         async onSubmit() {
             this.error = ''
             this.sending = true

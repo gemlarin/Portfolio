@@ -18,6 +18,10 @@
                 <h2>Refuah Health Center</h2>
                 <h5>Role: Designer</h5>
                 <p>Refuah Health Center was a freelance design project that was sub-contracted through a design agency. Deliverables were to include mocks and all necessary assets and had a time line of 3 weeks.</p>
+                <p class="outcome">
+                    Outcomes: Full set of mocks and assets, turned around in
+                    three weeks.
+                </p>
                 <button
                     type="button"
                     class="cta-link"
@@ -70,6 +74,13 @@ export default {
         color: #212529;
         font-size: 12px;
         margin-top: 5px;
+    }
+    .outcome {
+        font-family: 'AvenirLTStdLight';
+        font-size: 14px;
+        color: #212529;
+        margin: 6px 0 18px;
+        line-height: 1.4;
     }
     p {
         font-size: 14px;

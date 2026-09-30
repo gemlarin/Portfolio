@@ -13,6 +13,10 @@
                     and destination photography push discovery from hero search
                     through featured packages and social proof.
                 </p>
+                <p class="outcome">
+                    Outcomes: Gets people from “where should we go?” to booking
+                    a trip without getting lost in the site.
+                </p>
 
                 <button
                     type="button"
@@ -96,6 +100,13 @@ export default {
         color: #212529;
         font-size: 12px;
         margin-top: 5px;
+    }
+    .outcome {
+        font-family: 'AvenirLTStdLight';
+        font-size: 14px;
+        color: #212529;
+        margin: 6px 0 18px;
+        line-height: 1.4;
     }
     p {
         font-size: 14px;

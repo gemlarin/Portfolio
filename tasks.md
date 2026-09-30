@@ -1,19 +1,14 @@
-# Task: Portfolio blog via Hashnode
+# Task: Blog a11y + meta + tags + errors
 
 ## Spec
-- Goal: Blog list + on-site full posts from Hashnode publication Frontend Field Notes.
-- In scope: Nav Blog last; GraphQL list + post-by-slug; `/blog` and `/blog/:slug`; Load more (5/page); spacing above bottom nav; optional Hashnode link; no Decap.
-- Out of scope: Decap, Medium tooling, numbered pagination, secrets in repo, editing posts on-site.
-- Done when: list + full post + Load more work; build passes; ready to commit/deploy.
+- Goal: OG meta per post; clickable tags → `/blog?tag=`; retry/empty states; Esc closes overlay pages
+- In scope: Blog, BlogPost; Esc on Blog/BlogPost/Stack/Resume/Contact; client tag filter
+- Out of scope: SSR for crawlers; project detail Esc; new deps
+- Done when: tags filter list; post has og/twitter/canonical; error/empty have retry or clear; Esc matches × close
 
 ## Tasks
-- [x] Nav Blog last (Hero, Intro, IntroNav)
-- [x] `/blog` fetches Hashnode publication posts
-- [x] `/blog/:slug` renders full post HTML from Hashnode
-- [x] Load more (5 posts, cursor paging)
-- [x] Extra space above Load more / bottom nav
-- [x] Remove Decap / local markdown blog path
-- [x] Commit + publish (list) when D said go
-- [x] Commit + publish on-site posts when D says go
-- [x] Code sweep (blog pass)
-- [ ] Commit + publish remaining polish when D says go
+- [x] Escape-close mixin + wire overlay pages
+- [x] Clickable tags + `/blog?tag=` filter UI
+- [x] Open Graph / twitter / description on BlogPost
+- [x] Error retry + empty filter / empty body handling
+- [ ] Code sweep (prompt D for topics — see AGENTS.md)

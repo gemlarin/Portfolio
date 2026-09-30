@@ -495,6 +495,39 @@ img.mfp-img {
     align-items: flex-start;
 }
 
+/* Shared bottom nav fade for Stack / Resume / Contact / Blog */
+.nav-wrap.nav-wrap--solid {
+    position: fixed;
+    bottom: 0 !important;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    max-width: 100%;
+    height: 120px !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    background: linear-gradient(
+        to top,
+        #fff 0,
+        #fff 58px,
+        rgba(255, 255, 255, 0.55) 78px,
+        rgba(255, 255, 255, 0) 98px
+    ) !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end !important;
+    pointer-events: none;
+}
+.nav-wrap.nav-wrap--solid ul {
+    pointer-events: auto;
+    margin: 0 0 22px !important;
+    align-self: flex-end;
+}
+.nav-wrap.nav-wrap--solid button {
+    pointer-events: auto;
+}
+
 @media (max-width: 768px) {
     .nav-wrap {
         position: fixed;

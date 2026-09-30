@@ -13,6 +13,10 @@
                     UX mocks for the landing experience — design still in
                     progress.
                 </p>
+                <p class="outcome">
+                    Outcomes: You write the fences first; AI fills in the
+                    middle. Still early UX.
+                </p>
 
                 <button
                     type="button"
@@ -95,6 +99,13 @@ export default {
         color: #212529;
         font-size: 12px;
         margin-top: 5px;
+    }
+    .outcome {
+        font-family: 'AvenirLTStdLight';
+        font-size: 14px;
+        color: #212529;
+        margin: 6px 0 18px;
+        line-height: 1.4;
     }
     p {
         font-size: 14px;

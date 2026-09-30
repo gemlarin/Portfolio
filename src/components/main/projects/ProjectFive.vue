@@ -7,6 +7,10 @@
                 <h2>Princeton Nassau Pediatrics</h2>
                 <h5>Role: Designer</h5>
                 <p>Princeton Nassau Pediatrics requested an update to their site design. The primary needs were a way to quickly funnel visitors to the appropriate sections of the site and a design that "was more fun and attactive than the pediatrics office down the road." This design received an "Outstanding Website" award in the 2015 Web Marketing Associations Web Award competition.</p>
+                <p class="outcome">
+                    Outcomes: Funnel parents to the right info fast — and it won
+                    a 2015 WebAward.
+                </p>
                 <button
                     type="button"
                     class="cta-link"
@@ -95,6 +99,13 @@ export default {
         color: #212529;
         font-size: 12px;
         margin-top: 5px;
+    }
+    .outcome {
+        font-family: 'AvenirLTStdLight';
+        font-size: 14px;
+        color: #212529;
+        margin: 6px 0 18px;
+        line-height: 1.4;
     }
     p {
         font-size: 14px;

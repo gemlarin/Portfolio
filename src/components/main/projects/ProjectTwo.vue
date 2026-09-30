@@ -29,6 +29,10 @@
                     Service API, with Supabase email auth and a per-user visits
                     database so your log follows you across sessions.
                 </p>
+                <p class="outcome">
+                    Outcomes: Lets you search parks, mark where you’ve been, and
+                    keep notes that stick across visits.
+                </p>
 
                 <button
                     type="button"
@@ -122,6 +126,13 @@ export default {
         color: #212529;
         font-size: 12px;
         margin-top: 5px;
+    }
+    .outcome {
+        font-family: 'AvenirLTStdLight';
+        font-size: 14px;
+        color: #212529;
+        margin: 6px 0 18px;
+        line-height: 1.4;
     }
     p {
         font-size: 14px;

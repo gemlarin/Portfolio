@@ -26,6 +26,10 @@
                     with both hardware and software engineering staff to establish the
                     requirements and execution flows.
                 </p>
+                <p class="outcome">
+                    Outcomes: Helped the wireless team demo field workorders for
+                    5G gateway installs without real hardware in the way.
+                </p>
 
                 <button
                     type="button"
@@ -114,6 +118,13 @@ export default {
         color: #212529;
         font-size: 12px;
         margin-top: 5px;
+    }
+    .outcome {
+        font-family: 'AvenirLTStdLight';
+        font-size: 14px;
+        color: #212529;
+        margin: 6px 0 18px;
+        line-height: 1.4;
     }
     p {
         font-size: 14px;

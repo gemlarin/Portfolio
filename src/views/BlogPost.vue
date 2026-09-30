@@ -7,8 +7,8 @@
             <button
                 type="button"
                 class="close-control"
-                aria-label="Back to blog"
-                @click="$router.push('/blog')"
+                aria-label="Back to blog (Escape)"
+                @click="closePage"
             >
                 <span class="mfp-close" aria-hidden="true">×</span>
             </button>
@@ -16,6 +16,13 @@
                 <p v-if="loading" class="status" role="status">Loading post…</p>
                 <p v-else-if="error" class="status error" role="alert">
                     {{ error }}
+                    <button
+                        type="button"
+                        class="status-action"
+                        @click="retryLoad"
+                    >
+                        Retry
+                    </button>
                     <router-link to="/blog">Back to blog</router-link>
                 </p>
                 <article v-else-if="post">
@@ -23,6 +30,24 @@
                         <router-link to="/blog">← All posts</router-link>
                     </p>
                     <h1>{{ post.title }}</h1>
+                    <ul
+                        v-if="post.tags && post.tags.length"
+                        class="post-tags"
+                    >
+                        <li
+                            v-for="tag in post.tags"
+                            :key="tag.slug"
+                        >
+                            <router-link
+                                class="tag-link"
+                                :to="{
+                                    path: '/blog',
+                                    query: { tag: tag.slug },
+                                }"
+                                >#{{ tag.name }}</router-link
+                            >
+                        </li>
+                    </ul>
                     <p v-if="post.publishedAt" class="meta">
                         <time :datetime="post.publishedAt">{{
                             formatDate(post.publishedAt)
@@ -42,9 +67,49 @@
                         :alt="post.title"
                     />
                     <div
+                        v-if="post.html"
                         class="post-body"
                         v-html="post.html"
                     ></div>
+                    <p
+                        v-else
+                        class="status"
+                        role="status"
+                    >
+                        This post has no body content yet.
+                        <a
+                            v-if="post.url"
+                            :href="post.url"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >View on Hashnode ↗</a
+                        >
+                    </p>
+                    <section
+                        v-if="relatedPosts.length"
+                        class="related"
+                        aria-labelledby="related-heading"
+                    >
+                        <h2 id="related-heading">Related posts</h2>
+                        <ul class="related-list">
+                            <li
+                                v-for="item in relatedPosts"
+                                :key="item.id || item.slug"
+                            >
+                                <router-link :to="'/blog/' + item.slug">{{
+                                    item.title
+                                }}</router-link>
+                            </li>
+                        </ul>
+                    </section>
+                    <p class="subscribe">
+                        <a
+                            :href="rssUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Subscribe via RSS ↗</a
+                        >
+                    </p>
                     <p class="back back--footer">
                         <router-link to="/blog">← All posts</router-link>
                     </p>
@@ -56,10 +121,18 @@
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
-import { fetchHashnodePost } from './../utils/hashnode'
+import escapeClose from './../mixins/escapeClose'
+import {
+    fetchHashnodePost,
+    fetchHashnodePublication,
+    pickRelatedPosts,
+    HASHNODE_RSS_URL,
+    RELATED_CANDIDATE_SIZE,
+} from './../utils/hashnode'
 
 export default {
     name: 'BlogPost',
+    mixins: [escapeClose],
     components: {
         Navi: Nav,
     },
@@ -67,6 +140,8 @@ export default {
         return {
             page: 'blog',
             post: null,
+            relatedPosts: [],
+            rssUrl: HASHNODE_RSS_URL,
             loading: true,
             error: '',
         }
@@ -80,21 +155,40 @@ export default {
         },
     },
     methods: {
+        closePage() {
+            this.$router.push('/blog')
+        },
+        retryLoad() {
+            const slug = this.$route.params.slug
+            if (slug) this.loadPost(slug)
+        },
         async loadPost(slug) {
             this.loading = true
             this.error = ''
             this.post = null
+            this.relatedPosts = []
             this.$nextTick(() => {
                 const el = this.$el && this.$el.querySelector('.blog-post')
                 if (el) el.scrollTop = 0
             })
             try {
                 this.post = await fetchHashnodePost(slug)
+                await this.loadRelated(this.post)
             } catch (err) {
                 this.error =
                     (err && err.message) || 'Could not load this post.'
             } finally {
                 this.loading = false
+            }
+        },
+        async loadRelated(post) {
+            try {
+                const data = await fetchHashnodePublication({
+                    first: RELATED_CANDIDATE_SIZE,
+                })
+                this.relatedPosts = pickRelatedPosts(post, data.posts || [])
+            } catch (err) {
+                this.relatedPosts = []
             }
         },
         formatDate(value) {
@@ -106,37 +200,98 @@ export default {
                 day: 'numeric',
             })
         },
+        absolutePostUrl() {
+            if (typeof window !== 'undefined' && window.location) {
+                return window.location.href
+            }
+            const slug = (this.post && this.post.slug) || ''
+            return 'https://gemlarin.github.io/blog/' + slug
+        },
     },
     metaInfo() {
+        if (!this.post) {
+            return {
+                title: this.error ? 'Post unavailable' : 'Blog',
+            }
+        }
+        const title = this.post.title
+        const description =
+            this.post.brief ||
+            'Practical notes on frontend engineering, design, and shipping.'
+        const image = this.post.coverImage || ''
+        const pageUrl = this.absolutePostUrl()
+        const meta = [
+            {
+                vmid: 'description',
+                name: 'description',
+                content: description,
+            },
+            {
+                vmid: 'og:title',
+                property: 'og:title',
+                content: title,
+            },
+            {
+                vmid: 'og:description',
+                property: 'og:description',
+                content: description,
+            },
+            {
+                vmid: 'og:type',
+                property: 'og:type',
+                content: 'article',
+            },
+            {
+                vmid: 'og:url',
+                property: 'og:url',
+                content: pageUrl,
+            },
+            {
+                vmid: 'twitter:card',
+                name: 'twitter:card',
+                content: image ? 'summary_large_image' : 'summary',
+            },
+            {
+                vmid: 'twitter:title',
+                name: 'twitter:title',
+                content: title,
+            },
+            {
+                vmid: 'twitter:description',
+                name: 'twitter:description',
+                content: description,
+            },
+        ]
+        if (image) {
+            meta.push({
+                vmid: 'og:image',
+                property: 'og:image',
+                content: image,
+            })
+            meta.push({
+                vmid: 'twitter:image',
+                name: 'twitter:image',
+                content: image,
+            })
+        }
+        const link = []
+        if (this.post.url) {
+            link.push({
+                vmid: 'canonical',
+                rel: 'canonical',
+                href: this.post.url,
+            })
+        }
         return {
-            title: (this.post && this.post.title) || 'Blog',
+            title: title,
+            meta: meta,
+            link: link,
         }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-.nav-wrap--solid {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1050;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 72px;
-    padding: 28px 8px 20px;
-    box-sizing: border-box;
-    background: linear-gradient(
-        to top,
-        #fff 0%,
-        #fff 72%,
-        rgba(255, 255, 255, 0)
-    );
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
 .wrap--stack {
     width: 100%;
     max-width: 100%;
@@ -145,17 +300,19 @@ export default {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     overflow-x: hidden;
     box-sizing: border-box;
 }
 .wrap--centering {
     width: min(720px, 88vw);
-    max-height: 80vh;
+    flex: 1 1 auto;
+    max-height: none;
+    height: auto;
     overflow: auto;
-    padding: 28px 20px 100px;
-    background-color: white;
+    padding: 28px 20px 108px;
+    background-color: transparent;
     box-sizing: border-box;
 }
 .status {
@@ -168,6 +325,17 @@ export default {
     &.error {
         color: #222;
     }
+}
+.status-action {
+    display: inline;
+    margin-right: 8px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: #fb2662;
+    cursor: pointer;
+    text-decoration: underline;
 }
 .back {
     margin: 0 0 16px;
@@ -189,7 +357,31 @@ h1 {
     font-size: 28px;
     color: #222;
     margin: 0 0 10px;
-    line-height: 1.25;
+    line-height: 1.15;
+}
+.post-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    margin: 0 0 12px;
+    padding: 0;
+    li {
+        margin: 0;
+        padding: 0;
+        font-family: 'AvenirLTStdMedium';
+        font-size: 13px;
+        line-height: 1.2;
+    }
+}
+.tag-link {
+    color: #888;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        color: #fb2662;
+        text-decoration: underline;
+    }
 }
 .meta {
     font-family: 'AvenirLTStdLight';
@@ -215,6 +407,49 @@ h1 {
     font-size: 16px;
     color: #222;
     line-height: 1.65;
+}
+.related {
+    margin: 36px 0 0;
+    padding-top: 24px;
+    border-top: 1px solid #ddd;
+    h2 {
+        font-family: 'proxima_novablack';
+        font-size: 18px;
+        color: #222;
+        margin: 0 0 12px;
+    }
+}
+.related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+        margin: 0 0 10px;
+        font-family: 'AvenirLTStdBook';
+        font-size: 15px;
+        line-height: 1.4;
+    }
+    a {
+        color: #222;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+.subscribe {
+    margin: 24px 0 0;
+    font-family: 'AvenirLTStdBook';
+    font-size: 14px;
+    a {
+        color: #222;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 .post-body ::v-deep {
     p {
@@ -297,7 +532,7 @@ h1 {
         max-height: none;
         height: auto;
         margin-top: 80px;
-        padding-bottom: 110px;
+        padding-bottom: 108px;
     }
     h1 {
         font-size: 24px;

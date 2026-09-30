@@ -7,8 +7,8 @@
             <button
                 type="button"
                 class="close-control"
-                aria-label="Close blog"
-                @click="$router.push({ path: '/', hash: '#introduction' })"
+                aria-label="Close blog (Escape)"
+                @click="closePage"
             >
                 <span class="mfp-close" aria-hidden="true">×</span>
             </button>
@@ -16,7 +16,7 @@
                 <h2>Frontend Field Notes</h2>
                 <p class="lede">
                     <span class="lede-blurb"
-                        >Practical notes on UI, Vue, TypeScript, and
+                        >Practical notes on frontend engineering, design, and
                         shipping.</span
                     >
                     <a
@@ -29,9 +29,32 @@
                     >
                 </p>
 
+                <p
+                    v-if="activeTag"
+                    class="tag-filter"
+                    role="status"
+                >
+                    Showing
+                    <span class="tag-filter-name">#{{ activeTagLabel }}</span>
+                    <button
+                        type="button"
+                        class="tag-filter-clear"
+                        @click="clearTagFilter"
+                    >
+                        Clear
+                    </button>
+                </p>
+
                 <p v-if="loading" class="status" role="status">Loading posts…</p>
                 <p v-else-if="error" class="status error" role="alert">
                     {{ error }}
+                    <button
+                        type="button"
+                        class="status-action"
+                        @click="loadPosts"
+                    >
+                        Retry
+                    </button>
                     <a
                         :href="blogUrl"
                         target="_blank"
@@ -48,9 +71,37 @@
                         >Frontend Field Notes</a
                     >.
                 </p>
+                <p
+                    v-else-if="activeTag && !visiblePosts.length"
+                    class="status"
+                    role="status"
+                >
+                    No loaded posts match
+                    <span class="tag-filter-name">#{{ activeTagLabel }}</span>.
+                    <button
+                        type="button"
+                        class="status-action"
+                        @click="clearTagFilter"
+                    >
+                        Clear filter
+                    </button>
+                    <button
+                        v-if="hasNextPage"
+                        type="button"
+                        class="status-action"
+                        :disabled="loadingMore"
+                        @click="loadMore"
+                    >
+                        {{ loadingMore ? 'Loading…' : 'Load more' }}
+                    </button>
+                </p>
                 <template v-else>
                     <ul class="post-list">
-                        <li v-for="post in posts" :key="post.id">
+                        <li
+                            v-for="post in visiblePosts"
+                            :key="post.id"
+                            class="post-item"
+                        >
                             <router-link
                                 class="post-link"
                                 :to="'/blog/' + post.slug"
@@ -84,9 +135,27 @@
                                     >
                                 </span>
                             </router-link>
+                            <ul
+                                v-if="post.tags && post.tags.length"
+                                class="post-tags"
+                            >
+                                <li
+                                    v-for="tag in post.tags"
+                                    :key="tag.slug"
+                                >
+                                    <router-link
+                                        class="tag-link"
+                                        :to="{
+                                            path: '/blog',
+                                            query: { tag: tag.slug },
+                                        }"
+                                        >#{{ tag.name }}</router-link
+                                    >
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                    <div v-if="hasNextPage" class="load-more-wrap">
+                    <div v-if="showLoadMore" class="load-more-wrap">
                         <button
                             type="button"
                             class="cta-link load-more"
@@ -111,6 +180,14 @@
                             role="alert"
                         >
                             {{ loadMoreError }}
+                            <button
+                                type="button"
+                                class="status-action"
+                                :disabled="loadingMore"
+                                @click="loadMore"
+                            >
+                                Retry
+                            </button>
                         </p>
                     </div>
                 </template>
@@ -121,6 +198,7 @@
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import escapeClose from './../mixins/escapeClose'
 import {
     fetchHashnodePublication,
     HASHNODE_BLOG_URL,
@@ -129,6 +207,7 @@ import {
 
 export default {
     name: 'Blog',
+    mixins: [escapeClose],
     components: {
         Navi: Nav,
     },
@@ -146,6 +225,40 @@ export default {
             savedScrollTop: 0,
         }
     },
+    computed: {
+        activeTag() {
+            const tag = this.$route.query && this.$route.query.tag
+            return tag ? String(tag) : ''
+        },
+        activeTagLabel() {
+            if (!this.activeTag) return ''
+            for (let i = 0; i < this.posts.length; i++) {
+                const tags = this.posts[i].tags || []
+                for (let j = 0; j < tags.length; j++) {
+                    if (tags[j].slug === this.activeTag) {
+                        return tags[j].name || this.activeTag
+                    }
+                }
+            }
+            return this.activeTag
+        },
+        visiblePosts() {
+            if (!this.activeTag) return this.posts
+            const slug = this.activeTag
+            return this.posts.filter(function (post) {
+                const tags = post.tags || []
+                return tags.some(function (tag) {
+                    return tag.slug === slug
+                })
+            })
+        },
+        showLoadMore() {
+            return (
+                this.hasNextPage &&
+                this.visiblePosts.length >= BLOG_PAGE_SIZE
+            )
+        },
+    },
     created() {
         this.loadPosts()
     },
@@ -157,6 +270,12 @@ export default {
         next()
     },
     methods: {
+        closePage() {
+            this.$router.push({ path: '/', hash: '#introduction' })
+        },
+        clearTagFilter() {
+            this.$router.push({ path: '/blog' })
+        },
         saveListScroll() {
             const el = this.$refs.listScroll
             this.savedScrollTop = el ? el.scrollTop : 0
@@ -229,34 +348,18 @@ export default {
             return text + '…'
         },
     },
-    metaInfo: {
-        title: 'Frontend Field Notes',
+    metaInfo() {
+        const tag = this.activeTagLabel
+        return {
+            title: tag
+                ? 'Frontend Field Notes · #' + tag
+                : 'Frontend Field Notes',
+        }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-.nav-wrap--solid {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1050;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 72px;
-    padding: 28px 8px 20px;
-    box-sizing: border-box;
-    background: linear-gradient(
-        to top,
-        #fff 0%,
-        #fff 72%,
-        rgba(255, 255, 255, 0)
-    );
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
 .wrap--stack {
     width: 100%;
     max-width: 100%;
@@ -265,17 +368,19 @@ export default {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     overflow-x: hidden;
     box-sizing: border-box;
 }
 .wrap--centering {
     width: min(720px, 88vw);
-    max-height: 80vh;
+    flex: 1 1 auto;
+    max-height: none;
+    height: auto;
     overflow: auto;
-    padding: 28px 20px 84px;
-    background-color: white;
+    padding: 28px 20px 108px;
+    background-color: transparent;
     box-sizing: border-box;
 }
 h2 {
@@ -309,6 +414,7 @@ h2 {
     line-height: 1.5;
     position: relative;
     top: 1px;
+    cursor: pointer;
     &:hover {
         text-decoration: underline;
     }
@@ -324,15 +430,50 @@ h2 {
         color: #222;
     }
 }
+.status-action {
+    display: inline;
+    margin-left: 8px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: #fb2662;
+    cursor: pointer;
+    text-decoration: underline;
+    &:disabled {
+        opacity: 0.6;
+        cursor: wait;
+    }
+}
+.tag-filter {
+    font-family: 'AvenirLTStdBook';
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 20px;
+}
+.tag-filter-name {
+    font-family: 'AvenirLTStdMedium';
+    color: #222;
+}
+.tag-filter-clear {
+    margin-left: 10px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: #fb2662;
+    cursor: pointer;
+    text-decoration: underline;
+}
 .post-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.post-list li {
+.post-item {
     margin-bottom: 32px;
 }
-.post-list li:last-child {
+.post-item:last-child {
     margin-bottom: 0;
 }
 .post-link {
@@ -351,7 +492,7 @@ h2 {
     height: 88px;
     overflow: hidden;
     background: #f4f4f4;
-    margin-top: 1px;
+    margin-top: 4px;
 }
 .post-thumb {
     display: block;
@@ -372,12 +513,41 @@ h2 {
     color: #222;
     transition: color 0.15s ease;
 }
+.post-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin: 8px 0 0;
+    padding: 0;
+    li {
+        margin: 0;
+        padding: 0;
+        font-family: 'AvenirLTStdMedium';
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}
+.tag-link {
+    color: #888;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        color: #fb2662;
+        text-decoration: underline;
+    }
+}
+@media (min-width: 768px) {
+    .post-item .post-tags {
+        padding-left: 108px;
+    }
+}
 .post-date {
     display: block;
     font-family: 'AvenirLTStdLight';
     font-size: 12px;
     color: #666;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 .post-desc {
     display: -webkit-box;
@@ -430,7 +600,7 @@ button.cta-link.load-more {
         max-height: none;
         height: auto;
         margin-top: 80px;
-        padding-bottom: 98px;
+        padding-bottom: 108px;
     }
     .post-thumb-wrap {
         display: none;

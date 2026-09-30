@@ -53,7 +53,6 @@ footer {
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
-    border-top: 5px solid #fb2662;
     .zst {
         fill: #5c5c5c;
     }
