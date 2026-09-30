@@ -7,7 +7,9 @@
             >Skip to content</a
         >
         <div id="site-content">
-            <router-view></router-view>
+            <keep-alive include="Blog">
+                <router-view></router-view>
+            </keep-alive>
         </div>
     </div>
 </template>
@@ -469,7 +471,8 @@ img.mfp-img {
     position: absolute;
     bottom: 20px;
     left: 0;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     height: 80px;
     background: transparent;
     display: -ms-flexbox;
@@ -501,6 +504,8 @@ img.mfp-img {
         z-index: 1050;
         padding: 0 8px;
         box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
     }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="nav-wrap">
+        <div class="nav-wrap nav-wrap--solid">
             <navi :activepage="page"></navi>
         </div>
         <div class="wrap--stack">
@@ -45,6 +45,9 @@
                         class="post-body"
                         v-html="post.html"
                     ></div>
+                    <p class="back back--footer">
+                        <router-link to="/blog">← All posts</router-link>
+                    </p>
                 </article>
             </div>
         </div>
@@ -81,6 +84,10 @@ export default {
             this.loading = true
             this.error = ''
             this.post = null
+            this.$nextTick(() => {
+                const el = this.$el && this.$el.querySelector('.blog-post')
+                if (el) el.scrollTop = 0
+            })
             try {
                 this.post = await fetchHashnodePost(slug)
             } catch (err) {
@@ -109,8 +116,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.nav-wrap--solid {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 72px;
+    padding: 28px 8px 20px;
+    box-sizing: border-box;
+    background: linear-gradient(
+        to top,
+        #fff 0%,
+        #fff 72%,
+        rgba(255, 255, 255, 0)
+    );
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
 .wrap--stack {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     height: 100vh;
     position: relative;
     background-color: #fff;
@@ -118,12 +147,14 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 .wrap--centering {
     width: min(720px, 88vw);
     max-height: 80vh;
     overflow: auto;
-    padding: 28px 20px 40px;
+    padding: 28px 20px 100px;
     background-color: white;
     box-sizing: border-box;
 }
@@ -149,6 +180,9 @@ export default {
             text-decoration: underline;
         }
     }
+}
+.back--footer {
+    margin: 36px 0 0;
 }
 h1 {
     font-family: 'proxima_novablack';
@@ -263,6 +297,7 @@ h1 {
         max-height: none;
         height: auto;
         margin-top: 80px;
+        padding-bottom: 110px;
     }
     h1 {
         font-size: 24px;

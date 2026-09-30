@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="stack-page">
         <div class="nav-wrap">
             <navi :activepage="page"></navi>
         </div>
@@ -52,6 +52,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.stack-page {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 h2 {
     font-family: 'proxima_novablack';
     color: #333;
@@ -87,7 +91,10 @@ p {
 }
 .wrap--stack {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -171,12 +178,26 @@ p {
         box-sizing: border-box;
         padding: 56px 0 72px;
         align-items: center;
+        overflow-x: hidden;
         overflow-y: auto;
     }
     .wrap--centering {
         width: 100%;
+        max-width: 100%;
         height: auto;
         min-height: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    .wrap--centering ::v-deep .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .wrap--centering ::v-deep [class*='col-'] {
+        padding-left: 0;
+        padding-right: 0;
     }
     .subcopy {
         max-width: 400px;

@@ -1,13 +1,18 @@
 const HASHNODE_GQL = 'https://gql-beta.hashnode.com/'
 export const HASHNODE_HOST = 'front-end-fieldnotes.hashnode.dev'
 export const HASHNODE_BLOG_URL = 'https://front-end-fieldnotes.hashnode.dev/'
+export const BLOG_PAGE_SIZE = 5
 
 const POSTS_QUERY = `
-  query PublicationPosts($host: String!, $first: Int!) {
+  query PublicationPosts($host: String!, $first: Int!, $after: String) {
     publication(host: $host) {
       title
       url
-      posts(first: $first) {
+      posts(first: $first, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
         edges {
           node {
             id
@@ -16,6 +21,9 @@ const POSTS_QUERY = `
             slug
             url
             publishedAt
+            coverImage {
+              url
+            }
           }
         }
       }
@@ -68,27 +76,48 @@ async function hashnodeRequest(query, variables) {
 }
 
 /**
- * @returns {Promise<{ title: string, url: string, posts: Array<{ id: string, title: string, brief: string, slug: string, url: string, publishedAt: string }> }>}
+ * @param {{ first?: number, after?: string | null }} [options]
+ * @returns {Promise<{ title: string, url: string, posts: Array<{ id: string, title: string, brief: string, slug: string, url: string, publishedAt: string }>, hasNextPage: boolean, endCursor: string | null }>}
  */
-export async function fetchHashnodePublication(first = 50) {
-    const data = await hashnodeRequest(POSTS_QUERY, {
+export async function fetchHashnodePublication({
+    first = BLOG_PAGE_SIZE,
+    after = null,
+} = {}) {
+    const variables = {
         host: HASHNODE_HOST,
         first,
-    })
+    }
+    if (after) {
+        variables.after = after
+    }
+
+    const data = await hashnodeRequest(POSTS_QUERY, variables)
 
     const publication = data && data.publication
     if (!publication) {
         throw new Error('Publication not found')
     }
 
-    const edges =
-        (publication.posts && publication.posts.edges) || []
-    const posts = edges.map((edge) => edge.node).filter(Boolean)
+    const connection = publication.posts || {}
+    const edges = connection.edges || []
+    const pageInfo = connection.pageInfo || {}
+    const posts = edges.map((edge) => edge.node).filter(Boolean).map((node) => ({
+        id: node.id,
+        title: node.title,
+        brief: node.brief || '',
+        slug: node.slug,
+        url: node.url,
+        publishedAt: node.publishedAt,
+        coverImage:
+            (node.coverImage && node.coverImage.url) || null,
+    }))
 
     return {
         title: publication.title,
         url: publication.url || HASHNODE_BLOG_URL,
         posts,
+        hasNextPage: Boolean(pageInfo.hasNextPage),
+        endCursor: pageInfo.endCursor || null,
     }
 }
 

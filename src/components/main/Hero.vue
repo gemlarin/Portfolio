@@ -208,33 +208,24 @@
                                             </div>
                                             <div class="icon">
                                                 <a
-                                                    href="https://medium.com/@gemarin"
+                                                    :href="hashnodeUrl"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    aria-label="Medium (opens in new tab)"
+                                                    aria-label="Hashnode (opens in new tab)"
                                                     :tabindex="
                                                         drawerOpen ? 0 : -1
                                                     "
                                                 >
                                                     <svg
-                                                        version="1.1"
-                                                        id="Layer_1"
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        style="
-                                                            padding-bottom: 2px;
-                                                        "
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                        x="0px"
-                                                        y="0px"
-                                                        viewBox="0 0 256 256"
-                                                        xml:space="preserve"
+                                                        viewBox="0 0 24 24"
+                                                        aria-hidden="true"
+                                                        focusable="false"
                                                     >
-                                                        <g>
-                                                            <path
-                                                                class="svgicon"
-                                                                d="M32,96c0.3-3.1-0.9-6.2-3.2-8.3L5.1,59.3V55h73.4l56.7,124.4L185.2,55h70v4.3l-20.2,19.4 c-1.7,1.3-2.6,3.5-2.2,5.7v142.4c-0.4,2.2,0.5,4.3,2.2,5.7l19.7,19.4v4.3h-99.3v-4.3l20.4-19.9c2-2,2-2.6,2-5.7V111.1L121,255.5 h-7.7L47.1,111.1v96.8c-0.6,4.1,0.8,8.2,3.7,11.1l26.6,32.3v4.3H1.9v-4.3L28.5,219c2.8-2.9,4.1-7.1,3.4-11.1V96z"
-                                                            />
-                                                        </g>
+                                                        <path
+                                                            class="svgicon"
+                                                            d="M22.351 8.019l-6.37-6.37a5.63 5.63 0 0 0-7.962 0l-6.37 6.37a5.63 5.63 0 0 0 0 7.962l6.37 6.37a5.63 5.63 0 0 0 7.962 0l6.37-6.37a5.63 5.63 0 0 0 0-7.962zM12 15.983a3.983 3.983 0 1 1 0-7.966 3.983 3.983 0 0 1 0 7.966z"
+                                                        />
                                                     </svg>
                                                 </a>
                                             </div>
@@ -357,6 +348,7 @@ import './../../assets/hero__img--home.webp'
 import './../../assets/scrolldown.svg'
 import './../../assets/share.svg'
 import Parallax from 'vue-parallaxy'
+import { HASHNODE_BLOG_URL } from './../../utils/hashnode'
 export default {
     data: function () {
         return {
@@ -364,6 +356,7 @@ export default {
             navScrolled: false,
             drawerOpen: false,
             navOpen: false,
+            hashnodeUrl: HASHNODE_BLOG_URL,
         }
     },
     components: {
@@ -630,51 +623,64 @@ svg.dot {
         color: $gray-darker;
         font-size: 0.8em;
         font-family: 'AvenirLTStdBlack';
+        white-space: nowrap;
     }
     a:hover,
     button:hover {
-        color: $link-hover-color;
+        color: $brand-tertiary;
+        text-decoration: underline;
     }
     button {
         background: none;
         border: 0;
         padding: 0;
     }
-    @media (max-width: 768px) {
-        a {
-            font-size: 0.9em;
-        }
-    }
     ul {
         margin: 0 auto !important;
         padding-top: 25px !important;
         padding-bottom: 20px !important;
         padding-left: 0 !important;
+        padding-right: 0 !important;
         float: none !important;
-        display: block !important;
+        display: flex !important;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         text-align: center;
+        box-sizing: border-box;
 
         li {
-            display: inline;
+            display: block;
+            flex: 0 0 auto;
             cursor: pointer;
             margin-right: 20px;
             float: none;
-        }
-        @media (max-width: 768px) {
-            li {
-                margin-right: 10px;
+            &:last-child {
+                margin-right: 0;
             }
         }
     }
     @media (max-width: 768px) {
+        a,
+        button {
+            font-size: 0.72em;
+        }
         ul {
-            display: block !important;
-            width: 100%;
-            text-align: center;
-            padding-left: 0;
-            margin-left: 0;
-            float: none !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            li {
+                margin-right: 11px;
+            }
+        }
+    }
+    @media (max-width: 400px) {
+        a,
+        button {
+            font-size: 0.62em;
+        }
+        ul li {
+            margin-right: 8px;
         }
     }
 }

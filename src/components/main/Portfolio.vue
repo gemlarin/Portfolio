@@ -10,52 +10,6 @@ import './../../assets/backmask.webp'
 
 export default {
     name: 'Portfolio',
-    data() {
-        return {
-            animatelock: false,
-            lastScrollTop: 0,
-            windowheight: 0,
-            direction: '',
-        }
-    },
-    mounted() {
-        window.addEventListener('scroll', this.handleScroll)
-    },
-    beforeDestroy() {
-        window.removeEventListener('scroll', this.handleScroll)
-    },
-    methods: {
-        handleScroll() {
-            var st = window.scrollY
-            if (st > this.lastScrollTop) {
-                this.direction = 'down'
-            } else {
-                this.direction = 'up'
-            }
-            this.lastScrollTop = st
-
-            if (
-                window.scrollY > $(window).height() * 1.3 &&
-                this.direction == 'down'
-            ) {
-                if (!this.animatelock) {
-                    this.windowheight = $(window).height()
-                    this.animatelock = true
-                    $('h2.animated-alt').addClass('animate')
-                }
-            }
-
-            if (
-                window.scrollY < this.windowheight * 1.3 &&
-                this.direction == 'up'
-            ) {
-                if (this.animatelock) {
-                    this.animatelock = false
-                    $('h2.animated-alt').removeClass('animate')
-                }
-            }
-        },
-    },
 }
 </script>
 <style scoped lang="scss">
@@ -108,11 +62,7 @@ export default {
         color: transparent;
         background-size: 500px 900px;
         background-repeat: no-repeat;
-        background-position: 0 -700px;
-        transition: background-position 4s;
-        &.animate {
-            background-position: 0 0;
-        }
+        background-position: 0 0;
     }
 }
 
