@@ -46,11 +46,9 @@
                 </p>
                 <ul v-else class="post-list">
                     <li v-for="post in posts" :key="post.id">
-                        <a
+                        <router-link
                             class="post-link"
-                            :href="post.url"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            :to="'/blog/' + post.slug"
                         >
                             <span class="post-title">{{ post.title }}</span>
                             <span
@@ -63,7 +61,7 @@
                                 class="post-desc"
                                 >{{ post.brief }}</span
                             >
-                        </a>
+                        </router-link>
                     </li>
                 </ul>
             </div>

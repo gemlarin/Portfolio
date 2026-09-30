@@ -5,6 +5,7 @@ const Stack = () => import('./views/Stack.vue')
 const Contact = () => import('./views/Contact.vue')
 const Resume = () => import('./views/Resume.vue')
 const Blog = () => import('./views/Blog.vue')
+const BlogPost = () => import('./views/BlogPost.vue')
 const Thanks = () => import('./views/Thanks.vue')
 const ProjectOneDetails = () => import('./views/ProjectOneDetails.vue')
 const ProjectTwoDetails = () => import('./views/ProjectTwoDetails.vue')
@@ -19,6 +20,7 @@ export const routes = [
     { path: '/contact', component: Contact },
     { path: '/resume', component: Resume },
     { path: '/blog', component: Blog },
+    { path: '/blog/:slug', component: BlogPost },
     { path: '/thanks', component: Thanks },
     { path: '/project-one-details', component: ProjectOneDetails },
     { path: '/project-two-details', component: ProjectTwoDetails },
