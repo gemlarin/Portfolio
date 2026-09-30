@@ -638,7 +638,7 @@ h1 {
     .wrap--centering {
         max-height: none;
         height: auto;
-        margin-top: 80px;
+        margin-top: var(--close-clearance);
         padding-bottom: 108px;
     }
     h1 {

@@ -622,7 +622,7 @@ button.cta-link.load-more {
     .wrap--centering {
         max-height: none;
         height: auto;
-        margin-top: 80px;
+        margin-top: var(--close-clearance);
         padding-bottom: 108px;
     }
     .post-thumb-wrap {

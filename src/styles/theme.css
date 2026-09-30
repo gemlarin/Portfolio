@@ -8,6 +8,14 @@
   --color-border: #d8d8d8;
   --color-surface: #f4f4f4;
   --color-success: #15803d;
+
+  /* Close control + matching content clearance (safe-area aware) */
+  --close-size: 56px;
+  --close-inset: 8px;
+  --close-top: max(var(--close-inset), env(safe-area-inset-top, 0px));
+  --close-clearance: calc(
+    var(--close-top) + var(--close-size) + var(--close-inset)
+  );
 }
 
 /* Rebase Bootstrap code defaults onto the brand palette */

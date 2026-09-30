@@ -795,17 +795,17 @@ button.cta-link:focus-visible {
 /* Details / overlay close controls — button is the hit + focus target */
 .close-control {
     position: fixed;
-    top: max(8px, env(safe-area-inset-top, 0px));
-    right: max(8px, env(safe-area-inset-right, 0px));
+    top: var(--close-top);
+    right: max(var(--close-inset), env(safe-area-inset-right, 0px));
     z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-    min-height: 56px;
+    width: var(--close-size);
+    height: var(--close-size);
+    min-width: var(--close-size);
+    min-height: var(--close-size);
     padding: 0;
     border: 0;
     background: transparent;
