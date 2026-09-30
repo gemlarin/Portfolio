@@ -7,8 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack serve --mode development",
-    "build": "webpack --mode production && cp dist/index.html dist/404.html",
-    "deploy": "bash scripts/deploy.sh"
+    "build": "webpack --mode production && cp dist/index.html dist/404.html"
   },
   "dependencies": {
     "bootstrap": "^4.6.2",

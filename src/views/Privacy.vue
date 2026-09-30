@@ -24,10 +24,10 @@
 
                 <h2>Analytics</h2>
                 <p>
-                    This site uses Google Analytics 4 (via Google Tag Manager /
-                    the Google tag) to understand how people use the site —
-                    for example which pages are viewed, roughly where visitors
-                    are located, and basic device or browser information.
+                    This site uses Google Analytics 4 to understand how people
+                    use the site — for example which pages are viewed, roughly
+                    where visitors are located, and basic device or browser
+                    information.
                     Google processes this data under its own terms and privacy
                     policy. You can limit analytics via browser settings,
                     extensions, or
