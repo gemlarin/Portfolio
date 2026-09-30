@@ -1,12 +1,13 @@
-# Task: Font sizes to rem
+# Task: Brand tokens + contact form fix
 
 ## Spec
-- Goal: Convert app `font-size` values from `px` to `rem` for a11y (user font prefs)
-- In scope: `font-size: …px` in app Vue/SCSS/CSS (`px / 16`); visual size unchanged at default 16px root
-- Out of scope: margins/padding/widths/borders; line-height; vendor CSS; SVG assets; other shorthands unless they only set size
-- Done when: no app `font-size: …px` left; hard-refresh looks the same at default zoom
+- Goal: Finish brand color tokens; fix contact form send failure
+- In scope: Expand `theme.css`; replace remaining app hex; fix FormSubmit endpoint/errors
+- Out of scope: Vendor CSS; Hero Sass gray scale `lighten()` ladder
+- Done when: Contact sends (or clear actionable error); app brand hexes use vars; build OK
 
 ## Tasks
-- [x] Convert `font-size` px → rem in app styles
-- [x] Verify build; spot-check blog + a project detail
+- [ ] Fix contact FormSubmit send / error messaging
+- [ ] Expand theme tokens; replace remaining app hex
+- [ ] Build verify
 - [ ] Code sweep (prompt D for topics — see AGENTS.md)

@@ -49,12 +49,12 @@ export default {
 <style scoped lang="scss">
 footer {
     margin-top: 150px;
-    background-color: #32312f;
+    background-color: var(--color-footer);
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
     .zst {
-        fill: #5c5c5c;
+        fill: var(--color-footer-icon);
     }
     svg {
         height: 50px;
@@ -100,7 +100,7 @@ footer {
     }
     p {
         font-size: 0.875rem;
-        color: #818181;
+        color: var(--color-footer-muted);
         margin-bottom: 5px;
     }
 }

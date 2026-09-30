@@ -215,7 +215,7 @@ export default {
     font-family: 'AvenirLTStdBook';
     h2 {
         font-family: 'proxima_novablack';
-        color: #212529;
+        color: var(--color-ink);
         font-size: 1.5625rem;
         margin-top: 0px;
         line-height: 1em;
@@ -223,11 +223,11 @@ export default {
     h4 {
         font-family: 'proxima_novablack';
         font-size: 1.25rem;
-        color: #212529;
+        color: var(--color-ink);
     }
     h5 {
         font-family: 'AvenirLTStdLight';
-        color: #212529;
+        color: var(--color-ink);
         font-size: 0.75rem;
         margin-top: 5px;
     }

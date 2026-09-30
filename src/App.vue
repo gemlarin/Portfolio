@@ -206,7 +206,7 @@ export default {
 </script>
 
 <style lang="scss">
-$brand-primary: #fc5356 !default;
+$brand-primary: var(--color-accent-alt) !default;
 $color-white: var(--color-background) !default;
 
 @font-face {
@@ -635,7 +635,7 @@ button.cta-link:focus-visible {
     z-index: 10000;
     padding: 10px 14px;
     background: var(--color-background);
-    color: #212529;
+    color: var(--color-ink);
     font-family: 'AvenirLTStdMedium', sans-serif;
     font-size: 0.875rem;
     text-decoration: none;

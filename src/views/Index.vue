@@ -174,7 +174,7 @@ export default {
     font-family: 'AvenirLTStdBook', sans-serif;
     line-height: 1.2;
     color: var(--color-background);
-    background: #212529;
+    background: var(--color-ink);
     border-radius: 3px;
     opacity: 0;
     pointer-events: none;

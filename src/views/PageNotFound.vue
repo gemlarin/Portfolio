@@ -44,7 +44,7 @@ export default {
     justify-content: center;
     text-align: center;
     padding: 40px 24px;
-    background: #f7f7f7;
+    background: var(--color-page);
     font-family: 'AvenirLTStdBook', sans-serif;
 }
 
@@ -55,7 +55,7 @@ export default {
     svg {
         width: 56px;
         height: 56px;
-        fill: #212529;
+        fill: var(--color-ink);
     }
 }
 
@@ -71,13 +71,13 @@ h1 {
     margin: 12px 0 8px;
     font-family: 'proxima_novablack', sans-serif;
     font-size: 1.75rem;
-    color: #212529;
+    color: var(--color-ink);
 }
 
 .message {
     margin: 0 0 28px;
     font-size: 0.9375rem;
-    color: #616161;
+    color: var(--color-ink-muted);
 }
 
 .home-link {

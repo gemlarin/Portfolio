@@ -446,17 +446,17 @@ export default {
 //== Colors
 $gray-base: #000 !default;
 $gray-darker: lighten($gray-base, 13.5%) !default; // #222
-$gray-dark: lighten($gray-base, 20%) !default; // #333
+$gray-dark: lighten($gray-base, 20%) !default; // var(--color-heading-soft)
 $gray: lighten($gray-base, 33.5%) !default; // #555
 $gray-light: lighten($gray-base, 66.7%) !default; // #777
 $gray-light-alt: lighten($gray-base, 80.5%) !default; //
 $gray-lighter: lighten($gray-base, 93.5%) !default; // #eee
-$brand-primary: #535250 !default;
+$brand-primary: #535250 !default; // matches --color-charcoal (Sass darken needs hex)
 $brand-secondary: $gray-darker !default;
 $brand-tertiary: var(--color-accent) !default;
-$color-gold: #dea110 !default;
+$color-gold: #dea110 !default; // matches --color-gold
 $color-white: var(--color-background) !default;
-$color-offwhite: #fafafa !default;
+$color-offwhite: var(--color-offwhite) !default;
 
 .color-white {
     color: $color-white;

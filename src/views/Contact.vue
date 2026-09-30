@@ -92,7 +92,7 @@ import Nav from './../components/main/navs/IntroNav.vue'
 import escapeClose from './../mixins/escapeClose'
 
 const FORM_ENDPOINT =
-    'https://formsubmit.co/ajax/396bca75b794c96de073b9dbaa8bcde6'
+    'https://formsubmit.co/ajax/dfgibas@gmail.com'
 
 export default {
     name: 'contact',
@@ -144,20 +144,29 @@ export default {
                         email: this.email,
                         message: this.message,
                         _subject: 'Portfolio contact form',
+                        _template: 'table',
+                        _captcha: false,
+                        _honey: '',
                     }),
                 })
                 const data = await response.json().catch(() => ({}))
                 if (!response.ok) {
                     throw new Error(
                         data.message ||
-                            'Something went wrong. Please try again or call me.'
+                            'Something went wrong. Please try again or email me directly.'
                     )
                 }
                 this.$router.push('/thanks')
             } catch (err) {
-                this.error =
-                    err.message ||
-                    'Something went wrong. Please try again or call me.'
+                const raw = (err && err.message) || ''
+                const networkFail =
+                    /load failed|failed to fetch|networkerror|network error/i.test(
+                        raw
+                    )
+                this.error = networkFail
+                    ? 'Could not reach the mail service. Please try again or email me at dfgibas@gmail.com.'
+                    : raw ||
+                      'Something went wrong. Please try again or email me directly.'
             } finally {
                 this.sending = false
             }

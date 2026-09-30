@@ -2,12 +2,24 @@
 :root {
   --color-background: #fff;
   --color-foreground: #222;
+  --color-ink: #212529;
+  --color-ink-muted: #616161;
   --color-muted: #666;
   --color-muted-soft: #888;
+  --color-heading-soft: #333;
   --color-accent: #fb2662;
+  --color-accent-alt: #fc5356;
   --color-border: #d8d8d8;
   --color-surface: #f4f4f4;
+  --color-page: #f7f7f7;
+  --color-offwhite: #fafafa;
   --color-success: #15803d;
+  --color-gold: #dea110;
+  --color-footer: #32312f;
+  --color-footer-icon: #5c5c5c;
+  --color-footer-muted: #818181;
+  --color-hero-dark: #252324;
+  --color-charcoal: #535250;
 
   /* Close control + matching content clearance (safe-area aware) */
   --close-size: 56px;

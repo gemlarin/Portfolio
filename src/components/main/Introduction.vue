@@ -231,7 +231,7 @@ export default {
         z-index: 300;
         left: 50%;
         top: 0;
-        background-color: #252324;
+        background-color: var(--color-hero-dark);
         transition: height 1.5s;
         transition-timing-function: ease-in;
         &.animate {

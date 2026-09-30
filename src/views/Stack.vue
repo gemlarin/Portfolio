@@ -65,7 +65,7 @@ export default {
 }
 h2 {
     font-family: 'proxima_novablack';
-    color: #333;
+    color: var(--color-heading-soft);
     font-size: 3.125rem;
     margin-bottom: 5px;
     line-height: 55px;
