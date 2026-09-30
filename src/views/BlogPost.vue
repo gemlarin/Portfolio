@@ -179,6 +179,77 @@ export default {
                     (err && err.message) || 'Could not load this post.'
             } finally {
                 this.loading = false
+                if (this.post && this.post.html) {
+                    this.$nextTick(() => {
+                        this.enhanceCodeBlocks()
+                    })
+                }
+            }
+        },
+        enhanceCodeBlocks() {
+            const root =
+                this.$el && this.$el.querySelector('.post-body')
+            if (!root) return
+
+            const copyIcon =
+                '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>'
+            const checkIcon =
+                '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+
+            const blocks = root.querySelectorAll('pre')
+            for (let i = 0; i < blocks.length; i++) {
+                const pre = blocks[i]
+                if (
+                    pre.parentElement &&
+                    pre.parentElement.classList.contains('code-block')
+                ) {
+                    continue
+                }
+
+                const wrap = document.createElement('div')
+                wrap.className = 'code-block'
+                pre.parentNode.insertBefore(wrap, pre)
+                wrap.appendChild(pre)
+
+                const btn = document.createElement('button')
+                btn.type = 'button'
+                btn.className = 'code-copy'
+                btn.setAttribute('aria-label', 'Copy code')
+                btn.innerHTML = copyIcon
+
+                btn.addEventListener('click', async () => {
+                    const text = pre.innerText || pre.textContent || ''
+                    try {
+                        if (
+                            navigator.clipboard &&
+                            navigator.clipboard.writeText
+                        ) {
+                            await navigator.clipboard.writeText(text)
+                        } else {
+                            const area = document.createElement('textarea')
+                            area.value = text
+                            area.setAttribute('readonly', '')
+                            area.style.position = 'absolute'
+                            area.style.left = '-9999px'
+                            document.body.appendChild(area)
+                            area.select()
+                            document.execCommand('copy')
+                            document.body.removeChild(area)
+                        }
+                        btn.classList.add('is-copied')
+                        btn.setAttribute('aria-label', 'Copied')
+                        btn.innerHTML = checkIcon
+                        window.setTimeout(() => {
+                            btn.classList.remove('is-copied')
+                            btn.setAttribute('aria-label', 'Copy code')
+                            btn.innerHTML = copyIcon
+                        }, 1600)
+                    } catch (err) {
+                        btn.setAttribute('aria-label', 'Copy failed')
+                    }
+                })
+
+                wrap.appendChild(btn)
             }
         },
         async loadRelated(post) {
@@ -499,6 +570,45 @@ h1 {
         background: #f4f4f4;
         font-size: 13px;
         line-height: 1.5;
+    }
+    .code-block {
+        position: relative;
+        margin: 0 0 1.2em;
+    }
+    .code-block pre {
+        margin: 0;
+        padding-right: 32px;
+    }
+    .code-copy {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        padding: 0;
+        border: 0;
+        border-radius: 3px;
+        background: #fff;
+        color: #666;
+        cursor: pointer;
+        box-shadow: 0 0 0 1px #d8d8d8;
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+        &:hover {
+            color: #fb2662;
+        }
+        &:focus-visible {
+            outline: 2px solid #fb2662;
+            outline-offset: 2px;
+        }
+        &.is-copied {
+            color: #15803d;
+        }
     }
     code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
