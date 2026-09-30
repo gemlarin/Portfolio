@@ -351,7 +351,6 @@ h2 {
     height: 88px;
     overflow: hidden;
     background: #f4f4f4;
-    border-radius: 6px;
 }
 .post-thumb {
     display: block;
