@@ -4,7 +4,7 @@
         <button
             type="button"
             class="nav-link"
-            @click="$router.push({ path: '/', hash: '#portfolio' })"
+            @click="go({ path: '/', hash: '#portfolio' }, $event)"
         >
             Portfolio
         </button>
@@ -14,7 +14,7 @@
             type="button"
             class="nav-link"
             :class="{ active: activepage == 'stack' }"
-            @click="$router.push('/stack')"
+            @click="go('/stack', $event)"
         >
             Stack
         </button>
@@ -24,32 +24,32 @@
             type="button"
             class="nav-link"
             :class="{ active: activepage == 'resume' }"
-            @click="$router.push('/resume')"
+            @click="go('/resume', $event)"
         >
             Résumé
         </button>
     </li>
-                <li>
-                    <button
-                        type="button"
-                        class="nav-link"
-                        :class="{ active: activepage == 'contact' }"
-                        @click="$router.push('/contact')"
-                    >
-                        Contact
-                    </button>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        class="nav-link"
-                        :class="{ active: activepage == 'blog' }"
-                        @click="$router.push('/blog')"
-                    >
-                        Blog
-                    </button>
-                </li>
-            </ul>
+    <li>
+        <button
+            type="button"
+            class="nav-link"
+            :class="{ active: activepage == 'contact' }"
+            @click="go('/contact', $event)"
+        >
+            Contact
+        </button>
+    </li>
+    <li>
+        <button
+            type="button"
+            class="nav-link"
+            :class="{ active: activepage == 'blog' }"
+            @click="go('/blog', $event)"
+        >
+            Blog
+        </button>
+    </li>
+</ul>
 </template>
 
 <script>
@@ -60,6 +60,14 @@ export default {
     },
     props: ['activepage'],
     components: {},
+    methods: {
+        go(target, event) {
+            if (event && event.currentTarget) {
+                event.currentTarget.blur()
+            }
+            this.$router.push(target)
+        },
+    },
 }
 </script>
 
@@ -86,8 +94,11 @@ li {
         margin: 0 12px;
         cursor: pointer;
         white-space: nowrap;
-        &:hover {
-            text-decoration: underline;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        &:focus,
+        &:focus-visible {
+            outline: none !important;
         }
     }
 }
@@ -97,6 +108,16 @@ li {
     &.active {
         color: var(--color-accent);
         font-family: 'AvenirLTStdBlack';
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    li button.nav-link:hover {
+        text-decoration: underline;
+    }
+    li button.nav-link:focus-visible {
+        outline: 2px solid var(--color-accent) !important;
+        outline-offset: 3px !important;
     }
 }
 

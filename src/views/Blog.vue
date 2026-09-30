@@ -263,15 +263,44 @@ export default {
         this.loadPosts()
     },
     activated() {
+        if (!this.posts.length) {
+            this.loadPosts().then(() => {
+                this.$nextTick(() => {
+                    const el = this.$refs.listScroll
+                    if (el) el.scrollTop = 0
+                })
+            })
+            return
+        }
         this.restoreListScroll()
     },
     beforeRouteLeave(to, from, next) {
-        this.saveListScroll()
+        const path = (to && to.path) || ''
+        const stayingInBlog =
+            path === '/blog' || path.indexOf('/blog/') === 0
+        if (stayingInBlog) {
+            if (path.indexOf('/blog/') === 0) {
+                this.saveListScroll()
+            }
+        } else {
+            this.resetBlogList()
+        }
         next()
     },
     methods: {
         closePage() {
+            this.resetBlogList()
             this.$router.push({ path: '/', hash: '#introduction' })
+        },
+        resetBlogList() {
+            this.posts = []
+            this.hasNextPage = false
+            this.endCursor = null
+            this.loading = false
+            this.loadingMore = false
+            this.error = ''
+            this.loadMoreError = ''
+            this.savedScrollTop = 0
         },
         clearTagFilter() {
             this.$router.push({ path: '/blog' })
