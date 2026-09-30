@@ -471,10 +471,14 @@ h2 {
     margin: 0;
 }
 .post-item {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
+    border-bottom: 1px dashed #dbdbdb;
+    padding-bottom: 15px;
 }
 .post-item:last-child {
     margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
 }
 .post-link {
     display: flex;

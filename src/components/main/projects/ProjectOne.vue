@@ -111,6 +111,11 @@ export default {
     p {
         font-size: 14px;
     }
+    hr {
+        border: 0;
+        border-bottom: 1px dashed #dbdbdb;
+        margin: 16px 0;
+    }
     a,
     button.cta-link {
         color: #fb2662;

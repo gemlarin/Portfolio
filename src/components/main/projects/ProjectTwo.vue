@@ -137,6 +137,11 @@ export default {
     p {
         font-size: 14px;
     }
+    hr {
+        border: 0;
+        border-bottom: 1px dashed #dbdbdb;
+        margin: 16px 0;
+    }
     a {
         color: #fb2662;
         font-size: 14px;
