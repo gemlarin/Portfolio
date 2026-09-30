@@ -65,7 +65,7 @@ const POST_QUERY = `
   }
 `
 
-async function hashnodeRequest(query, variables) {
+async function hashnodeRequest(query, variables, signal) {
     const res = await fetch(HASHNODE_GQL, {
         method: 'POST',
         headers: {
@@ -73,6 +73,7 @@ async function hashnodeRequest(query, variables) {
             Accept: 'application/json',
         },
         body: JSON.stringify({ query, variables }),
+        signal: signal || undefined,
     })
 
     if (!res.ok) {
@@ -102,12 +103,13 @@ function mapTags(tags) {
 }
 
 /**
- * @param {{ first?: number, after?: string | null }} [options]
+ * @param {{ first?: number, after?: string | null, signal?: AbortSignal }} [options]
  * @returns {Promise<{ title: string, url: string, posts: Array<{ id: string, title: string, brief: string, slug: string, url: string, publishedAt: string }>, hasNextPage: boolean, endCursor: string | null }>}
  */
 export async function fetchHashnodePublication({
     first = BLOG_PAGE_SIZE,
     after = null,
+    signal = null,
 } = {}) {
     const variables = {
         host: HASHNODE_HOST,
@@ -117,7 +119,7 @@ export async function fetchHashnodePublication({
         variables.after = after
     }
 
-    const data = await hashnodeRequest(POSTS_QUERY, variables)
+    const data = await hashnodeRequest(POSTS_QUERY, variables, signal)
 
     const publication = data && data.publication
     if (!publication) {
@@ -150,13 +152,18 @@ export async function fetchHashnodePublication({
 
 /**
  * @param {string} slug
+ * @param {{ signal?: AbortSignal }} [options]
  * @returns {Promise<{ id: string, title: string, brief: string, slug: string, url: string, publishedAt: string, coverImage: string | null, html: string, publicationUrl: string }>}
  */
-export async function fetchHashnodePost(slug) {
-    const data = await hashnodeRequest(POST_QUERY, {
-        host: HASHNODE_HOST,
-        slug,
-    })
+export async function fetchHashnodePost(slug, { signal = null } = {}) {
+    const data = await hashnodeRequest(
+        POST_QUERY,
+        {
+            host: HASHNODE_HOST,
+            slug,
+        },
+        signal
+    )
 
     const publication = data && data.publication
     const post = publication && publication.post

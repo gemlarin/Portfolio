@@ -31,7 +31,7 @@
                     <li>Stepped execution flow</li>
                     <li>Pass/Fail indication with troubleshooting feedback</li>
                 </ul>
-                <a href="#part2" class="internal">more &darr;</a>
+                <a href="#part2" class="internal">more <arrow-down /></a>
             </div>
         </div>
         <div class="row" id="part2">
@@ -39,14 +39,14 @@
                 <detail-image :src="imageOne" img-class="preview--img" />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Wireframes</h4>
+                <h3>Wireframes</h3>
                 <p>As with any project, after requirements gathering and general research is completed, 
                     a series of wireframes are created to flesh out the application structure 
                     and flow. These wireframes are presented to stateholders to obtain feedback 
                     and address any inconsistencies before generating high definition mocks.</p>
                 <p>This image represents a first round wireframe of the New Order landing page. From this 
                     page, the user enters the first step of the workorder creation flow.</p>
-                <a href="#part3" class="internal">more &darr;</a>
+                <a href="#part3" class="internal">more <arrow-down /></a>
             </div>
         </div>
         <div class="row" id="part3">
@@ -54,12 +54,12 @@
                 <detail-image :src="imageTwo" img-class="preview--img" />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>User Journey</h4>
+                <h3>User Journey</h3>
                 <p>With the wireframes in hand, the next step was mapping the end-to-end user journey — 
                     how a logged-in operator moves from the workorder overview into creation, through field validation, 
                     and into stepped execution with clear pass/fail outcomes.</p>
                 <p>This image captures the Canary user journey used with stakeholders to align on flow, decision points, and where hardware constraints surface in the UI.</p>
-                <a href="#part4" class="internal">more &darr;</a>
+                <a href="#part4" class="internal">more <arrow-down /></a>
             </div>
         </div>
         <div class="row" id="part4">
@@ -67,10 +67,10 @@
                 <detail-image :src="imageThree" img-class="preview--img" />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>A Unique Challenge</h4>
+                <h3>A Unique Challenge</h3>
                 <p>This project came with a unique challenge. During the workorder generation, the user would need a way to assign modules to the main board based on visual location. To complicate matters, there is a complex ruleset that applies to module assignment locations on the board. The project manager did not want the user to have to know those rules -- so I had to develop a set of algorithms to analyze the selected modules and present only the available ports that meet the ruleset for the user.</p>
                 <p>This image demonstrates the implementation of the solution. Using the SVG DOM, I designed and developed an interactive representation of the mainboard - with available slots to choose from automatically highlighted for the user to choose from. Already assigned slots are labeled with the assigned module type.</p>
-                <a href="#part5" class="internal">more &darr;</a>
+                <a href="#part5" class="internal">more <arrow-down /></a>
             </div>
         </div>
         <div class="row" id="part5">
@@ -78,7 +78,7 @@
                 <detail-image :src="imageFour" img-class="preview--img" />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Development</h4>
+                <h3>Development</h3>
                 <p>Additional challenges of this project included state management of the active workorder through all of the primary creation views, managing autosaving to the backend, and polling to periodically update the execution status for presentation to the user.</p>
                 <p>This image shows the workorder overview page with the status monitor indicating that the user has not yet completed the fulfillment flow.</p>
                 <p>Technologies used:</p>
@@ -91,7 +91,7 @@
                     <li>Webpack</li>
                     <li>Mocha/Chai for testing</li>
                 </ul>
-                <router-link :to="{ path: '/', hash: '#project-four' }" class="internal">back to portfolio &rarr;</router-link>
+                <router-link :to="{ path: '/', hash: '#project-four' }" class="internal">back to portfolio <arrow-right /></router-link>
             </div>
         </div>
     </div>
@@ -103,10 +103,12 @@ import imageOne from './../assets/p4/p4-1.webp'
 import imageTwo from './../assets/p4/p4-2.webp'
 import imageThree from './../assets/p4/p4-3.webp'
 import imageFour from './../assets/p4/p4-4.webp'
+import ArrowDown from './../components/ArrowDown.vue'
+import ArrowRight from './../components/ArrowRight.vue'
 import DetailImage from './../components/main/DetailImage.vue'
 export default {
     name: 'ProjectFourDetails',
-    components: { DetailImage },
+    components: { DetailImage, ArrowRight, ArrowDown },
     data() {
         return {
             activeImage: briefImg,
@@ -125,33 +127,36 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: var(--color-ink);
-        font-size: 1.5625rem;
+        font-size: var(--font-h2);
         margin-top: 0px;
         line-height: 1em;
     }
-    h4 {
+    h3 {
         font-family: 'proxima_novablack';
-        font-size: 1.25rem;
+        font-size: var(--font-h3);
         color: var(--color-ink);
+        margin-bottom: 0.75rem;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: var(--color-ink);
-        font-size: 0.75rem;
+        font-size: var(--font-h5);
         margin-top: 5px;
+        margin-bottom: 0.75rem;
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
     }
     a.internal {
         color: var(--color-accent);
-        font-size: 0.875rem;
+        font-size: var(--font-button);
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
         text-decoration: none;
         margin-top: 15px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         &:hover {
             padding-left: 20px;
         }
@@ -167,7 +172,7 @@ export default {
     }
     ul {
         li {
-            font-size: 0.875rem;
+            font-size: var(--font-body);
         }
     }
     ::v-deep .detail-image {

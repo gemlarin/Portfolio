@@ -30,8 +30,6 @@ export default {
 
     data() {
         return {
-            counter: 0,
-            len: 0,
             blogCloseLock: false,
         }
     },
@@ -140,8 +138,11 @@ export default {
         }, 2500)
     },
     metaInfo: {
-        title: 'Danny Gibas', // set a main global title
-        titleTemplate: '%s - Welcome', // set your default global subtitle
+        title: 'Danny Gibas',
+        titleTemplate: (chunk) =>
+            chunk && chunk !== 'Danny Gibas'
+                ? chunk + ' | Danny Gibas'
+                : 'Danny Gibas',
         htmlAttrs: {
             lang: 'en',
             amp: undefined, // "amp" has no value
@@ -314,7 +315,7 @@ select.form-control:not([size]):not([multiple]) {
     -webkit-transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out, color 0.2s ease-in-out;
     transform-origin: left top;
-    font-size: 1rem;
+    font-size: var(--font-body);
     line-height: 1;
     color: var(--color-muted);
     font-family: 'AvenirLTStdMedium';
@@ -322,19 +323,17 @@ select.form-control:not([size]):not([multiple]) {
 
 .field-wrapper label.openup {
     transform: translateY(-27px);
-    font-size: 0.875rem;
+    font-size: var(--font-body);
 }
 
-#contact-form .form-control,
-#contact-form textarea.form-control {
+#contact-form .form-control {
     display: block;
     width: 100%;
     height: 48px;
     min-height: 48px;
     max-height: 48px;
     padding: 14px 0 8px;
-    margin: 0;
-    font-size: 1.125rem;
+    font-size: var(--text-md);
     line-height: 1.2;
     border: none;
     border-bottom: 1px solid grey;
@@ -344,9 +343,31 @@ select.form-control:not([size]):not([multiple]) {
     font-weight: 400;
     box-shadow: none;
     font-family: 'AvenirLTStdBook';
-    resize: none;
-    overflow: hidden;
     box-sizing: border-box;
+}
+
+#contact-form textarea.form-control {
+    display: block;
+    width: 100%;
+    height: 48px;
+    min-height: 48px;
+    max-height: min(40vh, 280px);
+    padding: 14px 0 8px;
+    font-size: var(--text-md);
+    line-height: 1.2;
+    border: none;
+    border-bottom: 1px solid grey;
+    border-radius: 0;
+    background: white;
+    color: var(--color-foreground);
+    font-weight: 400;
+    box-shadow: none;
+    font-family: 'AvenirLTStdBook';
+    box-sizing: border-box;
+    resize: vertical !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    field-sizing: content;
 }
 
 #contact-form .form-control:focus,
@@ -354,7 +375,7 @@ select.form-control:not([size]):not([multiple]) {
 #contact-form .form-control:focus-visible,
 #contact-form textarea.form-control:focus-visible {
     color: var(--color-foreground);
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--color-accent);
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: none !important;
@@ -489,7 +510,7 @@ img.mfp-img {
     width: 56px !important;
     height: 56px !important;
     line-height: 56px !important;
-    font-size: 2.625rem !important;
+    font-size: var(--text-close) !important;
     padding: 0 !important;
     text-align: center !important;
     z-index: 1051 !important;
@@ -562,9 +583,13 @@ img.mfp-img {
     align-items: flex-end !important;
     pointer-events: none;
 }
+.nav-wrap.nav-wrap--solid .intro-nav {
+    margin: 0 !important;
+    align-self: flex-end;
+}
 .nav-wrap.nav-wrap--solid ul {
     pointer-events: auto;
-    margin: 0 0 22px !important;
+    margin: 0 0 17px !important;
     align-self: flex-end;
 }
 .nav-wrap.nav-wrap--solid button {
@@ -605,7 +630,7 @@ img.responsive {
     outline-offset: 3px !important;
 }
 
-/* Contact fields use underline focus, not the pink box ring */
+/* Global form fields: no pink box ring. Contact overrides via #contact-form. */
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
@@ -628,6 +653,18 @@ button.cta-link:focus-visible {
     outline-offset: 3px !important;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .skip-link {
     position: absolute;
     left: 12px;
@@ -637,7 +674,7 @@ button.cta-link:focus-visible {
     background: var(--color-background);
     color: var(--color-ink);
     font-family: 'AvenirLTStdMedium', sans-serif;
-    font-size: 0.875rem;
+    font-size: var(--font-button);
     text-decoration: none;
     border: 2px solid var(--color-accent);
     transform: translateY(-200%);
@@ -759,9 +796,9 @@ button.cta-link:focus-visible {
         margin-top: 0;
     }
 
-    /* Avoid heading margins adding to the 20px stack gap */
-    #page-wrap .text-container > h2:first-child,
+    /* Details only — featured works cards set their own mobile h2 top margin */
     [id$='-details'] .text-container > h2:first-child,
+    [id$='-details'] .text-container > h3:first-child,
     [id$='-details'] .text-container > h4:first-child,
     [id$='-details'] .text-container > h5:first-child {
         margin-top: 0 !important;
@@ -838,7 +875,7 @@ button.cta-link:focus-visible {
     height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-    font-size: 2.75rem !important;
+    font-size: var(--text-close-lg) !important;
     line-height: 1 !important;
     display: block;
     color: var(--color-foreground);

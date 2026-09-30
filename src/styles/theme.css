@@ -28,6 +28,138 @@
   --close-clearance: calc(
     var(--close-top) + var(--close-size) + var(--close-inset)
   );
+
+  /* ——— Type scale (edit sizes here only) ——— */
+  --text-2xs: 0.5625rem; /* 9px — micro labels */
+  --text-xs: 0.75rem; /* 12px — tiny captions / densest nav */
+  --text-2sm: 0.8125rem; /* 13px — compact nav / helper */
+  --text-sm: 0.875rem; /* 14px — meta, tags, h5, secondary */
+  --text-base: 1rem; /* 16px — body, p, code, default nav */
+  --text-md: 1.125rem; /* 18px — medium emphasis */
+  --text-lg: 1.25rem; /* 20px — list/post titles */
+  --text-xl: 1.375rem; /* 22px — article h2 */
+  --text-2xl: 1.5rem; /* 24px — h4 */
+  --text-3xl: 1.75rem; /* 28px — subheads / thanks */
+  --text-4xl: 1.875rem; /* 30px — footer / hero medium */
+  --text-5xl: 2rem; /* 32px — h1 / h2 content */
+  --text-6xl: 2.5rem; /* 40px — intro headline (sm) */
+  --text-7xl: 2.8125rem; /* 45px — page title (sm) */
+  --text-8xl: 3.125rem; /* 50px — page title */
+  --text-9xl: 3.4375rem; /* 55px — intro headline */
+  --text-error: 4.5rem; /* 72px — 404 digit */
+  --text-close: 2.625rem; /* close × */
+  --text-close-lg: 2.75rem;
+
+  /* Hero display (decorative) */
+  --text-hero: 13.75rem;
+  --text-hero-lg: 11.25rem;
+  --text-hero-md: 9.375rem;
+  --text-hero-sm: 8.75rem;
+  --text-hero-xs: 6.25rem;
+  --text-hero-em-lg: 0.8em;
+  --text-hero-em-md: 0.72em;
+  --text-hero-em-sm: 0.62em;
+
+  /* Fluid page titles (Selected Works) */
+  --text-portfolio-fluid: clamp(2.125rem, 10.3vw, 3.1875rem);
+  --text-portfolio-fluid-sm: clamp(1.8125rem, 9.1vw, 2.4375rem);
+
+  /* Semantic aliases — prefer these in components */
+  --font-body: var(--text-base);
+  --font-small: var(--text-sm);
+  --font-meta: var(--text-sm);
+  --font-helper: var(--text-2sm);
+  --font-caption: var(--text-xs);
+  --font-micro: var(--text-2xs);
+  --font-nav: var(--text-base);
+  --font-nav-sm: var(--text-2sm);
+  --font-nav-xs: var(--text-xs);
+  --font-code: var(--text-base);
+  --font-button: var(--text-base);
+  --font-lede: var(--text-base);
+  --font-post-title: var(--text-lg);
+  /* Content heading ladder: h1 > h2 > h3 > h4 > h5 */
+  --font-h1: var(--text-6xl); /* 40px */
+  --font-h2: var(--text-5xl); /* 32px */
+  --font-h3: var(--text-2xl); /* 24px */
+  --font-h4: var(--text-md); /* 18px */
+  --font-h5: var(--text-sm); /* 14px */
+  --font-page-title: var(--text-8xl);
+  --font-page-title-sm: var(--text-7xl);
+  --font-subhead: var(--text-3xl);
+  --font-display-sm: var(--text-4xl);
+  --font-intro: var(--text-9xl);
+  --font-intro-sm: var(--text-6xl);
+  --font-article-h2: var(--text-3xl); /* 28px — longform section */
+  --font-article-h3: var(--text-2xl); /* 24px */
+}
+
+/* Type defaults — single place for element roles */
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: var(--font-body);
+}
+
+p {
+  font-size: var(--font-body);
+}
+
+li {
+  font-size: var(--font-body);
+}
+
+h1 {
+  font-size: var(--font-h1);
+}
+
+h2 {
+  font-size: var(--font-h2);
+}
+
+h3 {
+  font-size: var(--font-h3);
+}
+
+h4 {
+  font-size: var(--font-h4);
+  margin-bottom: 0.75rem;
+}
+
+h5 {
+  font-size: var(--font-h5);
+  margin-bottom: 0.75rem;
+}
+
+code,
+pre {
+  font-size: var(--font-code);
+}
+
+/* Interactive affordance — site-wide; local `cursor: default` still wins when more specific */
+a,
+a:hover,
+button:not(:disabled),
+[role='link'],
+[role='button'],
+summary {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* CTA / link rows that include ArrowRight — vertical center */
+a.cta-link,
+button.cta-link,
+a.internal,
+button.internal,
+.home-link {
+  display: inline-flex;
+  align-items: center;
 }
 
 /* Rebase Bootstrap code defaults onto the brand palette */

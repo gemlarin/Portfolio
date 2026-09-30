@@ -44,7 +44,7 @@
                 <router-link
                     :to="{ path: '/', hash: '#project-one' }"
                     class="internal"
-                    >back to portfolio &rarr;</router-link
+                    >back to portfolio <arrow-right /></router-link
                 >
             </div>
         </div>
@@ -53,11 +53,12 @@
 
 <script>
 import imageOne from './../assets/p1/p1-1.webp'
+import ArrowRight from './../components/ArrowRight.vue'
 import DetailImage from './../components/main/DetailImage.vue'
 
 export default {
     name: 'ProjectOneDetails',
-    components: { DetailImage },
+    components: { DetailImage, ArrowRight },
     data() {
         return {
             imageOne,
@@ -72,28 +73,30 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: var(--color-ink);
-        font-size: 1.5625rem;
+        font-size: var(--font-h2);
         margin-top: 0px;
         line-height: 1em;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: var(--color-ink);
-        font-size: 0.75rem;
+        font-size: var(--font-h5);
         margin-top: 5px;
+        margin-bottom: 0.75rem;
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
     }
     a.internal {
         color: var(--color-accent);
-        font-size: 0.875rem;
+        font-size: var(--font-button);
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
         text-decoration: none;
         margin-top: 15px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         &:hover {
             padding-left: 20px;
         }

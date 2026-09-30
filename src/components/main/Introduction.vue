@@ -1,62 +1,62 @@
-
 <template>
     <div class="wrap dialog" id="introduction">
-        <h2
-            v-scroll-reveal.reset="{ delay: 200, origin:'bottom', duration: 500, easing:'ease-out'}"
-        >
-            {{ greeting }}<span>.</span>
-        </h2>
-        <div id="navigation--intro">
-            <ul>
-                <li>
-                    <button
-                        type="button"
-                        class="nav-link"
-                        v-scroll-to="'#portfolio'"
-                    >
-                        portfolio
-                    </button>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        class="nav-link"
-                        @click="$router.push('/stack')"
-                    >
-                        stack
-                    </button>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        class="nav-link"
-                        @click="$router.push('/resume')"
-                    >
-                        résumé
-                    </button>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        class="nav-link"
-                        @click="$router.push('/contact')"
-                    >
-                        contact
-                    </button>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        class="nav-link"
-                        @click="$router.push('/blog')"
-                    >
-                        blog
-                    </button>
-                </li>
-            </ul>
-        </div>
         <div class="dividerline--animated"></div>
-        <div class="dividerline--mask"></div>
+        <div class="intro-content">
+            <h2
+                v-scroll-reveal.reset="{ delay: 200, origin:'bottom', duration: 500, easing:'ease-out'}"
+            >
+                {{ greeting }}<span>.</span>
+            </h2>
+            <div id="navigation--intro">
+                <ul>
+                    <li>
+                        <button
+                            type="button"
+                            class="nav-link"
+                            v-scroll-to="'#portfolio'"
+                        >
+                            portfolio
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="nav-link"
+                            @click="$router.push('/stack')"
+                        >
+                            stack
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="nav-link"
+                            @click="$router.push('/resume')"
+                        >
+                            résumé
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="nav-link"
+                            @click="$router.push('/contact')"
+                        >
+                            contact
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="nav-link"
+                            @click="$router.push('/blog')"
+                        >
+                            blog
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -131,33 +131,20 @@ export default {
     height: 100vh;
     width: 100vw;
     background: var(--color-background);
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
+    flex-direction: column;
     flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 
     a.nav-link,
     button.nav-link {
         color: var(--color-accent);
-        font-size: 1.125rem;
+        font-size: var(--text-md); /* 18px desktop */
         background: none;
         border: 0;
         padding: 0;
-        margin: 0 10px;
+        margin: 0 16px;
         font-family: inherit;
         cursor: pointer;
     }
@@ -172,26 +159,32 @@ export default {
             display: inline-block;
         }
     }
+
+    /* Content is the line mask: white band sized to heading + nav */
+    .intro-content {
+        position: relative;
+        z-index: 302;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--color-background);
+        /* Equal clearance above headline and below nav for the line gap */
+        padding: 36px 12px;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
     h2 {
         font-family: 'proxima_novablack';
         letter-spacing: -0.8px;
         margin: 0 auto;
         width: 650px;
-        min-height: 210px;
+        max-width: 100%;
         height: auto;
-        padding: 15px;
+        padding: 0;
         text-align: center;
-        font-size: 3.4375rem;
+        font-size: var(--font-intro);
         line-height: 1em;
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
         z-index: 302;
         span {
             color: var(--color-accent);
@@ -199,17 +192,10 @@ export default {
     }
     #navigation--intro {
         z-index: 302;
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
-        width: 100vw;
+        width: 100%;
+        max-width: 100vw;
         text-align: center;
+        margin-top: 20px;
         ul {
             display: flex;
             flex-wrap: nowrap;
@@ -238,36 +224,26 @@ export default {
             height: 100vh;
         }
     }
-    .dividerline--mask {
-        display: block;
-        position: absolute;
-        z-index: 301;
-        left: calc(50% - 10px);
-        top: calc(50vh - 155px);
-        width: 20px;
-        height: 310px;
-        background-color: white;
-    }
 }
 
 @media (max-width: 599px) {
     .wrap.dialog {
         h2 {
-            margin: 0 15px;
+            margin: 0;
             width: calc(100vw - 30px);
             text-align: center;
-            min-height: 160px !important;
-            height: auto !important;
-            font-size: 2.5rem;
+            font-size: var(--font-intro-sm);
         }
         a.nav-link,
         button.nav-link {
-            font-size: 0.8125rem;
+            font-size: var(--font-helper);
             margin: 0 5px;
         }
-        .dividerline--mask {
-            top: calc(50vh - 140px) !important;
-            height: 260px !important;
+        .intro-content {
+            padding: 28px 8px;
+        }
+        #navigation--intro {
+            margin-top: 16px;
         }
     }
 }
@@ -277,14 +253,8 @@ export default {
         h2 {
             margin: 0 auto;
             width: 500px;
+            max-width: calc(100vw - 40px);
             text-align: center;
-            min-height: 260px !important;
-            height: auto !important;
-        }
-
-        .dividerline--mask {
-            top: calc(50vh - 185px) !important;
-            height: 360px !important;
         }
     }
 }

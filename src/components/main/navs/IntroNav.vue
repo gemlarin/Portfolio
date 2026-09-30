@@ -1,55 +1,61 @@
 <template>
-<ul class="navlist">
-    <li>
-        <button
-            type="button"
-            class="nav-link"
-            @click="go({ path: '/', hash: '#portfolio' }, $event)"
-        >
-            Portfolio
-        </button>
-    </li>
-    <li>
-        <button
-            type="button"
-            class="nav-link"
-            :class="{ active: activepage == 'stack' }"
-            @click="go('/stack', $event)"
-        >
-            Stack
-        </button>
-    </li>
-    <li>
-        <button
-            type="button"
-            class="nav-link"
-            :class="{ active: activepage == 'resume' }"
-            @click="go('/resume', $event)"
-        >
-            Résumé
-        </button>
-    </li>
-    <li>
-        <button
-            type="button"
-            class="nav-link"
-            :class="{ active: activepage == 'contact' }"
-            @click="go('/contact', $event)"
-        >
-            Contact
-        </button>
-    </li>
-    <li>
-        <button
-            type="button"
-            class="nav-link"
-            :class="{ active: activepage == 'blog' }"
-            @click="go('/blog', $event)"
-        >
-            Blog
-        </button>
-    </li>
-</ul>
+<nav class="intro-nav" aria-label="Section">
+    <ul class="navlist">
+        <li>
+            <button
+                type="button"
+                class="nav-link"
+                @click="go({ path: '/', hash: '#portfolio' }, $event)"
+            >
+                Portfolio
+            </button>
+        </li>
+        <li>
+            <button
+                type="button"
+                class="nav-link"
+                :class="{ active: activepage == 'stack' }"
+                :aria-current="activepage == 'stack' ? 'page' : null"
+                @click="go('/stack', $event)"
+            >
+                Stack
+            </button>
+        </li>
+        <li>
+            <button
+                type="button"
+                class="nav-link"
+                :class="{ active: activepage == 'resume' }"
+                :aria-current="activepage == 'resume' ? 'page' : null"
+                @click="go('/resume', $event)"
+            >
+                Résumé
+            </button>
+        </li>
+        <li>
+            <button
+                type="button"
+                class="nav-link"
+                :class="{ active: activepage == 'contact' }"
+                :aria-current="activepage == 'contact' ? 'page' : null"
+                @click="go('/contact', $event)"
+            >
+                Contact
+            </button>
+        </li>
+        <li>
+            <button
+                type="button"
+                class="nav-link"
+                :class="{ active: activepage == 'blog' }"
+                :aria-current="activepage == 'blog' ? 'page' : null"
+                @click="go('/blog', $event)"
+            >
+                Blog
+            </button>
+        </li>
+    </ul>
+</nav>
 </template>
 
 <script>
@@ -72,6 +78,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.intro-nav {
+    margin: auto 0;
+}
 ul {
     list-style: none;
     display: flex;
@@ -96,15 +105,18 @@ li {
         white-space: nowrap;
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
-        &:focus,
-        &:focus-visible {
+        &:focus:not(:focus-visible) {
             outline: none !important;
+        }
+        &:focus-visible {
+            outline: 2px solid var(--color-accent) !important;
+            outline-offset: 3px !important;
         }
     }
 }
 .nav-link {
     font-family: 'AvenirLTStdLight';
-    font-size: 1rem;
+    font-size: var(--font-nav);
     &.active {
         color: var(--color-accent);
         font-family: 'AvenirLTStdBlack';
@@ -115,23 +127,19 @@ li {
     li button.nav-link:hover {
         text-decoration: underline;
     }
-    li button.nav-link:focus-visible {
-        outline: 2px solid var(--color-accent) !important;
-        outline-offset: 3px !important;
-    }
 }
 
 @media (max-width: 768px) {
     li button.nav-link {
         margin: 0 6px;
-        font-size: 0.8125rem;
+        font-size: var(--font-nav-sm);
     }
 }
 
 @media (max-width: 400px) {
     li button.nav-link {
         margin: 0 4px;
-        font-size: 0.75rem;
+        font-size: var(--font-nav-xs);
     }
 }
 </style>

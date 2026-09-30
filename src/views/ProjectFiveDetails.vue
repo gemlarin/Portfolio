@@ -38,7 +38,7 @@
                     class="internal"
                     @click="$router.push({ hash: '#part2' })"
                 >
-                    more &darr;
+                    more <arrow-down />
                 </button>
             </div>
         </div>
@@ -51,7 +51,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Locations &amp; wayfinding</h4>
+                <h3>Locations &amp; wayfinding</h3>
                 <p>
                     With multiple New Jersey offices, navigation had to surface
                     locations without burying primary actions. A locations
@@ -68,7 +68,7 @@
                     class="internal"
                     @click="$router.push({ hash: '#part3' })"
                 >
-                    more &darr;
+                    more <arrow-down />
                 </button>
             </div>
         </div>
@@ -81,7 +81,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Locations page</h4>
+                <h3>Locations page</h3>
                 <p>
                     The dedicated locations view combines parking and after-hours
                     guidance with a multi-office map, while sticky side actions
@@ -97,7 +97,7 @@
                     class="internal"
                     @click="$router.push({ hash: '#part4' })"
                 >
-                    more &darr;
+                    more <arrow-down />
                 </button>
             </div>
         </div>
@@ -110,7 +110,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Mobile homepage</h4>
+                <h3>Mobile homepage</h3>
                 <p>
                     On small screens the logo leads, then the three utility
                     actions stack full-width before the welcome copy and Learn
@@ -123,7 +123,7 @@
                     class="internal"
                     @click="$router.push({ hash: '#part5' })"
                 >
-                    more &darr;
+                    more <arrow-down />
                 </button>
             </div>
         </div>
@@ -136,7 +136,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Parent resources</h4>
+                <h3>Parent resources</h3>
                 <p>
                     Parent Resources answers the questions families ask most —
                     well visits, dosing, vaccines — in a calm, readable layout
@@ -147,12 +147,12 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="internal"
-                    >visit site &rarr;</a
+                    >visit site <arrow-right /></a
                 >
                 <router-link
                     :to="{ path: '/', hash: '#project-five' }"
                     class="internal"
-                    >back to portfolio &rarr;</router-link
+                    >back to portfolio <arrow-right /></router-link
                 >
             </div>
         </div>
@@ -165,11 +165,13 @@ import imageTwo from './../assets/p5/p5-2.webp'
 import imageThree from './../assets/p5/p5-3.webp'
 import imageFour from './../assets/p5/p5-4.webp'
 import imageFive from './../assets/p5/p5-5.webp'
+import ArrowDown from './../components/ArrowDown.vue'
+import ArrowRight from './../components/ArrowRight.vue'
 import DetailImage from './../components/main/DetailImage.vue'
 
 export default {
     name: 'ProjectFiveDetails',
-    components: { DetailImage },
+    components: { DetailImage, ArrowRight, ArrowDown },
     data() {
         return {
             imageOne,
@@ -188,23 +190,25 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: var(--color-ink);
-        font-size: 1.5625rem;
+        font-size: var(--font-h2);
         margin-top: 0px;
         line-height: 1em;
     }
-    h4 {
+    h3 {
         font-family: 'proxima_novablack';
-        font-size: 1.25rem;
+        font-size: var(--font-h3);
         color: var(--color-ink);
+        margin-bottom: 0.75rem;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: var(--color-ink);
-        font-size: 0.75rem;
+        font-size: var(--font-h5);
         margin-top: 5px;
+        margin-bottom: 0.75rem;
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
     }
     button.internal {
         background: none;
@@ -219,14 +223,15 @@ export default {
     a.internal,
     button.internal {
         color: var(--color-accent);
-        font-size: 0.875rem;
+        font-size: var(--font-button);
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
         text-decoration: none;
         margin-top: 15px;
         margin-right: 12px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         &:hover {
             padding-left: 20px;
         }

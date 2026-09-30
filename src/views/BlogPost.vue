@@ -18,6 +18,14 @@
                     <router-link to="/blog">Back to blog</router-link>
                 </p>
                 <article v-else-if="post">
+                    <p
+                        id="code-copy-status"
+                        class="sr-only"
+                        role="status"
+                        aria-live="polite"
+                    >
+                        {{ copyStatus }}
+                    </p>
                     <p class="back">
                         <router-link to="/blog">← All posts</router-link>
                     </p>
@@ -49,14 +57,15 @@
                             :href="post.url"
                             target="_blank"
                             rel="noopener noreferrer"
-                            >View on Hashnode ↗</a
+                            aria-label="View on Hashnode (opens in new tab)"
+                            >View on Hashnode <external-arrow /></a
                         >
                     </p>
                     <img
                         v-if="post.coverImage"
                         class="cover"
                         :src="post.coverImage"
-                        :alt="post.title"
+                        alt=""
                     />
                     <div
                         v-if="post.html"
@@ -74,7 +83,8 @@
                             :href="post.url"
                             target="_blank"
                             rel="noopener noreferrer"
-                            >View on Hashnode ↗</a
+                            aria-label="View on Hashnode (opens in new tab)"
+                            >View on Hashnode <external-arrow /></a
                         >
                     </p>
                     <section
@@ -99,7 +109,8 @@
                             :href="rssUrl"
                             target="_blank"
                             rel="noopener noreferrer"
-                            >Subscribe via RSS ↗</a
+                            aria-label="Subscribe via RSS (opens in new tab)"
+                            >Subscribe via RSS <external-arrow /></a
                         >
                     </p>
                     <p class="back back--footer">
@@ -113,6 +124,7 @@
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import ExternalArrow from './../components/ExternalArrow.vue'
 import escapeClose from './../mixins/escapeClose'
 import {
     fetchHashnodePost,
@@ -121,12 +133,14 @@ import {
     HASHNODE_RSS_URL,
     RELATED_CANDIDATE_SIZE,
 } from './../utils/hashnode'
+import { formatDate } from './../utils/formatDate'
 
 export default {
     name: 'BlogPost',
     mixins: [escapeClose],
     components: {
         Navi: Nav,
+        ExternalArrow,
     },
     data() {
         return {
@@ -136,6 +150,10 @@ export default {
             rssUrl: HASHNODE_RSS_URL,
             loading: true,
             error: '',
+            copyStatus: '',
+            postGen: 0,
+            postAbort: null,
+            copyTimers: [],
         }
     },
     watch: {
@@ -146,15 +164,41 @@ export default {
             },
         },
     },
+    beforeDestroy() {
+        this.abortPostFetch()
+        this.clearCopyTimers()
+    },
     methods: {
+        formatDate,
         closePage() {
             this.$router.push('/blog')
+        },
+        abortPostFetch() {
+            if (this.postAbort) {
+                this.postAbort.abort()
+                this.postAbort = null
+            }
+        },
+        clearCopyTimers() {
+            const timers = this.copyTimers || []
+            for (let i = 0; i < timers.length; i++) {
+                window.clearTimeout(timers[i])
+            }
+            this.copyTimers = []
         },
         retryLoad() {
             const slug = this.$route.params.slug
             if (slug) this.loadPost(slug)
         },
         async loadPost(slug) {
+            this.abortPostFetch()
+            this.clearCopyTimers()
+            const gen = ++this.postGen
+            const controller =
+                typeof AbortController !== 'undefined'
+                    ? new AbortController()
+                    : null
+            this.postAbort = controller
             this.loading = true
             this.error = ''
             this.post = null
@@ -164,17 +208,27 @@ export default {
                 if (el) el.scrollTop = 0
             })
             try {
-                this.post = await fetchHashnodePost(slug)
-                await this.loadRelated(this.post)
+                this.post = await fetchHashnodePost(slug, {
+                    signal: controller ? controller.signal : null,
+                })
+                if (gen !== this.postGen) return
+                await this.loadRelated(this.post, controller)
             } catch (err) {
+                if (err && err.name === 'AbortError') return
+                if (gen !== this.postGen) return
                 this.error =
                     (err && err.message) || 'Could not load this post.'
             } finally {
-                this.loading = false
-                if (this.post && this.post.html) {
-                    this.$nextTick(() => {
-                        this.enhanceCodeBlocks()
-                    })
+                if (gen === this.postGen) {
+                    this.loading = false
+                    this.postAbort = null
+                    if (this.post && this.post.html) {
+                        this.$nextTick(() => {
+                            if (gen === this.postGen) {
+                                this.enhanceCodeBlocks()
+                            }
+                        })
+                    }
                 }
             }
         },
@@ -231,37 +285,42 @@ export default {
                         btn.classList.add('is-copied')
                         btn.setAttribute('aria-label', 'Copied')
                         btn.innerHTML = checkIcon
-                        window.setTimeout(() => {
+                        this.copyStatus = 'Code copied'
+                        const timer = window.setTimeout(() => {
                             btn.classList.remove('is-copied')
                             btn.setAttribute('aria-label', 'Copy code')
                             btn.innerHTML = copyIcon
+                            if (this.copyStatus === 'Code copied') {
+                                this.copyStatus = ''
+                            }
+                            this.copyTimers = (
+                                this.copyTimers || []
+                            ).filter(function (id) {
+                                return id !== timer
+                            })
                         }, 1600)
+                        this.copyTimers = this.copyTimers || []
+                        this.copyTimers.push(timer)
                     } catch (err) {
                         btn.setAttribute('aria-label', 'Copy failed')
+                        this.copyStatus = 'Copy failed'
                     }
                 })
 
                 wrap.appendChild(btn)
             }
         },
-        async loadRelated(post) {
+        async loadRelated(post, controller) {
             try {
                 const data = await fetchHashnodePublication({
                     first: RELATED_CANDIDATE_SIZE,
+                    signal: controller ? controller.signal : null,
                 })
                 this.relatedPosts = pickRelatedPosts(post, data.posts || [])
             } catch (err) {
+                if (err && err.name === 'AbortError') return
                 this.relatedPosts = []
             }
-        },
-        formatDate(value) {
-            const d = new Date(value)
-            if (Number.isNaN(d.getTime())) return value
-            return d.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-            })
         },
         absolutePostUrl() {
             if (typeof window !== 'undefined' && window.location) {
@@ -380,7 +439,7 @@ export default {
 }
 .status {
     font-family: 'AvenirLTStdBook';
-    font-size: 0.875rem;
+    font-size: var(--font-small);
     color: var(--color-muted);
     a {
         color: var(--color-accent);
@@ -403,7 +462,7 @@ export default {
 .back {
     margin: 0 0 16px;
     font-family: 'AvenirLTStdBook';
-    font-size: 0.8125rem;
+    font-size: var(--font-meta);
     a {
         color: var(--color-accent);
         text-decoration: none;
@@ -417,7 +476,7 @@ export default {
 }
 h1 {
     font-family: 'proxima_novablack';
-    font-size: 1.75rem;
+    font-size: var(--font-h1);
     color: var(--color-foreground);
     margin: 0 0 10px;
     line-height: 1.15;
@@ -433,7 +492,7 @@ h1 {
         margin: 0;
         padding: 0;
         font-family: 'AvenirLTStdMedium';
-        font-size: 0.8125rem;
+        font-size: var(--font-small);
         line-height: 1.2;
     }
 }
@@ -448,7 +507,7 @@ h1 {
 }
 .meta {
     font-family: 'AvenirLTStdLight';
-    font-size: 0.8125rem;
+    font-size: var(--font-meta);
     color: var(--color-muted);
     margin: 0 0 22px;
     a {
@@ -467,7 +526,7 @@ h1 {
 }
 .post-body {
     font-family: 'AvenirLTStdBook';
-    font-size: 1rem;
+    font-size: var(--font-body);
     color: var(--color-foreground);
     line-height: 1.65;
 }
@@ -477,7 +536,7 @@ h1 {
     border-top: 1px dashed var(--color-border);
     h2 {
         font-family: 'proxima_novablack';
-        font-size: 1.125rem;
+        font-size: var(--font-h3);
         color: var(--color-foreground);
         margin: 0 0 12px;
     }
@@ -489,7 +548,7 @@ h1 {
     li {
         margin: 0 0 10px;
         font-family: 'AvenirLTStdBook';
-        font-size: 0.9375rem;
+        font-size: var(--font-body);
         line-height: 1.4;
     }
     a {
@@ -504,7 +563,7 @@ h1 {
 .subscribe {
     margin: 24px 0 0;
     font-family: 'AvenirLTStdBook';
-    font-size: 0.875rem;
+    font-size: var(--font-small);
     a {
         color: var(--color-foreground);
         text-decoration: none;
@@ -527,10 +586,10 @@ h1 {
         line-height: 1.3;
     }
     h2 {
-        font-size: 1.375rem;
+        font-size: var(--font-article-h2);
     }
     h3 {
-        font-size: 1.125rem;
+        font-size: var(--font-article-h3);
     }
     a {
         color: var(--color-accent);
@@ -561,7 +620,7 @@ h1 {
         overflow: auto;
         background: var(--color-surface);
         color: var(--color-foreground);
-        font-size: 0.8125rem;
+        font-size: var(--font-code);
         line-height: 1.5;
     }
     .code-block {
@@ -606,7 +665,7 @@ h1 {
     code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             monospace;
-        font-size: 0.9em;
+        font-size: var(--font-code);
         color: var(--color-accent);
     }
     pre code {
@@ -625,7 +684,7 @@ h1 {
         width: 100%;
         border-collapse: collapse;
         margin: 0 0 1.2em;
-        font-size: 0.875rem;
+        font-size: var(--font-small);
     }
     th,
     td {
@@ -640,9 +699,6 @@ h1 {
         height: auto;
         margin-top: var(--close-clearance);
         padding-bottom: 108px;
-    }
-    h1 {
-        font-size: 1.5rem;
     }
 }
 </style>

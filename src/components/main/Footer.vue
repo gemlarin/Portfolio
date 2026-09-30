@@ -73,7 +73,7 @@ footer {
         }
         .fa {
             color: var(--color-muted);
-            font-size: 2rem;
+            font-size: var(--font-h2);
         }
     }
     .footer--logo-container {
@@ -96,10 +96,10 @@ footer {
     }
     h1 {
         font-family: 'AvenirLTStdMedium';
-        font-size: 1.875rem;
+        font-size: var(--font-display-sm);
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
         color: var(--color-footer-muted);
         margin-bottom: 5px;
     }

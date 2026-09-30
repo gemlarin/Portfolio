@@ -13,13 +13,14 @@
                 <span class="mfp-close" aria-hidden="true">×</span>
             </button>
             <div class="wrap--centering">
+                <h1 class="sr-only">Stack</h1>
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-6 col-xl-6 listing">
-                        <h2>VUE 2/3</h2>
-                        <h2>VUEX</h2>
-                        <h2>PINIA</h2>
-                        <h2>VITEST</h2>
-                        <h2>TAILWIND</h2>
+                        <p class="stack-name">VUE 2/3</p>
+                        <p class="stack-name">VUEX</p>
+                        <p class="stack-name">PINIA</p>
+                        <p class="stack-name">VITEST</p>
+                        <p class="stack-name">TAILWIND</p>
                     </div>
                     <div class="col-12 col-md-6 col-lg-6 col-xl-6 subcopy">
                         <p>
@@ -63,13 +64,18 @@ export default {
     max-width: 100%;
     overflow-x: hidden;
 }
-h2 {
+h2,
+.stack-name {
     font-family: 'proxima_novablack';
     color: var(--color-heading-soft);
-    font-size: 3.125rem;
+    font-size: var(--font-page-title);
     margin-bottom: 5px;
-    line-height: 55px;
+    line-height: 1;
     padding-right: 5px;
+}
+.stack-name {
+    margin-top: 0;
+    padding-top: 0;
 }
 .wrapper--postion-nav {
     margin-top: 60px;
@@ -83,9 +89,9 @@ h2 {
 }
 p {
     font-family: 'AvenirLTStdBook';
-    font-size: 0.9375rem;
+    font-size: var(--font-body);
     line-height: 1.74em;
-    padding-top: 10px;
+    padding-top: 0;
     padding-left: 5px;
     color: var(--color-foreground);
 }
@@ -93,8 +99,15 @@ p {
     max-width: 265px;
     text-align: left;
 }
+.subcopy p {
+    margin-top: 0;
+    padding-top: 0;
+}
 .listing {
     text-align: right;
+}
+.wrap--centering ::v-deep .row {
+    align-items: flex-start;
 }
 .wrap--stack {
     height: 100vh;
@@ -127,7 +140,7 @@ p {
     top: 0;
 }
 .mfp-close {
-    font-size: 3.125rem;
+    font-size: var(--font-page-title);
     right: 10px;
     top: 10px;
 }
@@ -159,14 +172,14 @@ p {
         text-decoration: none;
         li {
             display: block;
-            font-size: 2rem;
+            font-size: var(--font-h2);
             font-family: 'proxima_novablack';
             p {
                 margin-bottom: 0;
                 line-height: 1em;
             }
             .subtext {
-                font-size: 0.75rem;
+                font-size: var(--font-caption);
                 margin-top: 5px;
                 padding-top: 0;
                 color: var(--color-accent);
@@ -178,7 +191,7 @@ p {
 }
 @media (max-width: 768px) {
     .mfp-close {
-        font-size: 2.8125rem;
+        font-size: var(--font-page-title-sm);
     }
     .wrap--stack {
         height: 100dvh;
@@ -220,14 +233,14 @@ p {
         max-width: 80%;
         margin: 0 auto;
     }
-    h2 {
-        line-height: 50px;
-        font-size: 2.8125rem;
+    .stack-name {
+        line-height: 1;
+        font-size: var(--font-page-title-sm);
         display: inline;
         padding-left: 15px;
         padding-right: 15px;
     }
-    p {
+    .subcopy p {
         padding-left: 15px;
         padding-right: 15px;
     }

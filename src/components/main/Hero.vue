@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="main__navbar--logo--container">
-                            <a href="#" aria-label="Danny Gibas — home">
+                            <a href="/" aria-label="Danny Gibas — home">
                                 <svg
                                     version="1.1"
                                     id="Logo"
@@ -280,18 +280,19 @@
             <div class="main__masthead--content">
                 <div class="wrap--hero-copy">
                     <div class="welcome-block">
-                        <h1 id="firstname">
+                        <h1 class="sr-only">Danny Gibas</h1>
+                        <div id="firstname" class="hero-name-line" aria-hidden="true">
                             <span>d</span>
                             <span>a</span>
                             <span>n</span>
-                        </h1>
-                        <h1 id="lastname">
+                        </div>
+                        <div id="lastname" class="hero-name-line" aria-hidden="true">
                             <span>g</span>
                             <span>i</span>
                             <span>b</span>
                             <span>a</span>
                             <span>s</span>
-                        </h1>
+                        </div>
                         <div class="tagline">
                             Front End Developer. UX/UI Designer.
                         </div>
@@ -385,8 +386,8 @@ export default {
         this.handleScroll()
 
         setTimeout(function () {
-            //$('h1#firstname span').removeClass("alter");
-            //$('h1#lastname span').removeClass("alter");
+            //$('#firstname span').removeClass("alter");
+            //$('#lastname span').removeClass("alter");
             $('.scrolldown').addClass('grow')
             $('.dot').addClass('show')
             $('.scroll-text').addClass('show')
@@ -621,7 +622,7 @@ svg.dot {
     button {
         cursor: pointer;
         color: $gray-darker;
-        font-size: 0.8em;
+        font-size: var(--text-md); /* 18px desktop */
         font-family: 'AvenirLTStdBlack';
         white-space: nowrap;
     }
@@ -654,7 +655,7 @@ svg.dot {
             display: block;
             flex: 0 0 auto;
             cursor: pointer;
-            margin-right: 20px;
+            margin-right: 28px;
             float: none;
             &:last-child {
                 margin-right: 0;
@@ -664,7 +665,7 @@ svg.dot {
     @media (max-width: 768px) {
         a,
         button {
-            font-size: 0.72em;
+            font-size: var(--text-hero-em-md);
         }
         ul {
             padding-left: 10px !important;
@@ -677,7 +678,7 @@ svg.dot {
     @media (max-width: 400px) {
         a,
         button {
-            font-size: 0.62em;
+            font-size: var(--text-hero-em-sm);
         }
         ul li {
             margin-right: 8px;
@@ -715,7 +716,7 @@ svg.dot {
         top: -10px;
         left: -1px;
         z-index: 200;
-        font-size: 0.5625rem;
+        font-size: var(--font-micro);
         font-family: 'AvenirLTStdLight';
         color: var(--color-background);
     } //end open-icon-text
@@ -859,7 +860,7 @@ svg.dot {
         .main__navbar--logo--container {
             display: inline;
             a {
-                font-size: 1.875rem;
+                font-size: var(--font-display-sm);
                 font-family: 'AvenirLTStdBlack';
                 position: relative;
             }
@@ -882,10 +883,10 @@ svg.dot {
             color: $color-white;
             z-index: 1002;
             .main__navbar-item {
-                font-size: 1.875rem;
+                font-size: var(--font-display-sm);
             }
             i {
-                font-size: 1.875rem;
+                font-size: var(--font-display-sm);
             }
         }
         /* Keep the close (X) toggle visible on the white open menu */
@@ -965,7 +966,7 @@ svg.dot {
                     top: 70px;
                     transform: rotate(-90deg);
                     font-family: 'proxima_novablack';
-                    font-size: 0.8125rem;
+                    font-size: var(--font-helper);
                     right: 2px;
                     width: 100px;
                     opacity: 0;
@@ -985,7 +986,7 @@ svg.dot {
             color: $color-white;
             a {
                 color: $color-white;
-                font-size: 0.75rem;
+                font-size: var(--font-caption);
             }
         }
     }
@@ -1083,7 +1084,7 @@ svg.dot {
 }
 
 h1.hero-title {
-    font-size: 13.75rem;
+    font-size: var(--text-hero);
     font-family: 'proxima_novablack';
     line-height: 1em !important;
     letter-spacing: -3px;
@@ -1100,7 +1101,7 @@ h1.hero-title {
         z-index: 200;
         font-family: 'AvenirLTStdLight';
         color: white;
-        font-size: 1rem;
+        font-size: var(--font-body);
         left: 200px;
         top: 5px;
         letter-spacing: 0.1px;
@@ -1121,9 +1122,9 @@ h1.hero-title {
         width: 850px;
         height: 150px;
         text-align: center;
-        h1 {
+        .hero-name-line {
             color: rgb(247, 247, 247);
-            font-size: 11.25rem;
+            font-size: var(--text-hero-lg);
             letter-spacing: -31px;
             text-shadow: -10px 1px 14px rgba(0, 0, 0, 0.26);
             line-height: 0.7em;
@@ -1137,7 +1138,7 @@ h1.hero-title {
             opacity: 0;
         }
 
-        h1#firstname {
+        #firstname {
             position: relative;
             z-index: 300;
             margin-right: 20px;
@@ -1177,7 +1178,7 @@ h1.hero-title {
             }
         }
 
-        h1#lastname {
+        #lastname {
             position: relative;
             z-index: 300;
             display: inline;
@@ -1259,13 +1260,13 @@ h1.hero-title {
         .welcome-block {
             width: 560px;
             right: 0;
-            h1 {
-                font-size: 9.375rem;
+            .hero-name-line {
+                font-size: var(--text-hero-md);
                 letter-spacing: -26px;
             }
-            h1#firstname {
+            #firstname {
             }
-            h1#lastname {
+            #lastname {
             }
         }
         .tagline {
@@ -1273,7 +1274,7 @@ h1.hero-title {
             margin-left: 0;
             left: 173px;
             top: -2px;
-            font-size: 0.8125rem;
+            font-size: var(--font-helper);
         }
     }
 }
@@ -1300,16 +1301,16 @@ h1.hero-title {
             position: relative;
             transform: scale(calc((100vw - 40px) / 327));
             transform-origin: center center;
-            h1 {
-                font-size: 9.375rem;
+            .hero-name-line {
+                font-size: var(--text-hero-md);
                 letter-spacing: -26px;
             }
-            h1#firstname {
+            #firstname {
                 display: block;
                 width: 233px;
                 margin: 0;
             }
-            h1#lastname {
+            #lastname {
                 display: block;
                 position: relative;
                 top: -3px;
@@ -1325,7 +1326,7 @@ h1.hero-title {
             top: auto;
             bottom: -10px;
             margin: 0;
-            font-size: 0.8125rem;
+            font-size: var(--font-helper);
             letter-spacing: 0.02em;
             white-space: nowrap;
         }
@@ -1354,16 +1355,16 @@ h1.hero-title {
             position: relative;
             transform: scale(calc((100vw - 40px) / 327));
             transform-origin: center center;
-            h1 {
-                font-size: 8.75rem;
+            .hero-name-line {
+                font-size: var(--text-hero-sm);
                 letter-spacing: -24px;
             }
-            h1#firstname {
+            #firstname {
                 display: block;
                 width: 220px;
                 margin: 0;
             }
-            h1#lastname {
+            #lastname {
                 display: block;
                 position: relative;
                 top: -3px;
@@ -1379,7 +1380,7 @@ h1.hero-title {
             top: auto;
             bottom: -10px;
             margin: 0;
-            font-size: 0.75rem;
+            font-size: var(--font-caption);
             letter-spacing: 0.02em;
             white-space: nowrap;
         }
@@ -1404,7 +1405,7 @@ h1.hero-title {
         color: #000;
         font-family: 'AvenirLTStdBook';
         text-transform: uppercase;
-        font-size: 6.25rem;
+        font-size: var(--text-hero-xs);
     }
     .light img {
         position: absolute;

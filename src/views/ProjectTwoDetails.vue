@@ -41,7 +41,7 @@
                     official NPS link remain reachable without fighting the
                     photo for space.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part2' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part2' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part2">
@@ -53,7 +53,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Auth over park details</h4>
+                <h3>Auth over park details</h3>
                 <p>
                     Auth is intentional, not ambient. Visiting and notes require
                     an account, so the sign-in modal opens in place over the
@@ -72,7 +72,7 @@
                     targets; the underlying details chrome remains visible at
                     the edges so interest in the park is not lost mid-flow.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part3' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part3' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part3">
@@ -84,7 +84,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Search results grid</h4>
+                <h3>Search results grid</h3>
                 <p>
                     Search returns a restrained earth-tone grid of park cards.
                     Each card leads with photography, then category and state
@@ -102,7 +102,7 @@
                     the viewport narrows. Pagination sits under the grid so
                     browsing large NPS result sets stays predictable.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part4' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part4' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part4">
@@ -114,7 +114,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Field Log on mobile</h4>
+                <h3>Field Log on mobile</h3>
                 <p>
                     The Field Log is the personal half of the product: a
                     chronological list of places you have marked visited, with
@@ -134,7 +134,7 @@
                     each row into a card farm that fights the cream
                     field-journal palette.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part5' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part5' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part5">
@@ -146,7 +146,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Category filter on small screens</h4>
+                <h3>Category filter on small screens</h3>
                 <p>
                     NPS search spans parks, people, places, things to do, tours,
                     and campgrounds. On mobile, category selection uses a
@@ -176,12 +176,12 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="internal"
-                    >GitHub &rarr;</a
+                    >GitHub <arrow-right /></a
                 >
                 <router-link
                     :to="{ path: '/', hash: '#project-two' }"
                     class="internal"
-                    >back to portfolio &rarr;</router-link
+                    >back to portfolio <arrow-right /></router-link
                 >
             </div>
         </div>
@@ -194,10 +194,12 @@ import imageTwo from './../assets/p2/p2-2.webp'
 import imageThree from './../assets/p2/p2-3.webp'
 import imageFour from './../assets/p2/p2-4.webp'
 import imageFive from './../assets/p2/p2-5.webp'
+import ArrowDown from './../components/ArrowDown.vue'
+import ArrowRight from './../components/ArrowRight.vue'
 import DetailImage from './../components/main/DetailImage.vue'
 export default {
     name: 'ProjectTwoDetails',
-    components: { DetailImage },
+    components: { DetailImage, ArrowRight, ArrowDown },
     data() {
         return {
             imageOne,
@@ -216,23 +218,25 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: var(--color-ink);
-        font-size: 1.5625rem;
+        font-size: var(--font-h2);
         margin-top: 0px;
         line-height: 1em;
     }
-    h4 {
+    h3 {
         font-family: 'proxima_novablack';
-        font-size: 1.25rem;
+        font-size: var(--font-h3);
         color: var(--color-ink);
+        margin-bottom: 0.75rem;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: var(--color-ink);
-        font-size: 0.75rem;
+        font-size: var(--font-h5);
         margin-top: 5px;
+        margin-bottom: 0.75rem;
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
     }
     button.internal {
         background: none;
@@ -248,14 +252,15 @@ export default {
     a.internal,
     button.internal {
         color: var(--color-accent);
-        font-size: 0.875rem;
+        font-size: var(--font-button);
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
         text-decoration: none;
         margin-top: 15px;
         margin-right: 12px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         &:hover {
             padding-left: 20px;
         }
@@ -271,7 +276,7 @@ export default {
     }
     ul {
         li {
-            font-size: 0.875rem;
+            font-size: var(--font-body);
         }
     }
     ::v-deep .detail-image:has(.mobile-shot) {

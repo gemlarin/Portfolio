@@ -13,6 +13,7 @@
                 <span class="mfp-close" aria-hidden="true">×</span>
             </button>
             <div class="wrap--centering">
+                <h1 class="sr-only">Résumé</h1>
                 <h2>Experience</h2>
                 <p>Aspenware, Senior Front End Developer</p>
                 <p>Parkifi, Software Engineer II</p>
@@ -27,7 +28,9 @@
                         href="/danny_gibas_resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        >Full Résumé</a
+                        >Full Résumé<span class="sr-only">
+                            (opens in new tab)</span
+                        ></a
                     >
                 </p>
             </div>
@@ -61,7 +64,7 @@ export default {
 a.cta-link {
     color: var(--color-accent);
     font-family: inherit;
-    font-size: 0.875rem;
+    font-size: var(--font-button);
     margin-top: 0;
     margin-right: 0;
     display: inline-block;
@@ -83,11 +86,11 @@ a.cta-link {
 }
 h2 {
     font-family: 'proxima_novablack';
-    font-size: 1.75rem;
+    font-size: var(--font-subhead);
     color: var(--color-foreground);
     margin: 0 0 8px;
     line-height: 1.15;
-    &:not(:first-child) {
+    &:not(:first-of-type) {
         margin-top: 28px;
     }
 }
@@ -103,7 +106,7 @@ h2 {
 }
 p {
     font-family: 'AvenirLTStdLight';
-    font-size: 0.9375rem;
+    font-size: var(--font-body);
     line-height: 1.5em;
     padding-left: 0;
     color: var(--color-foreground);
@@ -139,7 +142,7 @@ p {
     top: 0;
 }
 .mfp-close {
-    font-size: 3.125rem;
+    font-size: var(--font-page-title);
     right: 10px;
     top: 10px;
 }
@@ -175,14 +178,14 @@ p {
         text-decoration: none;
         li {
             display: block;
-            font-size: 2rem;
+            font-size: var(--font-h2);
             font-family: 'proxima_novablack';
             p {
                 margin-bottom: 0;
                 line-height: 1em;
             }
             .subtext {
-                font-size: 0.75rem;
+                font-size: var(--font-caption);
                 margin-top: 5px;
                 padding-top: 0;
                 color: var(--color-accent);
@@ -194,7 +197,7 @@ p {
 }
 @media (max-width: 768px) {
     .mfp-close {
-        font-size: 2.8125rem;
+        font-size: var(--font-page-title-sm);
     }
     .wrap--stack {
         height: 100dvh;

@@ -16,13 +16,13 @@
                     class="cta-link"
                     @click="$router.push('/project-five-details')"
                 >
-                    view project<span aria-hidden="true">&rarr;</span>
+                    view project<arrow-right />
                 </button>
                 <a
                     href="https://princetonnassaupediatrics.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >visit site <span aria-hidden="true">&rarr;</span></a
+                    >visit site <arrow-right /></a
                 >
                 <hr />
                 <div class="technology">
@@ -61,10 +61,11 @@
 
 <script>
 import projectFourImg from './../../../assets/project-five.webp'
+import ArrowRight from './../../../components/ArrowRight.vue'
 import DetailImage from './../DetailImage.vue'
 export default {
     name: 'ProjectFive',
-    components: { DetailImage },
+    components: { DetailImage, ArrowRight },
     data() {
         return {
             activeImage: projectFourImg,
@@ -89,25 +90,25 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: var(--color-ink);
-        font-size: 1.5625rem;
-        margin-top: 40px;
+        font-size: var(--font-h2);
         line-height: 1em;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: var(--color-ink);
-        font-size: 0.75rem;
+        font-size: var(--font-h5);
         margin-top: 5px;
+        margin-bottom: 0.75rem;
     }
     .outcome {
         font-family: 'AvenirLTStdLight';
-        font-size: 0.875rem;
+        font-size: var(--font-body);
         color: var(--color-ink);
         margin: 6px 0 18px;
         line-height: 1.4;
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
     }
     hr {
         border: 0;
@@ -117,10 +118,11 @@ export default {
     a,
     button.cta-link {
         color: var(--color-accent);
-        margin-top: 10px;
+        margin-top: 15px;
         margin-right: 12px;
-        display: inline-block;
-        font-size: 0.875rem;
+        display: inline-flex;
+        align-items: center;
+        font-size: var(--font-button);
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
@@ -157,7 +159,7 @@ export default {
             padding-left: 15px;
         }
         h2 {
-            margin-top: 30px;
+            margin-top: 10px;
         }
     }
 }

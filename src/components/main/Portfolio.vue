@@ -55,7 +55,7 @@ export default {
         align-self: auto;
         z-index: 302;
         height: 50px;
-        font-size: 3.125rem;
+        font-size: var(--font-page-title);
         background-image: url(./../../assets/backmask.webp);
         -webkit-background-clip: text;
         background-clip: text;
@@ -69,11 +69,11 @@ export default {
 @media (max-width: 768px) {
     .wrap.dialog {
         background-attachment: initial;
-        height: 300px;
+        height: 280px;
 
         h2.animated-alt {
             color: transparent;
-            font-size: clamp(34px, 10.3vw, 51px);
+            font-size: var(--text-portfolio-fluid);
             height: auto;
             line-height: 1.1;
             white-space: nowrap;
@@ -85,7 +85,7 @@ export default {
 
 @media (max-width: 499px) {
     .wrap.dialog h2.animated-alt {
-        font-size: clamp(29px, 9.1vw, 39px);
+        font-size: var(--text-portfolio-fluid-sm);
     }
 }
 .col-12 {

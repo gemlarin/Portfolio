@@ -136,10 +136,11 @@ export default {
     font: inherit;
     cursor: pointer;
     color: var(--color-accent);
-    font-size: 0.875rem;
-    margin-top: 10px;
+    font-size: var(--font-button);
+    margin-top: 15px;
     margin-right: 12px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     border-top: 3px solid var(--color-accent);
     border-left: 3px solid var(--color-accent);
     padding: 5px 12px;
@@ -170,7 +171,7 @@ export default {
     transform: translateX(-50%);
     padding: 4px 8px;
     white-space: nowrap;
-    font-size: 0.75rem;
+    font-size: var(--font-caption);
     font-family: 'AvenirLTStdBook', sans-serif;
     line-height: 1.2;
     color: var(--color-background);

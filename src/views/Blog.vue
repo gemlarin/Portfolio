@@ -5,7 +5,7 @@
         </div>
         <div class="wrap--stack">
             <div ref="listScroll" class="wrap--centering blog-list">
-                <h2>Frontend Field Notes</h2>
+                <h1 class="blog-title">Frontend Field Notes</h1>
                 <p class="lede">
                     Practical notes on frontend engineering, design, and
                     shipping.
@@ -17,7 +17,7 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Read on Hashnode (opens in new tab)"
-                        >Read on Hashnode ↗</a
+                        >Read on Hashnode <external-arrow /></a
                     >
                 </p>
 
@@ -51,6 +51,7 @@
                         :href="blogUrl"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Open Hashnode (opens in new tab)"
                         >Open Hashnode</a
                     >
                 </p>
@@ -60,6 +61,7 @@
                         :href="blogUrl"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Frontend Field Notes on Hashnode (opens in new tab)"
                         >Frontend Field Notes</a
                     >.
                 </p>
@@ -159,12 +161,7 @@
                                 loadingMore
                                     ? 'Loading…'
                                     : 'Load more'
-                            }}<span
-                                v-if="!loadingMore"
-                                class="load-more-arrow"
-                                aria-hidden="true"
-                                >&darr;</span
-                            >
+                            }}<arrow-down v-if="!loadingMore" />
                         </button>
                         <p
                             v-if="loadMoreError"
@@ -190,18 +187,23 @@
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import ExternalArrow from './../components/ExternalArrow.vue'
+import ArrowDown from './../components/ArrowDown.vue'
 import escapeClose from './../mixins/escapeClose'
 import {
     fetchHashnodePublication,
     HASHNODE_BLOG_URL,
     BLOG_PAGE_SIZE,
 } from './../utils/hashnode'
+import { formatDate } from './../utils/formatDate'
 
 export default {
     name: 'Blog',
     mixins: [escapeClose],
     components: {
         Navi: Nav,
+        ExternalArrow,
+        ArrowDown,
     },
     data() {
         return {
@@ -215,6 +217,8 @@ export default {
             hasNextPage: false,
             endCursor: null,
             savedScrollTop: 0,
+            postsGen: 0,
+            postsAbort: null,
         }
     },
     computed: {
@@ -247,12 +251,10 @@ export default {
         showLoadMore() {
             return (
                 this.hasNextPage &&
+                !this.loading &&
                 this.visiblePosts.length >= BLOG_PAGE_SIZE
             )
         },
-    },
-    created() {
-        this.loadPosts()
     },
     activated() {
         if (!this.posts.length) {
@@ -265,6 +267,9 @@ export default {
             return
         }
         this.restoreListScroll()
+    },
+    beforeDestroy() {
+        this.abortPostsFetch()
     },
     beforeRouteLeave(to, from, next) {
         const path = (to && to.path) || ''
@@ -280,11 +285,20 @@ export default {
         next()
     },
     methods: {
+        formatDate,
         closePage() {
             this.resetBlogList()
             this.$router.push({ path: '/', hash: '#introduction' })
         },
+        abortPostsFetch() {
+            if (this.postsAbort) {
+                this.postsAbort.abort()
+                this.postsAbort = null
+            }
+        },
         resetBlogList() {
+            this.abortPostsFetch()
+            this.postsGen += 1
             this.posts = []
             this.hasNextPage = false
             this.endCursor = null
@@ -310,18 +324,30 @@ export default {
             })
         },
         async loadPosts() {
+            this.abortPostsFetch()
+            const gen = ++this.postsGen
+            const controller =
+                typeof AbortController !== 'undefined'
+                    ? new AbortController()
+                    : null
+            this.postsAbort = controller
             this.loading = true
+            this.loadingMore = false
             this.error = ''
             this.loadMoreError = ''
             try {
                 const data = await fetchHashnodePublication({
                     first: BLOG_PAGE_SIZE,
+                    signal: controller ? controller.signal : null,
                 })
+                if (gen !== this.postsGen) return
                 this.posts = data.posts
                 this.hasNextPage = data.hasNextPage
                 this.endCursor = data.endCursor
                 if (data.url) this.blogUrl = data.url
             } catch (err) {
+                if (err && err.name === 'AbortError') return
+                if (gen !== this.postsGen) return
                 this.error =
                     (err && err.message) ||
                     'Could not load posts from Hashnode.'
@@ -329,38 +355,46 @@ export default {
                 this.hasNextPage = false
                 this.endCursor = null
             } finally {
-                this.loading = false
+                if (gen === this.postsGen) {
+                    this.loading = false
+                    this.postsAbort = null
+                }
             }
         },
         async loadMore() {
             if (!this.hasNextPage || this.loadingMore || !this.endCursor) {
                 return
             }
+            this.abortPostsFetch()
+            const gen = ++this.postsGen
+            const controller =
+                typeof AbortController !== 'undefined'
+                    ? new AbortController()
+                    : null
+            this.postsAbort = controller
             this.loadingMore = true
             this.loadMoreError = ''
             try {
                 const data = await fetchHashnodePublication({
                     first: BLOG_PAGE_SIZE,
                     after: this.endCursor,
+                    signal: controller ? controller.signal : null,
                 })
+                if (gen !== this.postsGen) return
                 this.posts = this.posts.concat(data.posts)
                 this.hasNextPage = data.hasNextPage
                 this.endCursor = data.endCursor
             } catch (err) {
+                if (err && err.name === 'AbortError') return
+                if (gen !== this.postsGen) return
                 this.loadMoreError =
                     (err && err.message) || 'Could not load more posts.'
             } finally {
-                this.loadingMore = false
+                if (gen === this.postsGen) {
+                    this.loadingMore = false
+                    this.postsAbort = null
+                }
             }
-        },
-        formatDate(value) {
-            const d = new Date(value)
-            if (Number.isNaN(d.getTime())) return value
-            return d.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-            })
         },
         formatBrief(brief) {
             const text = String(brief || '').trim()
@@ -404,15 +438,16 @@ export default {
     background-color: transparent;
     box-sizing: border-box;
 }
-h2 {
+h2,
+.blog-title {
     font-family: 'proxima_novablack';
-    font-size: 1.75rem;
+    font-size: var(--font-h1);
     color: var(--color-foreground);
     margin: 0 0 4px;
 }
 .lede {
     font-family: 'AvenirLTStdBlack';
-    font-size: 0.9375rem;
+    font-size: var(--font-lede);
     color: var(--color-foreground);
     margin: 0 0 8px;
     line-height: 1.5;
@@ -424,10 +459,12 @@ h2 {
     color: var(--color-accent);
     text-decoration: none;
     font-family: 'AvenirLTStdBook';
-    font-size: 0.8125rem;
+    font-size: var(--font-meta);
     font-weight: normal;
     line-height: 1.5;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
 }
 @media (hover: hover) and (pointer: fine) {
     .lede-hashnode:hover {
@@ -436,7 +473,7 @@ h2 {
 }
 .status {
     font-family: 'AvenirLTStdBook';
-    font-size: 0.875rem;
+    font-size: var(--font-small);
     color: var(--color-muted);
     a {
         color: var(--color-accent);
@@ -462,7 +499,7 @@ h2 {
 }
 .tag-filter {
     font-family: 'AvenirLTStdBook';
-    font-size: 0.875rem;
+    font-size: var(--font-small);
     color: var(--color-muted);
     margin: 0 0 20px;
 }
@@ -529,7 +566,7 @@ h2 {
 .post-title {
     display: block;
     font-family: 'AvenirLTStdMedium';
-    font-size: 1.125rem;
+    font-size: var(--font-post-title);
     line-height: 1.1;
     color: var(--color-foreground);
     transition: color 0.15s ease;
@@ -539,13 +576,13 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 4px 10px;
-    margin: 8px 0 0;
+    margin: 10px 0 0;
     padding: 0;
     li {
         margin: 0;
         padding: 0;
         font-family: 'AvenirLTStdMedium';
-        font-size: 0.75rem;
+        font-size: var(--font-small);
         line-height: 1.2;
     }
 }
@@ -568,7 +605,7 @@ h2 {
 .post-date {
     display: block;
     font-family: 'AvenirLTStdLight';
-    font-size: 0.75rem;
+    font-size: var(--font-small);
     color: var(--color-muted);
     margin-top: 6px;
 }
@@ -579,7 +616,7 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: 'AvenirLTStdBook';
-    font-size: 0.875rem;
+    font-size: var(--font-body);
     color: var(--color-foreground);
     margin-top: 6px;
     line-height: 1.5;
@@ -590,7 +627,7 @@ h2 {
 }
 button.cta-link.load-more {
     color: var(--color-accent);
-    font-size: 0.875rem;
+    font-size: var(--font-button);
     margin-top: 0;
     margin-right: 0;
     display: inline-block;
@@ -611,9 +648,6 @@ button.cta-link.load-more {
         opacity: 0.6;
         cursor: wait;
     }
-}
-.load-more-arrow {
-    margin-left: 5px;
 }
 .load-more-error {
     margin: 12px 0 0;

@@ -152,7 +152,7 @@ module.exports = (env, argv) => {
         "process.env.NODE_ENV": JSON.stringify(
           isProd ? "production" : "development",
         ),
-        "process.env.WEB3FORMS_ACCESS_KEY": JSON.stringify(web3formsAccessKey),
+        WEB3FORMS_ACCESS_KEY: JSON.stringify(web3formsAccessKey),
       }),
     ],
     resolve: {

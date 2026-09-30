@@ -27,7 +27,7 @@
                     class="cta-link"
                     @click="$router.push('/project-six-details')"
                 >
-                    view project<span aria-hidden="true">&rarr;</span>
+                    view project<arrow-right />
                 </button>
             </div>
         </div>
@@ -36,10 +36,11 @@
 
 <script>
 import projectSixImg from './../../../assets/project-six.webp'
+import ArrowRight from './../../../components/ArrowRight.vue'
 import DetailImage from './../DetailImage.vue'
 export default {
     name: 'ProjectSix',
-    components: { DetailImage },
+    components: { DetailImage, ArrowRight },
     data() {
         return {
             activeImage: projectSixImg,
@@ -64,31 +65,32 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: var(--color-ink);
-        font-size: 1.5625rem;
-        margin-top: 40px;
+        font-size: var(--font-h2);
         line-height: 1em;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: var(--color-ink);
-        font-size: 0.75rem;
+        font-size: var(--font-h5);
         margin-top: 5px;
+        margin-bottom: 0.75rem;
     }
     .outcome {
         font-family: 'AvenirLTStdLight';
-        font-size: 0.875rem;
+        font-size: var(--font-body);
         color: var(--color-ink);
         margin: 6px 0 18px;
         line-height: 1.4;
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
     }
     a {
         color: var(--color-accent);
-        font-size: 0.875rem;
-        margin-top: 10px;
-        display: inline-block;
+        font-size: var(--font-button);
+        margin-top: 15px;
+        display: inline-flex;
+        align-items: center;
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
@@ -135,7 +137,7 @@ export default {
             padding-left: 15px;
         }
         h2 {
-            margin-top: 20px;
+            margin-top: 10px;
         }
     }
 }

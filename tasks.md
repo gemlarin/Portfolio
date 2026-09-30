@@ -1,13 +1,13 @@
-# Task: Brand tokens + contact form fix
+# Task: Site-wide type scale via theme vars
 
 ## Spec
-- Goal: Finish brand color tokens; fix contact form send failure
-- In scope: Expand `theme.css`; replace remaining app hex; fix FormSubmit endpoint/errors
-- Out of scope: Vendor CSS; Hero Sass gray scale `lighten()` ladder
-- Done when: Contact sends (or clear actionable error); app brand hexes use vars; build OK
+- Goal: Consistent heading/body/meta font sizes, all controllable from `theme.css`
+- In scope: CSS variables + wire components to them; unify obvious outliers
+- Out of scope: Vendor CSS (magnific-popup)
+- Done when: Type tokens live in theme; app text uses `var(--…)`; no one-off rem literals for shared roles
 
 ## Tasks
-- [ ] Fix contact FormSubmit send / error messaging
-- [ ] Expand theme tokens; replace remaining app hex
-- [ ] Build verify
+- [x] Define type scale + semantic aliases in theme.css
+- [x] Wire element defaults (p, h1–h5, code)
+- [x] Replace site font-size literals with vars
 - [ ] Code sweep (prompt D for topics — see AGENTS.md)

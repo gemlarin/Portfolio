@@ -29,7 +29,7 @@
                     React / Next.js app with structured LLM generation after the
                     design is complete.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part2' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part2' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part2">
@@ -41,7 +41,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Wireframes</h4>
+                <h3>Wireframes</h3>
                 <p>
                     Before high-fidelity mocks, the IA had to answer one
                     question: how does a first-time visitor understand SpecForge
@@ -55,7 +55,7 @@
                     where fences vs. generated artifacts would live once the
                     user is inside a project.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part3' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part3' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part3">
@@ -67,7 +67,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Mobile — first-time visitor</h4>
+                <h3>Mobile — first-time visitor</h3>
                 <p>
                     The first-run mobile landing leads with the SpecForge mark
                     and a one-line promise, then two clear actions: open the
@@ -80,7 +80,7 @@
                     competing. This state assumes the guest has never opened a
                     project.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part4' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part4' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part4">
@@ -92,7 +92,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Mobile — return visitor</h4>
+                <h3>Mobile — return visitor</h3>
                 <p>
                     Return visitors skip the “what is this?” overview. The
                     mobile return state tilts toward continuing work: recent or
@@ -105,7 +105,7 @@
                     system matters so the product feels like one app across
                     sessions, not a marketing page bolted onto an editor.
                 </p>
-                <button type="button" class="internal" @click="$router.push({ hash: '#part5' })">more &darr;</button>
+                <button type="button" class="internal" @click="$router.push({ hash: '#part5' })">more <arrow-down /></button>
             </div>
         </div>
         <div class="row" id="part5">
@@ -117,7 +117,7 @@
                 />
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-container">
-                <h4>Desktop — return visitor</h4>
+                <h3>Desktop — return visitor</h3>
                 <p>
                     The desktop return landing gives the brand room to breathe
                     while keeping the dual CTAs as the only decisions on the
@@ -141,7 +141,7 @@
                 <router-link
                     :to="{ path: '/', hash: '#project-three' }"
                     class="internal"
-                    >back to portfolio &rarr;</router-link
+                    >back to portfolio <arrow-right /></router-link
                 >
             </div>
         </div>
@@ -153,11 +153,13 @@ import imageOne from './../assets/p3/p3-1.webp'
 import imageTwo from './../assets/p3/p3-2.webp'
 import imageThree from './../assets/p3/p3-3.webp'
 import imageFour from './../assets/p3/p3-4.webp'
+import ArrowDown from './../components/ArrowDown.vue'
+import ArrowRight from './../components/ArrowRight.vue'
 import DetailImage from './../components/main/DetailImage.vue'
 
 export default {
     name: 'ProjectThreeDetails',
-    components: { DetailImage },
+    components: { DetailImage, ArrowRight, ArrowDown },
     data() {
         return {
             imageOne,
@@ -175,23 +177,25 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: var(--color-ink);
-        font-size: 1.5625rem;
+        font-size: var(--font-h2);
         margin-top: 0px;
         line-height: 1em;
     }
-    h4 {
+    h3 {
         font-family: 'proxima_novablack';
-        font-size: 1.25rem;
+        font-size: var(--font-h3);
         color: var(--color-ink);
+        margin-bottom: 0.75rem;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: var(--color-ink);
-        font-size: 0.75rem;
+        font-size: var(--font-h5);
         margin-top: 5px;
+        margin-bottom: 0.75rem;
     }
     p {
-        font-size: 0.875rem;
+        font-size: var(--font-body);
     }
     button.internal {
         background: none;
@@ -207,14 +211,15 @@ export default {
     a.internal,
     button.internal {
         color: var(--color-accent);
-        font-size: 0.875rem;
+        font-size: var(--font-button);
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
         text-decoration: none;
         margin-top: 15px;
         margin-right: 12px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         &:hover {
             padding-left: 20px;
         }
@@ -234,7 +239,7 @@ export default {
     }
     ul {
         li {
-            font-size: 0.875rem;
+            font-size: var(--font-body);
         }
     }
     ::v-deep .detail-image:has(.wireframe-shot) {
