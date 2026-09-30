@@ -210,43 +210,6 @@ export default {
 $brand-primary: var(--color-accent-alt) !default;
 $color-white: var(--color-background) !default;
 
-@font-face {
-    font-family: 'proxima_novablack';
-    src: url('./assets/fonts/pxoxima-webfont.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: 'AvenirLTStdLight';
-    src: url('./assets/fonts/AvenirLTStdLight.woff2') format('woff2');
-    font-display: block;
-}
-
-@font-face {
-    font-family: 'AvenirLTStdBook';
-    src: url('./assets/fonts/AvenirLTStdBook.woff2') format('woff2');
-    font-display: block;
-}
-
-@font-face {
-    font-family: 'AvenirLTStdMedium';
-    src: url('./assets/fonts/AvenirLTStdMedium.woff2') format('woff2');
-    font-display: block;
-}
-
-@font-face {
-    font-family: 'AvenirLTStdBlack';
-    src: url('./assets/fonts/AvenirLTStdBlack.woff2') format('woff2');
-    font-display: block;
-}
-
-html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 /* WebKit, Blink, Edge */
 .form-control::-webkit-input-placeholder {
     color: black;

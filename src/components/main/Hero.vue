@@ -144,89 +144,26 @@
                                                 drawerOpen ? 'false' : 'true'
                                             "
                                         >
-                                            <div class="icon">
+                                            <div
+                                                v-for="link in socialLinks"
+                                                :key="link.id"
+                                                class="icon"
+                                            >
                                                 <a
-                                                    href="https://www.linkedin.com/in/dannygibas/"
+                                                    :href="link.url"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    aria-label="LinkedIn (opens in new tab)"
+                                                    :aria-label="
+                                                        link.label +
+                                                            ' (opens in new tab)'
+                                                    "
                                                     :tabindex="
                                                         drawerOpen ? 0 : -1
                                                     "
                                                 >
-                                                    <svg
-                                                        version="1.1"
-                                                        id="Capa_1"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                        x="0px"
-                                                        y="0px"
-                                                        viewBox="0 0 512 512"
-                                                        style="
-                                                            enable-background: new
-                                                                0 0 512 512;
-                                                        "
-                                                        xml:space="preserve"
-                                                    >
-                                                        <g>
-                                                            <path
-                                                                class="svgicon"
-                                                                d="M255.196,3C115.0327,3,1.392,116.6407,1.392,256.804s113.6407,253.804,253.804,253.804
-                                        S509,396.9673,509,256.804C509,116.6094,395.3593,3,255.196,3z M191.745,379.7402h-63.451v-222.079h63.451V379.7402z
-                                        M161.9862,144.0514c-16.4339,0-29.7265-13.3249-29.7265-29.7588s13.3249-29.7588,29.7265-29.7588
-                                        c16.4339,0.0313,29.7588,13.3562,29.7588,29.7588C191.745,130.7265,178.4201,144.0514,161.9862,144.0514z M413.823,379.7402
-                                        h-63.451V242.4323c0-16.0853-4.6003-27.347-24.3654-27.347c-32.7728,0-39.0856,27.347-39.0856,27.347v137.3079H223.47v-222.079
-                                        h63.451v21.2241c9.0732-6.9474,31.7249-21.1928,63.451-21.1928c20.5583,0,63.451,12.3095,63.451,86.6736L413.823,379.7402
-                                        L413.823,379.7402z"
-                                                            />
-                                                        </g>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                            <div class="icon">
-                                                <a
-                                                    href="https://github.com/gemlarin"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    aria-label="GitHub (opens in new tab)"
-                                                    :tabindex="
-                                                        drawerOpen ? 0 : -1
-                                                    "
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24"
-                                                        aria-hidden="true"
-                                                        focusable="false"
-                                                    >
-                                                        <path
-                                                            class="svgicon"
-                                                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                                                        />
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                            <div class="icon">
-                                                <a
-                                                    :href="hashnodeUrl"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    aria-label="Hashnode (opens in new tab)"
-                                                    :tabindex="
-                                                        drawerOpen ? 0 : -1
-                                                    "
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24"
-                                                        aria-hidden="true"
-                                                        focusable="false"
-                                                    >
-                                                        <path
-                                                            class="svgicon"
-                                                            d="M22.351 8.019l-6.37-6.37a5.63 5.63 0 0 0-7.962 0l-6.37 6.37a5.63 5.63 0 0 0 0 7.962l6.37 6.37a5.63 5.63 0 0 0 7.962 0l6.37-6.37a5.63 5.63 0 0 0 0-7.962zM12 15.983a3.983 3.983 0 1 1 0-7.966 3.983 3.983 0 0 1 0 7.966z"
-                                                        />
-                                                    </svg>
+                                                    <social-icon
+                                                        :name="link.id"
+                                                    />
                                                 </a>
                                             </div>
                                         </div>
@@ -349,7 +286,8 @@ import './../../assets/hero__img--home.webp'
 import './../../assets/scrolldown.svg'
 import './../../assets/share.svg'
 import Parallax from 'vue-parallaxy'
-import { HASHNODE_BLOG_URL } from './../../utils/hashnode'
+import SocialIcon from './../SocialIcon.vue'
+import { socialLinks } from './../../data/social'
 export default {
     data: function () {
         return {
@@ -357,11 +295,12 @@ export default {
             navScrolled: false,
             drawerOpen: false,
             navOpen: false,
-            hashnodeUrl: HASHNODE_BLOG_URL,
+            socialLinks,
         }
     },
     components: {
         Parallax,
+        SocialIcon,
     },
     computed: {
         isOpen() {
@@ -772,6 +711,8 @@ svg.dot {
             }
             &.expand {
                 left: 0;
+                padding-right: 14px;
+                border-right: 1px dashed rgba(255, 255, 255, 0.45);
             }
             .icon {
                 height: 20px;
@@ -786,6 +727,10 @@ svg.dot {
                 &:hover {
                     opacity: 0.8;
                 }
+                a {
+                    display: flex;
+                    color: var(--color-background);
+                }
                 svg {
                     display: block;
                     width: 20px;
@@ -795,12 +740,6 @@ svg.dot {
             }
             ._lg {
                 width: 27px;
-            }
-            .svgicon {
-                fill: var(--color-background);
-                &.alt {
-                    fill: $brand-tertiary;
-                }
             }
         }
     }
@@ -914,6 +853,12 @@ svg.dot {
             .svgicon,
             .social-icon {
                 fill: $brand-tertiary !important;
+            }
+            .icon a {
+                color: $brand-tertiary;
+            }
+            #slide.expand {
+                border-right-color: var(--color-accent);
             }
             #open-icon-text {
                 color: $brand-tertiary;

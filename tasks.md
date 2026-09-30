@@ -1,13 +1,12 @@
-# Task: Site-wide type scale via theme vars
+# Task: Privacy policy + footer legal strip
 
 ## Spec
-- Goal: Consistent heading/body/meta font sizes, all controllable from `theme.css`
-- In scope: CSS variables + wire components to them; unify obvious outliers
-- Out of scope: Vendor CSS (magnific-popup)
-- Done when: Type tokens live in theme; app text uses `var(--…)`; no one-off rem literals for shared roles
+- Goal: Privacy page reachable only from a new footer strip link; strip holds Privacy + copyright
+- In scope: `/privacy` page, route, footer strip (`#232221`), link + © text; theme token for strip color
+- Out of scope: Cookie consent banner; disclaimer page; removing GTM/gtag double-load
+- Done when: Strip under existing footer; Privacy opens from strip only; copy covers GA4/GTM + contact form at a plain level
 
 ## Tasks
-- [x] Define type scale + semantic aliases in theme.css
-- [x] Wire element defaults (p, h1–h5, code)
-- [x] Replace site font-size literals with vars
+- [x] Add footer strip token + thin bar (Privacy link + copyright)
+- [x] Privacy view + `/privacy` route (not in main nav)
 - [ ] Code sweep (prompt D for topics — see AGENTS.md)

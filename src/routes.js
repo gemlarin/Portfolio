@@ -7,6 +7,7 @@ const Resume = () => import('./views/Resume.vue')
 const Blog = () => import('./views/Blog.vue')
 const BlogPost = () => import('./views/BlogPost.vue')
 const Thanks = () => import('./views/Thanks.vue')
+const Privacy = () => import('./views/Privacy.vue')
 const ProjectOneDetails = () => import('./views/ProjectOneDetails.vue')
 const ProjectTwoDetails = () => import('./views/ProjectTwoDetails.vue')
 const ProjectThreeDetails = () => import('./views/ProjectThreeDetails.vue')
@@ -22,6 +23,7 @@ export const routes = [
     { path: '/blog', component: Blog },
     { path: '/blog/:slug', component: BlogPost },
     { path: '/thanks', component: Thanks },
+    { path: '/privacy', component: Privacy },
     { path: '/project-one-details', component: ProjectOneDetails },
     { path: '/project-two-details', component: ProjectTwoDetails },
     { path: '/project-three-details', component: ProjectThreeDetails },

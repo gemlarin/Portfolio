@@ -128,7 +128,7 @@ export default {
         margin-bottom: 0.75rem;
     }
     .outcome {
-        font-family: 'AvenirLTStdLight';
+        font-family: 'AvenirLTStdBook';
         font-size: var(--font-body);
         color: var(--color-ink);
         margin: 6px 0 18px;
