@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
 const { VueLoaderPlugin } = require("vue-loader");
@@ -5,9 +6,36 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+function loadDotEnv() {
+  const envPath = path.resolve(__dirname, ".env");
+  const values = {};
+  if (!fs.existsSync(envPath)) return values;
+  fs.readFileSync(envPath, "utf8")
+    .split(/\r?\n/)
+    .forEach((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) return;
+      const eq = trimmed.indexOf("=");
+      if (eq === -1) return;
+      const key = trimmed.slice(0, eq).trim();
+      let val = trimmed.slice(eq + 1).trim();
+      if (
+        (val.startsWith('"') && val.endsWith('"')) ||
+        (val.startsWith("'") && val.endsWith("'"))
+      ) {
+        val = val.slice(1, -1);
+      }
+      values[key] = val;
+    });
+  return values;
+}
+
 module.exports = (env, argv) => {
   const isProd = argv.mode === "production";
   const styleLoader = isProd ? MiniCssExtractPlugin.loader : "vue-style-loader";
+  const fileEnv = loadDotEnv();
+  const web3formsAccessKey =
+    process.env.WEB3FORMS_ACCESS_KEY || fileEnv.WEB3FORMS_ACCESS_KEY || "";
 
   return {
     entry: "./src/main.js",
@@ -124,6 +152,7 @@ module.exports = (env, argv) => {
         "process.env.NODE_ENV": JSON.stringify(
           isProd ? "production" : "development",
         ),
+        "process.env.WEB3FORMS_ACCESS_KEY": JSON.stringify(web3formsAccessKey),
       }),
     ],
     resolve: {

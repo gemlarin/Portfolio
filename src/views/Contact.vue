@@ -25,11 +25,12 @@
                     <form id="contact-form" @submit.prevent="onSubmit">
                         <div id="form">
                             <input
-                                type="text"
-                                name="_honey"
-                                style="display: none"
+                                type="checkbox"
+                                name="botcheck"
                                 tabindex="-1"
                                 autocomplete="off"
+                                style="display: none"
+                                aria-hidden="true"
                             />
                             <div class="field-wrapper">
                                 <label for="firstName">Name</label>
@@ -91,8 +92,8 @@
 import Nav from './../components/main/navs/IntroNav.vue'
 import escapeClose from './../mixins/escapeClose'
 
-const FORM_ENDPOINT =
-    'https://formsubmit.co/ajax/dfgibas@gmail.com'
+const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
+const ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY || ''
 
 export default {
     name: 'contact',
@@ -131,6 +132,11 @@ export default {
         },
         async onSubmit() {
             this.error = ''
+            if (!ACCESS_KEY) {
+                this.error =
+                    'Contact form is not configured yet. Please email me at dfgibas@gmail.com.'
+                return
+            }
             this.sending = true
             try {
                 const response = await fetch(FORM_ENDPOINT, {
@@ -140,17 +146,17 @@ export default {
                         Accept: 'application/json',
                     },
                     body: JSON.stringify({
+                        access_key: ACCESS_KEY,
                         name: this.name,
                         email: this.email,
                         message: this.message,
-                        _subject: 'Portfolio contact form',
-                        _template: 'table',
-                        _captcha: false,
-                        _honey: '',
+                        subject: 'Portfolio contact form',
+                        from_name: 'gemlarin.github.io',
+                        botcheck: '',
                     }),
                 })
                 const data = await response.json().catch(() => ({}))
-                if (!response.ok) {
+                if (!response.ok || data.success === false) {
                     throw new Error(
                         data.message ||
                             'Something went wrong. Please try again or email me directly.'
