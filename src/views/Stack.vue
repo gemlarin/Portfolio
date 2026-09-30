@@ -66,7 +66,7 @@ export default {
 h2 {
     font-family: 'proxima_novablack';
     color: #333;
-    font-size: 50px;
+    font-size: 3.125rem;
     margin-bottom: 5px;
     line-height: 55px;
     padding-right: 5px;
@@ -83,7 +83,7 @@ h2 {
 }
 p {
     font-family: 'AvenirLTStdBook';
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.74em;
     padding-top: 10px;
     padding-left: 5px;
@@ -127,7 +127,7 @@ p {
     top: 0;
 }
 .mfp-close {
-    font-size: 50px;
+    font-size: 3.125rem;
     right: 10px;
     top: 10px;
 }
@@ -159,14 +159,14 @@ p {
         text-decoration: none;
         li {
             display: block;
-            font-size: 32px;
+            font-size: 2rem;
             font-family: 'proxima_novablack';
             p {
                 margin-bottom: 0;
                 line-height: 1em;
             }
             .subtext {
-                font-size: 12px;
+                font-size: 0.75rem;
                 margin-top: 5px;
                 padding-top: 0;
                 color: var(--color-accent);
@@ -178,7 +178,7 @@ p {
 }
 @media (max-width: 768px) {
     .mfp-close {
-        font-size: 45px;
+        font-size: 2.8125rem;
     }
     .wrap--stack {
         height: 100dvh;
@@ -222,7 +222,7 @@ p {
     }
     h2 {
         line-height: 50px;
-        font-size: 45px;
+        font-size: 2.8125rem;
         display: inline;
         padding-left: 15px;
         padding-right: 15px;

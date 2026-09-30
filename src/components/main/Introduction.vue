@@ -153,7 +153,7 @@ export default {
     a.nav-link,
     button.nav-link {
         color: var(--color-accent);
-        font-size: 18px;
+        font-size: 1.125rem;
         background: none;
         border: 0;
         padding: 0;
@@ -181,7 +181,7 @@ export default {
         height: auto;
         padding: 15px;
         text-align: center;
-        font-size: 55px;
+        font-size: 3.4375rem;
         line-height: 1em;
         -webkit-order: 0;
         -ms-flex-order: 0;
@@ -258,11 +258,11 @@ export default {
             text-align: center;
             min-height: 160px !important;
             height: auto !important;
-            font-size: 40px;
+            font-size: 2.5rem;
         }
         a.nav-link,
         button.nav-link {
-            font-size: 13px;
+            font-size: 0.8125rem;
             margin: 0 5px;
         }
         .dividerline--mask {

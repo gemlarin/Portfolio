@@ -55,7 +55,7 @@ export default {
         align-self: auto;
         z-index: 302;
         height: 50px;
-        font-size: 50px;
+        font-size: 3.125rem;
         background-image: url(./../../assets/backmask.webp);
         -webkit-background-clip: text;
         background-clip: text;

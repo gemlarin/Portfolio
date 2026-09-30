@@ -93,7 +93,7 @@ li {
 }
 .nav-link {
     font-family: 'AvenirLTStdLight';
-    font-size: 16px;
+    font-size: 1rem;
     &.active {
         color: var(--color-accent);
         font-family: 'AvenirLTStdBlack';
@@ -103,14 +103,14 @@ li {
 @media (max-width: 768px) {
     li button.nav-link {
         margin: 0 6px;
-        font-size: 13px;
+        font-size: 0.8125rem;
     }
 }
 
 @media (max-width: 400px) {
     li button.nav-link {
         margin: 0 4px;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 }
 </style>

@@ -14,6 +14,14 @@
             </button>
             <div class="wrap--centering">
                 <div class="container">
+                    <h2 class="contact-title">Contact Form</h2>
+                    <p class="contact-lede">
+                        To contact me for employment opportunities, please use
+                        the form below, email me directly at
+                        <a href="mailto:dfgibas@gmail.com">dfgibas@gmail.com</a>,
+                        or call:
+                        <a href="tel:15854552716">585.455.2716</a>.
+                    </p>
                     <form id="contact-form" @submit.prevent="onSubmit">
                         <div id="form">
                             <input
@@ -62,32 +70,14 @@
                                 ></textarea>
                             </div>
                             <p v-if="error" class="form-error">{{ error }}</p>
-                            <div class="row footer-row">
-                                <div class="col-5">
-                                    <div class="field-wrapper submit-wrap">
-                                        <input
-                                            :value="
-                                                sending ? 'Sending…' : 'Send'
-                                            "
-                                            type="submit"
-                                            class="btn btn-secondary"
-                                            :disabled="sending"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <p>
-                                        To contact me for employment
-                                        opportunities, please use the form
-                                        above, email me directly at
-                                        <a href="mailto:dfgibas@gmail.com"
-                                            >dfgibas@gmail.com</a
-                                        >, or call:
-                                        <a href="tel:15854552716"
-                                            >585.455.2716</a
-                                        >.
-                                    </p>
-                                </div>
+                            <div class="field-wrapper submit-wrap">
+                                <button
+                                    type="submit"
+                                    class="cta-link"
+                                    :disabled="sending"
+                                >
+                                    {{ sending ? 'Sending…' : 'Send' }}
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -195,7 +185,7 @@ export default {
     top: 0;
 }
 .mfp-close {
-    font-size: 50px;
+    font-size: 3.125rem;
     right: 10px;
     top: 10px;
 }
@@ -209,21 +199,58 @@ export default {
     align-self: center;
     box-sizing: border-box;
 }
-.footer-row {
-    margin-top: 8px;
-    align-items: flex-start;
+.contact-title {
+    font-family: 'proxima_novablack';
+    font-size: 1.75rem;
+    color: var(--color-foreground);
+    margin: 0 0 12px;
+    line-height: 1.15;
+}
+.contact-lede {
+    font-family: 'AvenirLTStdBook';
+    font-size: 0.9375rem;
+    line-height: 1.74em;
+    color: var(--color-foreground);
+    margin: 0 0 28px;
+    a {
+        color: var(--color-foreground);
+    }
 }
 .submit-wrap {
     margin-bottom: 0;
 }
+button.cta-link {
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    margin-top: 10px;
+    margin-right: 12px;
+    display: inline-block;
+    border-top: 3px solid var(--color-accent);
+    border-left: 3px solid var(--color-accent);
+    border-right: 0;
+    border-bottom: 0;
+    padding: 5px 12px;
+    text-decoration: none;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    &:hover:not(:disabled) {
+        padding-left: 20px;
+    }
+    &:disabled {
+        opacity: 0.6;
+        cursor: wait;
+    }
+}
 .form-error {
     color: var(--color-accent);
-    font-size: 13px;
+    font-size: 0.8125rem;
     margin: 0 0 12px;
 }
 p {
     font-family: 'AvenirLTStdBook';
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.74em;
     color: var(--color-foreground);
     margin-top: 0;
@@ -233,7 +260,7 @@ a {
 }
 @media (max-width: 768px) {
     .mfp-close {
-        font-size: 45px;
+        font-size: 2.8125rem;
     }
     .wrap--stack {
         height: 100dvh;

@@ -9,3 +9,12 @@
   --color-surface: #f4f4f4;
   --color-success: #15803d;
 }
+
+/* Rebase Bootstrap code defaults onto the brand palette */
+code {
+  color: var(--color-accent);
+}
+
+pre {
+  color: var(--color-foreground);
+}

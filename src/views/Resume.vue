@@ -67,14 +67,14 @@ export default {
 a {
     color: var(--color-foreground);
     font-family: 'proxima_novablack';
-    font-size: 20px;
+    font-size: 1.25rem;
     position: relative;
     color: var(--color-foreground);
     span {
         color: var(--color-accent);
         position: relative;
         top: 1px;
-        font-size: 22px;
+        font-size: 1.375rem;
         &:first-child {
             padding-right: 5px;
         }
@@ -90,7 +90,7 @@ a {
 h2 {
     font-family: 'AvenirLTStdMedium';
     color: #333;
-    font-size: 17px !important;
+    font-size: 1.0625rem !important;
     margin-bottom: 5px;
     line-height: 30px;
     padding-right: 5px;
@@ -114,7 +114,7 @@ h2 {
 }
 p {
     font-family: 'AvenirLTStdLight';
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.5em;
     padding-left: 5px;
     color: var(--color-foreground);
@@ -150,7 +150,7 @@ p {
     top: 0;
 }
 .mfp-close {
-    font-size: 50px;
+    font-size: 3.125rem;
     right: 10px;
     top: 10px;
 }
@@ -183,14 +183,14 @@ p {
         text-decoration: none;
         li {
             display: block;
-            font-size: 32px;
+            font-size: 2rem;
             font-family: 'proxima_novablack';
             p {
                 margin-bottom: 0;
                 line-height: 1em;
             }
             .subtext {
-                font-size: 12px;
+                font-size: 0.75rem;
                 margin-top: 5px;
                 padding-top: 0;
                 color: var(--color-accent);
@@ -202,7 +202,7 @@ p {
 }
 @media (max-width: 768px) {
     .mfp-close {
-        font-size: 45px;
+        font-size: 2.8125rem;
     }
     .wrap--stack {
         height: 100dvh;
@@ -231,7 +231,7 @@ p {
     }
     h2 {
         line-height: 30px;
-        font-size: 17px !important;
+        font-size: 1.0625rem !important;
         display: block;
         padding-left: 15px;
         padding-right: 15px;

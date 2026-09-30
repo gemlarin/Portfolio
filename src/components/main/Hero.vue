@@ -715,7 +715,7 @@ svg.dot {
         top: -10px;
         left: -1px;
         z-index: 200;
-        font-size: 9px;
+        font-size: 0.5625rem;
         font-family: 'AvenirLTStdLight';
         color: var(--color-background);
     } //end open-icon-text
@@ -859,7 +859,7 @@ svg.dot {
         .main__navbar--logo--container {
             display: inline;
             a {
-                font-size: 30px;
+                font-size: 1.875rem;
                 font-family: 'AvenirLTStdBlack';
                 position: relative;
             }
@@ -882,10 +882,10 @@ svg.dot {
             color: $color-white;
             z-index: 1002;
             .main__navbar-item {
-                font-size: 30px;
+                font-size: 1.875rem;
             }
             i {
-                font-size: 30px;
+                font-size: 1.875rem;
             }
         }
         /* Keep the close (X) toggle visible on the white open menu */
@@ -965,7 +965,7 @@ svg.dot {
                     top: 70px;
                     transform: rotate(-90deg);
                     font-family: 'proxima_novablack';
-                    font-size: 13px;
+                    font-size: 0.8125rem;
                     right: 2px;
                     width: 100px;
                     opacity: 0;
@@ -985,7 +985,7 @@ svg.dot {
             color: $color-white;
             a {
                 color: $color-white;
-                font-size: 12px;
+                font-size: 0.75rem;
             }
         }
     }
@@ -1083,7 +1083,7 @@ svg.dot {
 }
 
 h1.hero-title {
-    font-size: 220px;
+    font-size: 13.75rem;
     font-family: 'proxima_novablack';
     line-height: 1em !important;
     letter-spacing: -3px;
@@ -1100,7 +1100,7 @@ h1.hero-title {
         z-index: 200;
         font-family: 'AvenirLTStdLight';
         color: white;
-        font-size: 16px;
+        font-size: 1rem;
         left: 200px;
         top: 5px;
         letter-spacing: 0.1px;
@@ -1123,7 +1123,7 @@ h1.hero-title {
         text-align: center;
         h1 {
             color: rgb(247, 247, 247);
-            font-size: 180px;
+            font-size: 11.25rem;
             letter-spacing: -31px;
             text-shadow: -10px 1px 14px rgba(0, 0, 0, 0.26);
             line-height: 0.7em;
@@ -1260,7 +1260,7 @@ h1.hero-title {
             width: 560px;
             right: 0;
             h1 {
-                font-size: 150px;
+                font-size: 9.375rem;
                 letter-spacing: -26px;
             }
             h1#firstname {
@@ -1273,7 +1273,7 @@ h1.hero-title {
             margin-left: 0;
             left: 173px;
             top: -2px;
-            font-size: 13px;
+            font-size: 0.8125rem;
         }
     }
 }
@@ -1301,7 +1301,7 @@ h1.hero-title {
             transform: scale(calc((100vw - 40px) / 327));
             transform-origin: center center;
             h1 {
-                font-size: 150px;
+                font-size: 9.375rem;
                 letter-spacing: -26px;
             }
             h1#firstname {
@@ -1325,7 +1325,7 @@ h1.hero-title {
             top: auto;
             bottom: -10px;
             margin: 0;
-            font-size: 13px;
+            font-size: 0.8125rem;
             letter-spacing: 0.02em;
             white-space: nowrap;
         }
@@ -1355,7 +1355,7 @@ h1.hero-title {
             transform: scale(calc((100vw - 40px) / 327));
             transform-origin: center center;
             h1 {
-                font-size: 140px;
+                font-size: 8.75rem;
                 letter-spacing: -24px;
             }
             h1#firstname {
@@ -1379,7 +1379,7 @@ h1.hero-title {
             top: auto;
             bottom: -10px;
             margin: 0;
-            font-size: 12px;
+            font-size: 0.75rem;
             letter-spacing: 0.02em;
             white-space: nowrap;
         }
@@ -1404,7 +1404,7 @@ h1.hero-title {
         color: #000;
         font-family: 'AvenirLTStdBook';
         text-transform: uppercase;
-        font-size: 100px;
+        font-size: 6.25rem;
     }
     .light img {
         position: absolute;

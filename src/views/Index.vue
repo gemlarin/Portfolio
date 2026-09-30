@@ -136,7 +136,7 @@ export default {
     font: inherit;
     cursor: pointer;
     color: var(--color-accent);
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-top: 10px;
     margin-right: 12px;
     display: inline-block;
@@ -170,7 +170,7 @@ export default {
     transform: translateX(-50%);
     padding: 4px 8px;
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-family: 'AvenirLTStdBook', sans-serif;
     line-height: 1.2;
     color: var(--color-background);

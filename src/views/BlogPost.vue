@@ -388,7 +388,7 @@ export default {
 }
 .status {
     font-family: 'AvenirLTStdBook';
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--color-muted);
     a {
         color: var(--color-accent);
@@ -411,7 +411,7 @@ export default {
 .back {
     margin: 0 0 16px;
     font-family: 'AvenirLTStdBook';
-    font-size: 13px;
+    font-size: 0.8125rem;
     a {
         color: var(--color-accent);
         text-decoration: none;
@@ -425,7 +425,7 @@ export default {
 }
 h1 {
     font-family: 'proxima_novablack';
-    font-size: 28px;
+    font-size: 1.75rem;
     color: var(--color-foreground);
     margin: 0 0 10px;
     line-height: 1.15;
@@ -441,7 +441,7 @@ h1 {
         margin: 0;
         padding: 0;
         font-family: 'AvenirLTStdMedium';
-        font-size: 13px;
+        font-size: 0.8125rem;
         line-height: 1.2;
     }
 }
@@ -456,7 +456,7 @@ h1 {
 }
 .meta {
     font-family: 'AvenirLTStdLight';
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: var(--color-muted);
     margin: 0 0 22px;
     a {
@@ -475,7 +475,7 @@ h1 {
 }
 .post-body {
     font-family: 'AvenirLTStdBook';
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--color-foreground);
     line-height: 1.65;
 }
@@ -485,7 +485,7 @@ h1 {
     border-top: 1px dashed var(--color-border);
     h2 {
         font-family: 'proxima_novablack';
-        font-size: 18px;
+        font-size: 1.125rem;
         color: var(--color-foreground);
         margin: 0 0 12px;
     }
@@ -497,7 +497,7 @@ h1 {
     li {
         margin: 0 0 10px;
         font-family: 'AvenirLTStdBook';
-        font-size: 15px;
+        font-size: 0.9375rem;
         line-height: 1.4;
     }
     a {
@@ -512,7 +512,7 @@ h1 {
 .subscribe {
     margin: 24px 0 0;
     font-family: 'AvenirLTStdBook';
-    font-size: 14px;
+    font-size: 0.875rem;
     a {
         color: var(--color-foreground);
         text-decoration: none;
@@ -535,10 +535,10 @@ h1 {
         line-height: 1.3;
     }
     h2 {
-        font-size: 22px;
+        font-size: 1.375rem;
     }
     h3 {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
     a {
         color: var(--color-accent);
@@ -561,14 +561,15 @@ h1 {
         margin: 0 0 1.1em;
         padding: 0.2em 0 0.2em 1em;
         border-left: 3px solid var(--color-accent);
-        color: #444;
+        color: var(--color-muted);
     }
     pre {
         margin: 0 0 1.2em;
         padding: 14px 16px;
         overflow: auto;
         background: var(--color-surface);
-        font-size: 13px;
+        color: var(--color-foreground);
+        font-size: 0.8125rem;
         line-height: 1.5;
     }
     .code-block {
@@ -614,6 +615,10 @@ h1 {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             monospace;
         font-size: 0.9em;
+        color: var(--color-accent);
+    }
+    pre code {
+        color: inherit;
     }
     :not(pre) > code {
         background: var(--color-surface);
@@ -621,18 +626,18 @@ h1 {
     }
     hr {
         border: 0;
-        border-top: 1px solid #ddd;
+        border-top: 1px solid var(--color-border);
         margin: 1.6em 0;
     }
     table {
         width: 100%;
         border-collapse: collapse;
         margin: 0 0 1.2em;
-        font-size: 14px;
+        font-size: 0.875rem;
     }
     th,
     td {
-        border: 1px solid #ddd;
+        border: 1px solid var(--color-border);
         padding: 8px 10px;
         text-align: left;
     }
@@ -645,7 +650,7 @@ h1 {
         padding-bottom: 108px;
     }
     h1 {
-        font-size: 24px;
+        font-size: 1.5rem;
     }
 }
 </style>

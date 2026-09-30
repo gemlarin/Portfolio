@@ -1,13 +1,12 @@
-# Task: Brand color theme tokens
+# Task: Font sizes to rem
 
 ## Spec
-- Goal: Manage site brand colors via CSS custom props in one theme file
-- In scope: `src/styles/theme.css` + import; replace brand hex in app Vue/SCSS (`#fb2662`, `#222`, `#666`, `#888`, `#d8d8d8`, `#f4f4f4`, `#fff`/`#ffffff`, `#15803d`)
-- Out of scope: Vendor CSS (`magnific-popup`); SVG assets; non-brand one-off hex; Tailwind/new stack
-- Done when: Theme file owns brand palette; app uses `var(--…)`; hard-refresh looks unchanged
+- Goal: Convert app `font-size` values from `px` to `rem` for a11y (user font prefs)
+- In scope: `font-size: …px` in app Vue/SCSS/CSS (`px / 16`); visual size unchanged at default 16px root
+- Out of scope: margins/padding/widths/borders; line-height; vendor CSS; SVG assets; other shorthands unless they only set size
+- Done when: no app `font-size: …px` left; hard-refresh looks the same at default zoom
 
 ## Tasks
-- [x] Add `src/styles/theme.css` with `:root` brand tokens
-- [x] Import theme from `main.js`
-- [x] Replace brand hex in app Vue/SCSS with vars
+- [x] Convert `font-size` px → rem in app styles
+- [x] Verify build; spot-check blog + a project detail
 - [ ] Code sweep (prompt D for topics — see AGENTS.md)

@@ -15,10 +15,10 @@
             <div ref="listScroll" class="wrap--centering blog-list">
                 <h2>Frontend Field Notes</h2>
                 <p class="lede">
-                    <span class="lede-blurb"
-                        >Practical notes on frontend engineering, design, and
-                        shipping.</span
-                    >
+                    Practical notes on frontend engineering, design, and
+                    shipping.
+                </p>
+                <p class="lede-hashnode-wrap">
                     <a
                         class="lede-hashnode"
                         :href="blogUrl"
@@ -385,35 +385,27 @@ export default {
 }
 h2 {
     font-family: 'proxima_novablack';
-    font-size: 28px;
+    font-size: 1.75rem;
     color: var(--color-foreground);
     margin: 0 0 8px;
 }
 .lede {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    font-family: 'AvenirLTStdBook';
-    font-size: 15px;
+    font-family: 'AvenirLTStdBlack';
+    font-size: 0.9375rem;
     color: var(--color-foreground);
-    margin: 0 0 40px;
+    margin: 0 0 8px;
     line-height: 1.5;
 }
-.lede-blurb {
-    font-family: 'AvenirLTStdBlack';
-    font-size: 15px;
-    line-height: 1.5;
+.lede-hashnode-wrap {
+    margin: 0 0 40px;
 }
 .lede-hashnode {
     color: var(--color-accent);
     text-decoration: none;
     font-family: 'AvenirLTStdBook';
-    font-size: 15px;
+    font-size: 0.8125rem;
     font-weight: normal;
     line-height: 1.5;
-    position: relative;
-    top: 1px;
     cursor: pointer;
     &:hover {
         text-decoration: underline;
@@ -421,7 +413,7 @@ h2 {
 }
 .status {
     font-family: 'AvenirLTStdBook';
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--color-muted);
     a {
         color: var(--color-accent);
@@ -447,7 +439,7 @@ h2 {
 }
 .tag-filter {
     font-family: 'AvenirLTStdBook';
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--color-muted);
     margin: 0 0 20px;
 }
@@ -511,8 +503,8 @@ h2 {
 }
 .post-title {
     display: block;
-    font-family: 'proxima_novablack';
-    font-size: 18px;
+    font-family: 'AvenirLTStdMedium';
+    font-size: 1.125rem;
     line-height: 1.1;
     color: var(--color-foreground);
     transition: color 0.15s ease;
@@ -528,7 +520,7 @@ h2 {
         margin: 0;
         padding: 0;
         font-family: 'AvenirLTStdMedium';
-        font-size: 12px;
+        font-size: 0.75rem;
         line-height: 1.2;
     }
 }
@@ -549,7 +541,7 @@ h2 {
 .post-date {
     display: block;
     font-family: 'AvenirLTStdLight';
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--color-muted);
     margin-top: 6px;
 }
@@ -560,7 +552,7 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: 'AvenirLTStdBook';
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--color-foreground);
     margin-top: 6px;
     line-height: 1.5;
@@ -571,7 +563,7 @@ h2 {
 }
 button.cta-link.load-more {
     color: var(--color-accent);
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-top: 0;
     margin-right: 0;
     display: inline-block;

@@ -64,14 +64,14 @@ export default {
 h1 {
     margin: 0 0 12px;
     font-family: 'proxima_novablack', sans-serif;
-    font-size: 36px;
+    font-size: 2.25rem;
     color: #212529;
 }
 
 .message {
     margin: 0 0 28px;
     max-width: 420px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.7;
     color: #616161;
 
@@ -82,7 +82,7 @@ h1 {
 
 .home-link {
     color: var(--color-accent);
-    font-size: 14px;
+    font-size: 0.875rem;
     border-top: 3px solid var(--color-accent);
     border-left: 3px solid var(--color-accent);
     padding: 5px 12px;

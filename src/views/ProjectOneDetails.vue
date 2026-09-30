@@ -72,23 +72,22 @@ export default {
     h2 {
         font-family: 'proxima_novablack';
         color: #212529;
-        font-size: 25px;
-        margin-bottom: 0;
+        font-size: 1.5625rem;
         margin-top: 0px;
         line-height: 1em;
     }
     h5 {
         font-family: 'AvenirLTStdLight';
         color: #212529;
-        font-size: 12px;
+        font-size: 0.75rem;
         margin-top: 5px;
     }
     p {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
     a.internal {
         color: var(--color-accent);
-        font-size: 14px;
+        font-size: 0.875rem;
         border-top: 3px solid var(--color-accent);
         border-left: 3px solid var(--color-accent);
         padding: 5px 12px;

@@ -273,7 +273,7 @@ select.form-control:not([size]):not([multiple]) {
     -webkit-transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out, color 0.2s ease-in-out;
     transform-origin: left top;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1;
     color: var(--color-muted);
     font-family: 'AvenirLTStdMedium';
@@ -281,7 +281,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .field-wrapper label.openup {
     transform: translateY(-27px);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 #contact-form .form-control,
@@ -293,7 +293,7 @@ select.form-control:not([size]):not([multiple]) {
     max-height: 48px;
     padding: 14px 0 8px;
     margin: 0;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.2;
     border: none;
     border-bottom: 1px solid grey;
@@ -309,12 +309,14 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 #contact-form .form-control:focus,
-#contact-form textarea.form-control:focus {
+#contact-form textarea.form-control:focus,
+#contact-form .form-control:focus-visible,
+#contact-form textarea.form-control:focus-visible {
     color: var(--color-foreground);
-    border-bottom: 1px solid var(--color-accent);
+    border-bottom: 1px solid grey;
     -webkit-box-shadow: none;
     box-shadow: none;
-    outline: none;
+    outline: none !important;
 }
 
 #btnSubmit {
@@ -446,7 +448,7 @@ img.mfp-img {
     width: 56px !important;
     height: 56px !important;
     line-height: 56px !important;
-    font-size: 42px !important;
+    font-size: 2.625rem !important;
     padding: 0 !important;
     text-align: center !important;
     z-index: 1051 !important;
@@ -562,6 +564,15 @@ img.responsive {
     outline-offset: 3px !important;
 }
 
+/* Contact fields use underline focus, not the pink box ring */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.form-control:focus-visible {
+    outline: none !important;
+    outline-offset: 0 !important;
+}
+
 /* Kill native button focus ring on mouse click; keep keyboard ring via :focus-visible */
 button:focus,
 button.internal:focus,
@@ -585,7 +596,7 @@ button.cta-link:focus-visible {
     background: var(--color-background);
     color: #212529;
     font-family: 'AvenirLTStdMedium', sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     text-decoration: none;
     border: 2px solid var(--color-accent);
     transform: translateY(-200%);
@@ -784,7 +795,7 @@ button.cta-link:focus-visible {
     height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-    font-size: 44px !important;
+    font-size: 2.75rem !important;
     line-height: 1 !important;
     display: block;
     color: var(--color-foreground);

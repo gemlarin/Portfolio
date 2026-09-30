@@ -62,7 +62,7 @@ export default {
 .code {
     margin: 0;
     font-family: 'proxima_novablack', sans-serif;
-    font-size: 72px;
+    font-size: 4.5rem;
     line-height: 1;
     color: var(--color-accent);
 }
@@ -70,19 +70,19 @@ export default {
 h1 {
     margin: 12px 0 8px;
     font-family: 'proxima_novablack', sans-serif;
-    font-size: 28px;
+    font-size: 1.75rem;
     color: #212529;
 }
 
 .message {
     margin: 0 0 28px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     color: #616161;
 }
 
 .home-link {
     color: var(--color-accent);
-    font-size: 14px;
+    font-size: 0.875rem;
     border-top: 3px solid var(--color-accent);
     border-left: 3px solid var(--color-accent);
     padding: 5px 12px;
