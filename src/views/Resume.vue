@@ -13,27 +13,21 @@
                 <span class="mfp-close" aria-hidden="true">×</span>
             </button>
             <div class="wrap--centering">
-                <h2>EXPERIENCE</h2>
+                <h2>Experience</h2>
                 <p>Aspenware, Senior Front End Developer</p>
                 <p>Parkifi, Software Engineer II</p>
                 <p>Clean Energy Collective, Web Developer</p>
                 <p>Practis Inc, Web Designer / Project Manager</p>
-                <h2>EDUCATION</h2>
+                <h2>Education</h2>
                 <p>BFA New Media Design & Development, RIT</p>
                 <p>AAS Visual Communication Technologies, MCC</p>
-                <p style="margin-top: 40px">
+                <p class="resume-cta">
                     <a
+                        class="cta-link"
                         href="/danny_gibas_resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        ><span>&rarr;</span>Full Résumé<span>&larr;</span></a
-                    >
-                </p>
-                <p style="margin-top: 10px">
-                    <a
-                        href="https://www.linkedin.com/in/dannygibas/"
-                        target="_blank"
-                        ><span>&rarr;</span>LinkedIn<span>&larr;</span></a
+                        >Full Résumé</a
                     >
                 </p>
             </div>
@@ -64,42 +58,37 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-a {
-    color: var(--color-foreground);
-    font-family: 'proxima_novablack';
-    font-size: 1.25rem;
-    position: relative;
-    color: var(--color-foreground);
-    span {
-        color: var(--color-accent);
-        position: relative;
-        top: 1px;
-        font-size: 1.375rem;
-        &:first-child {
-            padding-right: 5px;
-        }
-        &:not(:first-child) {
-            padding-left: 5px;
-        }
-    }
+a.cta-link {
+    color: var(--color-accent);
+    font-family: inherit;
+    font-size: 0.875rem;
+    margin-top: 0;
+    margin-right: 0;
+    display: inline-block;
+    border-top: 3px solid var(--color-accent);
+    border-left: 3px solid var(--color-accent);
+    padding: 5px 12px;
+    text-decoration: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
     &:hover {
-        text-decoration: none;
+        padding-left: 20px;
         color: var(--color-accent);
+        text-decoration: none;
     }
 }
+.resume-cta {
+    margin-top: 40px;
+}
 h2 {
-    font-family: 'AvenirLTStdMedium';
-    color: #333;
-    font-size: 1.0625rem !important;
-    margin-bottom: 5px;
-    line-height: 30px;
-    padding-right: 5px;
-    letter-spacing: 0.5px;
+    font-family: 'proxima_novablack';
+    font-size: 1.75rem;
+    color: var(--color-foreground);
+    margin: 0 0 8px;
+    line-height: 1.15;
     &:not(:first-child) {
-        margin-top: 20px;
-    }
-    span {
-        color: var(--color-accent);
+        margin-top: 28px;
     }
 }
 .wrapper--postion-nav {
@@ -116,7 +105,7 @@ p {
     font-family: 'AvenirLTStdLight';
     font-size: 0.9375rem;
     line-height: 1.5em;
-    padding-left: 5px;
+    padding-left: 0;
     color: var(--color-foreground);
     margin: 0;
     letter-spacing: 0.1px;
@@ -155,9 +144,12 @@ p {
     top: 10px;
 }
 .wrap--centering {
-    width: 70vw;
-    height: 450px;
-    text-align: center;
+    width: fit-content;
+    max-width: min(520px, 88vw);
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
     background-color: white;
     -webkit-order: 0;
     -ms-flex-order: 0;
@@ -209,43 +201,39 @@ p {
         box-sizing: border-box;
         padding: 56px 0 72px;
         align-items: center;
+        justify-content: center;
         overflow-y: auto;
     }
     .wrap--centering {
-        width: 100%;
+        width: fit-content;
+        max-width: calc(100% - 48px);
         height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        align-self: center;
     }
     .subcopy {
         max-width: 400px;
         padding-top: 20px;
-        text-align: center;
-        margin: 0 auto;
+        text-align: left;
+        margin: 0;
         padding-left: 0;
         padding-right: 0;
         max-width: 80%;
     }
     .listing {
-        text-align: center;
+        text-align: left;
         max-width: 80%;
-        margin: 0 auto;
+        margin: 0;
     }
     h2 {
-        line-height: 30px;
-        font-size: 1.0625rem !important;
         display: block;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 0;
+        padding-right: 0;
     }
     p {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-}
-
-@media (max-width: 768px) and (min-width: 695px) {
-    .wrap--centering {
-        width: 100%;
-        height: auto;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 </style>

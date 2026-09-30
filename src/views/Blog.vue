@@ -387,7 +387,7 @@ h2 {
     font-family: 'proxima_novablack';
     font-size: 1.75rem;
     color: var(--color-foreground);
-    margin: 0 0 8px;
+    margin: 0 0 4px;
 }
 .lede {
     font-family: 'AvenirLTStdBlack';
@@ -397,7 +397,7 @@ h2 {
     line-height: 1.5;
 }
 .lede-hashnode-wrap {
-    margin: 0 0 40px;
+    margin: 0 0 30px;
 }
 .lede-hashnode {
     color: var(--color-accent);
