@@ -3,15 +3,15 @@
         <div class="nav-wrap nav-wrap--solid">
             <navi :activepage="page"></navi>
         </div>
+        <button
+            type="button"
+            class="close-control"
+            aria-label="Close blog (Escape)"
+            @click.stop="closePage"
+        >
+            <span class="mfp-close" aria-hidden="true">×</span>
+        </button>
         <div class="wrap--stack">
-            <button
-                type="button"
-                class="close-control"
-                aria-label="Close blog (Escape)"
-                @click="closePage"
-            >
-                <span class="mfp-close" aria-hidden="true">×</span>
-            </button>
             <div ref="listScroll" class="wrap--centering blog-list">
                 <h2>Frontend Field Notes</h2>
                 <p class="lede">
@@ -407,7 +407,9 @@ h2 {
     font-weight: normal;
     line-height: 1.5;
     cursor: pointer;
-    &:hover {
+}
+@media (hover: hover) and (pointer: fine) {
+    .lede-hashnode:hover {
         text-decoration: underline;
     }
 }
@@ -478,7 +480,9 @@ h2 {
     gap: 20px;
     text-decoration: none;
     color: var(--color-foreground);
-    &:hover .post-title {
+}
+@media (hover: hover) and (pointer: fine) {
+    .post-link:hover .post-title {
         color: var(--color-accent);
     }
 }
@@ -528,7 +532,9 @@ h2 {
     color: var(--color-muted-soft);
     text-decoration: none;
     cursor: pointer;
-    &:hover {
+}
+@media (hover: hover) and (pointer: fine) {
+    .tag-link:hover {
         color: var(--color-accent);
         text-decoration: underline;
     }

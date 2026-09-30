@@ -756,7 +756,7 @@ button.cta-link:focus-visible {
     position: fixed;
     top: 10px;
     right: 10px;
-    z-index: 1100;
+    z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -770,6 +770,8 @@ button.cta-link:focus-visible {
     background: transparent;
     cursor: pointer;
     line-height: 1;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Same inset on every project details page */
@@ -801,10 +803,15 @@ button.cta-link:focus-visible {
     color: var(--color-foreground);
     cursor: pointer !important;
     transition: color 0.15s ease;
+    pointer-events: none;
 }
 
-.close-control:hover .mfp-close,
-.close-control:focus .mfp-close,
+@media (hover: hover) and (pointer: fine) {
+    .close-control:hover .mfp-close {
+        color: var(--color-accent) !important;
+    }
+}
+
 .close-control:focus-visible .mfp-close {
     color: var(--color-accent) !important;
 }
