@@ -368,7 +368,7 @@ export default {
     max-width: 100%;
     height: 100vh;
     position: relative;
-    background-color: #fff;
+    background-color: var(--color-background);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -389,12 +389,12 @@ export default {
 .status {
     font-family: 'AvenirLTStdBook';
     font-size: 14px;
-    color: #666;
+    color: var(--color-muted);
     a {
-        color: #fb2662;
+        color: var(--color-accent);
     }
     &.error {
-        color: #222;
+        color: var(--color-foreground);
     }
 }
 .status-action {
@@ -404,7 +404,7 @@ export default {
     border: 0;
     background: none;
     font: inherit;
-    color: #fb2662;
+    color: var(--color-accent);
     cursor: pointer;
     text-decoration: underline;
 }
@@ -413,7 +413,7 @@ export default {
     font-family: 'AvenirLTStdBook';
     font-size: 13px;
     a {
-        color: #fb2662;
+        color: var(--color-accent);
         text-decoration: none;
         &:hover {
             text-decoration: underline;
@@ -426,7 +426,7 @@ export default {
 h1 {
     font-family: 'proxima_novablack';
     font-size: 28px;
-    color: #222;
+    color: var(--color-foreground);
     margin: 0 0 10px;
     line-height: 1.15;
 }
@@ -446,21 +446,21 @@ h1 {
     }
 }
 .tag-link {
-    color: #888;
+    color: var(--color-muted-soft);
     text-decoration: none;
     cursor: pointer;
     &:hover {
-        color: #fb2662;
+        color: var(--color-accent);
         text-decoration: underline;
     }
 }
 .meta {
     font-family: 'AvenirLTStdLight';
     font-size: 13px;
-    color: #666;
+    color: var(--color-muted);
     margin: 0 0 22px;
     a {
-        color: #fb2662;
+        color: var(--color-accent);
         text-decoration: none;
         &:hover {
             text-decoration: underline;
@@ -476,17 +476,17 @@ h1 {
 .post-body {
     font-family: 'AvenirLTStdBook';
     font-size: 16px;
-    color: #222;
+    color: var(--color-foreground);
     line-height: 1.65;
 }
 .related {
     margin: 36px 0 0;
     padding-top: 24px;
-    border-top: 1px dashed #d8d8d8;
+    border-top: 1px dashed var(--color-border);
     h2 {
         font-family: 'proxima_novablack';
         font-size: 18px;
-        color: #222;
+        color: var(--color-foreground);
         margin: 0 0 12px;
     }
 }
@@ -501,7 +501,7 @@ h1 {
         line-height: 1.4;
     }
     a {
-        color: #222;
+        color: var(--color-foreground);
         text-decoration: none;
         cursor: pointer;
         &:hover {
@@ -514,7 +514,7 @@ h1 {
     font-family: 'AvenirLTStdBook';
     font-size: 14px;
     a {
-        color: #222;
+        color: var(--color-foreground);
         text-decoration: none;
         cursor: pointer;
         &:hover {
@@ -530,7 +530,7 @@ h1 {
     h3,
     h4 {
         font-family: 'proxima_novablack';
-        color: #222;
+        color: var(--color-foreground);
         margin: 1.4em 0 0.55em;
         line-height: 1.3;
     }
@@ -541,7 +541,7 @@ h1 {
         font-size: 18px;
     }
     a {
-        color: #fb2662;
+        color: var(--color-accent);
     }
     img {
         max-width: 100%;
@@ -560,14 +560,14 @@ h1 {
     blockquote {
         margin: 0 0 1.1em;
         padding: 0.2em 0 0.2em 1em;
-        border-left: 3px solid #fb2662;
+        border-left: 3px solid var(--color-accent);
         color: #444;
     }
     pre {
         margin: 0 0 1.2em;
         padding: 14px 16px;
         overflow: auto;
-        background: #f4f4f4;
+        background: var(--color-surface);
         font-size: 13px;
         line-height: 1.5;
     }
@@ -591,23 +591,23 @@ h1 {
         padding: 0;
         border: 0;
         border-radius: 3px;
-        background: #fff;
-        color: #666;
+        background: var(--color-background);
+        color: var(--color-muted);
         cursor: pointer;
-        box-shadow: 0 0 0 1px #d8d8d8;
+        box-shadow: 0 0 0 1px var(--color-border);
         svg {
             width: 12px;
             height: 12px;
         }
         &:hover {
-            color: #fb2662;
+            color: var(--color-accent);
         }
         &:focus-visible {
-            outline: 2px solid #fb2662;
+            outline: 2px solid var(--color-accent);
             outline-offset: 2px;
         }
         &.is-copied {
-            color: #15803d;
+            color: var(--color-success);
         }
     }
     code {
@@ -616,7 +616,7 @@ h1 {
         font-size: 0.9em;
     }
     :not(pre) > code {
-        background: #f4f4f4;
+        background: var(--color-surface);
         padding: 0.1em 0.35em;
     }
     hr {

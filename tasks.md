@@ -1,14 +1,13 @@
-# Task: Blog a11y + meta + tags + errors
+# Task: Brand color theme tokens
 
 ## Spec
-- Goal: OG meta per post; clickable tags → `/blog?tag=`; retry/empty states; Esc closes overlay pages
-- In scope: Blog, BlogPost; Esc on Blog/BlogPost/Stack/Resume/Contact; client tag filter
-- Out of scope: SSR for crawlers; project detail Esc; new deps
-- Done when: tags filter list; post has og/twitter/canonical; error/empty have retry or clear; Esc matches × close
+- Goal: Manage site brand colors via CSS custom props in one theme file
+- In scope: `src/styles/theme.css` + import; replace brand hex in app Vue/SCSS (`#fb2662`, `#222`, `#666`, `#888`, `#d8d8d8`, `#f4f4f4`, `#fff`/`#ffffff`, `#15803d`)
+- Out of scope: Vendor CSS (`magnific-popup`); SVG assets; non-brand one-off hex; Tailwind/new stack
+- Done when: Theme file owns brand palette; app uses `var(--…)`; hard-refresh looks unchanged
 
 ## Tasks
-- [x] Escape-close mixin + wire overlay pages
-- [x] Clickable tags + `/blog?tag=` filter UI
-- [x] Open Graph / twitter / description on BlogPost
-- [x] Error retry + empty filter / empty body handling
+- [x] Add `src/styles/theme.css` with `:root` brand tokens
+- [x] Import theme from `main.js`
+- [x] Replace brand hex in app Vue/SCSS with vars
 - [ ] Code sweep (prompt D for topics — see AGENTS.md)

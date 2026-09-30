@@ -130,7 +130,7 @@ export default {
     z-index: 300;
     height: 100vh;
     width: 100vw;
-    background: #fff;
+    background: var(--color-background);
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -152,7 +152,7 @@ export default {
 
     a.nav-link,
     button.nav-link {
-        color: #fb2662;
+        color: var(--color-accent);
         font-size: 18px;
         background: none;
         border: 0;
@@ -194,7 +194,7 @@ export default {
         align-self: auto;
         z-index: 302;
         span {
-            color: #fb2662;
+            color: var(--color-accent);
         }
     }
     #navigation--intro {

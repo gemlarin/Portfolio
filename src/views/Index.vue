@@ -125,7 +125,7 @@ export default {
 
 .preview--zoom:focus-visible .preview--img,
 .preview--zoom:focus-visible .detail-image__img {
-    outline: 2px solid #fb2662;
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
 }
 
@@ -135,13 +135,13 @@ export default {
     border: 0;
     font: inherit;
     cursor: pointer;
-    color: #fb2662;
+    color: var(--color-accent);
     font-size: 14px;
     margin-top: 10px;
     margin-right: 12px;
     display: inline-block;
-    border-top: 3px solid #fb2662;
-    border-left: 3px solid #fb2662;
+    border-top: 3px solid var(--color-accent);
+    border-left: 3px solid var(--color-accent);
     padding: 5px 12px;
     text-align: left;
 }
@@ -173,7 +173,7 @@ export default {
     font-size: 12px;
     font-family: 'AvenirLTStdBook', sans-serif;
     line-height: 1.2;
-    color: #fff;
+    color: var(--color-background);
     background: #212529;
     border-radius: 3px;
     opacity: 0;

@@ -65,13 +65,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 a {
-    color: #222;
+    color: var(--color-foreground);
     font-family: 'proxima_novablack';
     font-size: 20px;
     position: relative;
-    color: #222;
+    color: var(--color-foreground);
     span {
-        color: #fb2662;
+        color: var(--color-accent);
         position: relative;
         top: 1px;
         font-size: 22px;
@@ -84,7 +84,7 @@ a {
     }
     &:hover {
         text-decoration: none;
-        color: #fb2662;
+        color: var(--color-accent);
     }
 }
 h2 {
@@ -99,7 +99,7 @@ h2 {
         margin-top: 20px;
     }
     span {
-        color: #fb2662;
+        color: var(--color-accent);
     }
 }
 .wrapper--postion-nav {
@@ -117,7 +117,7 @@ p {
     font-size: 15px;
     line-height: 1.5em;
     padding-left: 5px;
-    color: #222;
+    color: var(--color-foreground);
     margin: 0;
     letter-spacing: 0.1px;
 }
@@ -193,7 +193,7 @@ p {
                 font-size: 12px;
                 margin-top: 5px;
                 padding-top: 0;
-                color: #fb2662;
+                color: var(--color-accent);
                 margin-bottom: 20px;
                 font-family: 'AvenirLTStdBook';
             }

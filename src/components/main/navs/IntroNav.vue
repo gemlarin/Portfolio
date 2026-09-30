@@ -79,7 +79,7 @@ li {
     display: block;
     flex: 0 0 auto;
     button.nav-link {
-        color: #fb2662;
+        color: var(--color-accent);
         background: none;
         border: 0;
         padding: 0;
@@ -95,7 +95,7 @@ li {
     font-family: 'AvenirLTStdLight';
     font-size: 16px;
     &.active {
-        color: #fb2662;
+        color: var(--color-accent);
         font-family: 'AvenirLTStdBlack';
     }
 }

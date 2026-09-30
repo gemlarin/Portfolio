@@ -1,0 +1,11 @@
+/* Brand palette — change site colors here only */
+:root {
+  --color-background: #fff;
+  --color-foreground: #222;
+  --color-muted: #666;
+  --color-muted-soft: #888;
+  --color-accent: #fb2662;
+  --color-border: #d8d8d8;
+  --color-surface: #f4f4f4;
+  --color-success: #15803d;
+}

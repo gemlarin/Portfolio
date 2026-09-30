@@ -115,7 +115,7 @@ export default {
     position: relative;
     width: 100%;
     min-height: 180px;
-    background: #fff;
+    background: var(--color-background);
 }
 
 .detail-image__placeholder {

@@ -166,7 +166,7 @@ export default {
 
 <style lang="scss">
 $brand-primary: #fc5356 !default;
-$color-white: #fff !default;
+$color-white: var(--color-background) !default;
 
 @font-face {
     font-family: 'proxima_novablack';
@@ -275,7 +275,7 @@ select.form-control:not([size]):not([multiple]) {
     transform-origin: left top;
     font-size: 16px;
     line-height: 1;
-    color: #666;
+    color: var(--color-muted);
     font-family: 'AvenirLTStdMedium';
 }
 
@@ -299,7 +299,7 @@ select.form-control:not([size]):not([multiple]) {
     border-bottom: 1px solid grey;
     border-radius: 0;
     background: white;
-    color: #222;
+    color: var(--color-foreground);
     font-weight: 400;
     box-shadow: none;
     font-family: 'AvenirLTStdBook';
@@ -310,8 +310,8 @@ select.form-control:not([size]):not([multiple]) {
 
 #contact-form .form-control:focus,
 #contact-form textarea.form-control:focus {
-    color: #222;
-    border-bottom: 1px solid #fb2662;
+    color: var(--color-foreground);
+    border-bottom: 1px solid var(--color-accent);
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: none;
@@ -360,7 +360,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .btn-secondary {
     border-radius: 0;
-    background-color: #222;
+    background-color: var(--color-foreground);
     border: none;
     padding: 8px 40px;
     margin-top: 15px;
@@ -368,7 +368,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .btn-secondary:hover,
 .btn-secondary:focus {
-    background-color: #fb2662;
+    background-color: var(--color-accent);
     transition: 0s;
 }
 .btn-secondary:not(:disabled):not(.disabled):active:focus,
@@ -382,7 +382,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .mfp-close:hover,
 .mfp-close:focus {
-    color: #fb2662;
+    color: var(--color-accent);
 }
 
 /* Lightbox stays viewport-tall — no page-length scroll behind the image */
@@ -457,7 +457,7 @@ img.mfp-img {
 .mfp-wrap .mfp-image-holder .mfp-close:focus,
 .mfp-wrap .mfp-iframe-holder .mfp-close:hover,
 .mfp-wrap .mfp-iframe-holder .mfp-close:focus {
-    color: #fb2662 !important;
+    color: var(--color-accent) !important;
     opacity: 1 !important;
     cursor: pointer !important;
 }
@@ -509,8 +509,8 @@ img.mfp-img {
     box-sizing: border-box;
     background: linear-gradient(
         to top,
-        #fff 0,
-        #fff 58px,
+        var(--color-background) 0,
+        var(--color-background) 58px,
         rgba(255, 255, 255, 0.55) 78px,
         rgba(255, 255, 255, 0) 98px
     ) !important;
@@ -558,7 +558,7 @@ img.responsive {
 }
 
 :focus-visible {
-    outline: 2px solid #fb2662 !important;
+    outline: 2px solid var(--color-accent) !important;
     outline-offset: 3px !important;
 }
 
@@ -572,7 +572,7 @@ button.cta-link:focus {
 button:focus-visible,
 button.internal:focus-visible,
 button.cta-link:focus-visible {
-    outline: 2px solid #fb2662 !important;
+    outline: 2px solid var(--color-accent) !important;
     outline-offset: 3px !important;
 }
 
@@ -582,12 +582,12 @@ button.cta-link:focus-visible {
     top: 12px;
     z-index: 10000;
     padding: 10px 14px;
-    background: #fff;
+    background: var(--color-background);
     color: #212529;
     font-family: 'AvenirLTStdMedium', sans-serif;
     font-size: 14px;
     text-decoration: none;
-    border: 2px solid #fb2662;
+    border: 2px solid var(--color-accent);
     transform: translateY(-200%);
 }
 
@@ -787,7 +787,7 @@ button.cta-link:focus-visible {
     font-size: 44px !important;
     line-height: 1 !important;
     display: block;
-    color: #222;
+    color: var(--color-foreground);
     cursor: pointer !important;
     transition: color 0.15s ease;
 }
@@ -795,11 +795,11 @@ button.cta-link:focus-visible {
 .close-control:hover .mfp-close,
 .close-control:focus .mfp-close,
 .close-control:focus-visible .mfp-close {
-    color: #fb2662 !important;
+    color: var(--color-accent) !important;
 }
 
 .close-control:focus-visible {
-    outline: 2px solid #fb2662 !important;
+    outline: 2px solid var(--color-accent) !important;
     outline-offset: 2px !important;
 }
 </style>

@@ -112,14 +112,14 @@ export default {
     }
     hr {
         border: 0;
-        border-bottom: 1px dashed #d8d8d8;
+        border-bottom: 1px dashed var(--color-border);
         margin: 16px 0;
     }
     a {
-        color: #fb2662;
+        color: var(--color-accent);
         font-size: 14px;
-        border-top: 3px solid #fb2662;
-        border-left: 3px solid #fb2662;
+        border-top: 3px solid var(--color-accent);
+        border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
         text-decoration: none;
         display: inline-block;

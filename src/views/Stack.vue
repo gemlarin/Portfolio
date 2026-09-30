@@ -87,7 +87,7 @@ p {
     line-height: 1.74em;
     padding-top: 10px;
     padding-left: 5px;
-    color: #222;
+    color: var(--color-foreground);
 }
 .subcopy {
     max-width: 265px;
@@ -169,7 +169,7 @@ p {
                 font-size: 12px;
                 margin-top: 5px;
                 padding-top: 0;
-                color: #fb2662;
+                color: var(--color-accent);
                 margin-bottom: 20px;
                 font-family: 'AvenirLTStdBook';
             }

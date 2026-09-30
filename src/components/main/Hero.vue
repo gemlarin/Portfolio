@@ -321,14 +321,14 @@
                             <path
                                 class="stroke"
                                 fill="none"
-                                stroke="#ffffff"
+                                stroke="var(--color-background)"
                                 stroke-width="1.5"
                                 stroke-miterlimit="10"
                                 d="M12.5833445 36.6204414h-0.0000229C6.3499947 36.6204414 1.25 31.5204487 1.25 25.2871208V12.5833216C1.25 6.3499947 6.3499951 1.25 12.5833216 1.25h0.0000229c6.2333269 0 11.3333216 5.0999947 11.3333216 11.3333216v12.7037992C23.916666 31.5204487 18.8166714 36.6204414 12.5833445 36.6204414z"
                             ></path>
                             <path
                                 class="scroller"
-                                fill="#ffffff"
+                                fill="var(--color-background)"
                                 d="M13.0833359 19.2157116h-0.9192753c-1.0999985 0-1.9999971-0.8999996-1.9999971-1.9999981v-5.428606c0-1.0999994 0.8999987-1.9999981 1.9999971-1.9999981h0.9192753c1.0999985 0 1.9999981 0.8999987 1.9999981 1.9999981v5.428606C15.083334 18.315712 14.1833344 19.2157116 13.0833359 19.2157116z"
                             ></path>
                         </svg>
@@ -453,9 +453,9 @@ $gray-light-alt: lighten($gray-base, 80.5%) !default; //
 $gray-lighter: lighten($gray-base, 93.5%) !default; // #eee
 $brand-primary: #535250 !default;
 $brand-secondary: $gray-darker !default;
-$brand-tertiary: #fb2662 !default;
+$brand-tertiary: var(--color-accent) !default;
 $color-gold: #dea110 !default;
-$color-white: #fff !default;
+$color-white: var(--color-background) !default;
 $color-offwhite: #fafafa !default;
 
 .color-white {
@@ -465,7 +465,7 @@ $color-offwhite: #fafafa !default;
 //
 //## Settings for some of the most global styles.
 //** Background color for `<body>`.
-$body-bg: #fff !default;
+$body-bg: var(--color-background) !default;
 //** Global text color on `<body>`.
 $text-color: $gray-dark !default;
 //** Global textual link color.
@@ -514,7 +514,7 @@ svg.dot {
     padding-left: 0;
     cursor: pointer;
     z-index: 2;
-    color: #fff;
+    color: var(--color-background);
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -529,10 +529,10 @@ svg.dot {
     transition: opacity 0.5s;
 }
 .scroll-down.svg .stroke {
-    stroke: #fff;
+    stroke: var(--color-background);
 }
 .scroll-down.svg .scroller {
-    fill: #fff;
+    fill: var(--color-background);
     -webkit-animation: updown 1s infinite;
     -moz-animation: updown 1s infinite;
     -o-animation: updown 1s infinite;
@@ -609,7 +609,7 @@ svg.dot {
     padding-right: 30px;
 }
 .navbar__hidden--top {
-    background-color: #ffffff;
+    background-color: var(--color-background);
     overflow: hidden;
     color: $body-bg;
     -webkit-box-shadow: inset 0px -5px 22px 0px rgba(209, 209, 209, 0.23);
@@ -717,7 +717,7 @@ svg.dot {
         z-index: 200;
         font-size: 9px;
         font-family: 'AvenirLTStdLight';
-        color: #fff;
+        color: var(--color-background);
     } //end open-icon-text
     #open-icon {
         width: 20px;
@@ -796,7 +796,7 @@ svg.dot {
                 width: 27px;
             }
             .svgicon {
-                fill: #fff;
+                fill: var(--color-background);
                 &.alt {
                     fill: $brand-tertiary;
                 }
@@ -935,7 +935,7 @@ svg.dot {
                     bottom: 0;
                     width: 1px;
                     height: 0;
-                    background-color: #fff;
+                    background-color: var(--color-background);
                     transition: height 1.5s;
                     transition-delay: 1s;
                     &.grow {
@@ -1415,7 +1415,7 @@ h1.hero-title {
         mix-blend-mode: lighten;
     }
     .light {
-        background: #fff;
+        background: var(--color-background);
     }
 }
 

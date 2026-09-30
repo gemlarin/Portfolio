@@ -207,10 +207,10 @@ export default {
     }
     a.internal,
     button.internal {
-        color: #fb2662;
+        color: var(--color-accent);
         font-size: 14px;
-        border-top: 3px solid #fb2662;
-        border-left: 3px solid #fb2662;
+        border-top: 3px solid var(--color-accent);
+        border-left: 3px solid var(--color-accent);
         padding: 5px 12px;
         text-decoration: none;
         margin-top: 15px;
@@ -239,7 +239,7 @@ export default {
         }
     }
     ::v-deep .detail-image:has(.wireframe-shot) {
-        background: #ffffff;
+        background: var(--color-background);
     }
     ::v-deep .detail-image:has(.mobile-shot) {
         width: 50%;

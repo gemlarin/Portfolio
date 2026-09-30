@@ -72,7 +72,7 @@ footer {
             margin-right: 15px;
         }
         .fa {
-            color: #666666;
+            color: var(--color-muted);
             font-size: 32px;
         }
     }

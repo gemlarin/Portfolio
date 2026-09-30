@@ -64,7 +64,7 @@ export default {
     font-family: 'proxima_novablack', sans-serif;
     font-size: 72px;
     line-height: 1;
-    color: #fb2662;
+    color: var(--color-accent);
 }
 
 h1 {
@@ -81,10 +81,10 @@ h1 {
 }
 
 .home-link {
-    color: #fb2662;
+    color: var(--color-accent);
     font-size: 14px;
-    border-top: 3px solid #fb2662;
-    border-left: 3px solid #fb2662;
+    border-top: 3px solid var(--color-accent);
+    border-left: 3px solid var(--color-accent);
     padding: 5px 12px;
     text-decoration: none;
 

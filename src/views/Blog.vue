@@ -365,7 +365,7 @@ export default {
     max-width: 100%;
     height: 100vh;
     position: relative;
-    background-color: #fff;
+    background-color: var(--color-background);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -386,7 +386,7 @@ export default {
 h2 {
     font-family: 'proxima_novablack';
     font-size: 28px;
-    color: #222;
+    color: var(--color-foreground);
     margin: 0 0 8px;
 }
 .lede {
@@ -396,7 +396,7 @@ h2 {
     gap: 6px;
     font-family: 'AvenirLTStdBook';
     font-size: 15px;
-    color: #222;
+    color: var(--color-foreground);
     margin: 0 0 40px;
     line-height: 1.5;
 }
@@ -406,7 +406,7 @@ h2 {
     line-height: 1.5;
 }
 .lede-hashnode {
-    color: #fb2662;
+    color: var(--color-accent);
     text-decoration: none;
     font-family: 'AvenirLTStdBook';
     font-size: 15px;
@@ -422,12 +422,12 @@ h2 {
 .status {
     font-family: 'AvenirLTStdBook';
     font-size: 14px;
-    color: #666;
+    color: var(--color-muted);
     a {
-        color: #fb2662;
+        color: var(--color-accent);
     }
     &.error {
-        color: #222;
+        color: var(--color-foreground);
     }
 }
 .status-action {
@@ -437,7 +437,7 @@ h2 {
     border: 0;
     background: none;
     font: inherit;
-    color: #fb2662;
+    color: var(--color-accent);
     cursor: pointer;
     text-decoration: underline;
     &:disabled {
@@ -448,12 +448,12 @@ h2 {
 .tag-filter {
     font-family: 'AvenirLTStdBook';
     font-size: 14px;
-    color: #666;
+    color: var(--color-muted);
     margin: 0 0 20px;
 }
 .tag-filter-name {
     font-family: 'AvenirLTStdMedium';
-    color: #222;
+    color: var(--color-foreground);
 }
 .tag-filter-clear {
     margin-left: 10px;
@@ -461,7 +461,7 @@ h2 {
     border: 0;
     background: none;
     font: inherit;
-    color: #fb2662;
+    color: var(--color-accent);
     cursor: pointer;
     text-decoration: underline;
 }
@@ -472,7 +472,7 @@ h2 {
 }
 .post-item {
     margin-bottom: 28px;
-    border-bottom: 1px dashed #d8d8d8;
+    border-bottom: 1px dashed var(--color-border);
     padding-bottom: 15px;
 }
 .post-item:last-child {
@@ -485,9 +485,9 @@ h2 {
     align-items: flex-start;
     gap: 20px;
     text-decoration: none;
-    color: #222;
+    color: var(--color-foreground);
     &:hover .post-title {
-        color: #fb2662;
+        color: var(--color-accent);
     }
 }
 .post-thumb-wrap {
@@ -495,7 +495,7 @@ h2 {
     width: 88px;
     height: 88px;
     overflow: hidden;
-    background: #f4f4f4;
+    background: var(--color-surface);
     margin-top: 4px;
 }
 .post-thumb {
@@ -512,9 +512,9 @@ h2 {
 .post-title {
     display: block;
     font-family: 'proxima_novablack';
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.1;
-    color: #222;
+    color: var(--color-foreground);
     transition: color 0.15s ease;
 }
 .post-tags {
@@ -533,11 +533,11 @@ h2 {
     }
 }
 .tag-link {
-    color: #888;
+    color: var(--color-muted-soft);
     text-decoration: none;
     cursor: pointer;
     &:hover {
-        color: #fb2662;
+        color: var(--color-accent);
         text-decoration: underline;
     }
 }
@@ -550,7 +550,7 @@ h2 {
     display: block;
     font-family: 'AvenirLTStdLight';
     font-size: 12px;
-    color: #666;
+    color: var(--color-muted);
     margin-top: 6px;
 }
 .post-desc {
@@ -561,7 +561,7 @@ h2 {
     text-overflow: ellipsis;
     font-family: 'AvenirLTStdBook';
     font-size: 14px;
-    color: #222;
+    color: var(--color-foreground);
     margin-top: 6px;
     line-height: 1.5;
 }
@@ -570,13 +570,13 @@ h2 {
     text-align: center;
 }
 button.cta-link.load-more {
-    color: #fb2662;
+    color: var(--color-accent);
     font-size: 14px;
     margin-top: 0;
     margin-right: 0;
     display: inline-block;
-    border-top: 3px solid #fb2662;
-    border-left: 3px solid #fb2662;
+    border-top: 3px solid var(--color-accent);
+    border-left: 3px solid var(--color-accent);
     border-right: 0;
     border-bottom: 0;
     padding: 5px 12px;

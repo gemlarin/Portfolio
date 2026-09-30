@@ -217,7 +217,7 @@ export default {
     margin-bottom: 0;
 }
 .form-error {
-    color: #fb2662;
+    color: var(--color-accent);
     font-size: 13px;
     margin: 0 0 12px;
 }
@@ -225,11 +225,11 @@ p {
     font-family: 'AvenirLTStdBook';
     font-size: 15px;
     line-height: 1.74em;
-    color: #222;
+    color: var(--color-foreground);
     margin-top: 0;
 }
 a {
-    color: #222;
+    color: var(--color-foreground);
 }
 @media (max-width: 768px) {
     .mfp-close {
