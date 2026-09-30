@@ -351,6 +351,7 @@ h2 {
     height: 88px;
     overflow: hidden;
     background: #f4f4f4;
+    margin-top: 1px;
 }
 .post-thumb {
     display: block;
@@ -367,6 +368,7 @@ h2 {
     display: block;
     font-family: 'proxima_novablack';
     font-size: 20px;
+    line-height: 1.1;
     color: #222;
     transition: color 0.15s ease;
 }
