@@ -104,6 +104,10 @@
                             </li>
                         </ul>
                     </section>
+                    <giscus-comments
+                        v-if="post.slug"
+                        :term="post.slug"
+                    />
                     <p class="subscribe">
                         <a
                             :href="rssUrl"
@@ -125,6 +129,7 @@
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
 import ExternalArrow from './../components/ExternalArrow.vue'
+import GiscusComments from './../components/GiscusComments.vue'
 import escapeClose from './../mixins/escapeClose'
 import {
     fetchHashnodePost,
@@ -141,6 +146,7 @@ export default {
     components: {
         Navi: Nav,
         ExternalArrow,
+        GiscusComments,
     },
     data() {
         return {

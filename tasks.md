@@ -1,12 +1,13 @@
-# Task: Ship-readiness cleanup
+# Task: Giscus comments on blog posts
 
 ## Spec
-- Goal: Single deploy path (Actions); scrub PII from `.env.example` for public repo
-- In scope: Remove `deploy.sh` / `npm run deploy`; update README; remove email from `.env.example`
-- Out of scope: Changing Contact page public email/phone; Analytics beyond GTM removal already done
-- Done when: Only Actions deploys; `.env.example` has no personal email; form still keyed via Actions secret + local `.env`
+- Goal: Embed Giscus on `/blog/:slug` post pages
+- In scope: Config file + Vue mount/cleanup; map by post slug; light theme aligned with site
+- Out of scope: Hashnode comments; moderating Discussions setup beyond documenting steps
+- Done when: Comments render under post body (when Giscus config is filled); no leftover script on leave
 
 ## Tasks
-- [x] Remove local deploy script + npm script; README → push/Actions
-- [x] Strip email from `.env.example`
+- [x] Add `src/data/giscus.js` config (+ `.env.example` notes if needed)
+- [x] Mount Giscus on BlogPost; remount on slug change; destroy cleanup
 - [ ] Code sweep (prompt D for topics — see AGENTS.md)
+- [ ] D: Install Giscus GitHub App on Portfolio (required for widget)
