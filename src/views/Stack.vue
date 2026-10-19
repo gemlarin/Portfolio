@@ -26,12 +26,14 @@
         </div>
         <div class="nav-wrap nav-wrap--solid">
             <navi variant="pager" :activepage="page"></navi>
+            <page-close @close="closePage" />
         </div>
     </div>
 </template>
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import PageClose from './../components/PageClose.vue'
 import escapeClose from './../mixins/escapeClose'
 export default {
     name: 'Stack',
@@ -44,6 +46,7 @@ export default {
     created() {},
     components: {
         Navi: Nav,
+        PageClose,
     },
     methods: {
         closePage() {
@@ -104,7 +107,7 @@ p {
 .wrap--stack {
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: visible;
     box-sizing: border-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -136,6 +139,7 @@ p {
     top: 10px;
 }
 .wrap--centering {
+    position: relative;
     width: 70vw;
     height: 360px;
     background-color: white;
@@ -188,8 +192,7 @@ p {
         box-sizing: border-box;
         padding: 0;
         align-items: center;
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: visible;
     }
     .wrap--centering {
         width: 100%;
@@ -199,7 +202,7 @@ p {
         padding-left: 16px;
         padding-right: 16px;
         box-sizing: border-box;
-        overflow-x: hidden;
+        overflow: visible;
     }
     .wrap--centering ::v-deep .row {
         margin-left: 0;

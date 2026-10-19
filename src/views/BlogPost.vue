@@ -634,6 +634,10 @@ h1 {
     }
     ul {
         margin-bottom: calc(1.1em - 5px);
+        list-style-type: square;
+        > li::marker {
+            color: var(--color-accent);
+        }
     }
     li {
         font-size: var(--text-md);

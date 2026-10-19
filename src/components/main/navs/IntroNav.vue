@@ -25,14 +25,11 @@
             </svg>
         </template>
         <ul v-else class="navlist">
-            <li
-                v-if="showArrows"
-                class="nav-arrow-slot"
-                :class="{ 'is-hidden': !prevItem }"
-            >
+            <li v-if="showArrows" class="nav-arrow-slot">
                 <button
                     type="button"
                     class="nav-arrow"
+                    :disabled="!prevItem"
                     :aria-label="
                         prevItem ? 'Previous: ' + prevItem.label : 'Previous'
                     "
@@ -74,14 +71,11 @@
                     </svg>
                 </button>
             </li>
-            <li
-                v-if="showArrows"
-                class="nav-arrow-slot"
-                :class="{ 'is-hidden': !nextItem }"
-            >
+            <li v-if="showArrows" class="nav-arrow-slot">
                 <button
                     type="button"
                     class="nav-arrow"
+                    :disabled="!nextItem"
                     :aria-label="nextItem ? 'Next: ' + nextItem.label : 'Next'"
                     :aria-hidden="nextItem ? null : 'true'"
                     :tabindex="nextItem ? 0 : -1"
@@ -259,6 +253,8 @@ li {
         padding: 0;
         margin: 0 12px;
         cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
         white-space: nowrap;
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
@@ -272,10 +268,6 @@ li {
         }
     }
 }
-.nav-arrow-slot.is-hidden {
-    visibility: hidden;
-    pointer-events: none;
-}
 /* 12px button margin on the text side, minus 5px, so the arrows sit closer. */
 .nav-arrow-slot:first-child .nav-arrow {
     margin-right: 7px;
@@ -285,6 +277,8 @@ li {
 }
 .nav-link {
     display: inline-grid;
+    align-items: center;
+    justify-items: center;
     font-family: 'AvenirLTStdMedium';
     font-size: var(--font-nav);
     line-height: 1;
@@ -300,6 +294,8 @@ li {
     .nav-label {
         grid-area: 1 / 1;
         justify-self: center;
+        align-self: center;
+        line-height: 1;
     }
     &.active {
         color: #fff;
@@ -342,10 +338,17 @@ li {
     }
 }
 
+li button.nav-arrow:disabled {
+    color: #8d8d8d;
+    opacity: 1;
+    cursor: default;
+    pointer-events: none;
+}
+
 @media (hover: hover) and (pointer: fine) {
     li button.nav-link:hover,
     li button.nav-link.active:hover,
-    li button.nav-arrow:hover,
+    li button.nav-arrow:hover:not(:disabled),
     .intro-nav--action:hover {
         color: var(--color-accent);
         text-decoration: none;
@@ -354,37 +357,37 @@ li {
 
 @media (max-width: 768px) {
     li button {
-        margin: 0 6px;
-        font-size: var(--font-nav-sm);
+        margin: 0 10px;
+        font-size: var(--font-nav);
     }
     .nav-arrow-slot:first-child .nav-arrow {
-        margin-right: 1px;
+        margin-right: 5px;
     }
     .nav-arrow-slot:last-child .nav-arrow {
-        margin-left: 1px;
+        margin-left: 5px;
     }
     .nav-link,
     .nav-arrow,
     .intro-nav--action {
-        font-size: var(--font-nav-sm);
+        font-size: var(--font-nav);
     }
 }
 
 @media (max-width: 400px) {
     li button {
-        margin: 0 4px;
-        font-size: var(--font-nav-xs);
+        margin: 0 8px;
+        font-size: var(--font-nav-sm);
     }
     .nav-arrow-slot:first-child .nav-arrow {
-        margin-right: -1px;
+        margin-right: 4px;
     }
     .nav-arrow-slot:last-child .nav-arrow {
-        margin-left: -1px;
+        margin-left: 4px;
     }
     .nav-link,
     .nav-arrow,
     .intro-nav--action {
-        font-size: var(--font-nav-xs);
+        font-size: var(--font-nav-sm);
     }
 }
 </style>

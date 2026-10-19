@@ -1,17 +1,36 @@
 <template>
     <div class="page-frame">
         <div class="wrap--stack">
-
             <div class="wrap--centering">
                 <h1 class="sr-only">Résumé</h1>
                 <h2>Experience</h2>
-                <p>Aspenware, Senior Front End Developer</p>
-                <p>Parkifi, Software Engineer II</p>
-                <p>Clean Energy Collective, Web Developer</p>
-                <p>Practis Inc, Web Designer / Project Manager</p>
+                <ul>
+                    <li>
+                        <strong>Infotech</strong>, Senior Software Engineer:
+                        Front End
+                    </li>
+                    <li>
+                        <strong>Aspenware</strong>, Senior Front End Developer
+                    </li>
+                    <li><strong>Parkifi</strong>, Software Engineer II</li>
+                    <li>
+                        <strong>Clean Energy Collective</strong>, Web Developer
+                    </li>
+                    <li>
+                        <strong>Practis Inc</strong>, Web Designer / Project
+                        Manager
+                    </li>
+                </ul>
                 <h2>Education</h2>
-                <p>BFA New Media Design & Development, RIT</p>
-                <p>AAS Visual Communication Technologies, MCC</p>
+                <ul>
+                    <li>
+                        <strong>RIT</strong>, BFA New Media Design & Development
+                    </li>
+                    <li>
+                        <strong>MCC</strong>, AAS Visual Communication
+                        Technologies
+                    </li>
+                </ul>
                 <p class="resume-cta">
                     <a
                         class="cta-link"
@@ -27,12 +46,14 @@
         </div>
         <div class="nav-wrap nav-wrap--solid">
             <navi variant="pager" :activepage="page"></navi>
+            <page-close @close="closePage" />
         </div>
     </div>
 </template>
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import PageClose from './../components/PageClose.vue'
 import escapeClose from './../mixins/escapeClose'
 export default {
     name: 'resume',
@@ -45,6 +66,7 @@ export default {
     created() {},
     components: {
         Navi: Nav,
+        PageClose,
     },
     methods: {
         closePage() {
@@ -140,6 +162,7 @@ p {
     top: 10px;
 }
 .wrap--centering {
+    position: relative;
     width: fit-content;
     max-width: min(520px, 88vw);
     height: auto;
@@ -167,24 +190,23 @@ p {
         height: 35px;
     }
     ul {
-        padding: 0;
-        text-decoration: none;
+        list-style-type: square;
+        margin: 0;
+        padding: 0 0 0 1.1em;
         li {
-            display: block;
-            font-size: var(--font-h2);
-            font-family: 'proxima_novablack';
-            p {
-                margin-bottom: 0;
-                line-height: 1em;
-            }
-            .subtext {
-                font-size: var(--font-caption);
-                margin-top: 5px;
-                padding-top: 0;
+            display: list-item;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            &::marker {
                 color: var(--color-accent);
-                margin-bottom: 20px;
-                font-family: 'AvenirLTStdBook';
             }
+        }
+        strong {
+            font-family: 'AvenirLTStdBlack', sans-serif;
+            font-weight: normal;
+            font-synthesis: none;
         }
     }
 }
@@ -197,7 +219,7 @@ p {
         padding: 0;
         align-items: center;
         justify-content: center;
-        overflow-y: auto;
+        overflow: visible;
     }
     .wrap--centering {
         width: fit-content;

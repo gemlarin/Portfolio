@@ -104,12 +104,14 @@
         </div>
         <div class="nav-wrap nav-wrap--solid">
             <navi variant="pager" :activepage="page"></navi>
+            <page-close @close="closePage" />
         </div>
     </div>
 </template>
 
 <script>
 import Nav from './../components/main/navs/IntroNav.vue'
+import PageClose from './../components/PageClose.vue'
 import SendIcon from './../components/SendIcon.vue'
 import escapeClose from './../mixins/escapeClose'
 
@@ -227,6 +229,7 @@ export default {
     },
     components: {
         Navi: Nav,
+        PageClose,
         SendIcon,
     },
 }
@@ -252,6 +255,7 @@ export default {
     top: 10px;
 }
 .wrap--centering {
+    position: relative;
     width: 40vw;
     max-width: 500px;
     min-height: 360px;
@@ -337,7 +341,7 @@ a {
         box-sizing: border-box;
         padding: 0;
         align-items: center;
-        overflow-y: auto;
+        overflow: visible;
     }
     .wrap--centering {
         width: 100%;

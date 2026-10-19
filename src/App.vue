@@ -524,6 +524,7 @@ img.mfp-img {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1px;
     pointer-events: auto;
 }
 .nav-wrap.nav-wrap--solid .intro-nav {
