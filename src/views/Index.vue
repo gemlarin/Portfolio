@@ -97,7 +97,7 @@ export default {
 #page-wrap {
 }
 
-/* Selected works only — zoom on the img; ScrollReveal owns the wrapper transform */
+/* Selected works previews fade in. ScrollReveal owns the wrapper. */
 #page-wrap .preview--zoom {
     display: block;
     max-width: 100%;

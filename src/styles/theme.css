@@ -190,6 +190,46 @@ summary {
   cursor: pointer;
 }
 
+/* Text links. Default is black and turns pink with an underline.
+   Reverse stays pink and only gains the underline.
+   Article body links start pink and turn black with an underline. */
+a.link,
+button.link {
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+a.link:hover,
+button.link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+a.link--reverse,
+button.link--reverse {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.post-body a {
+  color: var(--color-accent);
+  font-family: 'AvenirLTStdMedium', sans-serif;
+  font-weight: normal;
+  font-synthesis: none;
+  text-decoration: none;
+}
+
+a.link--reverse:hover,
+button.link--reverse:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.post-body a:hover {
+  color: var(--color-foreground);
+  text-decoration: underline;
+}
+
 button:disabled {
   cursor: not-allowed;
 }

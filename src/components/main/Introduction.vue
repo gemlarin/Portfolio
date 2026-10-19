@@ -12,7 +12,7 @@
                     <li>
                         <button
                             type="button"
-                            class="nav-link"
+                            class="nav-link link link--reverse"
                             v-scroll-to="'#portfolio'"
                         >
                             portfolio
@@ -21,7 +21,7 @@
                     <li>
                         <button
                             type="button"
-                            class="nav-link"
+                            class="nav-link link link--reverse"
                             @click="$router.push('/stack')"
                         >
                             stack
@@ -30,7 +30,7 @@
                     <li>
                         <button
                             type="button"
-                            class="nav-link"
+                            class="nav-link link link--reverse"
                             @click="$router.push('/resume')"
                         >
                             résumé
@@ -39,7 +39,7 @@
                     <li>
                         <button
                             type="button"
-                            class="nav-link"
+                            class="nav-link link link--reverse"
                             @click="$router.push('/contact')"
                         >
                             contact
@@ -48,7 +48,7 @@
                     <li>
                         <button
                             type="button"
-                            class="nav-link"
+                            class="nav-link link link--reverse"
                             @click="$router.push('/blog')"
                         >
                             blog
@@ -139,7 +139,6 @@ export default {
 
     a.nav-link,
     button.nav-link {
-        color: var(--color-accent);
         font-size: var(--text-md); /* 18px desktop */
         background: none;
         border: 0;
@@ -147,10 +146,6 @@ export default {
         margin: 0 16px;
         font-family: inherit;
         cursor: pointer;
-    }
-    a:hover,
-    button.nav-link:hover {
-        text-decoration: underline;
     }
     ul {
         list-style: none;

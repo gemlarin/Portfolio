@@ -9,7 +9,7 @@
                 </p>
                 <p class="lede-hashnode-wrap">
                     <a
-                        class="lede-hashnode"
+                        class="lede-hashnode link link--reverse"
                         :href="blogUrl"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -45,6 +45,7 @@
                         Retry
                     </button>
                     <a
+                        class="link link--reverse"
                         :href="blogUrl"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -55,6 +56,7 @@
                 <p v-else-if="!posts.length" class="status">
                     No posts published yet. Check back soon, or visit
                     <a
+                        class="link link--reverse"
                         :href="blogUrl"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -135,7 +137,7 @@
                                     :key="tag.slug"
                                 >
                                     <router-link
-                                        class="tag-link"
+                                        class="tag-link link"
                                         :to="{
                                             path: '/blog',
                                             query: { tag: tag.slug },
@@ -467,8 +469,6 @@ h2,
     margin: 0 0 30px;
 }
 .lede-hashnode {
-    color: var(--color-accent);
-    text-decoration: none;
     font-family: 'AvenirLTStdBook';
     font-size: var(--font-meta);
     font-weight: normal;
@@ -477,18 +477,10 @@ h2,
     display: inline-flex;
     align-items: center;
 }
-@media (hover: hover) and (pointer: fine) {
-    .lede-hashnode:hover {
-        text-decoration: underline;
-    }
-}
 .status {
     font-family: 'AvenirLTStdBook';
     font-size: var(--font-small);
     color: var(--color-muted);
-    a {
-        color: var(--color-accent);
-    }
     &.error {
         color: var(--color-foreground);
     }
@@ -553,6 +545,7 @@ h2,
 @media (hover: hover) and (pointer: fine) {
     .post-link:hover .post-title {
         color: var(--color-accent);
+        text-decoration: underline;
     }
 }
 .post-thumb-wrap {
@@ -595,17 +588,6 @@ h2,
         font-family: 'AvenirLTStdMedium';
         font-size: var(--font-small);
         line-height: 1.2;
-    }
-}
-.tag-link {
-    color: var(--color-muted-soft);
-    text-decoration: none;
-    cursor: pointer;
-}
-@media (hover: hover) and (pointer: fine) {
-    .tag-link:hover {
-        color: var(--color-accent);
-        text-decoration: underline;
     }
 }
 @media (min-width: 768px) {

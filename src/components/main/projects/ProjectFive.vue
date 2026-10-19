@@ -44,7 +44,13 @@
                 class="col-12 col-sm-12 col-md-12 col-lg-8 order-1 order-sm-1 order-md-1 order-lg-2"
             >
                 <div
-                    v-scroll-reveal="{ delay: 250, origin:'right', duration: 500, easing:'ease-out'}"
+                    v-scroll-reveal="{
+                        delay: 250,
+                        duration: 1600,
+                        easing: 'ease-out',
+                        scale: 1,
+                        distance: '0px',
+                    }"
                 >
                     <detail-image
                         :src="activeImage"

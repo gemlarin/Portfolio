@@ -12,7 +12,9 @@
                     >
                         Retry
                     </button>
-                    <router-link to="/blog">Back to blog</router-link>
+                    <router-link class="link link--reverse" to="/blog"
+                        >Back to blog</router-link
+                    >
                 </p>
                 <article v-else-if="post">
                     <p
@@ -33,6 +35,7 @@
                         }}</time>
                         <span aria-hidden="true"> · </span>
                         <a
+                            class="link link--reverse"
                             :href="post.url"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -57,8 +60,9 @@
                         role="status"
                     >
                         This post has no body content yet.
-                        <a
+                            <a
                             v-if="post.url"
+                            class="link link--reverse"
                             :href="post.url"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -77,7 +81,7 @@
                                 :key="tag.slug"
                             >
                                 <router-link
-                                    class="tag-link"
+                                    class="tag-link link"
                                     :to="{
                                         path: '/blog',
                                         query: { tag: tag.slug },
@@ -98,9 +102,11 @@
                                 v-for="item in relatedPosts"
                                 :key="item.id || item.slug"
                             >
-                                <router-link :to="'/blog/' + item.slug">{{
-                                    item.title
-                                }}</router-link>
+                                <router-link
+                                    class="link"
+                                    :to="'/blog/' + item.slug"
+                                    >{{ item.title }}</router-link
+                                >
                             </li>
                         </ul>
                     </section>
@@ -110,6 +116,7 @@
                     />
                     <p class="subscribe">
                         <a
+                            class="link link--reverse"
                             :href="rssUrl"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -446,9 +453,6 @@ export default {
     font-family: 'AvenirLTStdBook';
     font-size: var(--font-small);
     color: var(--color-muted);
-    a {
-        color: var(--color-accent);
-    }
     &.error {
         color: var(--color-foreground);
     }
@@ -521,15 +525,6 @@ h1 {
         }
     }
 }
-.tag-link {
-    color: var(--color-foreground);
-    text-decoration: none;
-    cursor: pointer;
-    &:hover {
-        color: var(--color-accent);
-        text-decoration: underline;
-    }
-}
 .meta {
     font-family: 'AvenirLTStdLight';
     font-size: var(--font-meta);
@@ -537,13 +532,6 @@ h1 {
     margin: 0 0 22px;
     span {
         margin: 0 4px;
-    }
-    a {
-        color: var(--color-accent);
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
     }
 }
 .cover {
@@ -581,27 +569,11 @@ h1 {
         font-size: var(--font-body);
         line-height: 1.4;
     }
-    a {
-        color: var(--color-foreground);
-        text-decoration: none;
-        cursor: pointer;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
 }
 .subscribe {
     margin: 24px 0 0;
     font-family: 'AvenirLTStdBook';
     font-size: var(--font-small);
-    a {
-        color: var(--color-accent);
-        text-decoration: none;
-        cursor: pointer;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
 }
 .post-body ::v-deep {
     p {
@@ -648,9 +620,6 @@ h1 {
     h3,
     h4 {
         margin-top: calc(1.4em - 5px);
-    }
-    a {
-        color: var(--color-accent);
     }
     img {
         max-width: 100%;

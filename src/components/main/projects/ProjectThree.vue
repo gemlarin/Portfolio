@@ -42,9 +42,10 @@
                 <div
                     v-scroll-reveal="{
                         delay: 250,
-                        origin: 'right',
-                        duration: 500,
+                        duration: 1600,
                         easing: 'ease-out',
+                        scale: 1,
+                        distance: '0px',
                     }"
                 >
                     <detail-image

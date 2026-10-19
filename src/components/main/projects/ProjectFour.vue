@@ -3,7 +3,13 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <div
-                    v-scroll-reveal="{ delay: 250, origin:'left', duration: 500, easing:'ease-out'}"
+                    v-scroll-reveal="{
+                        delay: 250,
+                        duration: 1600,
+                        easing: 'ease-out',
+                        scale: 1,
+                        distance: '0px',
+                    }"
                 >
                     <detail-image
                         :src="activeImage"

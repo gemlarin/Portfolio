@@ -6,12 +6,20 @@
                 <div class="wrap--hero-copy">
                     <div class="welcome-block">
                         <h1 class="sr-only">Danny Gibas</h1>
-                        <div id="firstname" class="hero-name-line" aria-hidden="true">
+                        <div
+                            id="firstname"
+                            class="hero-name-line"
+                            aria-hidden="true"
+                        >
                             <span>d</span>
                             <span>a</span>
                             <span>n</span>
                         </div>
-                        <div id="lastname" class="hero-name-line" aria-hidden="true">
+                        <div
+                            id="lastname"
+                            class="hero-name-line"
+                            aria-hidden="true"
+                        >
                             <span>g</span>
                             <span>i</span>
                             <span>b</span>
