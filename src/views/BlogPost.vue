@@ -688,7 +688,7 @@ h1 {
         overflow: auto;
         background: var(--color-surface);
         color: var(--color-charcoal);
-        font-size: var(--font-code);
+        font-size: var(--text-base);
         line-height: 1.5;
     }
     .code-block {
@@ -733,7 +733,7 @@ h1 {
     code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             monospace;
-        font-size: var(--text-md);
+        font-size: var(--text-base);
         color: var(--color-charcoal);
     }
     pre code {
