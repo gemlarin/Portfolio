@@ -123,9 +123,9 @@
                                         }}</span
                                     >
                                     <span
-                                        v-if="post.brief"
+                                        v-if="postLead(post)"
                                         class="post-desc"
-                                        >{{ formatBrief(post.brief) }}</span
+                                        >{{ postLead(post) }}</span
                                     >
                                 </span>
                             </router-link>
@@ -396,11 +396,13 @@ export default {
                 }
             }
         },
-        formatBrief(brief) {
-            const text = String(brief || '').trim()
-            if (!text) return ''
-            if (/[.…!?]$/.test(text)) return text
-            return text + '…'
+        postLead(post) {
+            const subtitle = String((post && post.subtitle) || '').trim()
+            if (subtitle) return subtitle
+            const brief = String((post && post.brief) || '').trim()
+            if (!brief) return ''
+            if (/[.…!?]$/.test(brief)) return brief
+            return brief + '…'
         },
     },
     metaInfo() {

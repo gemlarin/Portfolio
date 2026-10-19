@@ -30,6 +30,9 @@
                         <router-link to="/blog">← All posts</router-link>
                     </p>
                     <h1>{{ post.title }}</h1>
+                    <p v-if="post.subtitle" class="subtitle">
+                        {{ post.subtitle }}
+                    </p>
                     <ul
                         v-if="post.tags && post.tags.length"
                         class="post-tags"
@@ -344,6 +347,7 @@ export default {
         }
         const title = this.post.title
         const description =
+            this.post.subtitle ||
             this.post.brief ||
             'Practical notes on frontend engineering, design, and shipping.'
         const image = this.post.coverImage || ''
@@ -486,6 +490,13 @@ h1 {
     color: var(--color-foreground);
     margin: 0 0 10px;
     line-height: 1.15;
+}
+.subtitle {
+    font-family: 'AvenirLTStdBlack';
+    font-size: var(--font-lede);
+    color: var(--color-foreground);
+    margin: 0 0 12px;
+    line-height: 1.45;
 }
 .post-tags {
     list-style: none;

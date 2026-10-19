@@ -21,6 +21,7 @@ const POSTS_QUERY = `
           node {
             id
             title
+            subtitle
             brief
             slug
             url
@@ -46,6 +47,7 @@ const POST_QUERY = `
       post(slug: $slug) {
         id
         title
+        subtitle
         brief
         slug
         url
@@ -132,6 +134,7 @@ export async function fetchHashnodePublication({
     const posts = edges.map((edge) => edge.node).filter(Boolean).map((node) => ({
         id: node.id,
         title: node.title,
+        subtitle: node.subtitle || '',
         brief: node.brief || '',
         slug: node.slug,
         url: node.url,
@@ -174,6 +177,7 @@ export async function fetchHashnodePost(slug, { signal = null } = {}) {
     return {
         id: post.id,
         title: post.title,
+        subtitle: post.subtitle || '',
         brief: post.brief || '',
         slug: post.slug,
         url: post.url,
