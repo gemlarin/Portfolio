@@ -49,7 +49,17 @@ export default {
     color: var(--color-accent);
     text-decoration: none;
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
+    .page-close {
+        width: calc(var(--text-sm) + 24px);
+        height: calc(var(--text-sm) + 24px);
+    }
+    .page-close svg {
+        width: var(--text-sm);
+        height: var(--text-sm);
+    }
+}
+@media (max-width: 360px) {
     .page-close {
         width: calc(var(--font-nav-sm) + 24px);
         height: calc(var(--font-nav-sm) + 24px);

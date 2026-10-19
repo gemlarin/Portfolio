@@ -595,6 +595,21 @@ img.mfp-img {
     }
 }
 
+@media (max-width: 480px) {
+    .nav-wrap.nav-wrap--solid {
+        max-width: calc(100% - 12px);
+    }
+    .nav-wrap.nav-wrap--solid .intro-nav {
+        padding: 12px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .nav-wrap.nav-wrap--solid .intro-nav {
+        padding: 12px 8px;
+    }
+}
+
 img.responsive {
     width: 100%;
     height: auto;

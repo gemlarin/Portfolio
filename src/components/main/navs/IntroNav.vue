@@ -373,16 +373,34 @@ li button.nav-arrow:disabled {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     li button {
-        margin: 0 8px;
-        font-size: var(--font-nav-sm);
+        margin: 0 7px;
+        font-size: var(--text-sm);
     }
     .nav-arrow-slot:first-child .nav-arrow {
         margin-right: 4px;
     }
     .nav-arrow-slot:last-child .nav-arrow {
         margin-left: 4px;
+    }
+    .nav-link,
+    .nav-arrow,
+    .intro-nav--action {
+        font-size: var(--text-sm);
+    }
+}
+
+@media (max-width: 360px) {
+    li button {
+        margin: 0 5px;
+        font-size: var(--font-nav-sm);
+    }
+    .nav-arrow-slot:first-child .nav-arrow {
+        margin-right: 3px;
+    }
+    .nav-arrow-slot:last-child .nav-arrow {
+        margin-left: 3px;
     }
     .nav-link,
     .nav-arrow,
