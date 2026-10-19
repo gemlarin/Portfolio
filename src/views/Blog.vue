@@ -438,7 +438,9 @@ export default {
     box-sizing: border-box;
 }
 .wrap--centering {
-    width: min(689px, calc(100% - 40px));
+    width: min(75ch, calc(100% - 40px));
+    font-family: 'AvenirLTStdBook';
+    font-size: var(--font-body);
     margin: 0 auto;
     max-height: none;
     height: auto;

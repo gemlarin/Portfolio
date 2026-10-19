@@ -428,7 +428,9 @@ export default {
     box-sizing: border-box;
 }
 .wrap--centering {
-    width: min(689px, calc(100% - 40px));
+    width: min(75ch, calc(100% - 40px));
+    font-family: 'AvenirLTStdBook';
+    font-size: var(--font-body);
     margin: 0 auto;
     max-height: none;
     height: auto;
@@ -569,6 +571,12 @@ h1 {
     p {
         margin: 0 0 1.1em;
     }
+    strong,
+    b {
+        font-family: 'AvenirLTStdBlack';
+        font-weight: normal;
+        font-synthesis: none;
+    }
     h2,
     h3,
     h4 {
@@ -576,12 +584,22 @@ h1 {
         color: var(--color-foreground);
         margin: 1.4em 0 0.55em;
         line-height: 1.3;
+        strong,
+        b {
+            font-family: inherit;
+            font-weight: inherit;
+            font-synthesis: inherit;
+        }
     }
     h2 {
         font-size: var(--font-article-h2);
     }
     h3 {
         font-size: var(--font-article-h3);
+    }
+    h3,
+    h4 {
+        margin-top: calc(1.4em - 5px);
     }
     a {
         color: var(--color-accent);
@@ -597,8 +615,17 @@ h1 {
         margin: 0 0 1.1em;
         padding-left: 1.3em;
     }
+    ul {
+        margin-bottom: calc(1.1em - 5px);
+    }
     li {
-        margin-bottom: 0.35em;
+        margin-bottom: 0;
+        > p:last-child {
+            margin-bottom: 0;
+        }
+        &:not(:last-child) {
+            margin-bottom: calc(var(--font-body) * 0.5);
+        }
     }
     blockquote {
         margin: 0 0 1.1em;
@@ -611,7 +638,7 @@ h1 {
         padding: 14px 16px;
         overflow: auto;
         background: var(--color-surface);
-        color: var(--color-foreground);
+        color: var(--color-charcoal);
         font-size: var(--font-code);
         line-height: 1.5;
     }
@@ -658,7 +685,7 @@ h1 {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             monospace;
         font-size: var(--font-code);
-        color: var(--color-accent);
+        color: var(--color-charcoal);
     }
     pre code {
         color: inherit;
