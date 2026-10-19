@@ -68,10 +68,6 @@ export default {
     font-size: var(--font-body);
     line-height: 1.7;
     color: var(--color-ink-muted);
-
-    a {
-        color: var(--color-ink);
-    }
 }
 
 .home-link {

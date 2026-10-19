@@ -152,11 +152,6 @@ p {
     color: var(--color-foreground);
 }
 
-a {
-    color: var(--color-ink);
-    text-decoration: underline;
-}
-
 @media (max-width: 768px) {
     .mfp-close {
         font-size: var(--font-page-title-sm);

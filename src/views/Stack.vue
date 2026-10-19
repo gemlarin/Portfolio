@@ -102,7 +102,18 @@ p {
     text-align: right;
 }
 .wrap--centering ::v-deep .row {
+    position: relative;
     align-items: flex-start;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        border-left: 1px dashed var(--color-accent);
+        transform: translateX(-50%);
+    }
 }
 .wrap--stack {
     width: 100%;
@@ -207,19 +218,22 @@ p {
     .wrap--centering ::v-deep .row {
         margin-left: 0;
         margin-right: 0;
+        &::after {
+            display: none;
+        }
     }
     .wrap--centering ::v-deep [class*='col-'] {
         padding-left: 0;
         padding-right: 0;
     }
     .subcopy {
-        max-width: 400px;
+        max-width: 80%;
         padding-top: 20px;
         text-align: center;
-        margin: 0 auto;
+        margin: 16px auto 0;
         padding-left: 0;
         padding-right: 0;
-        max-width: 80%;
+        border-top: 1px dashed var(--color-accent);
     }
     .listing {
         text-align: center;

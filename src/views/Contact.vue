@@ -278,9 +278,6 @@ export default {
     line-height: 1.74em;
     color: var(--color-foreground);
     margin: 0 0 28px;
-    a {
-        color: var(--color-foreground);
-    }
 }
 .submit-wrap {
     margin-top: -20px;
@@ -329,9 +326,6 @@ p {
     line-height: 1.74em;
     color: var(--color-foreground);
     margin-top: 0;
-}
-a {
-    color: var(--color-foreground);
 }
 @media (max-width: 768px) {
     .mfp-close {
