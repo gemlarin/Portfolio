@@ -1,13 +1,6 @@
 <template>
     <div class="container" id="project-four-details">
-        <button
-            type="button"
-            class="close-control"
-            aria-label="Close project details"
-            @click="$router.push({ path: '/', hash: '#project-four' })"
-        >
-            <span class="mfp-close" aria-hidden="true">×</span>
-        </button>
+
         <div class="row first">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                 <detail-image
@@ -94,6 +87,13 @@
                 <router-link :to="{ path: '/', hash: '#project-four' }" class="internal">back to portfolio <arrow-right /></router-link>
             </div>
         </div>
+        <div class="nav-wrap nav-wrap--solid">
+            <navi
+                variant="close"
+                close-label="Close Project"
+                :close-to="{ path: '/', hash: '#project-four' }"
+            ></navi>
+        </div>
     </div>
 </template>
 
@@ -106,9 +106,10 @@ import imageFour from './../assets/p4/p4-4.webp'
 import ArrowDown from './../components/ArrowDown.vue'
 import ArrowRight from './../components/ArrowRight.vue'
 import DetailImage from './../components/main/DetailImage.vue'
+import Nav from './../components/main/navs/IntroNav.vue'
 export default {
     name: 'ProjectFourDetails',
-    components: { DetailImage, ArrowRight, ArrowDown },
+    components: { DetailImage, ArrowRight, ArrowDown, Navi: Nav },
     data() {
         return {
             activeImage: briefImg,
@@ -122,7 +123,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .container {
-    margin-top: 130px;
+    margin-top: 40px;
     font-family: 'AvenirLTStdBook';
     h2 {
         font-family: 'proxima_novablack';
@@ -158,7 +159,9 @@ export default {
         display: inline-flex;
         align-items: center;
         &:hover {
-            padding-left: 20px;
+            color: #000;
+            border-top-color: #000;
+            border-left-color: #000;
         }
     }
     .row {

@@ -133,7 +133,9 @@ export default {
         cursor: pointer;
         text-align: left;
         &:hover {
-            padding-left: 20px;
+            color: #000;
+            border-top-color: #000;
+            border-left-color: #000;
         }
     }
     .text-container {

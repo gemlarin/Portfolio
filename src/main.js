@@ -21,7 +21,7 @@ Vue.use(VueScrollTo, {
     container: 'body',
     duration: 500,
     easing: 'ease',
-    offset: -40,
+    offset: -72,
     cancelable: true,
     onStart: false,
     onDone: false,
@@ -52,10 +52,10 @@ const router = new VueRouter({
                 if (isCoarsePointer) {
                     // Phones/tablets: instant window scroll (body + smooth often fails)
                     const top =
-                        el.getBoundingClientRect().top + window.pageYOffset - 40
+                        el.getBoundingClientRect().top + window.pageYOffset - 72
                     window.scrollTo({ top, left: 0, behavior: 'auto' })
                 } else {
-                    VueScrollTo.scrollTo(to.hash, 600, { offset: -40 })
+                    VueScrollTo.scrollTo(to.hash, 600, { offset: -72 })
                 }
                 return false
             }
@@ -64,10 +64,24 @@ const router = new VueRouter({
                 setTimeout(() => {
                     resolve({
                         selector: to.hash,
-                        offset: { x: 0, y: 40 },
+                        offset: { x: 0, y: 72 },
                     })
                 }, 50)
             })
+        }
+        if (
+            to.path === '/blog' &&
+            from &&
+            from.path &&
+            from.path.indexOf('/blog/') === 0
+        ) {
+            let y = 0
+            try {
+                y = Number(sessionStorage.getItem('blog-list-scroll')) || 0
+            } catch (err) {
+                y = 0
+            }
+            return { x: 0, y: y }
         }
         if (savedPosition) {
             return savedPosition

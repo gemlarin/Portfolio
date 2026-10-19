@@ -1,17 +1,7 @@
 <template>
     <div class="privacy-page">
-        <div class="nav-wrap nav-wrap--solid">
-            <navi :activepage="page"></navi>
-        </div>
         <div class="wrap--stack">
-            <button
-                type="button"
-                class="close-control"
-                aria-label="Close privacy policy (Escape)"
-                @click="closePage"
-            >
-                <span class="mfp-close" aria-hidden="true">×</span>
-            </button>
+
             <div class="wrap--centering">
                 <h1>Privacy Policy</h1>
                 <p class="updated">Last updated: September 30, 2026</p>
@@ -69,6 +59,9 @@
                 </p>
             </div>
         </div>
+        <div class="nav-wrap nav-wrap--solid">
+            <navi variant="close"></navi>
+        </div>
     </div>
 </template>
 
@@ -105,13 +98,13 @@ export default {
 }
 
 .wrap--stack {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--page-header-height));
     width: 100vw;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: var(--close-clearance) 24px 72px;
+    padding: 28px 24px var(--pill-nav-clearance);
     overflow-y: auto;
 }
 
@@ -170,7 +163,7 @@ a {
     }
 
     .wrap--stack {
-        min-height: 100dvh;
+        min-height: calc(100dvh - var(--page-header-height));
         padding-left: 20px;
         padding-right: 20px;
     }

@@ -148,7 +148,9 @@ export default {
 }
 
 #page-wrap button.cta-link:hover {
-    padding-left: 20px;
+    color: #000;
+    border-top-color: #000;
+    border-left-color: #000;
 }
 
 /* Tech logos: name on hover, never a pointer cursor */

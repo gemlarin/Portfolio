@@ -55,6 +55,12 @@
   --color-hero-dark: #252324;
   --color-charcoal: #535250;
 
+  /* Fixed site header. Interior pages pad content by this amount. */
+  --page-header-height: 72px;
+
+  /* Bottom pill nav: offset + vertical padding + label + gap so the last line clears it. */
+  --pill-nav-clearance: calc(5px + 12px + 12px + var(--font-nav) + 24px);
+
   /* Close control + matching content clearance (safe-area aware) */
   --close-size: 56px;
   --close-inset: 8px;

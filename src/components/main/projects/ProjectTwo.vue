@@ -154,7 +154,9 @@ export default {
         padding: 5px 12px;
         text-decoration: none;
         &:hover {
-            padding-left: 20px;
+            color: #000;
+            border-top-color: #000;
+            border-left-color: #000;
         }
     }
     sup {

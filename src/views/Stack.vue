@@ -1,17 +1,7 @@
 <template>
-    <div class="stack-page">
-        <div class="nav-wrap nav-wrap--solid">
-            <navi :activepage="page"></navi>
-        </div>
+    <div class="stack-page page-frame">
         <div class="wrap--stack">
-            <button
-                type="button"
-                class="close-control"
-                aria-label="Close stack (Escape)"
-                @click="closePage"
-            >
-                <span class="mfp-close" aria-hidden="true">×</span>
-            </button>
+
             <div class="wrap--centering">
                 <h1 class="sr-only">Stack</h1>
                 <div class="row">
@@ -33,6 +23,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="nav-wrap nav-wrap--solid">
+            <navi variant="pager" :activepage="page"></navi>
         </div>
     </div>
 </template>
@@ -62,7 +55,6 @@ export default {
 <style lang="scss" scoped>
 .stack-page {
     max-width: 100%;
-    overflow-x: hidden;
 }
 h2,
 .stack-name {
@@ -110,7 +102,6 @@ p {
     align-items: flex-start;
 }
 .wrap--stack {
-    height: 100vh;
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
@@ -194,9 +185,8 @@ p {
         font-size: var(--font-page-title-sm);
     }
     .wrap--stack {
-        height: 100dvh;
         box-sizing: border-box;
-        padding: 56px 0 72px;
+        padding: 0;
         align-items: center;
         overflow-x: hidden;
         overflow-y: auto;

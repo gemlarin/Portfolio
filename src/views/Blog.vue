@@ -1,8 +1,5 @@
 <template>
     <div>
-        <div class="nav-wrap nav-wrap--solid">
-            <navi :activepage="page"></navi>
-        </div>
         <div class="wrap--stack">
             <div class="wrap--centering blog-list">
                 <h1 class="blog-title">Frontend Field Notes</h1>
@@ -182,6 +179,9 @@
                 </template>
             </div>
         </div>
+        <div class="nav-wrap nav-wrap--solid">
+            <navi variant="close-blog"></navi>
+        </div>
     </div>
 </template>
 
@@ -306,18 +306,31 @@ export default {
             this.error = ''
             this.loadMoreError = ''
             this.savedScrollTop = 0
+            try {
+                sessionStorage.removeItem('blog-list-scroll')
+            } catch (err) {
+                /* private mode */
+            }
         },
         clearTagFilter() {
             this.$router.push({ path: '/blog' })
         },
         saveListScroll() {
-            this.savedScrollTop = window.scrollY || 0
+            const top = window.scrollY || 0
+            this.savedScrollTop = top
+            try {
+                sessionStorage.setItem('blog-list-scroll', String(top))
+            } catch (err) {
+                /* private mode */
+            }
         },
         restoreListScroll() {
             const top = this.savedScrollTop
             if (typeof top !== 'number') return
+            const apply = () => window.scrollTo(0, top)
             this.$nextTick(() => {
-                window.scrollTo(0, top)
+                apply()
+                window.requestAnimationFrame(apply)
             })
         },
         async loadPosts() {
@@ -417,7 +430,7 @@ export default {
 .wrap--stack {
     width: 100%;
     max-width: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - var(--page-header-height));
     height: auto;
     position: relative;
     background-color: var(--color-background);
@@ -430,7 +443,7 @@ export default {
     max-height: none;
     height: auto;
     overflow: visible;
-    padding: 28px 0 108px;
+    padding: 28px 0 calc(var(--pill-nav-clearance) + 20px);
     background-color: transparent;
     box-sizing: border-box;
 }
@@ -638,7 +651,9 @@ button.cta-link.load-more {
     cursor: pointer;
     text-align: left;
     &:hover:not(:disabled) {
-        padding-left: 20px;
+        color: #000;
+        border-top-color: #000;
+        border-left-color: #000;
     }
     &:disabled {
         opacity: 0.6;
@@ -652,8 +667,6 @@ button.cta-link.load-more {
     .wrap--centering {
         max-height: none;
         height: auto;
-        margin-top: var(--close-clearance);
-        padding-bottom: 108px;
     }
     .post-thumb-wrap {
         display: none;

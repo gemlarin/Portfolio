@@ -1,21 +1,12 @@
   <template>
-    <div id="app">
+    <div id="app" :class="{ 'is-interior': $route.path !== '/' }">
         <a
             class="skip-link"
             href="#introduction"
             @click.prevent="skipToContent"
             >Skip to content</a
         >
-        <button
-            v-if="showBlogClose"
-            type="button"
-            class="close-control"
-            :aria-label="blogCloseLabel"
-            @click.stop.prevent="closeBlogUi"
-            @touchend.stop.prevent="closeBlogUi"
-        >
-            <span class="mfp-close" aria-hidden="true">×</span>
-        </button>
+        <site-header></site-header>
         <div id="site-content">
             <keep-alive include="Blog">
                 <router-view></router-view>
@@ -25,51 +16,19 @@
 </template>
 
 <script>
+import SiteHeader from './components/SiteHeader.vue'
+
 export default {
     name: 'app',
-
-    data() {
-        return {
-            blogCloseLock: false,
-        }
+    components: {
+        SiteHeader,
     },
-    components: {},
     computed: {
         isShowLoader: function () {
             return this.$store.getters.getShowLoader
         },
-        showBlogClose() {
-            const path = this.$route.path || ''
-            return path === '/blog' || path.indexOf('/blog/') === 0
-        },
-        blogCloseLabel() {
-            const path = this.$route.path || ''
-            if (path.indexOf('/blog/') === 0) {
-                return 'Back to blog (Escape)'
-            }
-            return 'Close blog (Escape)'
-        },
     },
     methods: {
-        closeBlogUi(event) {
-            if (this.blogCloseLock) return
-            this.blogCloseLock = true
-            if (event && event.currentTarget) {
-                event.currentTarget.blur()
-            }
-            const path = this.$route.path || ''
-            const target =
-                path.indexOf('/blog/') === 0
-                    ? '/blog'
-                    : { path: '/', hash: '#introduction' }
-            const release = () => {
-                this.blogCloseLock = false
-            }
-            this.$router
-                .push(target)
-                .then(release)
-                .catch(release)
-        },
         skipToContent() {
             const target =
                 document.getElementById('introduction') ||
@@ -209,6 +168,30 @@ export default {
 <style lang="scss">
 $brand-primary: var(--color-accent-alt) !default;
 $color-white: var(--color-background) !default;
+
+/* Home stays flush under the transparent bar. Other pages clear the fixed header. */
+#app.is-interior #site-content {
+    padding-top: var(--page-header-height);
+}
+
+/* Stack, Résumé, and Contact: cancel the header pad, then inset equally so the
+   block stays centered on the viewport. */
+.page-frame {
+    margin-top: calc(-1 * var(--page-header-height));
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--page-header-height);
+    padding-bottom: var(--page-header-height);
+}
+
+@media (max-width: 768px) {
+    .page-frame {
+        height: 100dvh;
+    }
+}
 
 /* WebKit, Blink, Edge */
 .form-control::-webkit-input-placeholder {
@@ -522,41 +505,79 @@ img.mfp-img {
     align-items: flex-start;
 }
 
-/* Shared bottom nav fade for Stack / Resume / Contact / Blog */
+/* Fixed pill nav — width follows the links, centered, 5px off the page bottom. */
 .nav-wrap.nav-wrap--solid {
     position: fixed;
-    bottom: 0 !important;
-    left: 0;
+    bottom: 5px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     z-index: 1050;
-    width: 100%;
-    max-width: 100%;
-    height: 120px !important;
+    width: max-content;
+    max-width: calc(100% - 16px);
+    height: auto !important;
     min-height: 0 !important;
     padding: 0 !important;
     box-sizing: border-box;
-    background: linear-gradient(
-        to top,
-        var(--color-background) 0,
-        var(--color-background) 58px,
-        rgba(255, 255, 255, 0.55) 78px,
-        rgba(255, 255, 255, 0) 98px
-    ) !important;
+    background: transparent !important;
+    box-shadow: none;
     display: flex;
     justify-content: center;
-    align-items: flex-end !important;
-    pointer-events: none;
+    align-items: center;
+    pointer-events: auto;
 }
 .nav-wrap.nav-wrap--solid .intro-nav {
+    position: relative;
+    pointer-events: auto;
     margin: 0 !important;
-    align-self: flex-end;
+    align-self: center;
+    width: max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    background: transparent;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    box-shadow: none;
+}
+.nav-wrap.nav-wrap--solid .intro-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    box-sizing: border-box;
+    background: #000;
+    border: 3px solid #fff;
+    border-radius: inherit;
+    box-shadow: none;
+    pointer-events: none;
+    transform: scale(1);
+}
+.nav-wrap.nav-wrap--solid .intro-nav--action::before {
+    transition: transform 0.22s ease;
+}
+.nav-wrap.nav-wrap--solid .intro-nav--action:hover::before {
+    transform: scale(1.03);
 }
 .nav-wrap.nav-wrap--solid ul {
+    position: relative;
+    z-index: 1;
     pointer-events: auto;
-    margin: 0 0 17px !important;
-    align-self: flex-end;
+    margin: 0 !important;
+    align-self: center;
+}
+.nav-wrap.nav-wrap--solid li:first-child button {
+    margin-left: 0;
+}
+.nav-wrap.nav-wrap--solid li:last-child button {
+    margin-right: 0;
 }
 .nav-wrap.nav-wrap--solid button {
     pointer-events: auto;
+}
+.nav-wrap.nav-wrap--solid button:focus-visible {
+    outline: 2px solid var(--color-accent) !important;
+    outline-offset: 4px !important;
 }
 
 @media (max-width: 768px) {
@@ -768,10 +789,9 @@ button.cta-link:focus-visible {
     }
 }
 
-/* Shared edge gutter for details pages — close X is centered in this strip */
+/* Shared edge gutter for details pages */
 [id$='-details'] {
     --details-gutter: 30px;
-    --close-size: 48px;
 }
 
 @media (max-width: 767px) {
@@ -792,73 +812,4 @@ button.cta-link:focus-visible {
     }
 }
 
-/* Details / overlay close controls — button is the hit + focus target */
-.close-control {
-    position: fixed;
-    top: var(--close-top);
-    right: max(var(--close-inset), env(safe-area-inset-right, 0px));
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    width: var(--close-size);
-    height: var(--close-size);
-    min-width: var(--close-size);
-    min-height: var(--close-size);
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    line-height: 1;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Same inset on every project details page */
-[id$='-details'] .close-control {
-    right: 10px;
-}
-
-.close-control,
-.close-control:hover,
-.close-control:focus,
-.close-control .mfp-close,
-.close-control:hover .mfp-close,
-.close-control:focus .mfp-close {
-    cursor: pointer !important;
-}
-
-.close-control .mfp-close {
-    position: static !important;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: var(--text-close-lg) !important;
-    line-height: 1 !important;
-    display: block;
-    color: var(--color-foreground);
-    cursor: pointer !important;
-    transition: color 0.15s ease;
-    pointer-events: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .close-control:hover .mfp-close {
-        color: var(--color-accent) !important;
-    }
-}
-
-.close-control:focus-visible .mfp-close {
-    color: var(--color-accent) !important;
-}
-
-.close-control:focus-visible {
-    outline: 2px solid var(--color-accent) !important;
-    outline-offset: 2px !important;
-}
 </style>

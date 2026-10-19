@@ -1,17 +1,7 @@
 <template>
-    <div>
-        <div class="nav-wrap nav-wrap--solid">
-            <navi :activepage="page"></navi>
-        </div>
+    <div class="page-frame">
         <div class="wrap--stack">
-            <button
-                type="button"
-                class="close-control"
-                aria-label="Close résumé (Escape)"
-                @click="closePage"
-            >
-                <span class="mfp-close" aria-hidden="true">×</span>
-            </button>
+
             <div class="wrap--centering">
                 <h1 class="sr-only">Résumé</h1>
                 <h2>Experience</h2>
@@ -34,6 +24,9 @@
                     >
                 </p>
             </div>
+        </div>
+        <div class="nav-wrap nav-wrap--solid">
+            <navi variant="pager" :activepage="page"></navi>
         </div>
     </div>
 </template>
@@ -76,8 +69,9 @@ a.cta-link {
     cursor: pointer;
     text-align: left;
     &:hover {
-        padding-left: 20px;
-        color: var(--color-accent);
+        color: #000;
+        border-top-color: #000;
+        border-left-color: #000;
         text-decoration: none;
     }
 }
@@ -115,8 +109,7 @@ p {
 }
 
 .wrap--stack {
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -200,9 +193,8 @@ p {
         font-size: var(--font-page-title-sm);
     }
     .wrap--stack {
-        height: 100dvh;
         box-sizing: border-box;
-        padding: 56px 0 72px;
+        padding: 0;
         align-items: center;
         justify-content: center;
         overflow-y: auto;

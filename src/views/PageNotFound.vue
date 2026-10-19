@@ -9,18 +9,23 @@
         <router-link to="/" class="home-link"
             >Back home<arrow-right /></router-link
         >
+        <div class="nav-wrap nav-wrap--solid">
+            <navi variant="close"></navi>
+        </div>
     </div>
 </template>
 
 <script>
 import ArrowRight from './../components/ArrowRight.vue'
 import BrandMark from './../components/BrandMark.vue'
+import Nav from './../components/main/navs/IntroNav.vue'
 
 export default {
     name: 'PageNotFound',
     components: {
         ArrowRight,
         BrandMark,
+        Navi: Nav,
     },
     metaInfo: {
         title: '404',
@@ -30,13 +35,13 @@ export default {
 
 <style scoped lang="scss">
 .not-found {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--page-header-height));
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 40px 24px;
+    padding: 40px 24px var(--pill-nav-clearance);
     background: var(--color-page);
     font-family: 'AvenirLTStdBook', sans-serif;
 }
@@ -83,7 +88,9 @@ export default {
     text-decoration: none;
 
     &:hover {
-        padding-left: 20px;
+        color: #000;
+        border-top-color: #000;
+        border-left-color: #000;
     }
 }
 </style>

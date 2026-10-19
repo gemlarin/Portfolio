@@ -1,8 +1,5 @@
 <template>
     <div>
-        <div class="nav-wrap nav-wrap--solid">
-            <navi :activepage="page"></navi>
-        </div>
         <div class="wrap--stack">
             <div class="wrap--centering blog-post">
                 <p v-if="loading" class="status" role="status">Loading post…</p>
@@ -25,9 +22,6 @@
                         aria-live="polite"
                     >
                         {{ copyStatus }}
-                    </p>
-                    <p class="back">
-                        <router-link to="/blog">← All posts</router-link>
                     </p>
                     <h1>{{ post.title }}</h1>
                     <p v-if="post.subtitle" class="subtitle">
@@ -120,11 +114,11 @@
                             >Subscribe via RSS <external-arrow /></a
                         >
                     </p>
-                    <p class="back back--footer">
-                        <router-link to="/blog">← All posts</router-link>
-                    </p>
                 </article>
             </div>
+        </div>
+        <div class="nav-wrap nav-wrap--solid">
+            <navi variant="back-list"></navi>
         </div>
     </div>
 </template>
@@ -426,7 +420,7 @@ export default {
 .wrap--stack {
     width: 100%;
     max-width: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - var(--page-header-height));
     height: auto;
     position: relative;
     background-color: var(--color-background);
@@ -439,7 +433,7 @@ export default {
     max-height: none;
     height: auto;
     overflow: visible;
-    padding: 28px 0 108px;
+    padding: 60px 0 calc(var(--pill-nav-clearance) + 20px);
     background-color: transparent;
     box-sizing: border-box;
 }
@@ -464,21 +458,6 @@ export default {
     color: var(--color-accent);
     cursor: pointer;
     text-decoration: underline;
-}
-.back {
-    margin: 0 0 16px;
-    font-family: 'AvenirLTStdBook';
-    font-size: var(--font-meta);
-    a {
-        color: var(--color-accent);
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
-.back--footer {
-    margin: 36px 0 0;
 }
 h1 {
     font-family: 'proxima_novablack';
@@ -710,8 +689,6 @@ h1 {
     .wrap--centering {
         max-height: none;
         height: auto;
-        margin-top: var(--close-clearance);
-        padding-bottom: 108px;
     }
 }
 </style>

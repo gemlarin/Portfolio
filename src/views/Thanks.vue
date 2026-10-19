@@ -32,7 +32,7 @@ export default {
 
 <style scoped lang="scss">
 .thanks {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--page-header-height));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +83,9 @@ export default {
     text-decoration: none;
 
     &:hover {
-        padding-left: 20px;
+        color: #000;
+        border-top-color: #000;
+        border-left-color: #000;
     }
 }
 </style>

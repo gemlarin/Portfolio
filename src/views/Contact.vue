@@ -1,17 +1,7 @@
 <template>
-    <div>
-        <div class="nav-wrap nav-wrap--solid">
-            <navi :activepage="page"></navi>
-        </div>
+    <div class="page-frame">
         <div class="wrap--stack">
-            <button
-                type="button"
-                class="close-control"
-                aria-label="Close contact (Escape)"
-                @click="closePage"
-            >
-                <span class="mfp-close" aria-hidden="true">×</span>
-            </button>
+
             <div class="wrap--centering">
                 <div class="container">
                     <h1 class="contact-title">Contact Form</h1>
@@ -111,6 +101,9 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="nav-wrap nav-wrap--solid">
+            <navi variant="pager" :activepage="page"></navi>
         </div>
     </div>
 </template>
@@ -240,8 +233,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .wrap--stack {
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -308,7 +300,9 @@ button.cta-link {
     cursor: pointer;
     text-align: left;
     &:hover:not(:disabled) {
-        padding-left: 20px;
+        color: #000;
+        border-top-color: #000;
+        border-left-color: #000;
     }
     &:disabled {
         opacity: 0.6;
@@ -340,9 +334,8 @@ a {
         font-size: var(--font-page-title-sm);
     }
     .wrap--stack {
-        height: 100dvh;
         box-sizing: border-box;
-        padding: 56px 0 72px;
+        padding: 0;
         align-items: center;
         overflow-y: auto;
     }
