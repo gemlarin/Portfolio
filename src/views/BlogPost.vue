@@ -563,7 +563,9 @@ h1 {
     padding-top: 28px;
     border-top: 1px dashed var(--color-border);
     h2 {
-        font-family: 'proxima_novablack';
+        font-family: 'AvenirLTStdBlack';
+        font-weight: normal;
+        font-synthesis: none;
         font-size: var(--font-h3);
         color: var(--color-foreground);
         margin: 0 0 12px;
@@ -604,6 +606,7 @@ h1 {
 .post-body ::v-deep {
     p {
         margin: 0 0 1.1em;
+        font-size: var(--text-md);
     }
     strong,
     b {
@@ -626,10 +629,21 @@ h1 {
         }
     }
     h2 {
+        font-family: 'AvenirLTStdBlack';
+        font-weight: normal;
+        font-synthesis: none;
         font-size: var(--font-article-h2);
     }
     h3 {
+        font-family: 'AvenirLTStdMedium';
+        font-weight: normal;
+        font-synthesis: none;
         font-size: var(--font-article-h3);
+    }
+    h4 {
+        font-family: 'AvenirLTStdMedium';
+        font-weight: normal;
+        font-synthesis: none;
     }
     h3,
     h4 {
@@ -653,6 +667,7 @@ h1 {
         margin-bottom: calc(1.1em - 5px);
     }
     li {
+        font-size: var(--text-md);
         margin-bottom: 0;
         > p:last-child {
             margin-bottom: 0;
@@ -718,7 +733,7 @@ h1 {
     code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             monospace;
-        font-size: var(--font-code);
+        font-size: var(--text-md);
         color: var(--color-charcoal);
     }
     pre code {

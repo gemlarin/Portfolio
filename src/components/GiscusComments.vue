@@ -141,7 +141,9 @@ export default {
 }
 
 h2 {
-    font-family: 'proxima_novablack', sans-serif;
+    font-family: 'AvenirLTStdBlack', sans-serif;
+    font-weight: normal;
+    font-synthesis: none;
     font-size: var(--font-h3);
     color: var(--color-foreground);
     margin: 0;
