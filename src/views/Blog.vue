@@ -457,11 +457,11 @@ h2,
     margin: 0 0 4px;
 }
 .lede {
-    font-family: 'AvenirLTStdBlack';
-    font-size: var(--font-lede);
+    font-family: 'AvenirLTStdMedium';
+    font-size: 1.2rem;
     color: var(--color-foreground);
     margin: 0 0 8px;
-    line-height: 1.5;
+    line-height: 1.45;
 }
 .lede-hashnode-wrap {
     margin: 0 0 30px;
@@ -576,8 +576,8 @@ h2,
 }
 .post-title {
     display: block;
-    font-family: 'AvenirLTStdMedium';
-    font-size: var(--font-post-title);
+    font-family: 'AvenirLTStdBlack';
+    font-size: 1.2rem;
     line-height: 1.1;
     color: var(--color-foreground);
     transition: color 0.15s ease;

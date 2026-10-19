@@ -27,27 +27,9 @@
                     <p v-if="post.subtitle" class="subtitle">
                         {{ post.subtitle }}
                     </p>
-                    <ul
-                        v-if="post.tags && post.tags.length"
-                        class="post-tags"
-                    >
-                        <li
-                            v-for="tag in post.tags"
-                            :key="tag.slug"
-                        >
-                            <router-link
-                                class="tag-link"
-                                :to="{
-                                    path: '/blog',
-                                    query: { tag: tag.slug },
-                                }"
-                                >#{{ tag.name }}</router-link
-                            >
-                        </li>
-                    </ul>
                     <p v-if="post.publishedAt" class="meta">
                         <time :datetime="post.publishedAt">{{
-                            formatDate(post.publishedAt)
+                            formatDateTime(post.publishedAt)
                         }}</time>
                         <span aria-hidden="true"> · </span>
                         <a
@@ -84,6 +66,27 @@
                             >View on Hashnode <external-arrow /></a
                         >
                     </p>
+                    <div
+                        v-if="post.tags && post.tags.length"
+                        class="post-tags-row"
+                    >
+                        <p class="post-tags-label">Tags:</p>
+                        <ul class="post-tags">
+                            <li
+                                v-for="tag in post.tags"
+                                :key="tag.slug"
+                            >
+                                <router-link
+                                    class="tag-link"
+                                    :to="{
+                                        path: '/blog',
+                                        query: { tag: tag.slug },
+                                    }"
+                                    >#{{ tag.name }}</router-link
+                                >
+                            </li>
+                        </ul>
+                    </div>
                     <section
                         v-if="relatedPosts.length"
                         class="related"
@@ -135,7 +138,7 @@ import {
     HASHNODE_RSS_URL,
     RELATED_CANDIDATE_SIZE,
 } from './../utils/hashnode'
-import { formatDate } from './../utils/formatDate'
+import { formatDateTime } from './../utils/formatDate'
 
 export default {
     name: 'BlogPost',
@@ -172,7 +175,7 @@ export default {
         this.clearCopyTimers()
     },
     methods: {
-        formatDate,
+        formatDateTime,
         closePage() {
             this.$router.push('/blog')
         },
@@ -469,29 +472,57 @@ h1 {
     line-height: 1.15;
 }
 .subtitle {
-    font-family: 'AvenirLTStdBlack';
-    font-size: var(--font-lede);
+    font-family: 'AvenirLTStdMedium';
+    font-size: 1.2rem;
     color: var(--color-foreground);
-    margin: 0 0 12px;
+    margin: 0 0 17px;
     line-height: 1.45;
+}
+.post-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 38px 0 12px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--color-border);
+}
+.post-tags-label {
+    margin: 0 8px 0 0;
+    font-family: 'AvenirLTStdBlack';
+    font-size: var(--font-small);
+    line-height: 1.2;
+    color: var(--color-foreground);
 }
 .post-tags {
     list-style: none;
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
-    gap: 6px 12px;
-    margin: 0 0 12px;
+    gap: 3px 0;
+    min-width: 0;
+    margin: 0;
     padding: 0;
     li {
+        display: flex;
+        align-items: center;
         margin: 0;
         padding: 0;
         font-family: 'AvenirLTStdMedium';
         font-size: var(--font-small);
         line-height: 1.2;
+        &:not(:last-child)::after {
+            content: '';
+            width: 3px;
+            height: 3px;
+            margin: 0 6px;
+            border-radius: 50%;
+            background: #b0b0b0;
+            flex: 0 0 auto;
+        }
     }
 }
 .tag-link {
-    color: var(--color-muted-soft);
+    color: var(--color-foreground);
     text-decoration: none;
     cursor: pointer;
     &:hover {
@@ -504,6 +535,9 @@ h1 {
     font-size: var(--font-meta);
     color: var(--color-muted);
     margin: 0 0 22px;
+    span {
+        margin: 0 4px;
+    }
     a {
         color: var(--color-accent);
         text-decoration: none;
@@ -525,8 +559,8 @@ h1 {
     line-height: 1.65;
 }
 .related {
-    margin: 36px 0 0;
-    padding-top: 24px;
+    margin: 20px 0 0;
+    padding-top: 28px;
     border-top: 1px dashed var(--color-border);
     h2 {
         font-family: 'proxima_novablack';
@@ -559,7 +593,7 @@ h1 {
     font-family: 'AvenirLTStdBook';
     font-size: var(--font-small);
     a {
-        color: var(--color-foreground);
+        color: var(--color-accent);
         text-decoration: none;
         cursor: pointer;
         &:hover {

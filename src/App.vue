@@ -549,7 +549,7 @@ img.mfp-img {
     background: #000;
     border: 3px solid #fff;
     border-radius: inherit;
-    box-shadow: none;
+    box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.4);
     pointer-events: none;
     transform: scale(1);
 }

@@ -4,8 +4,32 @@
         class="giscus-section"
         aria-labelledby="comments-heading"
     >
-        <h2 id="comments-heading">Comments</h2>
-        <div ref="host" class="giscus-host" />
+        <h2 id="comments-heading">
+            <button
+                type="button"
+                class="comments-toggle"
+                :aria-expanded="open ? 'true' : 'false'"
+                aria-controls="comments-panel"
+                @click="toggle"
+            >
+                <span class="comments-label">
+                    Comments<span class="comments-count">
+                        ({{ reactionCount }})</span
+                    >
+                </span>
+                <span
+                    class="comments-caret"
+                    :class="{ 'is-open': open }"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </h2>
+        <div
+            id="comments-panel"
+            v-show="open"
+            ref="host"
+            class="giscus-host"
+        />
     </section>
 </template>
 
@@ -21,25 +45,56 @@ export default {
             default: '',
         },
     },
+    data() {
+        return {
+            open: false,
+            mounted: false,
+            reactionCount: 0,
+        }
+    },
     watch: {
-        term: {
-            immediate: true,
-            handler(value) {
-                if (value) {
-                    this.$nextTick(() => this.mountGiscus())
-                }
-            },
+        term(value) {
+            this.open = false
+            this.reactionCount = 0
+            this.teardown()
+            if (value) {
+                this.$nextTick(() => this.mountGiscus())
+            }
         },
     },
+    mounted() {
+        window.addEventListener('message', this.onGiscusMessage)
+        if (this.term) {
+            this.$nextTick(() => this.mountGiscus())
+        }
+    },
     beforeDestroy() {
+        window.removeEventListener('message', this.onGiscusMessage)
         this.teardown()
     },
     methods: {
+        onGiscusMessage(event) {
+            if (event.origin !== 'https://giscus.app') return
+            const data = event.data
+            if (!data || typeof data !== 'object' || !data.giscus) return
+            const discussion = data.giscus.discussion
+            if (!discussion || typeof discussion.reactionCount !== 'number') {
+                return
+            }
+            this.reactionCount = discussion.reactionCount
+        },
+        toggle() {
+            this.open = !this.open
+            if (this.open && !this.mounted) {
+                this.$nextTick(() => this.mountGiscus())
+            }
+        },
         teardown() {
             const host = this.$refs.host
             if (host) {
                 host.innerHTML = ''
             }
+            this.mounted = false
         },
         mountGiscus() {
             const host = this.$refs.host
@@ -63,7 +118,7 @@ export default {
                 'data-reactions-enabled',
                 giscusConfig.reactionsEnabled
             )
-            script.setAttribute('data-emit-metadata', giscusConfig.emitMetadata)
+            script.setAttribute('data-emit-metadata', '1')
             script.setAttribute(
                 'data-input-position',
                 giscusConfig.inputPosition
@@ -72,6 +127,7 @@ export default {
             script.setAttribute('data-lang', giscusConfig.lang)
 
             host.appendChild(script)
+            this.mounted = true
         },
     },
 }
@@ -79,7 +135,7 @@ export default {
 
 <style scoped lang="scss">
 .giscus-section {
-    margin-top: 40px;
+    margin-top: 32px;
     padding-top: 28px;
     border-top: 1px solid var(--color-border);
 }
@@ -88,11 +144,50 @@ h2 {
     font-family: 'proxima_novablack', sans-serif;
     font-size: var(--font-h3);
     color: var(--color-foreground);
-    margin: 0 0 16px;
+    margin: 0;
     line-height: 1.2;
 }
 
+.comments-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--color-accent);
+    }
+}
+
+.comments-count {
+    font-family: 'AvenirLTStdBook', sans-serif;
+    font-size: 0.8em;
+    font-weight: 400;
+    font-synthesis: none;
+}
+
+.comments-caret {
+    display: inline-block;
+    width: calc(0.42em - 2px);
+    height: calc(0.42em - 2px);
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-0.12em) rotate(45deg);
+}
+
+.comments-caret.is-open {
+    transform: translateY(0.12em) rotate(-135deg);
+}
+
 .giscus-host {
+    margin-top: 16px;
     min-height: 120px;
 }
 </style>
