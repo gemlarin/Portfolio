@@ -213,8 +213,7 @@ export default {
             this.post = null
             this.relatedPosts = []
             this.$nextTick(() => {
-                const el = this.$el && this.$el.querySelector('.blog-post')
-                if (el) el.scrollTop = 0
+                window.scrollTo(0, 0)
             })
             try {
                 this.post = await fetchHashnodePost(slug, {
@@ -427,23 +426,20 @@ export default {
 .wrap--stack {
     width: 100%;
     max-width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     position: relative;
     background-color: var(--color-background);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow-x: hidden;
+    overflow: visible;
     box-sizing: border-box;
 }
 .wrap--centering {
-    width: min(720px, 88vw);
-    flex: 1 1 auto;
+    width: min(689px, calc(100% - 40px));
+    margin: 0 auto;
     max-height: none;
     height: auto;
-    overflow: auto;
-    padding: 28px 20px 108px;
+    overflow: visible;
+    padding: 28px 0 108px;
     background-color: transparent;
     box-sizing: border-box;
 }
