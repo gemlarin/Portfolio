@@ -539,6 +539,8 @@ h1 {
     width: 100%;
     height: auto;
     margin: 0 0 24px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
 }
 .post-body {
     font-family: 'AvenirLTStdBook';
@@ -663,6 +665,7 @@ h1 {
         color: var(--color-charcoal);
         font-size: var(--text-base);
         line-height: 1.5;
+        border-radius: 5px;
     }
     .code-block {
         position: relative;
@@ -715,6 +718,7 @@ h1 {
     :not(pre) > code {
         background: var(--color-surface);
         padding: 0.1em 0.35em;
+        border-radius: 3px;
     }
     hr {
         border: 0;

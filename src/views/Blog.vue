@@ -14,15 +14,11 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Read on Hashnode (opens in new tab)"
-                        >Read on Hashnode <external-arrow /></a
-                    >
+                        >Read on Hashnode <external-arrow
+                    /></a>
                 </p>
 
-                <p
-                    v-if="activeTag"
-                    class="tag-filter"
-                    role="status"
-                >
+                <p v-if="activeTag" class="tag-filter" role="status">
                     Showing
                     <span class="tag-filter-name">#{{ activeTagLabel }}</span>
                     <button
@@ -34,7 +30,9 @@
                     </button>
                 </p>
 
-                <p v-if="loading" class="status" role="status">Loading posts…</p>
+                <p v-if="loading" class="status" role="status">
+                    Loading posts…
+                </p>
                 <p v-else-if="error" class="status error" role="alert">
                     {{ error }}
                     <button
@@ -70,7 +68,8 @@
                     role="status"
                 >
                     No loaded posts match
-                    <span class="tag-filter-name">#{{ activeTagLabel }}</span>.
+                    <span class="tag-filter-name">#{{ activeTagLabel }}</span
+                    >.
                     <button
                         type="button"
                         class="status-action"
@@ -132,10 +131,7 @@
                                 v-if="post.tags && post.tags.length"
                                 class="post-tags"
                             >
-                                <li
-                                    v-for="tag in post.tags"
-                                    :key="tag.slug"
-                                >
+                                <li v-for="tag in post.tags" :key="tag.slug">
                                     <router-link
                                         class="tag-link link"
                                         :to="{
@@ -156,10 +152,7 @@
                             :aria-busy="loadingMore ? 'true' : 'false'"
                             @click="loadMore"
                         >
-                            {{
-                                loadingMore
-                                    ? 'Loading…'
-                                    : 'Load more'
+                            {{ loadingMore ? 'Loading…' : 'Load more'
                             }}<arrow-down v-if="!loadingMore" />
                         </button>
                         <p
@@ -274,8 +267,7 @@ export default {
     },
     beforeRouteLeave(to, from, next) {
         const path = (to && to.path) || ''
-        const stayingInBlog =
-            path === '/blog' || path.indexOf('/blog/') === 0
+        const stayingInBlog = path === '/blog' || path.indexOf('/blog/') === 0
         if (stayingInBlog) {
             if (path.indexOf('/blog/') === 0) {
                 this.saveListScroll()
@@ -555,6 +547,8 @@ h2,
     overflow: hidden;
     background: var(--color-surface);
     margin-top: 4px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 .post-thumb {
     display: block;
