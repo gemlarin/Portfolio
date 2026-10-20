@@ -726,6 +726,10 @@ h1 {
         border-collapse: collapse;
         margin: 0 0 1.2em;
         font-size: var(--font-small);
+        code,
+        pre {
+            font-size: var(--font-small);
+        }
     }
     th,
     td {
