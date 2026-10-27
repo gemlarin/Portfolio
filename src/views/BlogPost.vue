@@ -547,6 +547,8 @@ h1 {
     font-size: var(--font-body);
     color: var(--color-foreground);
     line-height: 1.65;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 .related {
     margin: 20px 0 0;
@@ -660,12 +662,18 @@ h1 {
     pre {
         margin: 0 0 1.2em;
         padding: 14px 16px;
-        overflow: auto;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        overflow-wrap: normal;
         background: var(--color-surface);
         color: var(--color-charcoal);
         font-size: var(--text-base);
         line-height: 1.5;
         border-radius: 5px;
+    }
+    a {
+        overflow-wrap: anywhere;
     }
     .code-block {
         position: relative;
