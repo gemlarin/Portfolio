@@ -200,7 +200,7 @@ export default {
                         email: this.email,
                         message: this.message,
                         subject: 'Portfolio contact form',
-                        from_name: 'gemlarin.github.io',
+                        from_name: 'www.dannygibas.dev',
                         botcheck: botcheck,
                     }),
                 })

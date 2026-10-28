@@ -339,7 +339,7 @@ export default {
                 return window.location.href
             }
             const slug = (this.post && this.post.slug) || ''
-            return 'https://gemlarin.github.io/blog/' + slug
+            return 'https://www.dannygibas.dev/blog/' + slug
         },
     },
     metaInfo() {

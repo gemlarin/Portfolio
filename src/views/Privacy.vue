@@ -8,7 +8,7 @@
 
                 <p>
                     This site is Danny Gibas’s personal portfolio
-                    (gemlarin.github.io). This policy explains what information
+                    (www.dannygibas.dev). This policy explains what information
                     is collected when you visit and how it’s used.
                 </p>
 

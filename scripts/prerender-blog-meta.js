@@ -11,7 +11,7 @@ const path = require("path");
 
 const HASHNODE_GQL = "https://gql-beta.hashnode.com/";
 const HASHNODE_HOST = "front-end-fieldnotes.hashnode.dev";
-const SITE_ORIGIN = "https://gemlarin.github.io";
+const SITE_ORIGIN = "https://www.dannygibas.dev";
 const SITE_NAME = "Danny Gibas";
 const FALLBACK_DESCRIPTION =
   "Practical notes on frontend engineering, design, and shipping.";
