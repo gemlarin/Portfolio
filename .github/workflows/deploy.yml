@@ -45,3 +45,12 @@ jobs:
           commit_message: Update portfolio site
           force_orphan: false
           keep_files: false
+
+      - name: Keep Pages custom domain
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        run: |
+          gh api --method PUT repos/gemlarin/gemlarin.github.io/pages \
+            -f cname='www.dannygibas.dev'
+          gh api --method PUT repos/gemlarin/gemlarin.github.io/pages \
+            -F https_enforced=true || true
