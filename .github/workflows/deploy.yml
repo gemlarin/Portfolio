@@ -4,6 +4,10 @@ on:
   push:
     branches: [master]
   workflow_dispatch:
+  # Daily rebuild so a new Hashnode post gets link-preview HTML without a manual deploy.
+  # 14:00 UTC is 8:00 AM at UTC-6. GitHub may start the run late.
+  schedule:
+    - cron: "0 14 * * *"
 
 concurrency:
   group: deploy-site
